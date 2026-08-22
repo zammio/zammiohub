@@ -1,1 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Age Calculator - Calculate Exact Age in Years, Months & Days | ZammioHub</title>
+
+  <meta name="description" content="Use ZammioHub's free Age Calculator to calculate your exact age in years, months, days, weeks and total days. Fast, accurate and mobile-friendly.">
+
+  <meta name="keywords" content="age calculator, exact age calculator, calculate age, age in years months days, birthday calculator">
+
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    .calculator-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px 80px;
+    }
+
+    .calculator-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .calculator-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #eaf1ff;
+      color: #2864d7;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    .calculator-header h1 {
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1.1;
+      margin: 0 0 18px;
+      color: #14213d;
+    }
+
+    .calculator-header p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #667085;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .calculator-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 15px 40px rgba(20, 33, 61, 0.08);
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 700;
+      color: #14213d;
+      margin-bottom: 9px;
+    }
+
+    .input-group input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px 16px;
+      border: 1px solid #d7dee9;
+      border-radius: 12px;
+      font-size: 16px;
+      background: #fff;
+      color: #14213d;
+      outline: none;
+    }
+
+    .input-group input:focus {
+      border-color: #2864d7;
+      box-shadow: 0 0 0 3px rgba(40, 100, 215, 0.12);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .calculate-btn,
+    .reset-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 15px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .calculate-btn {
+      background: #2864d7;
+      color: white;
+      flex: 1;
+    }
+
+    .calculate-btn:hover {
+      background: #1f55bd;
+    }
+
+    .reset-btn {
+      background: #eef2f7;
+      color: #14213d;
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px 16px;
+      background: #fff1f2;
+      color: #be123c;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .result-card {
+      display: none;
+      margin-top: 28px;
+      padding: 28px;
+      background: #f6f9ff;
+      border: 1px solid #dce8ff;
+      border-radius: 20px;
+    }
+
+    .result-card h2 {
+      margin: 0 0 22px;
+      color: #14213d;
+      font-size: 25px;
+    }
+
+    .main-age {
+      text-align: center;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+
+    .main-age-label {
+      color: #667085;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .main-age-value {
+      color: #2864d7;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .result-item {
+      background: #ffffff;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid #e7edf7;
+    }
+
+    .result-item span {
+      display: block;
+      color: #667085;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .result-item strong {
+      color: #14213d;
+      font-size: 20px;
+    }
+
+    .info-section {
+      margin-top: 50px;
+    }
+
+    .info-section h2 {
+      color: #14213d;
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+
+    .info-section p {
+      color: #667085;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    @media (max-width: 650px) {
+      .calculator-page {
+        padding: 40px 16px 60px;
+      }
+
+      .calculator-card {
+        padding: 22px;
+        border-radius: 18px;
+      }
+
+      .input-grid,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      .calculator-header p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="calculator-page">
+
+    <header class="calculator-header">
+      <div class="calculator-badge">FREE • FAST • ACCURATE</div>
+
+      <h1>Age Calculator</h1>
+
+      <p>
+        Calculate your exact age in years, months and days.
+        You can also see your total age in weeks and days.
+      </p>
+    </header>
+
+    <section class="calculator-card">
+
+      <div class="input-grid">
+
+        <div class="input-group">
+          <label for="birthDate">Date of Birth</label>
+          <input type="date" id="birthDate">
+        </div>
+
+        <div class="input-group">
+          <label for="calculateDate">Calculate Age On</label>
+          <input type="date" id="calculateDate">
+        </div>
+
+      </div>
+
+      <div class="button-row">
+        <button class="calculate-btn" onclick="calculateAge()">
+          Calculate Age
+        </button>
+
+        <button class="reset-btn" onclick="resetCalculator()">
+          Reset
+        </button>
+      </div>
+
+      <div class="error-message" id="errorMessage"></div>
+
+      <div class="result-card" id="resultCard">
+
+        <h2>Your Exact Age</h2>
+
+        <div class="main-age">
+          <div class="main-age-label">You are</div>
+          <div class="main-age-value" id="exactAge">
+            —
+          </div>
+        </div>
+
+        <div class="result-grid">
+
+          <div class="result-item">
+            <span>Total Years</span>
+            <strong id="totalYears">—</strong>
+          </div>
+
+          <div class="result-item">
+            <span>Total Months</span>
+            <strong id="totalMonths">—</strong>
+          </div>
+
+          <div class="result-item">
+            <span>Total Weeks</span>
+            <strong id="totalWeeks">—</strong>
+          </div>
+
+          <div class="result-item">
+            <span>Total Days</span>
+            <strong id="totalDays">—</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="info-section">
+
+      <h2>How Does the Age Calculator Work?</h2>
+
+      <p>
+        Enter your date of birth and the date you want to calculate your
+        age on. The calculator determines your exact age by accounting for
+        the difference in years, months and days between the two dates.
+      </p>
+
+      <h2>Why Use an Exact Age Calculator?</h2>
+
+      <p>
+        A simple subtraction of birth years does not always give your exact
+        age. This calculator considers the actual months and days between
+        the dates, making it useful for birthdays, applications, forms,
+        eligibility checks and everyday calculations.
+      </p>
+
+    </section>
+
+  </main>
+
+  <script>
+    const birthDateInput = document.getElementById("birthDate");
+    const calculateDateInput = document.getElementById("calculateDate");
+    const resultCard = document.getElementById("resultCard");
+    const errorMessage = document.getElementById("errorMessage");
+
+    // Set today's date automatically
+    const today = new Date();
+
+    function formatDateForInput(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    }
+
+    calculateDateInput.value = formatDateForInput(today);
+
+    function calculateAge() {
+
+      errorMessage.style.display = "none";
+      resultCard.style.display = "none";
+
+      if (!birthDateInput.value || !calculateDateInput.value) {
+        showError("Please enter both dates.");
+        return;
+      }
+
+      const birth = new Date(birthDateInput.value + "T00:00:00");
+      const end = new Date(calculateDateInput.value + "T00:00:00");
+
+      if (birth > end) {
+        showError("Date of birth cannot be after the calculation date.");
+        return;
+      }
+
+      let years = end.getFullYear() - birth.getFullYear();
+      let months = end.getMonth() - birth.getMonth();
+      let days = end.getDate() - birth.getDate();
+
+      if (days < 0) {
+        months--;
+
+        const previousMonth = new Date(
+          end.getFullYear(),
+          end.getMonth(),
+          0
+        );
+
+        days += previousMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      // Total days
+      const millisecondsPerDay = 1000 * 60 * 60 * 24;
+      const totalDays = Math.floor(
+        (end - birth) / millisecondsPerDay
+      );
+
+      const totalWeeks = Math.floor(totalDays / 7);
+      const totalMonths = years * 12 + months;
+
+      document.getElementById("exactAge").textContent =
+        `${years} years, ${months} months, ${days} days`;
+
+      document.getElementById("totalYears").textContent =
+        years.toLocaleString();
+
+      document.getElementById("totalMonths").textContent =
+        totalMonths.toLocaleString();
+
+      document.getElementById("totalWeeks").textContent =
+        totalWeeks.toLocaleString();
+
+      document.getElementById("totalDays").textContent =
+        totalDays.toLocaleString();
+
+      resultCard.style.display = "block";
+    }
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.style.display = "block";
+    }
+
+    function resetCalculator() {
+
+      birthDateInput.value = "";
+      calculateDateInput.value = formatDateForInput(new Date());
+
+      resultCard.style.display = "none";
+      errorMessage.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
