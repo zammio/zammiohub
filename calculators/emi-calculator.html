@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMI Calculator – Calculate Monthly Loan Payment</title>
+
+<meta name="description" content="Use our free EMI Calculator to calculate your monthly loan payment, total interest, and total repayment amount based on loan amount, interest rate, and loan tenure.">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 760px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    margin: 0 0 12px;
+    font-size: 34px;
+    color: #111827;
+}
+
+.intro {
+    text-align: center;
+    font-size: 17px;
+    color: #4b5563;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 25px;
+    margin-top: 35px;
+    color: #111827;
+}
+
+h3 {
+    font-size: 23px;
+    margin-top: 35px;
+    color: #111827;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 17px;
+    margin-bottom: 18px;
+    outline: none;
+    background: white;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.calculate-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.reset-btn {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.results {
+    display: none;
+    margin-top: 25px;
+}
+
+.result-box {
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    background: #f3f4f6;
+}
+
+.result-label {
+    font-size: 15px;
+    color: #6b7280;
+}
+
+.result-value {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.highlight {
+    background: #eef6ff;
+}
+
+.highlight .result-value {
+    color: #2563eb;
+    font-size: 30px;
+}
+
+.error {
+    color: #dc2626;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.formula {
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 15px;
+    font-size: 16px;
+    overflow-wrap: break-word;
+}
+
+.faq {
+    margin-top: 25px;
+}
+
+.faq-item {
+    margin-bottom: 22px;
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        margin: 15px auto;
+        padding: 12px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 21px;
+    }
+
+    .intro {
+        font-size: 16px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>EMI Calculator</h1>
+
+<p class="intro">
+Our free online EMI Calculator helps you calculate your monthly loan payment, total interest, and total repayment amount. Enter your loan amount, annual interest rate, and loan tenure to get your EMI instantly.
+</p>
+
+<label for="loanAmount">Loan Amount</label>
+<input
+    type="number"
+    id="loanAmount"
+    placeholder="Enter loan amount"
+    min="0"
+    step="0.01"
+>
+
+<label for="interestRate">Annual Interest Rate (%)</label>
+<input
+    type="number"
+    id="interestRate"
+    placeholder="Enter annual interest rate"
+    min="0"
+    step="0.01"
+>
+
+<label for="tenure">Loan Tenure</label>
+
+<div style="display:flex; gap:10px;">
+
+<input
+    type="number"
+    id="tenure"
+    placeholder="Enter tenure"
+    min="1"
+    step="1"
+    style="flex:2;"
+>
+
+<select id="tenureUnit" style="flex:1;">
+    <option value="years">Years</option>
+    <option value="months">Months</option>
+</select>
+
+</div>
+
+<div class="button-group">
+
+<button class="calculate-btn" onclick="calculateEMI()">
+Calculate EMI
+</button>
+
+<button class="reset-btn" onclick="resetCalculator()">
+Reset
+</button>
+
+</div>
+
+<div id="error" class="error"></div>
+
+<div id="results" class="results">
+
+<div class="result-box highlight">
+<div class="result-label">Monthly EMI</div>
+<div class="result-value" id="emiResult">—</div>
+</div>
+
+<div class="result-box">
+<div class="result-label">Total Interest Payable</div>
+<div class="result-value" id="interestResult">—</div>
+</div>
+
+<div class="result-box">
+<div class="result-label">Total Payment</div>
+<div class="result-value" id="totalResult">—</div>
+</div>
+
+</div>
+
+<h2>How to Calculate EMI?</h2>
+
+<p>
+EMI stands for <strong>Equated Monthly Installment</strong>. It is the fixed amount a borrower generally pays every month toward a loan.
+</p>
+
+<p>
+The EMI depends on three main factors: the loan amount, annual interest rate, and loan tenure.
+</p>
+
+<div class="formula">
+
+<strong>EMI Formula:</strong><br><br>
+
+EMI = P × r × (1 + r)<sup>n</sup> ÷
+[(1 + r)<sup>n</sup> − 1]
+
+<br><br>
+
+<strong>Where:</strong><br>
+P = Loan amount<br>
+r = Monthly interest rate<br>
+n = Number of monthly payments
+
+</div>
+
+<p>
+<strong>Example:</strong> If you borrow 500,000 at an annual interest rate of 10% for 5 years, the calculator will determine your monthly EMI, total interest, and total repayment amount.
+</p>
+
+<h3>Frequently Asked Questions</h3>
+
+<div class="faq">
+
+<div class="faq-item">
+<h4>What is EMI?</h4>
+<p>
+EMI stands for Equated Monthly Installment. It is the amount paid by a borrower each month to repay a loan over a specific period.
+</p>
+</div>
+
+<div class="faq-item">
+<h4>How is EMI calculated?</h4>
+<p>
+EMI is calculated using the loan amount, monthly interest rate, and total number of monthly payments. The standard EMI formula is used to calculate the monthly installment.
+</p>
+</div>
+
+<div class="faq-item">
+<h4>What information do I need to calculate EMI?</h4>
+<p>
+You need three basic details: the loan amount, annual interest rate, and loan tenure.
+</p>
+</div>
+
+<div class="faq-item">
+<h4>Can I calculate EMI for different loan tenures?</h4>
+<p>
+Yes. You can enter the loan tenure in either years or months to calculate the corresponding monthly EMI.
+</p>
+</div>
+
+<div class="faq-item">
+<h4>Does a longer loan tenure reduce EMI?</h4>
+<p>
+A longer loan tenure generally reduces the monthly EMI, but it can increase the total interest paid over the life of the loan.
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function calculateEMI() {
+
+    const loanAmount = parseFloat(
+        document.getElementById("loanAmount").value
+    );
+
+    const interestRate = parseFloat(
+        document.getElementById("interestRate").value
+    );
+
+    const tenure = parseFloat(
+        document.getElementById("tenure").value
+    );
+
+    const tenureUnit =
+        document.getElementById("tenureUnit").value;
+
+    const error =
+        document.getElementById("error");
+
+    const results =
+        document.getElementById("results");
+
+    error.textContent = "";
+    results.style.display = "none";
+
+    if (
+        isNaN(loanAmount) ||
+        isNaN(interestRate) ||
+        isNaN(tenure)
+    ) {
+        error.textContent =
+            "Please enter the loan amount, interest rate, and loan tenure.";
+        return;
+    }
+
+    if (loanAmount <= 0) {
+        error.textContent =
+            "Loan amount must be greater than 0.";
+        return;
+    }
+
+    if (interestRate < 0) {
+        error.textContent =
+            "Interest rate cannot be negative.";
+        return;
+    }
+
+    if (tenure <= 0) {
+        error.textContent =
+            "Loan tenure must be greater than 0.";
+        return;
+    }
+
+    let months;
+
+    if (tenureUnit === "years") {
+        months = Math.round(tenure * 12);
+    } else {
+        months = Math.round(tenure);
+    }
+
+    if (months <= 0) {
+        error.textContent =
+            "Please enter a valid loan tenure.";
+        return;
+    }
+
+    const monthlyRate =
+        interestRate / 100 / 12;
+
+    let emi;
+
+    if (monthlyRate === 0) {
+
+        emi = loanAmount / months;
+
+    } else {
+
+        const factor =
+            Math.pow(1 + monthlyRate, months);
+
+        emi =
+            loanAmount *
+            monthlyRate *
+            factor /
+            (factor - 1);
+    }
+
+    const totalPayment =
+        emi * months;
+
+    const totalInterest =
+        totalPayment - loanAmount;
+
+    document.getElementById("emiResult").textContent =
+        formatNumber(emi);
+
+    document.getElementById("interestResult").textContent =
+        formatNumber(totalInterest);
+
+    document.getElementById("totalResult").textContent =
+        formatNumber(totalPayment);
+
+    results.style.display = "block";
+}
+
+function formatNumber(number) {
+
+    return number.toLocaleString(
+        undefined,
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
+}
+
+function resetCalculator() {
+
+    document.getElementById("loanAmount").value = "";
+    document.getElementById("interestRate").value = "";
+    document.getElementById("tenure").value = "";
+
+    document.getElementById("tenureUnit").value = "years";
+
+    document.getElementById("error").textContent = "";
+
+    document.getElementById("results").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
