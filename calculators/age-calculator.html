@@ -214,20 +214,20 @@ button{
 }
 
 .content{
-  margin-top:42px;
+  margin-top:38px;
 }
 
 .content h2{
   font-size:30px;
   line-height:1.25;
-  margin:34px 0 10px;
+  margin:32px 0 10px;
   color:#263b48;
 }
 
 .content h3{
   font-size:22px;
   line-height:1.35;
-  margin:28px 0 7px;
+  margin:26px 0 7px;
   color:#263b48;
 }
 
@@ -243,7 +243,9 @@ footer{
   color:var(--muted);
 }
 
+
 /* ===== MOBILE VERSION ===== */
+
 @media(max-width:650px){
 
   .container{
@@ -351,114 +353,194 @@ footer{
 </style>
 </head>
 
+
 <body>
 
 <main class="container">
 
 <nav class="breadcrumb">
-  <a href="/">Home</a>
-  <span>›</span>
-  <a href="/calculators/">All Calculators</a>
-  <span>›</span>
-  Age Calculator
+
+<a href="/">Home</a>
+
+<span>›</span>
+
+<a href="/calculators/">All Calculators</a>
+
+<span>›</span>
+
+Age Calculator
+
 </nav>
 
+
 <h1>Age Calculator</h1>
+
 
 <p class="intro">
 Calculate your exact age in years, months, weeks, and days instantly.
 </p>
 
+
 <section class="card">
 
-  <div class="card-head">
-    Enter Your Date of Birth
-  </div>
+<div class="card-head">
+Enter Your Date of Birth
+</div>
 
-  <div class="form">
 
-    <div class="field">
-      <label for="dob">Date of Birth</label>
-      <input id="dob" type="date" aria-label="Date of birth">
-    </div>
+<div class="form">
 
-    <div class="field">
-      <label for="asof">Calculate Age On</label>
-      <input id="asof" type="date" aria-label="Date to calculate age on">
-    </div>
 
-    <div class="actions">
+<div class="field">
 
-      <button
-        class="calculate"
-        type="button"
-        onclick="calculateAge()"
-      >
-        Calculate Age
-      </button>
+<label for="dob">
+Date of Birth
+</label>
 
-      <button
-        class="clear"
-        type="button"
-        onclick="clearCalc()"
-      >
-        Clear
-      </button>
+<input
+id="dob"
+type="date"
+aria-label="Date of birth"
+>
 
-    </div>
+</div>
 
-    <div id="error" class="error"></div>
 
-  </div>
+<div class="field">
+
+<label for="asof">
+Calculate Age On
+</label>
+
+<input
+id="asof"
+type="date"
+aria-label="Date to calculate age on"
+>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="calculate"
+type="button"
+onclick="calculateAge()"
+>
+Calculate Age
+</button>
+
+
+<button
+class="clear"
+type="button"
+onclick="clearCalc()"
+>
+Clear
+</button>
+
+</div>
+
+
+<div id="error" class="error"></div>
+
+
+</div>
+
+</section>
+
+
+
+<section
+id="result"
+class="result"
+aria-live="polite"
+>
+
+
+<div class="result-head">
+Your Exact Age
+</div>
+
+
+<div class="result-body">
+
+
+<div class="age-main">
+
+<span
+id="ageYmd"
+class="big"
+></span>
+
+<span
+id="ageSubtitle"
+class="small"
+></span>
+
+</div>
+
+
+
+<div class="result-grid">
+
+
+<div class="metric">
+
+<strong>Total Days</strong>
+
+<span id="totalDays"></span>
+
+</div>
+
+
+
+<div class="metric">
+
+<strong>Total Weeks</strong>
+
+<span id="totalWeeks"></span>
+
+</div>
+
+
+
+<div class="metric">
+
+<strong>Next Birthday</strong>
+
+<span id="nextBirthday"></span>
+
+</div>
+
+
+
+<div class="metric">
+
+<strong>Days Until Birthday</strong>
+
+<span id="daysUntil"></span>
+
+</div>
+
+
+</div>
+
+
+</div>
 
 </section>
 
-
-<section id="result" class="result" aria-live="polite">
-
-  <div class="result-head">
-    Your Exact Age
-  </div>
-
-  <div class="result-body">
-
-    <div class="age-main">
-      <span id="ageYmd" class="big"></span>
-      <span id="ageSubtitle" class="small"></span>
-    </div>
-
-    <div class="result-grid">
-
-      <div class="metric">
-        <strong>Total Days</strong>
-        <span id="totalDays"></span>
-      </div>
-
-      <div class="metric">
-        <strong>Total Weeks</strong>
-        <span id="totalWeeks"></span>
-      </div>
-
-      <div class="metric">
-        <strong>Next Birthday</strong>
-        <span id="nextBirthday"></span>
-      </div>
-
-      <div class="metric">
-        <strong>Days Until Birthday</strong>
-        <span id="daysUntil"></span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
 
 
 <section class="content">
 
-<h2>How Does This Age Calculator Work?</h2>
+
+<h2>
+How Does This Age Calculator Work?
+</h2>
+
 
 <p>
 Enter your date of birth and the date you want to calculate your age on.
@@ -467,19 +549,17 @@ along with total days, total weeks, and your next birthday.
 </p>
 
 
-<h2>Why Use an Exact Age Calculator?</h2>
 
-<p>
-An exact age calculator is useful when you need a precise age for
-birthdays, forms, applications, eligibility checks, personal records,
-or other date-based calculations.
-</p>
+<h2>
+Frequently Asked Questions About Age Calculation
+</h2>
 
 
-<h2>Frequently Asked Questions About Age Calculation</h2>
 
+<h3>
+How do I calculate my exact age from my date of birth?
+</h3>
 
-<h3>How do I calculate my exact age from my date of birth?</h3>
 
 <p>
 Enter your date of birth and the date on which you want to know your age.
@@ -488,7 +568,11 @@ months, and days.
 </p>
 
 
-<h3>Can this age calculator show age in years, months, and days?</h3>
+
+<h3>
+Can this age calculator show age in years, months, and days?
+</h3>
+
 
 <p>
 Yes. The result gives your exact calendar age in years, months, and days
@@ -496,356 +580,514 @@ instead of an approximate number of years.
 </p>
 
 
-<h3>Does the calculator account for leap years?</h3>
+
+<h3>
+Does the calculator account for leap years?
+</h3>
+
 
 <p>
-Yes. The calculation uses actual calendar dates, including leap-year
-dates, to provide an accurate result.
+Yes. The calculation uses actual calendar dates,
+including leap-year dates, to provide an accurate result.
 </p>
 
 
-<h3>Can I calculate my age on a past or future date?</h3>
+
+<h3>
+Can I calculate my age on a past or future date?
+</h3>
+
 
 <p>
-Yes. You can choose the date on which you want the calculation to be
-performed, provided it is not earlier than your date of birth.
+Yes. You can choose the date on which you want the calculation
+to be performed, provided it is not earlier than your date of birth.
 </p>
+
 
 </section>
 
 
+
 <footer>
-<strong>ZammioHub</strong><br>
+
+<strong>ZammioHub</strong>
+
+<br>
+
 Clear, accurate and mobile-friendly online calculators.
+
 </footer>
 
+
 </main>
+
 
 
 <script>
 
 function parseDateInput(id){
 
-  const value =
-    document.getElementById(id).value;
+const value =
+document.getElementById(id).value;
 
-  if(!value) return null;
+if(!value){
+return null;
+}
 
-  const [y,m,d] =
-    value.split('-').map(Number);
+const parts =
+value.split('-').map(Number);
 
-  return new Date(y,m-1,d);
+const y = parts[0];
+const m = parts[1];
+const d = parts[2];
+
+return new Date(
+y,
+m-1,
+d
+);
+
 }
 
 
-function addYearsSafe(date, years){
 
-  const y =
-    date.getFullYear()+years;
+function addYearsSafe(date,years){
 
-  const m =
-    date.getMonth();
+const y =
+date.getFullYear()+years;
 
-  const day =
-    date.getDate();
+const m =
+date.getMonth();
 
-  const candidate =
-    new Date(y,m,day);
+const day =
+date.getDate();
 
-  if(candidate.getMonth()!==m){
-    return new Date(y,m+1,0);
-  }
+const candidate =
+new Date(
+y,
+m,
+day
+);
 
-  return candidate;
+if(
+candidate.getMonth()!==m
+){
+
+return new Date(
+y,
+m+1,
+0
+);
+
+}
+
+return candidate;
+
 }
 
 
-function addMonthsSafe(date, months){
 
-  const y =
-    date.getFullYear() +
-    Math.floor((date.getMonth()+months)/12);
+function addMonthsSafe(date,months){
 
-  const m =
-    (date.getMonth()+months)%12;
+const y =
+date.getFullYear()+
+Math.floor(
+(date.getMonth()+months)/12
+);
 
-  const normalizedM =
-    (m+12)%12;
+const m =
+(date.getMonth()+months)%12;
 
-  const lastDay =
-    new Date(
-      y,
-      normalizedM+1,
-      0
-    ).getDate();
+const normalizedM =
+(m+12)%12;
 
-  return new Date(
-    y,
-    normalizedM,
-    Math.min(date.getDate(),lastDay)
-  );
+const lastDay =
+new Date(
+y,
+normalizedM+1,
+0
+).getDate();
+
+return new Date(
+y,
+normalizedM,
+Math.min(
+date.getDate(),
+lastDay
+)
+);
+
 }
 
 
-function calculateCalendarAge(dob,asof){
 
-  let years =
-    asof.getFullYear() -
-    dob.getFullYear();
+function calculateCalendarAge(
+dob,
+asof
+){
 
-  let anchor =
-    addYearsSafe(dob,years);
+let years =
+asof.getFullYear()-
+dob.getFullYear();
 
-  if(anchor>asof){
+let anchor =
+addYearsSafe(
+dob,
+years
+);
 
-    years--;
+if(
+anchor>asof
+){
 
-    anchor =
-      addYearsSafe(dob,years);
-  }
+years--;
 
+anchor =
+addYearsSafe(
+dob,
+years
+);
 
-  let months=0;
-
-  while(true){
-
-    const next =
-      addMonthsSafe(
-        anchor,
-        months+1
-      );
-
-    if(next<=asof){
-      months++;
-    }else{
-      break;
-    }
-  }
-
-
-  const afterMonths =
-    addMonthsSafe(
-      anchor,
-      months
-    );
-
-  const days =
-    Math.floor(
-      (asof-afterMonths) /
-      86400000
-    );
-
-  return{
-    years,
-    months,
-    days
-  };
 }
+
+
+let months=0;
+
+
+while(true){
+
+const next =
+addMonthsSafe(
+anchor,
+months+1
+);
+
+if(
+next<=asof
+){
+
+months++;
+
+}else{
+
+break;
+
+}
+
+}
+
+
+const afterMonths =
+addMonthsSafe(
+anchor,
+months
+);
+
+
+const days =
+Math.floor(
+(asof-afterMonths)/
+86400000
+);
+
+
+return{
+years,
+months,
+days
+};
+
+}
+
 
 
 function formatNumber(n){
 
-  return n.toLocaleString();
+return n.toLocaleString();
+
 }
+
 
 
 function calculateAge(){
 
-  const dob =
-    parseDateInput('dob');
+const dob =
+parseDateInput('dob');
 
-  const asof =
-    parseDateInput('asof');
+const asof =
+parseDateInput('asof');
 
-  const error =
-    document.getElementById('error');
+const error =
+document.getElementById(
+'error'
+);
 
-  const result =
-    document.getElementById('result');
-
-  error.textContent='';
-
-
-  if(!dob || !asof){
-
-    result.style.display='none';
-
-    error.textContent=
-      'Please enter both dates.';
-
-    return;
-  }
+const result =
+document.getElementById(
+'result'
+);
 
 
-  if(asof<dob){
-
-    result.style.display='none';
-
-    error.textContent=
-      'The calculation date cannot be earlier than the date of birth.';
-
-    return;
-  }
+error.textContent='';
 
 
-  const age =
-    calculateCalendarAge(
-      dob,
-      asof
-    );
 
+if(
+!dob ||
+!asof
+){
 
-  const totalDays =
-    Math.floor(
-      (asof-dob) /
-      86400000
-    );
+result.style.display=
+'none';
 
+error.textContent=
+'Please enter both dates.';
 
-  const totalWeeks =
-    Math.floor(
-      totalDays/7
-    );
+return;
 
-
-  let nextYear =
-    asof.getFullYear();
-
-
-  let next =
-    new Date(
-      nextYear,
-      dob.getMonth(),
-      dob.getDate()
-    );
-
-
-  if(next<asof){
-
-    nextYear++;
-
-    next =
-      new Date(
-        nextYear,
-        dob.getMonth(),
-        dob.getDate()
-      );
-  }
-
-
-  const daysUntil =
-    Math.ceil(
-      (next-asof) /
-      86400000
-    );
-
-
-  document.getElementById(
-    'ageYmd'
-  ).textContent =
-    `${age.years} years, ${age.months} months, ${age.days} days`;
-
-
-  document.getElementById(
-    'ageSubtitle'
-  ).textContent =
-    `Calculated on ${asof.toLocaleDateString(
-      undefined,
-      {
-        year:'numeric',
-        month:'long',
-        day:'numeric'
-      }
-    )}`;
-
-
-  document.getElementById(
-    'totalDays'
-  ).textContent =
-    formatNumber(totalDays);
-
-
-  document.getElementById(
-    'totalWeeks'
-  ).textContent =
-    formatNumber(totalWeeks);
-
-
-  document.getElementById(
-    'nextBirthday'
-  ).textContent =
-    next.toLocaleDateString(
-      undefined,
-      {
-        year:'numeric',
-        month:'long',
-        day:'numeric'
-      }
-    );
-
-
-  document.getElementById(
-    'daysUntil'
-  ).textContent =
-    formatNumber(daysUntil);
-
-
-  result.style.display='block';
 }
+
+
+
+if(
+asof<dob
+){
+
+result.style.display=
+'none';
+
+error.textContent=
+'The calculation date cannot be earlier than the date of birth.';
+
+return;
+
+}
+
+
+
+const age =
+calculateCalendarAge(
+dob,
+asof
+);
+
+
+
+const totalDays =
+Math.floor(
+(asof-dob)/
+86400000
+);
+
+
+
+const totalWeeks =
+Math.floor(
+totalDays/7
+);
+
+
+
+let nextYear =
+asof.getFullYear();
+
+
+
+let next =
+new Date(
+nextYear,
+dob.getMonth(),
+dob.getDate()
+);
+
+
+
+if(
+next<asof
+){
+
+nextYear++;
+
+next =
+new Date(
+nextYear,
+dob.getMonth(),
+dob.getDate()
+);
+
+}
+
+
+
+const daysUntil =
+Math.ceil(
+(next-asof)/
+86400000
+);
+
+
+
+document.getElementById(
+'ageYmd'
+).textContent =
+
+age.years+
+' years, '+
+age.months+
+' months, '+
+age.days+
+' days';
+
+
+
+document.getElementById(
+'ageSubtitle'
+).textContent =
+
+'Calculated on '+
+asof.toLocaleDateString(
+undefined,
+{
+year:'numeric',
+month:'long',
+day:'numeric'
+}
+);
+
+
+
+document.getElementById(
+'totalDays'
+).textContent =
+formatNumber(
+totalDays
+);
+
+
+
+document.getElementById(
+'totalWeeks'
+).textContent =
+formatNumber(
+totalWeeks
+);
+
+
+
+document.getElementById(
+'nextBirthday'
+).textContent =
+next.toLocaleDateString(
+undefined,
+{
+year:'numeric',
+month:'long',
+day:'numeric'
+}
+);
+
+
+
+document.getElementById(
+'daysUntil'
+).textContent =
+formatNumber(
+daysUntil
+);
+
+
+
+result.style.display=
+'block';
+
+}
+
 
 
 function clearCalc(){
 
-  document.getElementById(
-    'dob'
-  ).value='';
+document.getElementById(
+'dob'
+).value='';
 
-  document.getElementById(
-    'asof'
-  ).value='';
 
-  document.getElementById(
-    'error'
-  ).textContent='';
+document.getElementById(
+'asof'
+).value='';
 
-  document.getElementById(
-    'result'
-  ).style.display='none';
+
+document.getElementById(
+'error'
+).textContent='';
+
+
+document.getElementById(
+'result'
+).style.display='none';
+
 }
 
 
-/* Default calculation date to today */
+
+/* Set today's date automatically */
+
 (function(){
 
-  const now=new Date();
+const now =
+new Date();
 
-  const yyyy=
-    now.getFullYear();
+const yyyy =
+now.getFullYear();
 
-  const mm=
-    String(
-      now.getMonth()+1
-    ).padStart(2,'0');
+const mm =
+String(
+now.getMonth()+1
+).padStart(
+2,
+'0'
+);
 
-  const dd=
-    String(
-      now.getDate()
-    ).padStart(2,'0');
+const dd =
+String(
+now.getDate()
+).padStart(
+2,
+'0'
+);
 
-  document.getElementById(
-    'asof'
-  ).value=
-    `${yyyy}-${mm}-${dd}`;
+
+document.getElementById(
+'asof'
+).value =
+
+yyyy+
+'-'+
+mm+
+'-'+
+dd;
 
 })();
 
 </script>
 
+
+
 <noscript>
-<div style="max-width:920px;margin:20px auto;padding:16px;font-weight:700;color:#8a2020;">
+
+<div style="
+max-width:920px;
+margin:20px auto;
+padding:16px;
+font-weight:700;
+color:#8a2020;
+">
+
 Please enable JavaScript to use this calculator.
+
 </div>
+
 </noscript>
+
 
 </body>
 </html>
