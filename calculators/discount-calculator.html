@@ -3,423 +3,847 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Discount Calculator – Calculate Discount & Sale Price</title>
-
-<meta name="description" content="Use our free Discount Calculator to calculate discount amount, savings, and final sale price instantly. Perfect for shopping, sales, and everyday price calculations.">
+<title>Discount Calculator - Calculate Discount, Savings & Sale Price | ZammioHub</title>
+<meta name="description" content="Use the free ZammioHub Discount Calculator to calculate discount amount, savings, sale price and final price. Quickly calculate percentage discounts and see how much you save.">
 
 <style>
-* {
-    box-sizing: border-box;
+:root{
+  --navy:#0d3f69;
+  --blue:#356d9d;
+  --green:#4b8628;
+  --text:#292d31;
+  --border:#c7cbd0;
+  --panel:#f1f1f1;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #1f2937;
-    line-height: 1.6;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#fff;
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:18px;
+  line-height:1.45;
 }
 
-.container {
-    max-width: 760px;
-    margin: 30px auto;
-    padding: 20px;
+.site-header{
+  height:76px;
+  background:var(--navy);
+  display:flex;
+  align-items:center;
+  color:#fff;
+  padding:0 20px;
 }
 
-.card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+.menu{
+  font-size:38px;
+  width:54px;
+  line-height:1;
 }
 
-h1 {
-    text-align: center;
-    margin: 0 0 12px;
-    font-size: 34px;
-    color: #111827;
+.brand{
+  flex:1;
+  text-align:center;
+  font-size:40px;
+  font-weight:700;
+  letter-spacing:-1px;
 }
 
-.intro {
-    text-align: center;
-    font-size: 17px;
-    color: #4b5563;
-    margin-bottom: 30px;
+.brand span{color:#a7df54}
+
+.container{
+  width:min(980px,94%);
+  margin:auto;
 }
 
-h2 {
-    font-size: 25px;
-    margin-top: 35px;
-    color: #111827;
+.crumbs{
+  margin:18px 0 8px;
+  color:#1b6388;
+  font-size:17px;
 }
 
-h3 {
-    font-size: 23px;
-    margin-top: 35px;
-    color: #111827;
+h1{
+  font-size:42px;
+  color:#0b3f68;
+  margin:6px 0 10px;
+  font-weight:700;
 }
 
-h4 {
-    font-size: 18px;
-    margin-bottom: 6px;
-    color: #111827;
+.intro{
+  font-size:20px;
+  margin:0 0 18px;
+  max-width:850px;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 17px;
+.calculator{
+  background:var(--panel);
+  border:1px solid #bbb;
+  padding:0 28px 28px;
 }
 
-input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 17px;
-    margin-bottom: 18px;
-    outline: none;
+.panel{
+  max-width:760px;
+  margin:0 auto;
+  background:#f5f5f5;
+  border:1px solid #c8c8c8;
+  padding:22px 26px 26px;
 }
 
-input:focus {
-    border-color: #2563eb;
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
 }
 
-.button-group {
-    display: flex;
-    gap: 12px;
-    margin-top: 5px;
+.field label{
+  display:block;
+  font-size:21px;
+  font-weight:700;
+  margin-bottom:7px;
 }
 
-button {
-    flex: 1;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
+input{
+  width:100%;
+  min-height:54px;
+  border:1px solid #9da6ae;
+  background:#fff;
+  border-radius:4px;
+  padding:9px 13px;
+  font-size:21px;
 }
 
-.calculate-btn {
-    background: #2563eb;
-    color: white;
+.form-note{
+  font-size:16px;
+  color:#687078;
+  margin-top:5px;
 }
 
-.reset-btn {
-    background: #e5e7eb;
-    color: #111827;
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
 }
 
-.results {
-    display: none;
-    margin-top: 25px;
+.action{
+  border:0;
+  border-radius:3px;
+  padding:13px 30px;
+  font-size:21px;
+  cursor:pointer;
 }
 
-.result-box {
-    padding: 18px;
-    margin-bottom: 12px;
-    border-radius: 12px;
-    background: #f3f4f6;
+.calculate{
+  background:var(--green);
+  color:#fff;
+  font-weight:700;
 }
 
-.result-label {
-    font-size: 15px;
-    color: #6b7280;
+.clear{
+  background:#aaa;
+  color:#fff;
 }
 
-.result-value {
-    font-size: 25px;
-    font-weight: bold;
-    margin-top: 3px;
+.discount-result{
+  display:none;
+  max-width:760px;
+  margin:0 auto 22px;
+  background:#fff;
+  border:1px solid #c0c5c9;
+  overflow:hidden;
 }
 
-.final-price {
-    background: #eef6ff;
+.result-head{
+  background:var(--green);
+  color:#fff;
+  padding:10px 16px;
+  font-size:23px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.final-price .result-value {
-    color: #2563eb;
-    font-size: 30px;
+.result-head small{
+  font-size:15px;
+  font-weight:400;
+  opacity:.9;
 }
 
-.error {
-    color: #dc2626;
-    font-weight: bold;
-    margin-top: 10px;
+.result-body{
+  padding:17px 20px 20px;
 }
 
-.formula {
-    background: #f8fafc;
-    padding: 18px;
-    border-radius: 12px;
-    margin-top: 15px;
-    font-size: 16px;
+.money-result{
+  text-align:center;
+  margin:3px 0 10px;
 }
 
-.faq {
-    margin-top: 25px;
+.money-result .label{
+  font-size:20px;
+  font-weight:700;
+  color:#40464b;
 }
 
-.faq-item {
-    margin-bottom: 22px;
+.money-result .amount{
+  display:block;
+  font-size:40px;
+  font-weight:800;
+  color:#0d3f69;
+  margin-top:2px;
 }
 
-@media (max-width: 600px) {
+.savings{
+  text-align:center;
+  font-size:20px;
+  margin:0 0 17px;
+}
 
-    .container {
-        margin: 15px auto;
-        padding: 12px;
-    }
+.savings strong{
+  color:#3f7d25;
+}
 
-    .card {
-        padding: 20px;
-    }
+.result-box-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:12px 0;
+}
 
-    h1 {
-        font-size: 28px;
-    }
+.result-box{
+  background:#f4f6f7;
+  border:1px solid #d1d5d8;
+  border-radius:4px;
+  padding:13px 14px;
+}
 
-    h2 {
-        font-size: 22px;
-    }
+.result-box strong{
+  display:block;
+  font-size:17px;
+  color:#444b50;
+  margin-bottom:4px;
+}
 
-    h3 {
-        font-size: 21px;
-    }
+.result-box span{
+  font-size:21px;
+  font-weight:700;
+  color:#222;
+}
 
-    .intro {
-        font-size: 16px;
-    }
+.formula-card{
+  background:#f7f8f8;
+  border:1px solid #cdd2d5;
+  border-radius:6px;
+  padding:16px 18px;
+  margin-top:18px;
+  box-shadow:0 2px 8px rgba(13,63,105,.06);
+}
 
-    .button-group {
-        flex-direction: column;
-    }
+.formula-card h3{
+  margin:0 0 10px;
+  font-size:21px;
+  color:#0d3f69;
+  font-weight:700;
+}
+
+.formula-line{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.6;
+  margin:6px 0;
+  color:#30363a;
+}
+
+.article{
+  max-width:760px;
+  margin:25px auto 60px;
+}
+
+.article h2{
+  font-size:28px;
+  color:#30363a;
+  margin:25px 0 8px;
+}
+
+.article h3{
+  font-size:22px;
+  color:#343a3f;
+  margin:18px 0 6px;
+}
+
+.article p{
+  font-size:19px;
+  margin:0 0 10px;
+}
+
+.article ul{
+  padding-left:25px;
+  font-size:19px;
+}
+
+.article li{
+  margin:6px 0;
+}
+
+.faq{
+  padding-top:6px;
+  margin-top:12px;
+}
+
+.faq h3{
+  margin-top:18px;
+}
+
+.disclaimer{
+  background:#f4f6f7;
+  border-left:4px solid #356d9d;
+  padding:13px 15px;
+  margin-top:24px;
+}
+
+@media(max-width:700px){
+
+  body{font-size:17px}
+
+  .brand{font-size:31px}
+
+  .menu{
+    font-size:34px;
+    width:44px;
+  }
+
+  h1{font-size:35px}
+
+  .intro{font-size:18px}
+
+  .calculator{
+    padding:0 10px 20px;
+  }
+
+  .panel{
+    padding:18px 12px 22px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .result-box-grid{
+    grid-template-columns:1fr;
+  }
+
+  .money-result .amount{
+    font-size:34px;
+  }
+
+  .article p{
+    font-size:18px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header class="site-header">
+  <div class="menu" aria-hidden="true">☰</div>
+  <div class="brand">Zammio<span>Hub</span></div>
+</header>
 
-<div class="card">
+<main class="container">
 
-<h1>Discount Calculator</h1>
+  <div class="crumbs">
+    Home → All Calculators → Discount Calculator
+  </div>
 
-<p class="intro">
-Our free online Discount Calculator helps you quickly find out how much money you save during sales and shopping deals. Just enter the original price and discount percentage to get your final price instantly.
-</p>
+  <h1>Discount Calculator</h1>
 
-<!-- Calculator -->
+  <p class="intro">
+    Calculate your discount, savings, and final sale price instantly.
+  </p>
 
-<label for="originalPrice">Original Price</label>
-<input 
-    type="number" 
-    id="originalPrice" 
-    placeholder="Enter original price"
-    min="0"
-    step="0.01"
->
+  <section class="discount-result" id="result">
 
-<label for="discountPercent">Discount Percentage (%)</label>
-<input 
-    type="number" 
-    id="discountPercent" 
-    placeholder="Enter discount percentage"
-    min="0"
-    max="100"
-    step="0.01"
->
+    <div class="result-head">
+      <span>Result</span>
+      <small>Discount Calculator</small>
+    </div>
 
-<div class="button-group">
+    <div class="result-body">
 
-<button class="calculate-btn" onclick="calculateDiscount()">
-Calculate Discount
-</button>
+      <div class="money-result">
+        <span class="label">Final Price</span>
+        <span class="amount" id="finalPrice">—</span>
+      </div>
 
-<button class="reset-btn" onclick="resetCalculator()">
-Reset
-</button>
+      <p class="savings">
+        You save
+        <strong id="savedAmount">—</strong>
+        <span id="savedPercent"></span>
+      </p>
 
-</div>
+      <div class="result-box-grid">
 
-<div id="error" class="error"></div>
+        <div class="result-box">
+          <strong>Original Price</strong>
+          <span id="originalResult">—</span>
+        </div>
 
-<div id="results" class="results">
+        <div class="result-box">
+          <strong>Discount Amount</strong>
+          <span id="discountResult">—</span>
+        </div>
 
-<div class="result-box">
-<div class="result-label">Original Price</div>
-<div class="result-value" id="originalResult">—</div>
-</div>
+        <div class="result-box">
+          <strong>Discount Percentage</strong>
+          <span id="percentResult">—</span>
+        </div>
 
-<div class="result-box">
-<div class="result-label">Discount Amount / Your Savings</div>
-<div class="result-value" id="discountResult">—</div>
-</div>
+        <div class="result-box">
+          <strong>Final Sale Price</strong>
+          <span id="finalResult">—</span>
+        </div>
 
-<div class="result-box final-price">
-<div class="result-label">Final Sale Price</div>
-<div class="result-value" id="finalResult">—</div>
-</div>
+      </div>
 
-</div>
+      <div class="formula-card">
+        <h3>Discount Formula</h3>
 
-<!-- Explanation -->
+        <div class="formula-line">
+          Discount Amount = Original Price × Discount % ÷ 100
+        </div>
 
-<h2>How to Calculate Discount?</h2>
+        <div class="formula-line">
+          Final Price = Original Price − Discount Amount
+        </div>
+      </div>
 
-<p>
-Calculating a discount is simple. First, multiply the original price by the discount percentage and divide the result by 100. This gives you the amount of money you save.
-</p>
+    </div>
+  </section>
 
-<p>
-Then subtract the discount amount from the original price to find the final sale price.
-</p>
 
-<div class="formula">
+  <section class="calculator">
 
-<strong>Discount Amount:</strong><br>
-Original Price × Discount Percentage ÷ 100
+    <div class="panel">
 
-<br><br>
+      <div class="form-grid">
 
-<strong>Final Sale Price:</strong><br>
-Original Price − Discount Amount
+        <div class="field">
 
-</div>
+          <label for="price">
+            Original Price
+          </label>
 
-<p>
-<strong>Example:</strong> If an item costs $100 and has a 20% discount, you save $20 and pay only $80.
-</p>
+          <input
+            id="price"
+            type="number"
+            inputmode="decimal"
+            step="any"
+            min="0"
+            placeholder="e.g. 5000"
+            aria-label="Original price"
+          >
 
-<!-- FAQs -->
+          <div class="form-note">
+            Enter the price before discount.
+          </div>
 
-<h3>Frequently Asked Questions</h3>
+        </div>
 
-<div class="faq">
 
-<div class="faq-item">
-<h4>What is a discount?</h4>
-<p>
-A discount is a reduction from the original price of a product or service. Discounts are commonly offered during sales, promotions, and special shopping events.
-</p>
-</div>
+        <div class="field">
 
-<div class="faq-item">
-<h4>How is discount calculated?</h4>
-<p>
-To calculate the discount amount, multiply the original price by the discount percentage and divide by 100. For example, a 10% discount on $200 equals $20.
-</p>
-</div>
+          <label for="discount">
+            Discount Percentage
+          </label>
 
-<div class="faq-item">
-<h4>How do I calculate the final price after a discount?</h4>
-<p>
-Subtract the discount amount from the original price. For example, if an item costs $200 and you receive a $20 discount, the final price is $180.
-</p>
-</div>
+          <input
+            id="discount"
+            type="number"
+            inputmode="decimal"
+            step="any"
+            min="0"
+            max="100"
+            placeholder="e.g. 20"
+            aria-label="Discount percentage"
+          >
 
-<div class="faq-item">
-<h4>How much is 20% off $100?</h4>
-<p>
-A 20% discount on $100 is $20. After the discount, the final sale price is $80.
-</p>
-</div>
+          <div class="form-note">
+            Enter a discount from 0% to 100%.
+          </div>
 
-<div class="faq-item">
-<h4>Can I use this calculator for shopping discounts?</h4>
-<p>
-Yes. You can use this Discount Calculator for clothing, electronics, groceries, online shopping, sales, and other products where a percentage discount is offered.
-</p>
-</div>
+        </div>
 
-</div>
+      </div>
 
-</div>
-</div>
+
+      <div class="buttons">
+
+        <button
+          class="action calculate"
+          type="button"
+          onclick="calculateDiscount()"
+        >
+          Calculate
+        </button>
+
+        <button
+          class="action clear"
+          type="button"
+          onclick="clearDiscount()"
+        >
+          Clear
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <article class="article">
+
+    <h2>What Is a Discount Calculator?</h2>
+
+    <p>
+      A discount calculator is an online tool that helps you quickly find
+      the discount amount, the money you save, and the final price after a
+      percentage discount. It is useful for shopping, sale prices, online
+      deals, retail offers, and everyday price calculations.
+    </p>
+
+
+    <div class="formula-card">
+
+      <h3>Discount Formula</h3>
+
+      <div class="formula-line">
+        Discount Amount = Original Price × Discount Percentage ÷ 100
+      </div>
+
+      <div class="formula-line">
+        Final Price = Original Price − Discount Amount
+      </div>
+
+      <p class="form-note">
+        Example: A 20% discount on 5,000 saves 1,000, making the final
+        sale price 4,000.
+      </p>
+
+    </div>
+
+
+    <h2>How Does This Discount Calculator Work?</h2>
+
+    <p>
+      Enter the original price and the discount percentage. The calculator
+      instantly shows the discount amount, your total savings, and the
+      final price you need to pay after the discount.
+    </p>
+
+
+    <h2>What Is 20% Off a Price?</h2>
+
+    <p>
+      A 20% discount means you save 20% of the original price and pay the
+      remaining 80%. For example, if an item costs 5,000, a 20% discount
+      saves 1,000 and the sale price becomes 4,000.
+    </p>
+
+
+    <h2>Discount Calculator for Sale Prices</h2>
+
+    <p>
+      Use this free discount calculator whenever you see offers such as
+      10% off, 20% off, 30% off, 50% off, or any other percentage
+      discount. It can help you compare sale prices and understand exactly
+      how much money you will save.
+    </p>
+
+
+    <h2>How to Find the Final Price After a Discount</h2>
+
+    <p>
+      The final price after a discount is found by subtracting the
+      discount amount from the original price. Our calculator performs
+      both steps automatically and displays the final sale price clearly.
+    </p>
+
+
+    <h2>Discount Calculation Example</h2>
+
+    <p>
+      Suppose an item has an original price of 10,000 and a discount of
+      25%:
+    </p>
+
+    <ul>
+      <li>Discount amount = 10,000 × 25 ÷ 100 = 2,500</li>
+      <li>Money saved = 2,500</li>
+      <li>Final price = 10,000 − 2,500 = 7,500</li>
+    </ul>
+
+
+    <h2>Frequently Asked Questions About Discounts</h2>
+
+
+    <div class="faq">
+
+      <h3>How do I calculate a discount percentage?</h3>
+
+      <p>
+        Multiply the original price by the discount percentage and divide
+        by 100. The result is the discount amount you save.
+      </p>
+
+    </div>
+
+
+    <div class="faq">
+
+      <h3>How do you calculate 20% off a price?</h3>
+
+      <p>
+        Multiply the original price by 20 and divide by 100. Subtract that
+        discount amount from the original price to get the final price.
+      </p>
+
+    </div>
+
+
+    <div class="faq">
+
+      <h3>How do I calculate the sale price after a discount?</h3>
+
+      <p>
+        First calculate the discount amount, then subtract it from the
+        original price. The remaining amount is the sale price.
+      </p>
+
+    </div>
+
+
+    <div class="faq">
+
+      <h3>How do I find the original price after a discount?</h3>
+
+      <p>
+        This calculator works from the original price to the discounted
+        price. If you know the sale price and discount percentage and want
+        to reverse the calculation, a dedicated original-price calculator
+        can be used.
+      </p>
+
+    </div>
+
+
+    <div class="faq">
+
+      <h3>What does “percent off” mean?</h3>
+
+      <p>
+        “Percent off” is another common way of describing a percentage
+        discount. For example, 30% off means the customer pays 70% of the
+        original price.
+      </p>
+
+    </div>
+
+
+    <p class="disclaimer">
+      <strong>Note:</strong>
+      This calculator is provided for general calculations. It does not
+      include sales tax, VAT, shipping, or additional fees unless those
+      amounts are calculated separately.
+    </p>
+
+  </article>
+
+</main>
+
 
 <script>
 
+function money(x) {
+  return Number(x).toLocaleString(
+    undefined,
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
+}
+
+
 function calculateDiscount() {
 
-    const originalPrice = parseFloat(
-        document.getElementById("originalPrice").value
+  const price =
+    Number(document.getElementById('price').value);
+
+  const discount =
+    Number(document.getElementById('discount').value);
+
+
+  if (
+    !Number.isFinite(price) ||
+    !Number.isFinite(discount) ||
+    price < 0 ||
+    discount < 0 ||
+    discount > 100
+  ) {
+
+    showError(
+      'Please enter a valid original price and a discount between 0% and 100%.'
     );
 
-    const discountPercent = parseFloat(
-        document.getElementById("discountPercent").value
-    );
+    return;
+  }
 
-    const error = document.getElementById("error");
-    const results = document.getElementById("results");
 
-    error.textContent = "";
-    results.style.display = "none";
+  const amount =
+    price * discount / 100;
 
-    if (
-        isNaN(originalPrice) ||
-        isNaN(discountPercent)
-    ) {
-        error.textContent =
-            "Please enter both the original price and discount percentage.";
-        return;
+  const finalPrice =
+    price - amount;
+
+
+  document.getElementById('finalPrice').textContent =
+    money(finalPrice);
+
+  document.getElementById('savedAmount').textContent =
+    money(amount);
+
+  document.getElementById('savedPercent').textContent =
+    '(' + discount + '%)';
+
+  document.getElementById('originalResult').textContent =
+    money(price);
+
+  document.getElementById('discountResult').textContent =
+    money(amount);
+
+  document.getElementById('percentResult').textContent =
+    discount + '%';
+
+  document.getElementById('finalResult').textContent =
+    money(finalPrice);
+
+
+  document.getElementById('result').style.display =
+    'block';
+
+  document.getElementById('result').scrollIntoView(
+    {
+      behavior:'smooth',
+      block:'start'
     }
-
-    if (originalPrice < 0) {
-        error.textContent =
-            "Original price cannot be negative.";
-        return;
-    }
-
-    if (
-        discountPercent < 0 ||
-        discountPercent > 100
-    ) {
-        error.textContent =
-            "Discount percentage must be between 0% and 100%.";
-        return;
-    }
-
-    const discountAmount =
-        originalPrice * discountPercent / 100;
-
-    const finalPrice =
-        originalPrice - discountAmount;
-
-    document.getElementById("originalResult").textContent =
-        formatNumber(originalPrice);
-
-    document.getElementById("discountResult").textContent =
-        formatNumber(discountAmount);
-
-    document.getElementById("finalResult").textContent =
-        formatNumber(finalPrice);
-
-    results.style.display = "block";
+  );
 }
 
-function formatNumber(number) {
 
-    return number.toLocaleString(
-        undefined,
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    );
+function showError(message) {
+
+  const result =
+    document.getElementById('result');
+
+  result.style.display =
+    'block';
+
+  result.innerHTML =
+    '<div class="result-head">' +
+    '<span>Result</span>' +
+    '<small>Discount Calculator</small>' +
+    '</div>' +
+
+    '<div class="result-body">' +
+    '<p style="text-align:center;font-size:20px;font-weight:700;color:#a22d2d;margin:8px 0;">' +
+    message +
+    '</p>' +
+    '</div>';
+
+  result.scrollIntoView(
+    {
+      behavior:'smooth',
+      block:'start'
+    }
+  );
 }
 
-function resetCalculator() {
 
-    document.getElementById("originalPrice").value = "";
-    document.getElementById("discountPercent").value = "";
+function clearDiscount() {
 
-    document.getElementById("error").textContent = "";
+  document.getElementById('price').value =
+    '';
 
-    document.getElementById("results").style.display = "none";
+  document.getElementById('discount').value =
+    '';
+
+  document.getElementById('result').style.display =
+    'none';
+
+  document.getElementById('result').innerHTML = `
+
+    <div class="result-head">
+      <span>Result</span>
+      <small>Discount Calculator</small>
+    </div>
+
+    <div class="result-body">
+
+      <div class="money-result">
+        <span class="label">Final Price</span>
+        <span class="amount" id="finalPrice">—</span>
+      </div>
+
+      <p class="savings">
+        You save
+        <strong id="savedAmount">—</strong>
+        <span id="savedPercent"></span>
+      </p>
+
+      <div class="result-box-grid">
+
+        <div class="result-box">
+          <strong>Original Price</strong>
+          <span id="originalResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Discount Amount</strong>
+          <span id="discountResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Discount Percentage</strong>
+          <span id="percentResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Final Sale Price</strong>
+          <span id="finalResult">—</span>
+        </div>
+
+      </div>
+
+      <div class="formula-card">
+
+        <h3>Discount Formula</h3>
+
+        <div class="formula-line">
+          Discount Amount = Original Price × Discount % ÷ 100
+        </div>
+
+        <div class="formula-line">
+          Final Price = Original Price − Discount Amount
+        </div>
+
+      </div>
+
+    </div>
+  `;
 }
 
 </script>
