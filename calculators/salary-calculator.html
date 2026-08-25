@@ -1,1 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Salary Calculator | Hourly, Weekly, Monthly & Annual Pay | ZammioHub</title>
+
+<meta name="description" content="Use this free salary calculator to convert hourly, daily, weekly, bi-weekly, semi-monthly, monthly, and annual salary. Calculate gross pay instantly.">
+
+<style>
+:root{
+  --primary:#17608a;
+  --accent:#4b8f2b;
+  --text:#27313a;
+  --muted:#66727d;
+  --border:#d9e1e6;
+  --soft:#f7f9fa;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#fff;
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.65;
+}
+
+.container{
+  max-width:920px;
+  margin:auto;
+  padding:30px 24px 70px;
+}
+
+.breadcrumb{
+  font-size:16px;
+  color:var(--primary);
+  margin-bottom:28px;
+}
+
+.breadcrumb a{
+  color:var(--primary);
+  text-decoration:none;
+}
+
+.breadcrumb span{
+  margin:0 7px;
+  color:#7b8790;
+}
+
+h1{
+  font-size:46px;
+  line-height:1.14;
+  margin:0 0 14px;
+  color:#124c70;
+}
+
+.intro{
+  font-size:19px;
+  margin:0 0 26px;
+  color:#37424b;
+}
+
+.card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 5px 20px rgba(23,54,72,.08);
+}
+
+.card-head{
+  background:var(--primary);
+  color:#fff;
+  padding:18px 24px;
+  font-size:20px;
+  font-weight:700;
+}
+
+.form{
+  padding:28px;
+  background:var(--soft);
+  border-top:1px solid var(--border);
+}
+
+.field{
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  font-size:19px;
+  margin:0 0 8px;
+  color:#263b48;
+}
+
+input,
+select{
+  width:100%;
+  padding:15px 16px;
+  border:1px solid #b9c5cc;
+  border-radius:7px;
+  font-size:18px;
+  background:#fff;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:#356f9f;
+  box-shadow:0 0 0 3px rgba(53,111,159,.12);
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+button{
+  border:0;
+  border-radius:7px;
+  padding:14px 24px;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.calculate{
+  background:var(--accent);
+  color:#fff;
+  min-width:180px;
+}
+
+.clear{
+  background:#e4e8eb;
+  color:#27313a;
+  min-width:100px;
+}
+
+.error{
+  color:#a12626;
+  font-weight:700;
+  margin-top:12px;
+}
+
+/* RESULT */
+
+.result{
+  display:none;
+  margin-top:24px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.result-head{
+  background:var(--accent);
+  color:#fff;
+  padding:17px 22px;
+  font-size:21px;
+  font-weight:700;
+}
+
+.result-body{
+  padding:24px;
+}
+
+.main-result{
+  text-align:center;
+  color:#123f67;
+  margin:0 0 22px;
+}
+
+.main-result .big{
+  font-size:36px;
+  font-weight:800;
+  display:block;
+}
+
+.main-result .small{
+  font-size:17px;
+  color:var(--muted);
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.metric{
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px;
+}
+
+.metric strong{
+  display:block;
+  font-size:15px;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+
+.metric span{
+  font-size:21px;
+  font-weight:700;
+  color:#27313a;
+}
+
+.note{
+  font-size:15px;
+  color:var(--muted);
+  margin:18px 0 0;
+}
+
+/* CONTENT */
+
+.content{
+  margin-top:42px;
+}
+
+.content h2{
+  font-size:30px;
+  line-height:1.25;
+  margin:34px 0 10px;
+  color:#263b48;
+}
+
+.content h3{
+  font-size:22px;
+  margin:26px 0 7px;
+  color:#27313a;
+}
+
+.content p{
+  font-size:18px;
+  margin:0 0 12px;
+}
+
+.formula{
+  margin:18px 0 26px;
+  padding:20px 24px;
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+
+.formula-line{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.9;
+  color:#26333c;
+}
+
+footer{
+  margin-top:48px;
+  padding-top:25px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .result-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .container{
+    padding:22px 16px 55px;
+  }
+
+  h1{
+    font-size:38px;
+  }
+
+  .intro{
+    font-size:18px;
+  }
+
+  .form{
+    padding:22px 18px;
+  }
+
+  .result-body{
+    padding:20px 16px;
+  }
+
+  .result-grid{
+    grid-template-columns:1fr;
+  }
+
+  .main-result .big{
+    font-size:30px;
+  }
+
+  .content{
+    margin-top:34px;
+  }
+
+  .content h2{
+    font-size:26px;
+    margin-top:28px;
+  }
+
+  .content h3{
+    font-size:20px;
+    margin-top:23px;
+  }
+
+  .content p{
+    font-size:17px;
+  }
+
+  .formula{
+    padding:17px;
+  }
+
+  .formula-line{
+    font-size:16px;
+  }
+
+  button{
+    width:100%;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+<nav class="breadcrumb">
+<a href="#">Home</a>
+<span>›</span>
+<a href="#">All Calculators</a>
+<span>›</span>
+Salary Calculator
+</nav>
+
+<h1>Salary Calculator</h1>
+
+<p class="intro">
+Convert your salary between hourly, daily, weekly, bi-weekly, semi-monthly, monthly, and annual pay.
+</p>
+
+<section class="card">
+
+<div class="card-head">
+Enter Your Salary Details
+</div>
+
+<div class="form">
+
+<div class="field">
+<label for="salary">Salary Amount</label>
+<input
+id="salary"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 5000">
+</div>
+
+<div class="field">
+<label for="frequency">Pay Frequency</label>
+
+<select id="frequency">
+<option value="hourly">Hourly</option>
+<option value="daily">Daily</option>
+<option value="weekly">Weekly</option>
+<option value="biweekly">Bi-weekly</option>
+<option value="semimonthly">Semi-monthly</option>
+<option value="monthly" selected>Monthly</option>
+<option value="annual">Annual</option>
+</select>
+
+</div>
+
+<div class="field">
+<label for="hours">Hours per Week</label>
+<input
+id="hours"
+type="number"
+min="1"
+max="168"
+step="any"
+value="40">
+</div>
+
+<div class="field">
+<label for="days">Days per Week</label>
+<input
+id="days"
+type="number"
+min="1"
+max="7"
+step="any"
+value="5">
+</div>
+
+<div class="field">
+<label for="weeks">Weeks per Year</label>
+<input
+id="weeks"
+type="number"
+min="1"
+max="53"
+step="any"
+value="52">
+</div>
+
+<div class="actions">
+
+<button
+class="calculate"
+type="button"
+onclick="calculateSalary()">
+Calculate Salary
+</button>
+
+<button
+class="clear"
+type="button"
+onclick="clearCalc()">
+Clear
+</button>
+
+</div>
+
+<div id="error" class="error"></div>
+
+</div>
+</section>
+
+<!-- RESULT -->
+
+<section id="result" class="result" aria-live="polite">
+
+<div class="result-head">
+Your Salary Result
+</div>
+
+<div class="result-body">
+
+<div class="main-result">
+<span id="annualMain" class="big"></span>
+<span class="small">Estimated annual gross salary</span>
+</div>
+
+<div class="result-grid">
+
+<div class="metric">
+<strong>Hourly</strong>
+<span id="hourlyOut"></span>
+</div>
+
+<div class="metric">
+<strong>Daily</strong>
+<span id="dailyOut"></span>
+</div>
+
+<div class="metric">
+<strong>Weekly</strong>
+<span id="weeklyOut"></span>
+</div>
+
+<div class="metric">
+<strong>Bi-weekly</strong>
+<span id="biweeklyOut"></span>
+</div>
+
+<div class="metric">
+<strong>Semi-monthly</strong>
+<span id="semimonthlyOut"></span>
+</div>
+
+<div class="metric">
+<strong>Monthly</strong>
+<span id="monthlyOut"></span>
+</div>
+
+<div class="metric">
+<strong>Annual</strong>
+<span id="annualOut"></span>
+</div>
+
+</div>
+
+<p class="note">
+Results are gross pay estimates before taxes, benefits, and other deductions.
+</p>
+
+</div>
+</section>
+
+<!-- SHORT SEO CONTENT -->
+
+<section class="content">
+
+<h2>How Does This Salary Calculator Work?</h2>
+
+<p>
+Enter your salary amount, choose your pay frequency, and adjust your work schedule if needed. The calculator converts your pay into equivalent hourly, daily, weekly, bi-weekly, semi-monthly, monthly, and annual gross salary amounts.
+</p>
+
+<h2>How Is Salary Calculated?</h2>
+
+<div class="formula">
+
+<div class="formula-line">
+Annual Salary = Hourly Pay × Hours per Week × Weeks per Year
+</div>
+
+<div class="formula-line">
+Monthly Salary = Annual Salary ÷ 12
+</div>
+
+<div class="formula-line">
+Bi-weekly Salary = Annual Salary ÷ 26
+</div>
+
+<div class="formula-line">
+Semi-monthly Salary = Annual Salary ÷ 24
+</div>
+
+</div>
+
+<h2>Gross Salary vs Net Salary</h2>
+
+<p>
+Gross salary is your pay before taxes and deductions. Net salary, or take-home pay, is the amount remaining after applicable taxes, benefits, and other deductions.
+</p>
+
+<h2>Frequently Asked Questions About Salary</h2>
+
+<h3>How do I convert hourly pay to annual salary?</h3>
+
+<p>
+Multiply your hourly pay by the number of hours you work each week and then by the number of weeks you work each year.
+</p>
+
+<h3>How do I convert annual salary to hourly pay?</h3>
+
+<p>
+Divide your annual salary by your total working hours for the year. For example, 40 hours per week for 52 weeks equals 2,080 working hours.
+</p>
+
+<h3>What is the difference between bi-weekly and semi-monthly pay?</h3>
+
+<p>
+Bi-weekly pay is generally paid every two weeks, which usually means 26 pay periods per year. Semi-monthly pay is paid twice a month, which means 24 pay periods per year.
+</p>
+
+<h3>Does this salary calculator include taxes and deductions?</h3>
+
+<p>
+No. This calculator converts gross salary amounts before taxes and deductions. Your actual take-home pay can vary depending on taxes, benefits, and other deductions.
+</p>
+
+</section>
+
+<footer>
+<strong>ZammioHub</strong><br>
+Clear, accurate and mobile-friendly online calculators.
+</footer>
+
+</main>
+
+<script>
+
+function formatNumber(number){
+
+return number.toLocaleString(
+undefined,
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+function calculateSalary(){
+
+const salary =
+parseFloat(document.getElementById('salary').value);
+
+const frequency =
+document.getElementById('frequency').value;
+
+const hours =
+parseFloat(document.getElementById('hours').value);
+
+const days =
+parseFloat(document.getElementById('days').value);
+
+const weeks =
+parseFloat(document.getElementById('weeks').value);
+
+const error =
+document.getElementById('error');
+
+const result =
+document.getElementById('result');
+
+error.textContent='';
+result.style.display='none';
+
+if(
+!Number.isFinite(salary) ||
+salary<=0 ||
+!Number.isFinite(hours) ||
+hours<=0 ||
+hours>168 ||
+!Number.isFinite(days) ||
+days<=0 ||
+days>7 ||
+!Number.isFinite(weeks) ||
+weeks<=0 ||
+weeks>53
+){
+
+error.textContent=
+'Please enter valid salary and work schedule details.';
+
+return;
+
+}
+
+const hoursPerDay =
+hours / days;
+
+let annual;
+
+switch(frequency){
+
+case 'hourly':
+
+annual =
+salary * hours * weeks;
+
+break;
+
+case 'daily':
+
+annual =
+salary * days * weeks;
+
+break;
+
+case 'weekly':
+
+annual =
+salary * weeks;
+
+break;
+
+case 'biweekly':
+
+annual =
+salary * 26;
+
+break;
+
+case 'semimonthly':
+
+annual =
+salary * 24;
+
+break;
+
+case 'monthly':
+
+annual =
+salary * 12;
+
+break;
+
+case 'annual':
+
+annual =
+salary;
+
+break;
+
+default:
+return;
+
+}
+
+const annualHours =
+hours * weeks;
+
+const annualDays =
+days * weeks;
+
+const hourly =
+annual / annualHours;
+
+const daily =
+annual / annualDays;
+
+const weekly =
+annual / weeks;
+
+const biweekly =
+annual / 26;
+
+const semimonthly =
+annual / 24;
+
+const monthly =
+annual / 12;
+
+document.getElementById('annualMain').textContent =
+formatNumber(annual);
+
+document.getElementById('hourlyOut').textContent =
+formatNumber(hourly);
+
+document.getElementById('dailyOut').textContent =
+formatNumber(daily);
+
+document.getElementById('weeklyOut').textContent =
+formatNumber(weekly);
+
+document.getElementById('biweeklyOut').textContent =
+formatNumber(biweekly);
+
+document.getElementById('semimonthlyOut').textContent =
+formatNumber(semimonthly);
+
+document.getElementById('monthlyOut').textContent =
+formatNumber(monthly);
+
+document.getElementById('annualOut').textContent =
+formatNumber(annual);
+
+result.style.display='block';
+
+result.scrollIntoView({
+behavior:'smooth',
+block:'start'
+});
+
+}
+
+function clearCalc(){
+
+document.getElementById('salary').value='';
+document.getElementById('frequency').value='monthly';
+document.getElementById('hours').value='40';
+document.getElementById('days').value='5';
+document.getElementById('weeks').value='52';
+
+document.getElementById('error').textContent='';
+document.getElementById('result').style.display='none';
+
+}
+
+</script>
+
+<noscript>
+<div style="max-width:920px;margin:20px auto;padding:16px;font-weight:700;color:#8a2020;">
+Please enable JavaScript to use this calculator.
+</div>
+</noscript>
+
+</body>
+</html>
