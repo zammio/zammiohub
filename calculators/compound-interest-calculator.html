@@ -485,52 +485,77 @@ footer{
   }
 
   .table-scroll-hint{
-    display:block;
+    display:none;
   }
 
   .table-wrap{
     width:100%;
     max-width:100%;
-    margin-left:0;
-    margin-right:0;
+    margin:10px 0 0;
     padding:0;
-    overflow-x:auto;
-    overflow-y:hidden;
-    direction:ltr;
+    overflow:visible;
   }
 
   .growth-table{
-    width:650px;
-    min-width:650px;
-    max-width:none;
-    font-size:14px;
-    margin-left:0;
-    transform:none;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    font-size:15px;
+    margin:0;
+    border-collapse:separate;
+    border-spacing:0 12px;
   }
 
-  .growth-table th,
+  .growth-table thead{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
+
+  .growth-table,
+  .growth-table tbody,
+  .growth-table tr,
   .growth-table td{
-    padding:10px 10px;
+    display:block;
+    width:100%;
   }
 
-  .growth-table th:first-child,
-  .growth-table td:first-child{
-    min-width:65px;
+  .growth-table tr{
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:#fff;
+    overflow:hidden;
   }
 
-  .growth-table th:nth-child(2),
-  .growth-table td:nth-child(2){
-    min-width:190px;
+  .growth-table td{
+    min-width:0!important;
+    padding:10px 12px;
+    border:0;
+    border-bottom:1px solid var(--border);
+    text-align:right!important;
+    white-space:normal;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
   }
 
-  .growth-table th:nth-child(3),
-  .growth-table td:nth-child(3){
-    min-width:170px;
+  .growth-table td:last-child{
+    border-bottom:0;
   }
 
-  .growth-table th:nth-child(4),
-  .growth-table td:nth-child(4){
-    min-width:150px;
+  .growth-table td::before{
+    content:attr(data-label);
+    flex:0 0 48%;
+    text-align:left;
+    font-weight:700;
+    color:#263b48;
   }
 
   .content{
@@ -971,10 +996,10 @@ function calculateCompoundInterest(){
 
       growthRows += `
         <tr>
-          <td>${year}</td>
-          <td>${formatNumber(contributed)}</td>
-          <td>${formatNumber(Math.max(0,earned))}</td>
-          <td>${formatNumber(balance)}</td>
+          <td data-label="Year">${year}</td>
+          <td data-label="Total Contributions">${formatNumber(contributed)}</td>
+          <td data-label="Interest Earned">${formatNumber(Math.max(0,earned))}</td>
+          <td data-label="Balance">${formatNumber(balance)}</td>
         </tr>
       `;
 
@@ -1002,10 +1027,10 @@ function calculateCompoundInterest(){
 
     growthRows += `
       <tr>
-        <td>${displayYear}</td>
-        <td>${formatNumber(contributed)}</td>
-        <td>${formatNumber(Math.max(0,earned))}</td>
-        <td>${formatNumber(balance)}</td>
+        <td data-label="Year">${displayYear}</td>
+        <td data-label="Total Contributions">${formatNumber(contributed)}</td>
+        <td data-label="Interest Earned">${formatNumber(Math.max(0,earned))}</td>
+        <td data-label="Balance">${formatNumber(balance)}</td>
       </tr>
     `;
 
