@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Percentage Increase or Decrease Calculator | ZammioHub</title>
+
 <meta name="description" content="Calculate percentage increase, decrease, difference, and percentage change instantly with this free online percentage calculator.">
 
 <style>
@@ -19,6 +20,10 @@
 
 *{
   box-sizing:border-box;
+}
+
+html{
+  -webkit-text-size-adjust:100%;
 }
 
 body{
@@ -265,14 +270,19 @@ footer{
   margin:0;
 }
 
-/* =========================
-   MOBILE OPTIMIZATION
-   ========================= */
 
-@media (max-width:600px){
+/* =====================================
+   MOBILE OPTIMIZATION
+   ===================================== */
+
+@media(max-width:600px){
+
+  body{
+    line-height:1.58;
+  }
 
   .container{
-    padding:22px 18px 50px;
+    padding:22px 18px 48px;
   }
 
   .breadcrumb{
@@ -281,92 +291,117 @@ footer{
     margin-bottom:22px;
   }
 
+  .breadcrumb span{
+    margin:0 5px;
+  }
+
   /* Main heading */
+
   h1{
-    font-size:34px;
-    line-height:1.16;
-    margin-bottom:14px;
+    font-size:30px;
+    line-height:1.18;
+    margin-bottom:13px;
   }
 
   .intro{
-    font-size:17px;
-    line-height:1.6;
-    margin-bottom:24px;
+    font-size:16px;
+    line-height:1.55;
+    margin-bottom:23px;
   }
 
-  /* Section headings */
+  /* Content headings */
+
   h2{
-    font-size:26px;
-    line-height:1.25;
-    margin-top:30px;
-    margin-bottom:10px;
+    font-size:22px;
+    line-height:1.3;
+    margin-top:28px;
+    margin-bottom:9px;
   }
 
   /* FAQ questions */
+
   h3{
-    font-size:20px;
+    font-size:18px;
     line-height:1.4;
-    margin-top:24px;
+    margin-top:22px;
     margin-bottom:7px;
   }
 
-  /* Paragraph text */
+  /* Paragraphs */
+
   p{
-    font-size:17px;
-    line-height:1.65;
-    margin-bottom:16px;
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:15px;
   }
+
+  /* Calculator */
 
   .calculator-card{
     margin-top:16px;
+    border-radius:10px;
   }
 
   .card-title{
     font-size:18px;
-    padding:16px 18px;
+    line-height:1.4;
+    padding:15px 18px;
   }
 
   .card-body{
-    padding:22px 18px;
+    padding:21px 18px 23px;
   }
 
   .field{
-    margin-bottom:18px;
+    margin-bottom:17px;
   }
 
   label{
-    font-size:17px;
+    font-size:16px;
     margin-bottom:7px;
   }
 
   input{
+    min-height:50px;
+    padding:12px 14px;
     font-size:17px;
-    padding:13px 14px;
-    min-height:48px;
   }
 
+  /* Buttons stay on same line */
+
   .buttons{
+    display:flex;
+    flex-wrap:nowrap;
     gap:10px;
+    margin-top:6px;
   }
 
   button{
+    min-height:48px;
+    padding:11px 14px;
     font-size:15px;
-    padding:12px 16px;
   }
 
   .calculate-btn{
     flex:1;
+    min-width:0;
   }
 
   .clear-btn{
     min-width:88px;
+    flex:0 0 auto;
   }
 
-  /* Result mobile sizing */
+  /* Result */
+
+  .result-card{
+    border-radius:10px;
+    margin-top:22px;
+  }
 
   .result-title{
     font-size:18px;
-    padding:16px 18px;
+    padding:15px 18px;
   }
 
   .result-body{
@@ -374,7 +409,7 @@ footer{
   }
 
   .main-result{
-    font-size:28px;
+    font-size:27px;
     line-height:1.25;
     margin-bottom:20px;
   }
@@ -389,34 +424,38 @@ footer{
   }
 
   .result-label{
-    font-size:14px;
+    font-size:13px;
+    line-height:1.35;
   }
 
   .result-value{
     font-size:18px;
+    line-height:1.3;
   }
 
-  /* Formula mobile sizing */
+  /* Formula */
 
   .formula-box{
-    padding:17px 18px;
-    margin:16px 0 24px;
+    padding:16px 17px;
+    margin:15px 0 23px;
   }
 
   .formula-title{
-    font-size:16px;
-    line-height:1.5;
+    font-size:15px;
+    line-height:1.45;
     margin-bottom:8px;
   }
 
   .formula{
-    font-size:17px;
+    font-size:16.5px;
     line-height:1.6;
     overflow-wrap:anywhere;
   }
 
+  /* Footer */
+
   footer{
-    margin-top:36px;
+    margin-top:34px;
     padding-top:18px;
   }
 
@@ -425,28 +464,34 @@ footer{
   }
 
   .footer-text{
-    font-size:15px;
+    font-size:14px;
+    line-height:1.5;
   }
 }
 
-/* Extra small phones */
 
-@media (max-width:380px){
+/* Very small phones */
+
+@media(max-width:360px){
 
   h1{
-    font-size:31px;
+    font-size:28px;
   }
 
   h2{
-    font-size:24px;
+    font-size:21px;
   }
 
   h3{
-    font-size:19px;
+    font-size:17px;
   }
 
   p,
   .intro{
+    font-size:15.5px;
+  }
+
+  .formula{
     font-size:16px;
   }
 
@@ -454,10 +499,17 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .buttons{
-    flex-wrap:wrap;
+  .calculate-btn{
+    font-size:14px;
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .clear-btn{
+    min-width:78px;
   }
 }
+
 </style>
 </head>
 
@@ -465,19 +517,20 @@ footer{
 
 <main class="container">
 
-  <div class="breadcrumb">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="/">Home</a>
     <span>›</span>
     <a href="/calculators/">All Calculators</a>
     <span>›</span>
     Percentage Increase or Decrease Calculator
-  </div>
+  </nav>
 
   <h1>Percentage Increase or Decrease Calculator</h1>
 
   <p class="intro">
     Calculate percentage increase, decrease, difference, and percentage change instantly.
   </p>
+
 
   <!-- Calculator -->
 
@@ -491,23 +544,33 @@ footer{
 
       <div class="field">
         <label for="initialValue">Initial Value</label>
+
         <input
           type="number"
           id="initialValue"
           inputmode="decimal"
+          step="any"
           placeholder="e.g. 100"
+          aria-label="Initial value"
         >
       </div>
 
+
       <div class="field">
+
         <label for="finalValue">Final Value</label>
+
         <input
           type="number"
           id="finalValue"
           inputmode="decimal"
+          step="any"
           placeholder="e.g. 125"
+          aria-label="Final value"
         >
+
       </div>
+
 
       <div class="buttons">
 
@@ -528,11 +591,16 @@ footer{
       </div>
 
     </div>
+
   </section>
+
 
   <!-- Result -->
 
-  <section class="result-card" id="resultCard">
+  <section
+    class="result-card"
+    id="resultCard"
+    aria-live="polite">
 
     <div class="result-title">
       Result
@@ -540,44 +608,88 @@ footer{
 
     <div class="result-body">
 
-      <div class="main-result" id="mainResult"></div>
+      <div
+        class="main-result"
+        id="mainResult">
+      </div>
+
 
       <div class="result-grid">
 
         <div class="result-item">
-          <div class="result-label">Difference</div>
-          <div class="result-value" id="differenceResult"></div>
+
+          <div class="result-label">
+            Difference
+          </div>
+
+          <div
+            class="result-value"
+            id="differenceResult">
+          </div>
+
         </div>
 
-        <div class="result-item">
-          <div class="result-label">Percentage Change</div>
-          <div class="result-value" id="percentageResult"></div>
-        </div>
 
         <div class="result-item">
-          <div class="result-label">Initial Value</div>
-          <div class="result-value" id="initialResult"></div>
+
+          <div class="result-label">
+            Percentage Change
+          </div>
+
+          <div
+            class="result-value"
+            id="percentageResult">
+          </div>
+
         </div>
 
+
         <div class="result-item">
-          <div class="result-label">Final Value</div>
-          <div class="result-value" id="finalResult"></div>
+
+          <div class="result-label">
+            Initial Value
+          </div>
+
+          <div
+            class="result-value"
+            id="initialResult">
+          </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+          <div class="result-label">
+            Final Value
+          </div>
+
+          <div
+            class="result-value"
+            id="finalResult">
+          </div>
+
         </div>
 
       </div>
 
     </div>
+
   </section>
 
-  <!-- SEO Content -->
+
+  <!-- Content -->
 
   <section>
 
-    <h2>How Does This Percentage Calculator Work?</h2>
+    <h2>
+      How Does This Percentage Calculator Work?
+    </h2>
 
     <p>
       Enter the initial value and final value. The calculator determines whether the value increased or decreased and shows the exact percentage change.
     </p>
+
 
     <div class="formula-box">
 
@@ -591,53 +703,80 @@ footer{
 
     </div>
 
-    <h2>Percentage Increase Calculator</h2>
+
+    <h2>
+      Percentage Increase Calculator
+    </h2>
 
     <p>
       Use this calculator to find the percentage increase when a value becomes larger than its original amount. It is useful for prices, salaries, sales, population, marks, measurements, and other numerical changes.
     </p>
 
-    <h2>Percentage Decrease Calculator</h2>
+
+    <h2>
+      Percentage Decrease Calculator
+    </h2>
 
     <p>
       Use this calculator to find the percentage decrease when a value becomes smaller than its original amount. It can help calculate reductions in prices, expenses, quantities, scores, and other values.
     </p>
 
-    <h2>Percentage Change Example</h2>
+
+    <h2>
+      Percentage Change Example
+    </h2>
 
     <p>
       If a value changes from 100 to 125, the difference is 25 and the percentage increase is 25%. If it changes from 100 to 80, the percentage decrease is 20%.
     </p>
 
-    <h2>Common Uses for Percentage Change</h2>
+
+    <h2>
+      Common Uses for Percentage Change
+    </h2>
 
     <p>
       This calculator can be used for price changes, salary increases, sales growth, expense reductions, test scores, population changes, business metrics, and everyday calculations.
     </p>
 
+
     <!-- FAQs -->
 
-    <h2>Frequently Asked Questions About Percentage Change</h2>
+    <h2>
+      Frequently Asked Questions About Percentage Change
+    </h2>
 
-    <h3>How do I calculate percentage increase?</h3>
+
+    <h3>
+      How do I calculate percentage increase?
+    </h3>
 
     <p>
       Subtract the original value from the new value, divide the difference by the original value, and multiply by 100.
     </p>
 
-    <h3>How do I calculate percentage decrease?</h3>
+
+    <h3>
+      How do I calculate percentage decrease?
+    </h3>
 
     <p>
       Subtract the new value from the original value, divide the difference by the original value, and multiply by 100.
     </p>
 
-    <h3>What is the difference between percentage change and percentage difference?</h3>
+
+    <h3>
+      What is the difference between percentage change and percentage difference?
+    </h3>
 
     <p>
       Percentage change normally compares a new value with an original value. Percentage difference is commonly used when comparing two values without treating either one as the starting value.
     </p>
 
-    <h3>Can I use this percentage calculator for price changes?</h3>
+
+    <h3>
+      Can I use this percentage calculator for price changes?
+    </h3>
 
     <p>
       Yes. You can use it to calculate percentage increases or decreases in prices, discounts, expenses, sales, wages, and other numerical values.
@@ -645,114 +784,240 @@ footer{
 
   </section>
 
+
   <footer>
-    <div class="footer-name">ZammioHub</div>
+
+    <div class="footer-name">
+      ZammioHub
+    </div>
+
     <p class="footer-text">
       Clear, accurate and mobile-friendly online calculators.
     </p>
+
   </footer>
 
 </main>
 
+
 <script>
-function formatNumber(number) {
-  return Number(number).toLocaleString(undefined, {
-    maximumFractionDigits: 2
+
+function formatNumber(number){
+
+  return Number(number).toLocaleString(undefined,{
+    maximumFractionDigits:2
   });
+
 }
 
-function calculatePercentage() {
 
-  const initialInput = document.getElementById("initialValue");
-  const finalInput = document.getElementById("finalValue");
+function calculatePercentage(){
 
-  const initial = parseFloat(initialInput.value);
-  const final = parseFloat(finalInput.value);
+  const initialInput =
+    document.getElementById("initialValue");
 
-  if (isNaN(initial) || isNaN(final)) {
-    alert("Please enter both the initial value and final value.");
+  const finalInput =
+    document.getElementById("finalValue");
+
+
+  const initial =
+    parseFloat(initialInput.value);
+
+  const final =
+    parseFloat(finalInput.value);
+
+
+  if(
+    !Number.isFinite(initial) ||
+    !Number.isFinite(final)
+  ){
+
+    alert(
+      "Please enter both the initial value and final value."
+    );
+
     return;
+
   }
 
-  if (initial === 0) {
-    alert("Initial value cannot be zero when calculating percentage change.");
+
+  if(initial === 0){
+
+    alert(
+      "Initial value cannot be zero when calculating percentage change."
+    );
+
     return;
+
   }
 
-  const difference = final - initial;
-  const percentageChange = (difference / Math.abs(initial)) * 100;
+
+  const difference =
+    final - initial;
+
+
+  const percentageChange =
+    (difference / Math.abs(initial)) * 100;
+
 
   let changeType;
 
-  if (percentageChange > 0) {
+
+  if(percentageChange > 0){
+
     changeType = "Increase";
-  } else if (percentageChange < 0) {
+
+  }
+  else if(percentageChange < 0){
+
     changeType = "Decrease";
-  } else {
+
+  }
+  else{
+
     changeType = "No Change";
+
   }
 
-  const absolutePercentage = Math.abs(percentageChange);
 
-  if (changeType === "No Change") {
-    document.getElementById("mainResult").textContent =
+  const absolutePercentage =
+    Math.abs(percentageChange);
+
+
+  if(changeType === "No Change"){
+
+    document.getElementById(
+      "mainResult"
+    ).textContent =
       "0.00% No Change";
-  } else {
-    document.getElementById("mainResult").textContent =
-      absolutePercentage.toFixed(2) + "% " + changeType;
+
+  }
+  else{
+
+    document.getElementById(
+      "mainResult"
+    ).textContent =
+      absolutePercentage.toFixed(2) +
+      "% " +
+      changeType;
+
   }
 
-  document.getElementById("differenceResult").textContent =
+
+  document.getElementById(
+    "differenceResult"
+  ).textContent =
     formatNumber(difference);
 
-  document.getElementById("percentageResult").textContent =
+
+  document.getElementById(
+    "percentageResult"
+  ).textContent =
     percentageChange.toFixed(2) + "%";
 
-  document.getElementById("initialResult").textContent =
+
+  document.getElementById(
+    "initialResult"
+  ).textContent =
     formatNumber(initial);
 
-  document.getElementById("finalResult").textContent =
+
+  document.getElementById(
+    "finalResult"
+  ).textContent =
     formatNumber(final);
 
-  const resultCard = document.getElementById("resultCard");
 
-  resultCard.style.display = "block";
+  const resultCard =
+    document.getElementById(
+      "resultCard"
+    );
 
-  resultCard.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+
+  resultCard.style.display =
+    "block";
+
 }
 
-function clearCalculator() {
 
-  document.getElementById("initialValue").value = "";
-  document.getElementById("finalValue").value = "";
+function clearCalculator(){
 
-  document.getElementById("resultCard").style.display = "none";
+  document.getElementById(
+    "initialValue"
+  ).value = "";
 
-  document.getElementById("mainResult").textContent = "";
-  document.getElementById("differenceResult").textContent = "";
-  document.getElementById("percentageResult").textContent = "";
-  document.getElementById("initialResult").textContent = "";
-  document.getElementById("finalResult").textContent = "";
 
-  document.getElementById("initialValue").focus();
+  document.getElementById(
+    "finalValue"
+  ).value = "";
+
+
+  document.getElementById(
+    "resultCard"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "mainResult"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "differenceResult"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "percentageResult"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "initialResult"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "finalResult"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "initialValue"
+  ).focus();
+
 }
 
-/* Allow Enter key to calculate */
 
-document.getElementById("initialValue").addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    calculatePercentage();
-  }
-});
+/* Enter key support */
 
-document.getElementById("finalValue").addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    calculatePercentage();
+document.getElementById(
+  "initialValue"
+).addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+      calculatePercentage();
+    }
+
   }
-});
+);
+
+
+document.getElementById(
+  "finalValue"
+).addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+      calculatePercentage();
+    }
+
+  }
+);
+
 </script>
 
 </body>
