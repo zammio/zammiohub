@@ -632,7 +632,6 @@ Calculate your tax amount and after-tax value instantly.
 
 </section>
 
-
 <section class="result" id="result">
 
     <div class="result-header">
@@ -654,7 +653,7 @@ Calculate your tax amount and after-tax value instantly.
             </div>
 
             <div class="result-card">
-                <span>After-Tax Amount</span>
+                <span>Total After Tax</span>
                 <strong id="afterTax">0.00</strong>
             </div>
 
@@ -669,15 +668,13 @@ Calculate your tax amount and after-tax value instantly.
 
 </section>
 
-
 <section>
 
 <h2>How Does This Tax Calculator Work?</h2>
 
 <p>
-Enter an amount and the applicable tax rate to estimate the tax amount and the value remaining after tax. This calculator is designed for quick percentage-based tax estimates.
+Enter the amount before tax and the applicable tax rate. The calculator determines the tax amount and adds it to the original amount to show the total after tax.
 </p>
-
 
 <h2>Tax Calculation Formula</h2>
 
@@ -690,15 +687,14 @@ Enter an amount and the applicable tax rate to estimate the tax amount and the v
     <div class="formula">
         Tax Amount = Amount × Tax Rate ÷ 100
         <br>
-        After-Tax Amount = Amount − Tax Amount
+        Total After Tax = Amount + Tax Amount
     </div>
 
 </div>
 
 <p>
-The after-tax amount is calculated by subtracting the tax amount from the original amount.
+The total after tax is calculated by adding the tax amount to the original amount.
 </p>
-
 
 <h2>Why Use a Tax Calculator?</h2>
 
@@ -706,10 +702,9 @@ The after-tax amount is calculated by subtracting the tax amount from the origin
 A tax calculator can help you quickly estimate percentage-based tax when planning purchases, prices, expenses, payments, or other financial calculations.
 </p>
 
-
 <div class="faq">
 
-<h2>Frequently Asked Questions About Tax Calculation</h2>
+<h2>Frequently Asked Questions</h2>
 
 <h3>How do I calculate tax on an amount?</h3>
 
@@ -717,20 +712,17 @@ A tax calculator can help you quickly estimate percentage-based tax when plannin
 Multiply the amount by the tax rate and divide the result by 100. The calculator performs this calculation instantly.
 </p>
 
-
 <h3>How do I calculate the amount after tax?</h3>
 
 <p>
-Subtract the calculated tax amount from the original amount to find the after-tax value.
+Add the calculated tax amount to the original amount to find the total after tax.
 </p>
-
 
 <h3>Can I use this calculator for sales tax or VAT?</h3>
 
 <p>
 Yes. You can use it for a simple percentage-based sales tax or VAT estimate by entering the applicable rate. It does not automatically apply country-specific tax rules or rates.
 </p>
-
 
 <h3>Is this a country-specific income tax calculator?</h3>
 
@@ -742,14 +734,12 @@ No. This version performs a simple percentage-based tax calculation. Actual inco
 
 </section>
 
-
 <footer class="footer">
     <strong>ZammioHub</strong>
     <p>Clear, accurate and mobile-friendly online calculators.</p>
 </footer>
 
 </main>
-
 
 <script>
 
@@ -767,7 +757,6 @@ const beforeTaxOutput = document.getElementById("beforeTax");
 const afterTaxOutput = document.getElementById("afterTax");
 const displayRateOutput = document.getElementById("displayRate");
 
-
 function formatNumber(number){
 
     return Number(number).toLocaleString("en-US",{
@@ -777,7 +766,6 @@ function formatNumber(number){
 
 }
 
-
 function formatRate(number){
 
     return Number(number).toLocaleString("en-US",{
@@ -785,7 +773,6 @@ function formatRate(number){
     });
 
 }
-
 
 function calculateTax(){
 
@@ -808,7 +795,7 @@ function calculateTax(){
     errorMessage.style.display = "none";
 
     const taxAmount = amount * taxRate / 100;
-    const afterTax = amount - taxAmount;
+    const afterTax = amount + taxAmount;
 
     taxAmountOutput.textContent = formatNumber(taxAmount);
     beforeTaxOutput.textContent = formatNumber(amount);
@@ -818,7 +805,6 @@ function calculateTax(){
     result.style.display = "block";
 
 }
-
 
 function clearCalculator(){
 
@@ -837,11 +823,9 @@ function clearCalculator(){
 
 }
 
-
 calculateBtn.addEventListener("click", calculateTax);
 
 clearBtn.addEventListener("click", clearCalculator);
-
 
 amountInput.addEventListener("keydown", function(event){
 
@@ -850,7 +834,6 @@ amountInput.addEventListener("keydown", function(event){
     }
 
 });
-
 
 taxRateInput.addEventListener("keydown", function(event){
 
