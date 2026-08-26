@@ -6,7 +6,7 @@
 
 <title>Pregnancy Calculator | Due Date & Pregnancy Week | ZammioHub</title>
 
-<meta name="description" content="Use this free pregnancy calculator to estimate your due date, pregnancy week, trimester, conception date, pregnancy progress, and days remaining using your last menstrual period or conception date.">
+<meta name="description" content="Use this free pregnancy calculator to estimate your due date, pregnancy week, trimester, conception date, pregnancy progress, gestational age, and days remaining using your last menstrual period or conception date.">
 
 <style>
 :root{
@@ -664,6 +664,56 @@ button{
 }
 
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can my due date change during pregnancy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A due date calculated from your last menstrual period or conception date is an estimate. A healthcare professional may revise it if an early ultrasound provides more reliable pregnancy dating, especially when cycles are irregular or the date of the last period is uncertain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my menstrual cycle is not 28 days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter your average cycle length in the calculator. The estimated due date is adjusted by the difference between your cycle length and the standard 28-day cycle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I calculate my due date from conception?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Select Conception Date as the calculation method and enter your estimated conception date. The calculator adds approximately 266 days to estimate the due date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know which trimester I am in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator uses estimated gestational age. The first trimester continues through 13 weeks and 6 days, the second through 27 weeks and 6 days, and the third begins at 28 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an ultrasound due date more accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Early ultrasound dating can be especially useful when the last menstrual period is uncertain or menstrual cycles are irregular. A healthcare professional may use ultrasound findings to establish or confirm the official due date."
+      }
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -841,7 +891,7 @@ Estimate your due date, pregnancy week, trimester, and pregnancy progress instan
         <div class="result-grid">
 
             <div class="result-card">
-                <span>Pregnancy Age</span>
+                <span>Gestational Age</span>
                 <strong id="pregnancyAgeOutput">—</strong>
             </div>
 
@@ -856,7 +906,7 @@ Estimate your due date, pregnancy week, trimester, and pregnancy progress instan
             </div>
 
             <div class="result-card">
-                <span>Days Pregnant</span>
+                <span>Gestational Age in Days</span>
                 <strong id="daysPregnantOutput">—</strong>
             </div>
 
@@ -916,7 +966,7 @@ Choose either your last menstrual period or conception date, then enter the requ
     </div>
 
     <div class="formula">
-        LMP Method: Estimated Due Date = LMP + 280 days
+        LMP Method: Estimated Due Date = LMP + 280 days + (Cycle Length − 28 days)
         <br>
         Conception Method: Estimated Due Date = Conception Date + 266 days
     </div>
@@ -924,7 +974,7 @@ Choose either your last menstrual period or conception date, then enter the requ
 </div>
 
 <p>
-When using the LMP method, the calculator also adjusts the estimate when your average cycle length is longer or shorter than 28 days.
+When using the LMP method, the calculator adjusts the estimated due date by the difference between your average cycle length and the standard 28-day cycle.
 </p>
 
 
@@ -952,10 +1002,10 @@ A pregnancy due date is an estimate rather than a guaranteed delivery date. Dati
 <h2>Frequently Asked Questions</h2>
 
 
-<h3>How is my pregnancy due date calculated?</h3>
+<h3>Can my due date change during pregnancy?</h3>
 
 <p>
-Using the LMP method, the estimated due date is usually calculated as 280 days from the first day of your last menstrual period, with an adjustment for cycle length when applicable.
+Yes. A due date calculated from your last menstrual period or conception date is an estimate. Your healthcare professional may revise it if an early ultrasound provides more reliable pregnancy dating, especially when your cycle is irregular or the date of your last period is uncertain.
 </p>
 
 
@@ -1619,8 +1669,27 @@ conceptionDateInput.addEventListener(
 );
 
 
+/* -----------------------------
+   Date Input Limits
+----------------------------- */
+
+function setDateInputLimits(){
+
+    const today = getToday();
+    const year = today.getUTCFullYear();
+    const month = String(today.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(today.getUTCDate()).padStart(2, "0");
+    const todayValue = year + "-" + month + "-" + day;
+
+    lmpInput.max = todayValue;
+    conceptionDateInput.max = todayValue;
+
+}
+
+
 /* Initialize */
 
+setDateInputLimits();
 updateMethodFields();
 
 </script>
