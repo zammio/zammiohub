@@ -146,6 +146,18 @@ input:focus{
   flex-wrap:wrap;
 }
 
+.tip-group-label{
+  font-weight:700;
+  font-size:19px;
+  color:#263b48;
+}
+
+.custom-tip-label{
+  font-size:15px;
+  margin:8px 0 6px;
+  color:#52616c;
+}
+
 .quick-label{
   font-size:14px;
   color:var(--muted);
@@ -345,6 +357,12 @@ button{
   overflow-wrap:break-word;
 }
 
+.formula-example{
+  font-size:17px !important;
+  color:#4f5b65;
+  margin:-10px 0 26px !important;
+}
+
 footer{
   margin-top:48px;
   padding-top:25px;
@@ -374,6 +392,16 @@ footer{
 
   .form{
     padding:22px 18px;
+  }
+
+  .tip-label-row{
+    display:block;
+  }
+
+  .quick-label{
+    display:block;
+    margin:-2px 0 9px;
+    font-size:14px;
   }
 
   .tip-presets{
@@ -490,9 +518,9 @@ placeholder="e.g. 100">
 
 <div class="tip-label-row">
 
-<label for="tip">
+<div class="tip-group-label">
 Tip Percentage (%)
-</label>
+</div>
 
 <span class="quick-label">
 Quick tip percentages
@@ -724,9 +752,11 @@ Total Per Person = Total Bill ÷ Number of People
 
 </div>
 
+<p class="formula-example"><strong>Example:</strong> A 20% tip on a 50 bill is 10, making the total bill 60.</p>
+
 
 <h2>
-Frequently Asked Questions About Tips
+Frequently Asked Questions About Tip Calculation
 </h2>
 
 
