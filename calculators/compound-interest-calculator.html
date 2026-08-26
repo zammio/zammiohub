@@ -1,1 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Compound Interest Calculator | Calculate Investment Growth | ZammioHub</title>
+
+<meta name="description" content="Use this free compound interest calculator to estimate investment growth, final balance, total contributions, and interest earned with optional monthly contributions.">
+
+<style>
+:root{
+  --primary:#17608a;
+  --accent:#4b8f2b;
+  --text:#27313a;
+  --muted:#66727d;
+  --border:#d9e1e6;
+  --soft:#f7f9fa;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  width:100%;
+  max-width:100%;
+  margin:0;
+  overflow-x:hidden;
+}
+
+body{
+  background:#fff;
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.65;
+}
+
+.container{
+  width:100%;
+  max-width:920px;
+  margin:auto;
+  padding:30px 24px 70px;
+}
+
+.breadcrumb{
+  font-size:16px;
+  color:var(--primary);
+  margin-bottom:28px;
+  overflow-wrap:break-word;
+}
+
+.breadcrumb a{
+  color:var(--primary);
+  text-decoration:none;
+}
+
+.breadcrumb span{
+  margin:0 7px;
+  color:#7b8790;
+}
+
+h1{
+  font-size:46px;
+  line-height:1.14;
+  margin:0 0 14px;
+  color:#124c70;
+  overflow-wrap:break-word;
+}
+
+.intro{
+  font-size:19px;
+  margin:0 0 26px;
+  color:#37424b;
+  overflow-wrap:break-word;
+}
+
+/* CALCULATOR */
+
+.card{
+  width:100%;
+  min-width:0;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 5px 20px rgba(23,54,72,.08);
+}
+
+.card-head{
+  background:var(--primary);
+  color:#fff;
+  padding:18px 24px;
+  font-size:20px;
+  font-weight:700;
+}
+
+.form{
+  width:100%;
+  padding:28px;
+  background:var(--soft);
+  border-top:1px solid var(--border);
+}
+
+.field{
+  width:100%;
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  font-size:19px;
+  margin:0 0 8px;
+  color:#263b48;
+}
+
+input,
+select{
+  display:block;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  padding:15px 16px;
+  border:1px solid #b9c5cc;
+  border-radius:7px;
+  font-size:18px;
+  background:#fff;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:#356f9f;
+  box-shadow:0 0 0 3px rgba(53,111,159,.12);
+}
+
+.helper{
+  display:block;
+  font-size:14px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.actions{
+  display:flex;
+  width:100%;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+button{
+  max-width:100%;
+  border:0;
+  border-radius:7px;
+  padding:14px 24px;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.calculate{
+  background:var(--accent);
+  color:#fff;
+  min-width:190px;
+}
+
+.clear{
+  background:#e4e8eb;
+  color:#27313a;
+  min-width:100px;
+}
+
+.error{
+  color:#a12626;
+  font-weight:700;
+  margin-top:12px;
+  overflow-wrap:break-word;
+}
+
+/* RESULT */
+
+.result{
+  display:none;
+  width:100%;
+  min-width:0;
+  margin-top:24px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.result-head{
+  background:var(--accent);
+  color:#fff;
+  padding:17px 22px;
+  font-size:21px;
+  font-weight:700;
+}
+
+.result-body{
+  width:100%;
+  padding:24px;
+}
+
+.main-result{
+  text-align:center;
+  color:#123f67;
+  margin:0 0 22px;
+}
+
+.main-result .big{
+  display:block;
+  font-size:36px;
+  font-weight:800;
+  overflow-wrap:break-word;
+}
+
+.main-result .small{
+  display:block;
+  font-size:17px;
+  color:var(--muted);
+}
+
+.result-grid{
+  display:grid;
+  width:100%;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.metric{
+  min-width:0;
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:16px;
+}
+
+.metric strong{
+  display:block;
+  font-size:15px;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+
+.metric span{
+  display:block;
+  font-size:21px;
+  font-weight:700;
+  overflow-wrap:break-word;
+}
+
+.note{
+  font-size:15px;
+  color:var(--muted);
+  margin:18px 0 0;
+}
+
+/* TABLE */
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  margin-top:25px;
+  -webkit-overflow-scrolling:touch;
+}
+
+.growth-table{
+  width:100%;
+  min-width:560px;
+  border-collapse:collapse;
+  font-size:16px;
+}
+
+.growth-table th,
+.growth-table td{
+  padding:11px 12px;
+  border:1px solid var(--border);
+  text-align:right;
+}
+
+.growth-table th:first-child,
+.growth-table td:first-child{
+  text-align:left;
+}
+
+.growth-table th{
+  background:#f0f4f6;
+  color:#263b48;
+}
+
+.table-title{
+  font-size:21px;
+  font-weight:700;
+  margin:28px 0 10px;
+  color:#263b48;
+}
+
+/* CONTENT */
+
+.content{
+  width:100%;
+  margin-top:42px;
+}
+
+.content h2{
+  font-size:30px;
+  line-height:1.25;
+  margin:34px 0 10px;
+  color:#263b48;
+  overflow-wrap:break-word;
+}
+
+.content h3{
+  font-size:22px;
+  line-height:1.35;
+  margin:26px 0 7px;
+  color:#27313a;
+  overflow-wrap:break-word;
+}
+
+.content p{
+  font-size:18px;
+  margin:0 0 12px;
+  overflow-wrap:break-word;
+}
+
+.formula{
+  width:100%;
+  margin:18px 0 26px;
+  padding:20px 24px;
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+
+.formula-title{
+  font-size:18px;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:9px;
+}
+
+.formula-line{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:19px;
+  font-weight:700;
+  line-height:1.8;
+  color:#26333c;
+  overflow-wrap:break-word;
+}
+
+.formula-help{
+  margin-top:10px;
+  font-size:16px!important;
+  color:var(--muted);
+}
+
+footer{
+  margin-top:48px;
+  padding-top:25px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+
+/* TABLET */
+
+@media(max-width:700px){
+
+  .result-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+}
+
+/* MOBILE */
+
+@media(max-width:520px){
+
+  .container{
+    width:100%;
+    max-width:100%;
+    padding:22px 16px 55px;
+  }
+
+  h1{
+    font-size:38px;
+  }
+
+  .intro{
+    font-size:18px;
+  }
+
+  .card-head{
+    padding:16px 18px;
+  }
+
+  .form{
+    padding:22px 18px;
+  }
+
+  button{
+    width:100%;
+    min-width:0;
+  }
+
+  .result-body{
+    padding:20px 16px;
+  }
+
+  .result-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  .main-result .big{
+    font-size:30px;
+  }
+
+  .table-title{
+    font-size:20px;
+  }
+
+  .growth-table{
+    font-size:14px;
+  }
+
+  .content{
+    margin-top:34px;
+  }
+
+  .content h2{
+    font-size:26px;
+    line-height:1.3;
+    margin-top:28px;
+  }
+
+  .content h3{
+    font-size:20px;
+    line-height:1.4;
+    margin-top:23px;
+  }
+
+  .content p{
+    font-size:17px;
+  }
+
+  .formula{
+    padding:17px;
+  }
+
+  .formula-line{
+    font-size:17px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+<nav class="breadcrumb">
+<a href="/">Home</a>
+<span>›</span>
+<a href="/calculators/">All Calculators</a>
+<span>›</span>
+Compound Interest Calculator
+</nav>
+
+<h1>Compound Interest Calculator</h1>
+
+<p class="intro">
+Calculate how your savings or investment can grow with compound interest.
+</p>
+
+<section class="card">
+
+<div class="card-head">
+Enter Your Investment Details
+</div>
+
+<div class="form">
+
+<div class="field">
+<label for="principal">Initial Investment</label>
+<input
+id="principal"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 10000">
+</div>
+
+<div class="field">
+<label for="rate">Annual Interest Rate (%)</label>
+<input
+id="rate"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 5">
+</div>
+
+<div class="field">
+<label for="years">Time Period (Years)</label>
+<input
+id="years"
+type="number"
+min="0.1"
+step="any"
+placeholder="e.g. 10">
+</div>
+
+<div class="field">
+
+<label for="frequency">Compounding Frequency</label>
+
+<select id="frequency">
+<option value="1">Annually</option>
+<option value="2">Semi-annually</option>
+<option value="4">Quarterly</option>
+<option value="12" selected>Monthly</option>
+<option value="365">Daily</option>
+</select>
+
+</div>
+
+<div class="field">
+<label for="contribution">Monthly Contribution (Optional)</label>
+<input
+id="contribution"
+type="number"
+min="0"
+step="any"
+placeholder="e.g. 200">
+
+<span class="helper">
+Enter 0 or leave blank if you are not making regular monthly contributions.
+</span>
+</div>
+
+<div class="actions">
+
+<button
+class="calculate"
+type="button"
+onclick="calculateCompoundInterest()">
+Calculate Interest
+</button>
+
+<button
+class="clear"
+type="button"
+onclick="clearCalculator()">
+Clear
+</button>
+
+</div>
+
+<div id="error" class="error"></div>
+
+</div>
+</section>
+
+<!-- RESULT -->
+
+<section id="result" class="result" aria-live="polite">
+
+<div class="result-head">
+Your Compound Interest Result
+</div>
+
+<div class="result-body">
+
+<div class="main-result">
+<span id="finalBalance" class="big"></span>
+<span class="small">Estimated final balance</span>
+</div>
+
+<div class="result-grid">
+
+<div class="metric">
+<strong>Initial Investment</strong>
+<span id="initialOut"></span>
+</div>
+
+<div class="metric">
+<strong>Total Monthly Contributions</strong>
+<span id="contributionsOut"></span>
+</div>
+
+<div class="metric">
+<strong>Total Contributions</strong>
+<span id="totalContributionsOut"></span>
+</div>
+
+<div class="metric">
+<strong>Total Interest Earned</strong>
+<span id="interestOut"></span>
+</div>
+
+</div>
+
+<div class="table-title">
+Year-by-Year Growth
+</div>
+
+<div class="table-wrap">
+
+<table class="growth-table">
+
+<thead>
+<tr>
+<th>Year</th>
+<th>Total Contributions</th>
+<th>Interest Earned</th>
+<th>Balance</th>
+</tr>
+</thead>
+
+<tbody id="growthBody"></tbody>
+
+</table>
+
+</div>
+
+<p class="note">
+Results are estimates based on a constant annual interest rate. Actual investment or savings returns may vary.
+</p>
+
+</div>
+</section>
+
+<!-- CONTENT -->
+
+<section class="content">
+
+<h2>How Does This Compound Interest Calculator Work?</h2>
+
+<p>
+Enter your initial investment, annual interest rate, time period, and compounding frequency. You can also add an optional monthly contribution to estimate your final balance, total contributions, and compound interest earned.
+</p>
+
+<h2>Compound Interest Formula</h2>
+
+<div class="formula">
+
+<div class="formula-title">
+Standard Compound Interest Formula
+</div>
+
+<div class="formula-line">
+A = P(1 + r/n)<sup>nt</sup>
+</div>
+
+<p class="formula-help">
+A is the final amount, P is the principal, r is the annual interest rate, n is the number of compounding periods per year, and t is the number of years.
+</p>
+
+</div>
+
+<h2>Simple Interest vs Compound Interest</h2>
+
+<p>
+Simple interest is calculated only on the original principal. Compound interest is calculated on the principal plus previously earned interest, allowing the balance to grow faster over time.
+</p>
+
+<h2>Frequently Asked Questions About Compound Interest</h2>
+
+<h3>What is compound interest?</h3>
+
+<p>
+Compound interest is interest earned on both your original principal and the interest that has already been added to your balance.
+</p>
+
+<h3>How often is interest compounded?</h3>
+
+<p>
+Interest may be compounded annually, semi-annually, quarterly, monthly, daily, or at another frequency depending on the account or investment.
+</p>
+
+<h3>Does more frequent compounding increase returns?</h3>
+
+<p>
+Generally, yes. With the same stated annual interest rate, more frequent compounding can produce a slightly higher final balance because interest is added to the balance more often.
+</p>
+
+<h3>Can I include monthly contributions?</h3>
+
+<p>
+Yes. Enter an amount in the monthly contribution field to estimate how regular deposits may increase your final balance and total interest earned.
+</p>
+
+</section>
+
+<footer>
+<strong>ZammioHub</strong><br>
+Clear, accurate and mobile-friendly online calculators.
+</footer>
+
+</main>
+
+<script>
+
+function formatNumber(number){
+
+  return number.toLocaleString(
+    undefined,
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
+
+}
+
+function calculateCompoundInterest(){
+
+  const principal =
+    parseFloat(document.getElementById('principal').value);
+
+  const annualRate =
+    parseFloat(document.getElementById('rate').value);
+
+  const years =
+    parseFloat(document.getElementById('years').value);
+
+  const compoundsPerYear =
+    parseInt(document.getElementById('frequency').value,10);
+
+  const contributionValue =
+    document.getElementById('contribution').value.trim();
+
+  const monthlyContribution =
+    contributionValue === ''
+      ? 0
+      : parseFloat(contributionValue);
+
+  const error =
+    document.getElementById('error');
+
+  const result =
+    document.getElementById('result');
+
+  error.textContent='';
+  result.style.display='none';
+
+  if(
+    !Number.isFinite(principal) ||
+    principal < 0 ||
+    !Number.isFinite(annualRate) ||
+    annualRate < 0 ||
+    !Number.isFinite(years) ||
+    years <= 0 ||
+    !Number.isFinite(monthlyContribution) ||
+    monthlyContribution < 0 ||
+    (principal === 0 && monthlyContribution === 0)
+  ){
+
+    error.textContent =
+      'Please enter valid investment details. Initial investment or monthly contribution must be greater than zero.';
+
+    return;
+
+  }
+
+  const annualRateDecimal =
+    annualRate / 100;
+
+  /*
+    Convert the selected nominal compounding rate
+    to an equivalent monthly growth rate.
+
+    This lets monthly contributions remain monthly
+    while respecting annual, semi-annual, quarterly,
+    monthly or daily compounding.
+  */
+
+  let monthlyRate = 0;
+
+  if(annualRateDecimal > 0){
+
+    monthlyRate =
+      Math.pow(
+        1 + annualRateDecimal / compoundsPerYear,
+        compoundsPerYear / 12
+      ) - 1;
+
+  }
+
+  const totalMonths =
+    Math.round(years * 12);
+
+  let balance = principal;
+
+  let monthlyDeposits = 0;
+
+  let growthRows = '';
+
+  let completedMonths = 0;
+
+  for(let month = 1; month <= totalMonths; month++){
+
+    /*
+      Interest is applied first.
+      Monthly contribution is then added at the
+      end of each month.
+    */
+
+    balance =
+      balance * (1 + monthlyRate);
+
+    balance += monthlyContribution;
+
+    monthlyDeposits += monthlyContribution;
+
+    completedMonths = month;
+
+    if(month % 12 === 0){
+
+      const year =
+        month / 12;
+
+      const contributed =
+        principal + monthlyDeposits;
+
+      const earned =
+        balance - contributed;
+
+      growthRows += `
+        <tr>
+          <td>${year}</td>
+          <td>${formatNumber(contributed)}</td>
+          <td>${formatNumber(Math.max(0,earned))}</td>
+          <td>${formatNumber(balance)}</td>
+        </tr>
+      `;
+
+    }
+
+  }
+
+  /*
+    If a fractional year was entered and the final
+    month does not fall exactly on a full year,
+    show a final row for that period.
+  */
+
+  if(completedMonths % 12 !== 0){
+
+    const displayYear =
+      (completedMonths / 12).toFixed(1);
+
+    const contributed =
+      principal + monthlyDeposits;
+
+    const earned =
+      balance - contributed;
+
+    growthRows += `
+      <tr>
+        <td>${displayYear}</td>
+        <td>${formatNumber(contributed)}</td>
+        <td>${formatNumber(Math.max(0,earned))}</td>
+        <td>${formatNumber(balance)}</td>
+      </tr>
+    `;
+
+  }
+
+  const totalContributions =
+    principal + monthlyDeposits;
+
+  const interestEarned =
+    balance - totalContributions;
+
+  document.getElementById('finalBalance').textContent =
+    formatNumber(balance);
+
+  document.getElementById('initialOut').textContent =
+    formatNumber(principal);
+
+  document.getElementById('contributionsOut').textContent =
+    formatNumber(monthlyDeposits);
+
+  document.getElementById('totalContributionsOut').textContent =
+    formatNumber(totalContributions);
+
+  document.getElementById('interestOut').textContent =
+    formatNumber(Math.max(0,interestEarned));
+
+  document.getElementById('growthBody').innerHTML =
+    growthRows;
+
+  result.style.display='block';
+
+  result.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+
+}
+
+function clearCalculator(){
+
+  document.getElementById('principal').value='';
+  document.getElementById('rate').value='';
+  document.getElementById('years').value='';
+  document.getElementById('frequency').value='12';
+  document.getElementById('contribution').value='';
+
+  document.getElementById('error').textContent='';
+  document.getElementById('result').style.display='none';
+  document.getElementById('growthBody').innerHTML='';
+
+}
+
+</script>
+
+<noscript>
+<div style="max-width:920px;margin:20px auto;padding:16px;font-weight:700;color:#8a2020;">
+Please enable JavaScript to use this calculator.
+</div>
+</noscript>
+
+</body>
+</html>
