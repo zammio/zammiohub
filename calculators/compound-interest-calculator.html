@@ -203,6 +203,7 @@ button{
 
 .result-body{
   width:100%;
+  min-width:0;
   padding:24px;
 }
 
@@ -260,20 +261,59 @@ button{
   margin:18px 0 0;
 }
 
-/* TABLE */
+/* YEAR-BY-YEAR TABLE */
+
+.table-title{
+  font-size:21px;
+  font-weight:700;
+  margin:28px 0 10px;
+  color:#263b48;
+}
+
+.table-scroll-hint{
+  display:none;
+  font-size:13px;
+  color:var(--muted);
+  margin:0 0 8px;
+}
 
 .table-wrap{
+  display:block;
   width:100%;
+  max-width:100%;
   overflow-x:auto;
-  margin-top:25px;
+  overflow-y:hidden;
+  margin-top:12px;
   -webkit-overflow-scrolling:touch;
+  scrollbar-width:auto;
+  overscroll-behavior-x:contain;
+}
+
+.table-wrap:focus{
+  outline:2px solid rgba(23,96,138,.35);
+  outline-offset:3px;
 }
 
 .growth-table{
   width:100%;
-  min-width:560px;
+  min-width:650px;
+  margin:0;
   border-collapse:collapse;
+  border-spacing:0;
   font-size:16px;
+  table-layout:auto;
+}
+
+.growth-table caption{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
 }
 
 .growth-table th,
@@ -281,23 +321,34 @@ button{
   padding:11px 12px;
   border:1px solid var(--border);
   text-align:right;
+  white-space:nowrap;
 }
 
 .growth-table th:first-child,
 .growth-table td:first-child{
   text-align:left;
+  min-width:70px;
+}
+
+.growth-table th:nth-child(2),
+.growth-table td:nth-child(2){
+  min-width:190px;
+}
+
+.growth-table th:nth-child(3),
+.growth-table td:nth-child(3){
+  min-width:170px;
+}
+
+.growth-table th:nth-child(4),
+.growth-table td:nth-child(4){
+  min-width:150px;
 }
 
 .growth-table th{
   background:#f0f4f6;
   color:#263b48;
-}
-
-.table-title{
-  font-size:21px;
   font-weight:700;
-  margin:28px 0 10px;
-  color:#263b48;
 }
 
 /* CONTENT */
@@ -408,7 +459,15 @@ footer{
     min-width:0;
   }
 
+  .result{
+    width:100%;
+    max-width:100%;
+  }
+
   .result-body{
+    width:100%;
+    max-width:100%;
+    min-width:0;
     padding:20px 16px;
   }
 
@@ -422,10 +481,56 @@ footer{
 
   .table-title{
     font-size:20px;
+    margin-bottom:5px;
+  }
+
+  .table-scroll-hint{
+    display:block;
+  }
+
+  .table-wrap{
+    width:100%;
+    max-width:100%;
+    margin-left:0;
+    margin-right:0;
+    padding:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    direction:ltr;
   }
 
   .growth-table{
+    width:650px;
+    min-width:650px;
+    max-width:none;
     font-size:14px;
+    margin-left:0;
+    transform:none;
+  }
+
+  .growth-table th,
+  .growth-table td{
+    padding:10px 10px;
+  }
+
+  .growth-table th:first-child,
+  .growth-table td:first-child{
+    min-width:65px;
+  }
+
+  .growth-table th:nth-child(2),
+  .growth-table td:nth-child(2){
+    min-width:190px;
+  }
+
+  .growth-table th:nth-child(3),
+  .growth-table td:nth-child(3){
+    min-width:170px;
+  }
+
+  .growth-table th:nth-child(4),
+  .growth-table td:nth-child(4){
+    min-width:150px;
   }
 
   .content{
@@ -464,7 +569,7 @@ footer{
 
 <main class="container">
 
-<nav class="breadcrumb">
+<nav class="breadcrumb" aria-label="Breadcrumb">
 <a href="/">Home</a>
 <span>›</span>
 <a href="/calculators/">All Calculators</a>
@@ -493,6 +598,7 @@ id="principal"
 type="number"
 min="0"
 step="any"
+inputmode="decimal"
 placeholder="e.g. 10000">
 </div>
 
@@ -503,6 +609,7 @@ id="rate"
 type="number"
 min="0"
 step="any"
+inputmode="decimal"
 placeholder="e.g. 5">
 </div>
 
@@ -513,6 +620,7 @@ id="years"
 type="number"
 min="0.1"
 step="any"
+inputmode="decimal"
 placeholder="e.g. 10">
 </div>
 
@@ -531,17 +639,23 @@ placeholder="e.g. 10">
 </div>
 
 <div class="field">
-<label for="contribution">Monthly Contribution (Optional)</label>
+
+<label for="contribution">
+Monthly Contribution (Optional)
+</label>
+
 <input
 id="contribution"
 type="number"
 min="0"
 step="any"
+inputmode="decimal"
 placeholder="e.g. 200">
 
 <span class="helper">
 Enter 0 or leave blank if you are not making regular monthly contributions.
 </span>
+
 </div>
 
 <div class="actions">
@@ -562,10 +676,11 @@ Clear
 
 </div>
 
-<div id="error" class="error"></div>
+<div id="error" class="error" role="alert"></div>
 
 </div>
 </section>
+
 
 <!-- RESULT -->
 
@@ -610,16 +725,29 @@ Your Compound Interest Result
 Year-by-Year Growth
 </div>
 
-<div class="table-wrap">
+<p class="table-scroll-hint" aria-hidden="true">
+Swipe left or right to view the full table.
+</p>
+
+<div
+id="growthTableRegion"
+class="table-wrap"
+tabindex="0"
+role="region"
+aria-labelledby="growthTableCaption">
 
 <table class="growth-table">
 
+<caption id="growthTableCaption">
+Year-by-Year Compound Interest Growth
+</caption>
+
 <thead>
 <tr>
-<th>Year</th>
-<th>Total Contributions</th>
-<th>Interest Earned</th>
-<th>Balance</th>
+<th scope="col">Year</th>
+<th scope="col">Total Contributions</th>
+<th scope="col">Interest Earned</th>
+<th scope="col">Balance</th>
 </tr>
 </thead>
 
@@ -630,11 +758,12 @@ Year-by-Year Growth
 </div>
 
 <p class="note">
-Results are estimates based on a constant annual interest rate. Actual investment or savings returns may vary.
+Results are estimates based on a constant annual interest rate. Monthly contributions are assumed to be added at the end of each month. Actual investment or savings returns may vary.
 </p>
 
 </div>
 </section>
+
 
 <!-- CONTENT -->
 
@@ -643,7 +772,7 @@ Results are estimates based on a constant annual interest rate. Actual investmen
 <h2>How Does This Compound Interest Calculator Work?</h2>
 
 <p>
-Enter your initial investment, annual interest rate, time period, and compounding frequency. You can also add an optional monthly contribution to estimate your final balance, total contributions, and compound interest earned.
+Enter your initial investment, annual interest rate, time period, and compounding frequency. You can also add an optional monthly contribution to estimate your final balance, total contributions, and compound interest earned. Monthly contributions are assumed to be added at the end of each month.
 </p>
 
 <h2>Compound Interest Formula</h2>
@@ -698,12 +827,14 @@ Yes. Enter an amount in the monthly contribution field to estimate how regular d
 
 </section>
 
+
 <footer>
 <strong>ZammioHub</strong><br>
 Clear, accurate and mobile-friendly online calculators.
 </footer>
 
 </main>
+
 
 <script>
 
@@ -718,6 +849,7 @@ function formatNumber(number){
   );
 
 }
+
 
 function calculateCompoundInterest(){
 
@@ -750,6 +882,7 @@ function calculateCompoundInterest(){
   error.textContent='';
   result.style.display='none';
 
+
   if(
     !Number.isFinite(principal) ||
     principal < 0 ||
@@ -766,19 +899,20 @@ function calculateCompoundInterest(){
       'Please enter valid investment details. Initial investment or monthly contribution must be greater than zero.';
 
     return;
-
   }
+
 
   const annualRateDecimal =
     annualRate / 100;
+
 
   /*
     Convert the selected nominal compounding rate
     to an equivalent monthly growth rate.
 
-    This lets monthly contributions remain monthly
-    while respecting annual, semi-annual, quarterly,
-    monthly or daily compounding.
+    This keeps optional contributions monthly while
+    respecting the selected annual, semi-annual,
+    quarterly, monthly or daily compounding frequency.
   */
 
   let monthlyRate = 0;
@@ -793,6 +927,7 @@ function calculateCompoundInterest(){
 
   }
 
+
   const totalMonths =
     Math.round(years * 12);
 
@@ -804,12 +939,13 @@ function calculateCompoundInterest(){
 
   let completedMonths = 0;
 
+
   for(let month = 1; month <= totalMonths; month++){
 
     /*
       Interest is applied first.
-      Monthly contribution is then added at the
-      end of each month.
+      The monthly contribution is then added
+      at the end of each month.
     */
 
     balance =
@@ -820,6 +956,7 @@ function calculateCompoundInterest(){
     monthlyDeposits += monthlyContribution;
 
     completedMonths = month;
+
 
     if(month % 12 === 0){
 
@@ -845,8 +982,9 @@ function calculateCompoundInterest(){
 
   }
 
+
   /*
-    If a fractional year was entered and the final
+    If a fractional year is entered and the final
     month does not fall exactly on a full year,
     show a final row for that period.
   */
@@ -873,11 +1011,13 @@ function calculateCompoundInterest(){
 
   }
 
+
   const totalContributions =
     principal + monthlyDeposits;
 
   const interestEarned =
     balance - totalContributions;
+
 
   document.getElementById('finalBalance').textContent =
     formatNumber(balance);
@@ -897,14 +1037,40 @@ function calculateCompoundInterest(){
   document.getElementById('growthBody').innerHTML =
     growthRows;
 
+
+  /*
+    Always reset the table to its first column.
+    This prevents mobile browsers from reopening
+    the table in a previously scrolled position.
+  */
+
+  const tableRegion =
+    document.getElementById('growthTableRegion');
+
+  tableRegion.scrollLeft = 0;
+
+
   result.style.display='block';
+
 
   result.scrollIntoView({
     behavior:'smooth',
     block:'start'
   });
 
+
+  /*
+    Reset again after rendering/scrolling so that
+    Year and Total Contributions remain the first
+    visible columns on mobile.
+  */
+
+  window.setTimeout(function(){
+    tableRegion.scrollLeft = 0;
+  },100);
+
 }
+
 
 function clearCalculator(){
 
@@ -918,9 +1084,15 @@ function clearCalculator(){
   document.getElementById('result').style.display='none';
   document.getElementById('growthBody').innerHTML='';
 
+  const tableRegion =
+    document.getElementById('growthTableRegion');
+
+  tableRegion.scrollLeft = 0;
+
 }
 
 </script>
+
 
 <noscript>
 <div style="max-width:920px;margin:20px auto;padding:16px;font-weight:700;color:#8a2020;">
