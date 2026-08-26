@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Increase or Decrease Calculator | Percentage Change | ZammioHub</title>
+<meta name="description" content="Use this free percentage increase or decrease calculator to calculate percentage change, increase, decrease, and the numerical difference between two values instantly.">
+<meta name="keywords" content="percentage increase calculator, percentage decrease calculator, percentage change calculator, percent increase, percent decrease, percentage change formula">
+<style>
+:root{
+  --primary:#17608a;
+  --accent:#4b8f2b;
+  --text:#27313a;
+  --muted:#66727d;
+  --border:#d9e1e6;
+  --soft:#f5f8fa;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+.container{max-width:920px;margin:auto;padding:30px 24px 70px}
+.breadcrumb{font-size:16px;color:var(--primary);margin-bottom:28px}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.breadcrumb span{margin:0 7px;color:#7b8790}
+h1{font-size:46px;line-height:1.14;margin:0 0 14px;color:#124c70}
+.intro{font-size:19px;margin:0 0 26px;color:#37424b}
+.card{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 5px 20px rgba(23,54,72,.08)}
+.card-head{background:var(--primary);color:#fff;padding:18px 24px;font-size:20px;font-weight:700}
+.form{padding:28px;background:#f7f9fa;border-top:1px solid #d9e1e6}
+label{display:block;font-weight:700;font-size:19px;margin:0 0 8px;color:#263b48}
+.field{margin-bottom:20px}
+input{width:100%;padding:15px 16px;border:1px solid #b9c5cc;border-radius:7px;font-size:18px;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s}input:focus{border-color:#356f9f;box-shadow:0 0 0 3px rgba(53,111,159,.12)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+button{border:0;border-radius:7px;padding:14px 24px;font-size:17px;font-weight:700;cursor:pointer}
+.calculate{background:var(--accent);color:#fff;min-width:190px}
+.clear{background:#e4e8eb;color:#27313a;min-width:100px}
+.result{display:none;margin-top:24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+.result-head{background:var(--accent);color:#fff;padding:17px 22px;font-size:21px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.result-body{padding:24px}
+.result-main{font-size:36px;font-weight:800;margin-bottom:20px;color:#123f67;text-align:center}
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.metric{background:#f7f9fa;border:1px solid var(--border);border-radius:8px;padding:16px}
+.metric strong{display:block;font-size:15px;color:var(--muted);margin-bottom:4px}
+.metric span{font-size:20px;font-weight:700}
+.error{color:#a12626;font-weight:700;margin-top:12px}
+.content{margin-top:42px}
+.content h2{font-size:30px;line-height:1.25;margin:34px 0 10px;color:#263b48}
+.content h3{font-size:22px;margin:28px 0 7px}
+.content p{font-size:18px;margin:0 0 12px}
+.formula{margin:18px 0 26px;padding:22px 24px;background:#f7f9fa;border:1px solid var(--border);border-radius:8px}
+.formula-title{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:10px}
+.formula-line{font-family:Georgia,"Times New Roman",serif;font-size:19px;font-weight:700;line-height:1.7;color:#26333c}
+footer{margin-top:48px;padding-top:25px;border-top:1px solid var(--border);color:var(--muted)}
+@media(max-width:650px){
+  .container{padding:22px 16px 55px}
+  h1{font-size:38px}
+  .intro{font-size:18px}
+  .result-grid{grid-template-columns:1fr}
+  .result-main{font-size:29px}
+}
+</style>
+</head>
+<body>
+<main class="container">
+  <nav class="breadcrumb">
+    <a href="#">Home</a><span>›</span><a href="#">All Calculators</a><span>›</span>Percentage Increase or Decrease Calculator
+  </nav>
 
+  <h1>Percentage Increase or Decrease Calculator</h1>
+  <p class="intro">Calculate percentage increase, decrease, difference, and percentage change instantly.</p>
+
+  <section class="card">
+    <div class="card-head">Enter Your Values</div>
+    <div class="form">
+      <div class="field">
+        <label for="initial">Initial Value</label>
+        <input id="initial" type="number" step="any" placeholder="e.g. 100" aria-label="Initial value">
+      </div>
+      <div class="field">
+        <label for="final">Final Value</label>
+        <input id="final" type="number" step="any" placeholder="e.g. 125" aria-label="Final value">
+      </div>
+      <div class="actions">
+        <button class="calculate" type="button" onclick="calculate()">Calculate Percentage</button>
+        <button class="clear" type="button" onclick="clearCalc()">Clear</button>
+      </div>
+      <div id="error" class="error"></div>
+    </div>
+  </section>
+
+  <section id="result" class="result" aria-live="polite">
+    <div class="result-head">Result</div>
+    <div class="result-body">
+      <div id="mainResult" class="result-main"></div>
+      <div class="result-grid">
+        <div class="metric"><strong>Difference</strong><span id="difference"></span></div>
+        <div class="metric"><strong>Percentage Change</strong><span id="change"></span></div>
+        <div class="metric"><strong>Initial Value</strong><span id="initialOut"></span></div>
+        <div class="metric"><strong>Final Value</strong><span id="finalOut"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <h2>How Does This Percentage Calculator Work?</h2>
+    <p>Enter the initial value and final value. The calculator determines whether the value increased or decreased and shows the exact percentage change.</p>
+
+    <div class="formula">
+      <div class="formula-title">Percentage Increase or Decrease Formula</div>
+      <div class="formula-line">Percentage change = (Final Value − Initial Value) ÷ |Initial Value| × 100</div>
+    </div>
+
+    <h2>Percentage Increase Calculator</h2>
+    <p>Use this calculator to find the percentage increase when a value becomes larger than its original amount. It is useful for prices, salaries, sales, population, marks, measurements, and other numerical changes.</p>
+
+    <h2>Percentage Decrease Calculator</h2>
+    <p>Use this calculator to find the percentage decrease when a value becomes smaller than its original amount. It can help calculate reductions in prices, expenses, quantities, scores, and other values.</p>
+
+    <h2>Percentage Change Example</h2>
+    <p>If a value changes from 100 to 125, the difference is 25 and the percentage increase is 25%. If it changes from 100 to 80, the percentage decrease is 20%.</p>
+
+    <h2>Common Uses for Percentage Change</h2>
+    <p>This calculator can be used for price changes, salary increases, sales growth, expense reductions, test scores, population changes, business metrics, and everyday calculations.</p>
+
+    <h2>Frequently Asked Questions About Percentage Change</h2>
+
+    <h3>How do I calculate percentage increase?</h3>
+    <p>Subtract the original value from the new value, divide the difference by the original value, and multiply by 100.</p>
+
+    <h3>How do I calculate percentage decrease?</h3>
+    <p>Subtract the new value from the original value, divide the difference by the original value, and multiply by 100.</p>
+
+    <h3>What is the difference between percentage change and percentage difference?</h3>
+    <p>Percentage change normally compares a new value with an original value. Percentage difference is commonly used when comparing two values without treating either one as the starting value.</p>
+
+    <h3>Can I use this percentage calculator for price changes?</h3>
+    <p>Yes. You can use it to calculate percentage increases or decreases in prices, discounts, expenses, sales, wages, and other numerical values.</p>
+  </section>
+
+  <footer>
+    <strong>ZammioHub</strong><br>
+    Clear, accurate and mobile-friendly online calculators.
+  </footer>
+</main>
+
+<script>
+function calculate(){
+  const initial = parseFloat(document.getElementById('initial').value);
+  const final = parseFloat(document.getElementById('final').value);
+  const error = document.getElementById('error');
+  const result = document.getElementById('result');
+
+  error.textContent = '';
+  if(!Number.isFinite(initial) || !Number.isFinite(final)){
+    result.style.display='none';
+    error.textContent='Please enter both values.';
+    return;
+  }
+  if(initial === 0){
+    result.style.display='none';
+    error.textContent='The initial value must not be zero.';
+    return;
+  }
+
+  const diff = final - initial;
+  const pct = (diff / Math.abs(initial)) * 100;
+  const direction = diff > 0 ? 'Increase' : diff < 0 ? 'Decrease' : 'No Change';
+
+  document.getElementById('mainResult').textContent =
+    Math.abs(pct).toFixed(2) + '% ' + direction;
+  document.getElementById('difference').textContent = format(diff);
+  document.getElementById('change').textContent = format(pct) + '%';
+  document.getElementById('initialOut').textContent = format(initial);
+  document.getElementById('finalOut').textContent = format(final);
+  result.style.display='block';
+}
+
+function format(n){
+  return Number(n).toLocaleString(undefined,{maximumFractionDigits:10});
+}
+
+function clearCalc(){
+  document.getElementById('initial').value='';
+  document.getElementById('final').value='';
+  document.getElementById('error').textContent='';
+  document.getElementById('result').style.display='none';
+}
+</script>
+<noscript><div style="max-width:920px;margin:20px auto;padding:16px;font-weight:700;color:#8a2020;">Please enable JavaScript to use this calculator.</div></noscript>
+</body>
+</html>
