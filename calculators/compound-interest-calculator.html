@@ -771,7 +771,7 @@ Year-by-Year Compound Interest Growth
 <tr>
 <th scope="col">Year</th>
 <th scope="col">Total Contributions</th>
-<th scope="col">Interest Earned</th>
+<th scope="col">Total Interest Earned</th>
 <th scope="col">Balance</th>
 </tr>
 </thead>
@@ -813,7 +813,7 @@ A = P(1 + r/n)<sup>nt</sup>
 </div>
 
 <p class="formula-help">
-A is the final amount, P is the principal, r is the annual interest rate, n is the number of compounding periods per year, and t is the number of years.
+A is the final amount, P is the principal, r is the annual interest rate, n is the number of compounding periods per year, and t is the number of years. When monthly contributions are included, the calculator compounds the initial investment and adds each monthly contribution at the end of the month.
 </p>
 
 </div>
@@ -998,7 +998,7 @@ function calculateCompoundInterest(){
         <tr>
           <td data-label="Year">${year}</td>
           <td data-label="Total Contributions">${formatNumber(contributed)}</td>
-          <td data-label="Interest Earned">${formatNumber(Math.max(0,earned))}</td>
+          <td data-label="Total Interest Earned">${formatNumber(Math.max(0,earned))}</td>
           <td data-label="Balance">${formatNumber(balance)}</td>
         </tr>
       `;
