@@ -5,7 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
@@ -14,7 +15,7 @@ Auto Loan Calculator | Car Payment Calculator | ZammioHub
 
 <meta
 name="description"
-content="Use the ZammioHub Auto Loan Calculator to estimate your monthly car payment, amount financed, total interest and loan cost using vehicle price, down payment, trade-in, APR, tax and fees.">
+content="Use the ZammioHub Auto Loan Calculator to estimate monthly car payments, amount financed, total interest, sales tax and loan cost using vehicle price, down payment, trade-in, APR, fees and loan term.">
 
 <link
 rel="canonical"
@@ -77,7 +78,7 @@ body{
 
 
 /* =========================
-   PAGE TITLE
+   TITLE
 ========================= */
 
 h1{
@@ -85,7 +86,6 @@ h1{
     color:#145d7d;
     font-size:42px;
     line-height:1.2;
-    overflow-wrap:break-word;
 }
 
 .intro{
@@ -96,30 +96,51 @@ h1{
 
 
 /* =========================
-   CALCULATOR CARD
+   CARDS
 ========================= */
 
-.card{
+.card,
+.result-card{
     width:100%;
-    margin-bottom:28px;
     overflow:hidden;
     border:1px solid #d9e0e4;
     border-radius:12px;
     background:#ffffff;
+}
+
+.card{
+    margin-bottom:28px;
     box-shadow:0 7px 22px rgba(25,54,70,.05);
 }
 
-.card-header{
+.result-card{
+    display:none;
+    margin-bottom:38px;
+}
+
+.card-header,
+.result-header{
     padding:19px 28px;
-    background:#1e6e92;
     color:#ffffff;
     font-size:21px;
     font-weight:700;
 }
 
+.card-header{
+    background:#1e6e92;
+}
+
+.result-header{
+    background:#479629;
+}
+
 .card-body{
     padding:28px;
     background:#f7f9fa;
+}
+
+.result-body{
+    padding:32px 28px 28px;
 }
 
 
@@ -143,7 +164,8 @@ label{
     font-weight:700;
 }
 
-input{
+input,
+select{
     display:block;
     width:100%;
     max-width:100%;
@@ -157,7 +179,8 @@ input{
     font-size:17px;
 }
 
-input:focus{
+input:focus,
+select:focus{
     border-color:#1e6e92;
     box-shadow:0 0 0 3px rgba(30,110,146,.10);
 }
@@ -183,7 +206,6 @@ input:focus{
     margin-bottom:9px;
     color:#707d85;
     font-size:13px;
-    font-weight:400;
 }
 
 .term-buttons{
@@ -276,30 +298,8 @@ input:focus{
 
 
 /* =========================
-   RESULT
+   RESULTS
 ========================= */
-
-.result-card{
-    display:none;
-    width:100%;
-    margin-bottom:38px;
-    overflow:hidden;
-    border:1px solid #d9e0e4;
-    border-radius:12px;
-    background:#ffffff;
-}
-
-.result-header{
-    padding:19px 28px;
-    background:#479629;
-    color:#ffffff;
-    font-size:21px;
-    font-weight:700;
-}
-
-.result-body{
-    padding:32px 28px 28px;
-}
 
 .main-result{
     margin-bottom:28px;
@@ -350,7 +350,7 @@ input:focus{
 
 
 /* =========================
-   AMORTIZATION TABLE
+   YEAR BREAKDOWN
 ========================= */
 
 .breakdown-title{
@@ -360,14 +360,7 @@ input:focus{
     line-height:1.35;
 }
 
-.table-note{
-    display:none;
-    margin:0 0 10px;
-    color:#707d85;
-    font-size:14px;
-}
-
-.table-wrap{
+.desktop-table{
     width:100%;
     overflow-x:auto;
     -webkit-overflow-scrolling:touch;
@@ -402,6 +395,56 @@ td:first-child{
     text-align:left;
 }
 
+
+/* =========================
+   MOBILE YEAR CARDS
+========================= */
+
+.mobile-breakdown{
+    display:none;
+    margin-top:14px;
+}
+
+.year-card{
+    margin-bottom:12px;
+    padding:15px;
+    border:1px solid #d9e0e4;
+    border-radius:8px;
+    background:#f7f9fa;
+}
+
+.year-card-title{
+    margin-bottom:10px;
+    color:#145d7d;
+    font-size:17px;
+    font-weight:800;
+}
+
+.year-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.year-stat{
+    min-width:0;
+}
+
+.year-stat span{
+    display:block;
+    color:#73808a;
+    font-size:12px;
+    font-weight:700;
+}
+
+.year-stat strong{
+    display:block;
+    margin-top:2px;
+    color:#26343d;
+    font-size:15px;
+    overflow-wrap:anywhere;
+}
+
 .disclaimer{
     margin:17px 0 0;
     color:#6f7a82;
@@ -415,15 +458,15 @@ td:first-child{
 ========================= */
 
 .content-section{
-    margin:0 0 31px;
+    margin:0 0 28px;
 }
 
-.content-section h2{
+.content-section h2,
+.faq-section h2{
     margin:0 0 10px;
     color:#263f4c;
     font-size:29px;
     line-height:1.3;
-    overflow-wrap:break-word;
 }
 
 .content-section p{
@@ -467,18 +510,15 @@ td:first-child{
 ========================= */
 
 .faq-section{
-    margin-top:35px;
+    margin-top:33px;
 }
 
 .faq-section h2{
-    margin-bottom:23px;
-    color:#263f4c;
-    font-size:29px;
-    line-height:1.3;
+    margin-bottom:22px;
 }
 
 .faq-item{
-    margin-bottom:25px;
+    margin-bottom:22px;
 }
 
 .faq-item h3{
@@ -500,7 +540,7 @@ td:first-child{
 ========================= */
 
 footer{
-    margin-top:45px;
+    margin-top:42px;
     padding-top:24px;
     border-top:1px solid #dce2e5;
     color:#737e85;
@@ -527,37 +567,38 @@ footer strong{
     }
 
     .breadcrumb{
-        margin-bottom:22px;
+        margin-bottom:20px;
         font-size:14px;
-        line-height:1.7;
+        line-height:1.6;
     }
 
     h1{
-        font-size:36px;
+        font-size:35px;
         line-height:1.18;
     }
 
     .intro{
-        margin-bottom:27px;
-        font-size:18px;
-        line-height:1.65;
+        margin-bottom:25px;
+        font-size:17px;
+        line-height:1.55;
     }
 
     .card-header,
     .result-header{
-        padding:18px 20px;
-        font-size:20px;
+        padding:17px 20px;
+        font-size:19px;
     }
 
     .card-body{
-        padding:24px 20px;
+        padding:23px 20px;
     }
 
     label{
-        font-size:18px;
+        font-size:17px;
     }
 
-    input{
+    input,
+    select{
         min-height:54px;
         padding:15px;
         font-size:17px;
@@ -566,7 +607,7 @@ footer strong{
     .quick-label{
         margin-top:2px;
         margin-bottom:9px;
-        font-size:14px;
+        font-size:13px;
     }
 
     .term-buttons{
@@ -594,68 +635,76 @@ footer strong{
     }
 
     .result-body{
-        padding:28px 20px 24px;
+        padding:27px 20px 24px;
     }
 
     .main-result-value{
-        font-size:36px;
+        font-size:34px;
+    }
+
+    .main-result-label{
+        font-size:16px;
     }
 
     .result-grid{
         grid-template-columns:1fr;
-        gap:12px;
+        gap:11px;
     }
 
     .result-box{
-        padding:18px;
+        padding:17px;
     }
 
     .result-box-value{
-        font-size:21px;
+        font-size:20px;
     }
 
     .breakdown-title{
-        font-size:24px;
+        margin-top:28px;
+        font-size:22px;
     }
 
-    .table-note{
+    .desktop-table{
+        display:none;
+    }
+
+    .mobile-breakdown{
         display:block;
     }
 
-    th,
-    td{
-        padding:12px;
-        font-size:14px;
-    }
-
     .content-section{
-        margin-bottom:34px;
+        margin-bottom:27px;
     }
 
     .content-section h2,
     .faq-section h2{
-        font-size:28px;
-        line-height:1.35;
+        font-size:25px;
+        line-height:1.3;
     }
 
     .content-section p,
     .faq-item p{
-        font-size:17px;
-        line-height:1.75;
+        font-size:16px;
+        line-height:1.65;
     }
 
     .faq-item h3{
-        font-size:20px;
-        line-height:1.45;
+        font-size:18px;
+        line-height:1.4;
     }
 
     .formula-box{
-        padding:20px;
+        padding:18px;
     }
 
     .formula{
-        font-size:18px;
-        line-height:1.7;
+        font-size:17px;
+        line-height:1.6;
+    }
+
+    .formula-description{
+        font-size:14px !important;
+        line-height:1.6 !important;
     }
 
 }
@@ -664,11 +713,15 @@ footer strong{
 @media(max-width:400px){
 
     h1{
-        font-size:33px;
+        font-size:32px;
     }
 
     .main-result-value{
-        font-size:33px;
+        font-size:31px;
+    }
+
+    .year-card-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -750,6 +803,54 @@ Enter Your Auto Loan Details
 id="errorMessage"
 class="error"
 role="alert">
+</div>
+
+
+
+<!-- CURRENCY -->
+
+<div class="form-group">
+
+<label for="currency">
+Currency
+</label>
+
+<select id="currency">
+
+<option value="USD">
+USD — US Dollar
+</option>
+
+<option value="EUR">
+EUR — Euro
+</option>
+
+<option value="GBP">
+GBP — British Pound
+</option>
+
+<option value="PKR">
+PKR — Pakistani Rupee
+</option>
+
+<option value="INR">
+INR — Indian Rupee
+</option>
+
+<option value="CAD">
+CAD — Canadian Dollar
+</option>
+
+<option value="AUD">
+AUD — Australian Dollar
+</option>
+
+</select>
+
+<p class="help-text">
+Choose the currency used for your vehicle price and loan amounts.
+</p>
+
 </div>
 
 
@@ -843,7 +944,7 @@ step="any"
 placeholder="e.g. 6">
 
 <p class="help-text">
-Optional. This calculator estimates tax on the vehicle price. Actual tax and trade-in rules vary by location.
+Optional. Tax is estimated on the full vehicle price. Actual rules vary by location.
 </p>
 
 </div>
@@ -902,7 +1003,6 @@ Enter 0 for a 0% APR loan.
 
 <div class="form-group">
 
-
 <label class="term-label">
 Loan Term
 </label>
@@ -911,11 +1011,9 @@ Loan Term
 Quick loan terms
 </span>
 
-
 <div
 class="term-buttons"
 aria-label="Quick loan terms">
-
 
 <button
 type="button"
@@ -924,14 +1022,12 @@ data-term="36">
 36
 </button>
 
-
 <button
 type="button"
 class="term-btn"
 data-term="48">
 48
 </button>
-
 
 <button
 type="button"
@@ -940,7 +1036,6 @@ data-term="60">
 60
 </button>
 
-
 <button
 type="button"
 class="term-btn"
@@ -948,14 +1043,12 @@ data-term="72">
 72
 </button>
 
-
 <button
 type="button"
 class="term-btn"
 data-term="84">
 84
 </button>
-
 
 </div>
 
@@ -977,7 +1070,6 @@ min="1"
 step="1"
 placeholder="e.g. 60">
 
-
 </div>
 
 
@@ -985,7 +1077,6 @@ placeholder="e.g. 60">
 <!-- BUTTONS -->
 
 <div class="actions">
-
 
 <button
 type="button"
@@ -1005,7 +1096,6 @@ id="clearBtn">
 Clear
 
 </button>
-
 
 </div>
 
@@ -1034,7 +1124,6 @@ Your Auto Loan Result
 
 <div class="main-result">
 
-
 <div
 class="main-result-value"
 id="monthlyPayment">
@@ -1047,7 +1136,6 @@ id="monthlyPayment">
 <div class="main-result-label">
 Estimated monthly payment
 </div>
-
 
 </div>
 
@@ -1131,23 +1219,17 @@ id="taxAmount">
 
 
 
-<!-- AMORTIZATION -->
-
 <h2 class="breakdown-title">
 Year-by-Year Loan Breakdown
 </h2>
 
 
-<p class="table-note">
-Swipe left or right to view the full table.
-</p>
 
+<!-- DESKTOP TABLE -->
 
-<div class="table-wrap">
-
+<div class="desktop-table">
 
 <table>
-
 
 <thead>
 
@@ -1173,22 +1255,29 @@ Remaining Balance
 
 </thead>
 
-
 <tbody id="amortizationBody">
 </tbody>
 
-
 </table>
 
-
 </div>
+
+
+
+<!-- MOBILE CARDS -->
+
+<div
+class="mobile-breakdown"
+id="mobileBreakdown">
+</div>
+
 
 
 <p class="disclaimer">
 
 Results are estimates for planning purposes.
-Actual loan payments, taxes, fees, APR, trade-in treatment,
-rounding, and lender terms may vary.
+Actual loan payments, taxes, fees, APR,
+trade-in treatment, rounding, and lender terms may vary.
 
 </p>
 
@@ -1203,22 +1292,15 @@ rounding, and lender terms may vary.
 
 <section class="content-section">
 
-
 <h2>
 How Does This Auto Loan Calculator Work?
 </h2>
 
-
 <p>
-
-Enter the vehicle price, down payment, trade-in value,
-estimated sales tax, fees, APR, and loan term.
-This auto loan and car payment calculator estimates your
-monthly car payment, amount financed, total interest,
-total loan payments, and year-by-year loan balance.
-
+Enter the vehicle price, down payment, trade-in value, estimated sales tax,
+fees, APR, and loan term. The calculator estimates your monthly payment,
+amount financed, total interest, and year-by-year balance.
 </p>
-
 
 </section>
 
@@ -1227,7 +1309,6 @@ total loan payments, and year-by-year loan balance.
 <!-- FORMULA -->
 
 <section class="content-section">
-
 
 <h2>
 Auto Loan Payment Formula
@@ -1261,33 +1342,6 @@ by the number of months.
 
 </div>
 
-
-</section>
-
-
-
-<!-- PAYMENT FACTORS -->
-
-<section class="content-section">
-
-
-<h2>
-What Affects Your Car Loan Payment?
-</h2>
-
-
-<p>
-
-Your monthly car payment depends mainly on the amount
-financed, APR, and loan term. A larger down payment or
-trade-in can reduce the amount borrowed. A higher APR
-generally increases the monthly payment and total interest,
-while a longer loan term can lower the monthly payment
-but may increase total interest.
-
-</p>
-
-
 </section>
 
 
@@ -1305,85 +1359,45 @@ Frequently Asked Questions About Auto Loans
 
 <div class="faq-item">
 
-
 <h3>
 How is a monthly car payment calculated?
 </h3>
 
-
 <p>
-
-A fixed-rate car payment is calculated using the amount
-financed, monthly interest rate, and total number of
-payments. This car loan calculator uses the standard
-amortization formula to estimate the monthly payment.
-
+A fixed-rate payment is based on the amount financed,
+monthly interest rate, and number of payments using
+the standard amortization formula.
 </p>
-
 
 </div>
 
 
 
 <div class="faq-item">
-
 
 <h3>
 Does a larger down payment reduce my car payment?
 </h3>
 
-
 <p>
-
-Yes. A larger down payment reduces the amount you need
-to finance, which can lower your monthly payment and
-the total interest paid over the loan term.
-
+Yes. A larger down payment reduces the amount financed,
+which can lower both your monthly payment and total interest.
 </p>
-
 
 </div>
 
 
 
 <div class="faq-item">
-
-
-<h3>
-Does a longer auto loan term lower the monthly payment?
-</h3>
-
-
-<p>
-
-Usually, yes. Spreading the loan over more months can
-reduce the monthly payment, but it may increase the total
-interest paid over the life of the loan.
-
-</p>
-
-
-</div>
-
-
-
-<div class="faq-item">
-
 
 <h3>
 Does this calculator include sales tax and fees?
 </h3>
 
-
 <p>
-
-Yes. You can enter an estimated sales tax rate and
-optional financed fees. This calculator estimates sales
-tax using the full vehicle price. Actual tax, trade-in,
-registration, and fee rules vary by location and lender.
-
+Yes. You can enter an estimated sales tax rate and financed fees.
+Tax, trade-in, registration, and fee rules vary by location and lender.
 </p>
-
 
 </div>
 
@@ -1396,14 +1410,11 @@ registration, and fee rules vary by location and lender.
 
 <footer>
 
-
 <strong>
 ZammioHub
 </strong>
 
-
 Clear, accurate and mobile-friendly online calculators.
-
 
 </footer>
 
@@ -1442,6 +1453,9 @@ document.getElementById("interestRate");
 const loanTermInput =
 document.getElementById("loanTerm");
 
+const currencyInput =
+document.getElementById("currency");
+
 const calculateBtn =
 document.getElementById("calculateBtn");
 
@@ -1471,6 +1485,9 @@ document.getElementById("taxAmount");
 
 const amortizationBody =
 document.getElementById("amortizationBody");
+
+const mobileBreakdown =
+document.getElementById("mobileBreakdown");
 
 const termButtons =
 document.querySelectorAll(".term-btn");
@@ -1519,15 +1536,39 @@ function optionalNumber(input){
 }
 
 
-function formatNumber(value){
 
-    return Number(value).toLocaleString(
-        "en-US",
-        {
-            minimumFractionDigits:2,
-            maximumFractionDigits:2
-        }
-    );
+function formatMoney(value){
+
+    const currency =
+    currencyInput.value || "USD";
+
+    try{
+
+        return new Intl.NumberFormat(
+            "en-US",
+            {
+                style:"currency",
+                currency:currency,
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        ).format(value);
+
+    }
+
+    catch(error){
+
+        return currency +
+        " " +
+        Number(value).toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+    }
 
 }
 
@@ -1553,7 +1594,8 @@ function showError(message){
 
 function hideError(){
 
-    errorMessage.textContent = "";
+    errorMessage.textContent =
+    "";
 
     errorMessage.style.display =
     "none";
@@ -1574,12 +1616,9 @@ function updateActiveTerm(){
     termButtons.forEach(
         function(button){
 
-            const buttonTerm =
-            Number(button.dataset.term);
-
             button.classList.toggle(
                 "active",
-                term === buttonTerm
+                term === Number(button.dataset.term)
             );
 
         }
@@ -1692,11 +1731,12 @@ function calculateLoan(){
 
     if(
         !Number.isFinite(salesTaxRate) ||
-        salesTaxRate < 0
+        salesTaxRate < 0 ||
+        salesTaxRate > 100
     ){
 
         showError(
-            "Please enter a valid sales tax rate of 0 or greater."
+            "Please enter a valid sales tax rate from 0 to 100."
         );
 
         return;
@@ -1720,11 +1760,12 @@ function calculateLoan(){
 
     if(
         !Number.isFinite(annualRate) ||
-        annualRate < 0
+        annualRate < 0 ||
+        annualRate > 100
     ){
 
         showError(
-            "Please enter a valid APR of 0 or greater."
+            "Please enter a valid APR from 0 to 100."
         );
 
         return;
@@ -1734,11 +1775,12 @@ function calculateLoan(){
 
     if(
         !Number.isInteger(months) ||
-        months <= 0
+        months <= 0 ||
+        months > 600
     ){
 
         showError(
-            "Please choose or enter a valid loan term in whole months."
+            "Please enter a valid loan term between 1 and 600 whole months."
         );
 
         return;
@@ -1747,22 +1789,19 @@ function calculateLoan(){
 
 
 
-    /*
-       TAX ASSUMPTION
-
-       Estimated tax is calculated on the full
-       vehicle price.
-
-       Real tax rules can differ by country,
-       state, province, city, trade-in rules,
-       incentives and vehicle type.
-    */
+    /* =========================
+       TAX
+    ========================= */
 
     const salesTaxAmount =
     vehiclePrice *
     (salesTaxRate / 100);
 
 
+
+    /* =========================
+       AMOUNT FINANCED
+    ========================= */
 
     const amountFinanced =
     vehiclePrice
@@ -1776,7 +1815,7 @@ function calculateLoan(){
     if(amountFinanced <= 0){
 
         showError(
-            "The down payment and trade-in value leave no positive amount to finance."
+            "The down payment and trade-in leave no positive amount to finance."
         );
 
         return;
@@ -1785,17 +1824,18 @@ function calculateLoan(){
 
 
 
+    /* =========================
+       PAYMENT
+    ========================= */
+
     const monthlyRate =
     annualRate /
     100 /
     12;
 
 
-
     let monthlyPayment;
 
-
-    /* 0% APR */
 
     if(monthlyRate === 0){
 
@@ -1829,13 +1869,24 @@ function calculateLoan(){
 
 
 
-    /*
-       Build an amortization schedule first.
+    if(
+        !Number.isFinite(monthlyPayment) ||
+        monthlyPayment <= 0
+    ){
 
-       This also provides an accurate total interest
-       and total payment figure while allowing a
-       slightly adjusted final payment if necessary.
-    */
+        showError(
+            "Unable to calculate a valid payment from the values entered."
+        );
+
+        return;
+
+    }
+
+
+
+    /* =========================
+       AMORTIZATION
+    ========================= */
 
     const schedule =
     createAmortizationSchedule(
@@ -1847,22 +1898,24 @@ function calculateLoan(){
 
 
 
-    /* OUTPUTS */
+    /* =========================
+       OUTPUT
+    ========================= */
 
     monthlyPaymentEl.textContent =
-    formatNumber(monthlyPayment);
+    formatMoney(monthlyPayment);
 
     amountFinancedEl.textContent =
-    formatNumber(amountFinanced);
+    formatMoney(amountFinanced);
 
     totalInterestEl.textContent =
-    formatNumber(schedule.totalInterest);
+    formatMoney(schedule.totalInterest);
 
     totalPaymentsEl.textContent =
-    formatNumber(schedule.totalPayments);
+    formatMoney(schedule.totalPayments);
 
     taxAmountEl.textContent =
-    formatNumber(salesTaxAmount);
+    formatMoney(salesTaxAmount);
 
 
 
@@ -1874,7 +1927,6 @@ function calculateLoan(){
 
     resultSection.style.display =
     "block";
-
 
 
     resultSection.scrollIntoView({
@@ -1915,8 +1967,8 @@ function createAmortizationSchedule(
     let yearNumber =
     1;
 
-    const yearly = [];
-
+    const yearly =
+    [];
 
 
     for(
@@ -1925,17 +1977,15 @@ function createAmortizationSchedule(
         month++
     ){
 
-
         const interest =
         monthlyRate === 0
         ? 0
         : balance * monthlyRate;
 
 
-
         let principal =
-        regularPayment - interest;
-
+        regularPayment -
+        interest;
 
 
         let actualPayment =
@@ -1943,13 +1993,7 @@ function createAmortizationSchedule(
 
 
 
-        /*
-           Final payment protection.
-
-           Because floating-point calculations can
-           leave tiny fractions, the final payment
-           is adjusted to clear the exact balance.
-        */
+        /* FINAL PAYMENT PROTECTION */
 
         if(
             month === months ||
@@ -1960,7 +2004,8 @@ function createAmortizationSchedule(
             balance;
 
             actualPayment =
-            principal + interest;
+            principal +
+            interest;
 
         }
 
@@ -1971,7 +2016,10 @@ function createAmortizationSchedule(
 
 
 
-        if(Math.abs(balance) < 0.005){
+        if(
+            Math.abs(balance) <
+            0.005
+        ){
 
             balance = 0;
 
@@ -2033,7 +2081,10 @@ function createAmortizationSchedule(
     return{
 
         totalInterest:
-        Math.max(0,totalInterest),
+        Math.max(
+            0,
+            totalInterest
+        ),
 
         totalPayments:
         totalPayments,
@@ -2048,7 +2099,7 @@ function createAmortizationSchedule(
 
 
 /* =========================
-   YEARLY TABLE
+   YEARLY RESULTS
 ========================= */
 
 function renderYearlySchedule(rows){
@@ -2056,13 +2107,21 @@ function renderYearlySchedule(rows){
     amortizationBody.innerHTML =
     "";
 
+    mobileBreakdown.innerHTML =
+    "";
+
 
     rows.forEach(
         function(item){
 
 
+
+            /* DESKTOP TABLE */
+
             const row =
-            document.createElement("tr");
+            document.createElement(
+                "tr"
+            );
 
 
             row.innerHTML =
@@ -2072,20 +2131,71 @@ function renderYearlySchedule(rows){
             "</td>" +
 
             "<td>" +
-            formatNumber(item.principal) +
+            formatMoney(item.principal) +
             "</td>" +
 
             "<td>" +
-            formatNumber(item.interest) +
+            formatMoney(item.interest) +
             "</td>" +
 
             "<td>" +
-            formatNumber(item.balance) +
+            formatMoney(item.balance) +
             "</td>";
 
 
             amortizationBody.appendChild(
                 row
+            );
+
+
+
+            /* MOBILE CARD */
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "year-card";
+
+
+            card.innerHTML =
+
+            '<div class="year-card-title">' +
+            'Year ' +
+            item.year +
+            '</div>' +
+
+            '<div class="year-card-grid">' +
+
+            '<div class="year-stat">' +
+            '<span>Principal Paid</span>' +
+            '<strong>' +
+            formatMoney(item.principal) +
+            '</strong>' +
+            '</div>' +
+
+            '<div class="year-stat">' +
+            '<span>Interest Paid</span>' +
+            '<strong>' +
+            formatMoney(item.interest) +
+            '</strong>' +
+            '</div>' +
+
+            '<div class="year-stat">' +
+            '<span>Remaining Balance</span>' +
+            '<strong>' +
+            formatMoney(item.balance) +
+            '</strong>' +
+            '</div>' +
+
+            '</div>';
+
+
+            mobileBreakdown.appendChild(
+                card
             );
 
         }
@@ -2101,19 +2211,29 @@ function renderYearlySchedule(rows){
 
 function clearCalculator(){
 
-    vehiclePriceInput.value = "";
+    vehiclePriceInput.value =
+    "";
 
-    downPaymentInput.value = "";
+    downPaymentInput.value =
+    "";
 
-    tradeInInput.value = "";
+    tradeInInput.value =
+    "";
 
-    salesTaxInput.value = "";
+    salesTaxInput.value =
+    "";
 
-    feesInput.value = "";
+    feesInput.value =
+    "";
 
-    interestRateInput.value = "";
+    interestRateInput.value =
+    "";
 
-    loanTermInput.value = "";
+    loanTermInput.value =
+    "";
+
+    currencyInput.value =
+    "USD";
 
 
     hideError();
@@ -2124,6 +2244,9 @@ function clearCalculator(){
 
 
     amortizationBody.innerHTML =
+    "";
+
+    mobileBreakdown.innerHTML =
     "";
 
 
@@ -2186,6 +2309,7 @@ clearBtn.addEventListener(
     interestRateInput,
     loanTermInput
 ]
+
 .forEach(
     function(input){
 
@@ -2193,7 +2317,10 @@ clearBtn.addEventListener(
             "keydown",
             function(event){
 
-                if(event.key === "Enter"){
+                if(
+                    event.key ===
+                    "Enter"
+                ){
 
                     calculateLoan();
 
@@ -2207,15 +2334,7 @@ clearBtn.addEventListener(
 
 
 
-/*
-   IMPORTANT:
-
-   No automatic calculation on page load.
-
-   The calculator opens blank and the result
-   appears only after the user presses
-   Calculate Payment.
-*/
+/* Calculator opens blank */
 
 resultSection.style.display =
 "none";
@@ -2238,7 +2357,7 @@ resultSection.style.display =
   "url":"https://zammiohub.com/calculators/auto-loan-calculator.html",
   "applicationCategory":"FinanceApplication",
   "operatingSystem":"Any",
-  "description":"Calculate estimated monthly auto loan payments, amount financed, total interest and loan cost using vehicle price, down payment, trade-in value, APR, estimated sales tax, fees and loan term.",
+  "description":"Estimate monthly auto loan payments, amount financed, total interest, sales tax and loan cost using vehicle price, down payment, trade-in value, APR, fees and loan term.",
   "offers":{
     "@type":"Offer",
     "price":"0",
