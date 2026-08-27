@@ -6,7 +6,7 @@
 
 <title>Calorie Calculator | Daily Calorie Needs | ZammioHub</title>
 
-<meta name="description" content="Use this free calorie calculator to estimate your daily calorie needs, BMR, maintenance calories, and calorie targets for weight loss or weight gain. Supports metric and US units.">
+<meta name="description" content="Free calorie calculator to estimate daily calorie needs, BMR, maintenance calories, and weight management targets using metric or US units.">
 
 <style>
 :root{
@@ -442,20 +442,41 @@ button{
         font-size:34px;
     }
 
+    .content{
+        margin-top:34px;
+    }
+
     .content h2{
-        font-size:28px;
+        margin:27px 0 8px;
+        font-size:25px;
+        line-height:1.25;
     }
 
     .content h3{
-        font-size:21px;
+        margin:22px 0 6px;
+        font-size:19px;
+        line-height:1.35;
     }
 
     .content p{
-        font-size:17px;
+        margin-bottom:10px;
+        font-size:16px;
+        line-height:1.6;
+    }
+
+    .formula-box{
+        padding:16px;
     }
 
     .formula{
-        font-size:19px;
+        font-size:18px;
+        line-height:1.5;
+    }
+
+    .important-note{
+        margin:20px 0;
+        padding:14px 16px;
+        font-size:15px;
     }
 }
 
@@ -487,7 +508,7 @@ button{
 <h1>Calorie Calculator</h1>
 
 <p class="intro">
-Estimate your daily calorie needs, maintenance calories, BMR, and calorie targets for weight management.
+Estimate daily calorie needs, BMR, maintenance calories, and weight management targets.
 </p>
 
 <section class="calculator-card">
@@ -515,6 +536,7 @@ Enter Your Details
 <div class="field">
 <label for="sex">Sex</label>
 <select id="sex">
+    <option value="" selected>Select sex</option>
     <option value="female">Female</option>
     <option value="male">Male</option>
 </select>
@@ -716,7 +738,7 @@ Estimated Calorie Targets
 </div>
 
 <p class="result-note">
-These calorie targets are general mathematical estimates, not personalized nutrition prescriptions. Individual needs can differ due to health, body composition, pregnancy, breastfeeding, medications, and other factors.
+These are general estimates, not personalized nutrition advice. Individual calorie needs can vary.
 </p>
 
 </div>
@@ -726,101 +748,36 @@ These calorie targets are general mathematical estimates, not personalized nutri
 <section class="content">
 
 <h2>How Does This Calorie Calculator Work?</h2>
-
-<p>
-Enter your age, sex, weight, height, and activity level. The calculator first estimates your basal metabolic rate (BMR) using the Mifflin-St Jeor equation and then applies an activity multiplier to estimate how many calories you may need each day to maintain your current weight.
-</p>
-
+<p>Enter your age, sex, weight, height, and activity level. The calculator uses the Mifflin-St Jeor equation to estimate BMR, then applies an activity factor to estimate your daily maintenance calories.</p>
 
 <h2>How Are Daily Calorie Needs Calculated?</h2>
-
 <div class="formula-box">
-
-<div class="formula-title">
-Mifflin-St Jeor Equation
+<div class="formula-title">Mifflin-St Jeor Equation</div>
+<div class="formula">Men: BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age) + 5</div>
+<div class="formula">Women: BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age) − 161</div>
 </div>
-
-<div class="formula">
-Men: BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age) + 5
-</div>
-
-<div class="formula">
-Women: BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age) − 161
-</div>
-
-</div>
-
-<p>
-After BMR is calculated, it is multiplied by the selected activity factor to estimate daily maintenance calories.
-</p>
-
-
-<h2>What Is BMR?</h2>
-
-<p>
-Basal metabolic rate, or BMR, is an estimate of the energy your body uses while at rest to support essential functions such as breathing, circulation, temperature regulation, and basic organ function.
-</p>
-
-
-<h2>What Are Maintenance Calories?</h2>
-
-<p>
-Maintenance calories are the estimated number of calories you would need each day to maintain approximately the same body weight when your activity level remains similar.
-</p>
-
+<p>BMR estimates calories used at rest. Multiplying BMR by your selected activity factor gives an estimate of maintenance calories—the daily calories needed to maintain your current weight.</p>
 
 <h2>Calories for Weight Loss and Weight Gain</h2>
-
-<p>
-Eating below estimated maintenance calories generally creates a calorie deficit, while eating above maintenance creates a calorie surplus. This calculator shows example targets at approximately 10% and 20% below or above estimated maintenance calories.
-</p>
-
-<p>
-These values are estimates rather than individualized dietary recommendations. Actual energy requirements can vary according to body composition, training, health, metabolism, and other factors.
-</p>
-
+<p>Eating below maintenance calories creates a calorie deficit, while eating above maintenance creates a surplus. This calculator shows example targets about 10% and 20% below or above maintenance.</p>
 
 <div class="important-note">
-<strong>Important:</strong>
-This calorie calculator is intended for general informational purposes for adults. It is not a substitute for medical or nutritional advice. Pregnancy, breastfeeding, medical conditions, eating disorders, intensive athletic training, and other circumstances may require individualized professional guidance.
+<strong>Important:</strong> Results are general estimates for adults and are not medical or personalized nutrition advice. Individual needs may vary.
 </div>
-
 
 <h2>Frequently Asked Questions</h2>
 
 <h3>How many calories do I need per day?</h3>
-
-<p>
-Daily calorie needs vary according to age, sex, height, weight, and activity level. This calculator combines these factors to estimate your maintenance calorie needs.
-</p>
-
+<p>Daily calorie needs depend on age, sex, height, weight, and activity level. This calculator estimates your maintenance calories from these factors.</p>
 
 <h3>How many calories should I eat to lose weight?</h3>
-
-<p>
-Weight loss generally requires consuming fewer calories than your body uses. The calculator displays example calorie-deficit targets based on your estimated maintenance calories, but individual nutritional needs can vary.
-</p>
-
-
-<h3>What are maintenance calories?</h3>
-
-<p>
-Maintenance calories are the estimated daily calories needed to keep your body weight relatively stable at your current activity level.
-</p>
-
+<p>Weight loss generally requires a calorie deficit. The calculator shows example targets below your estimated maintenance calories.</p>
 
 <h3>What is the difference between BMR and maintenance calories?</h3>
-
-<p>
-BMR estimates the calories your body uses at rest. Maintenance calories include BMR plus the additional energy associated with daily movement and physical activity.
-</p>
-
+<p>BMR estimates calories your body uses at rest. Maintenance calories include BMR plus energy used for daily activity.</p>
 
 <h3>Is this calorie calculator accurate?</h3>
-
-<p>
-The calculator provides an estimate based on established equations. Actual calorie requirements may be higher or lower depending on metabolism, body composition, health, activity patterns, and other individual factors.
-</p>
+<p>It provides an estimate using an established equation. Actual calorie needs can vary with body composition, metabolism, health, and activity.</p>
 
 </section>
 
@@ -894,6 +851,12 @@ function calculateCalories(){
 
     let weightKg;
     let heightCm;
+
+    if(!sex){
+        error.textContent =
+            "Please select your sex.";
+        return;
+    }
 
 
     if(
@@ -1115,7 +1078,7 @@ function clearCalculator(){
     document.getElementById("age").value = "";
 
     document.getElementById("sex").value =
-        "female";
+        "";
 
     document.getElementById("unitSystem").value =
         "metric";
