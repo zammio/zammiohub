@@ -1,1 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Calorie Calculator | Daily Calorie Needs | ZammioHub</title>
+
+<meta name="description" content="Use this free calorie calculator to estimate your daily calorie needs, BMR, maintenance calories, and calorie targets for weight loss or weight gain. Supports metric and US units.">
+
+<style>
+:root{
+    --primary:#17608a;
+    --accent:#4b8f2b;
+    --text:#27313a;
+    --muted:#66727d;
+    --border:#d9e1e6;
+    --soft:#f5f8fa;
+    --danger:#a12626;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    -webkit-text-size-adjust:100%;
+}
+
+body{
+    margin:0;
+    background:#ffffff;
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.65;
+}
+
+.container{
+    max-width:920px;
+    margin:auto;
+    padding:30px 24px 70px;
+}
+
+/* Breadcrumb */
+
+.breadcrumb{
+    color:var(--primary);
+    font-size:16px;
+    margin-bottom:28px;
+}
+
+.breadcrumb a{
+    color:var(--primary);
+    text-decoration:none;
+}
+
+.breadcrumb span{
+    margin:0 7px;
+    color:#87929a;
+}
+
+/* Main heading */
+
+h1{
+    margin:0 0 14px;
+    color:#124c70;
+    font-size:46px;
+    line-height:1.15;
+}
+
+.intro{
+    margin:0 0 28px;
+    color:#37424b;
+    font-size:19px;
+}
+
+/* Calculator Card */
+
+.calculator-card{
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(23,54,72,.08);
+}
+
+.card-header{
+    background:var(--primary);
+    color:#ffffff;
+    padding:18px 24px;
+    font-size:21px;
+    font-weight:700;
+}
+
+.form-area{
+    padding:28px;
+    background:#f7f9fa;
+}
+
+.field{
+    margin-bottom:19px;
+}
+
+label{
+    display:block;
+    margin-bottom:7px;
+    color:#263b48;
+    font-size:18px;
+    font-weight:700;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+    border:1px solid #b9c5cc;
+    border-radius:7px;
+    background:#ffffff;
+    color:var(--text);
+    font-size:17px;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(23,96,138,.10);
+}
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.height-us{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.helper{
+    margin-top:7px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.hidden{
+    display:none;
+}
+
+/* Buttons */
+
+.actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:4px;
+}
+
+button{
+    border:0;
+    border-radius:7px;
+    padding:13px 22px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.calculate-btn{
+    background:var(--accent);
+    color:#ffffff;
+}
+
+.clear-btn{
+    background:#e4e8eb;
+    color:var(--text);
+}
+
+.error{
+    min-height:22px;
+    margin-top:12px;
+    color:var(--danger);
+    font-weight:700;
+}
+
+/* Result */
+
+.result{
+    display:none;
+    margin-top:24px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.result-header{
+    padding:17px 22px;
+    background:var(--accent);
+    color:#ffffff;
+    font-size:21px;
+    font-weight:700;
+}
+
+.result-body{
+    padding:26px 24px 28px;
+}
+
+.main-result{
+    text-align:center;
+    color:#123f67;
+    font-size:40px;
+    line-height:1.2;
+    font-weight:800;
+}
+
+.main-result-label{
+    margin:7px 0 24px;
+    text-align:center;
+    color:var(--muted);
+    font-size:17px;
+}
+
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.result-box{
+    padding:16px;
+    background:#f7f9fa;
+    border:1px solid var(--border);
+    border-radius:8px;
+}
+
+.result-box strong{
+    display:block;
+    margin-bottom:5px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.result-box span{
+    color:var(--text);
+    font-size:20px;
+    font-weight:700;
+}
+
+.goal-heading{
+    margin:28px 0 12px;
+    padding-top:23px;
+    border-top:1px solid var(--border);
+    color:#263b48;
+    font-size:22px;
+}
+
+.goal-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.goal-box{
+    padding:16px;
+    background:#f7f9fa;
+    border:1px solid var(--border);
+    border-radius:8px;
+}
+
+.goal-box strong{
+    display:block;
+    margin-bottom:6px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.goal-box span{
+    display:block;
+    color:#123f67;
+    font-size:20px;
+    font-weight:700;
+}
+
+.goal-box small{
+    display:block;
+    margin-top:4px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.result-note{
+    margin:20px 0 0;
+    padding:14px 16px;
+    border-left:4px solid var(--primary);
+    border-radius:5px;
+    background:#f7f9fa;
+    color:var(--muted);
+    font-size:15px;
+}
+
+/* Content */
+
+.content{
+    margin-top:42px;
+}
+
+.content h2{
+    margin:34px 0 10px;
+    color:#263b48;
+    font-size:30px;
+    line-height:1.3;
+}
+
+.content h3{
+    margin:27px 0 7px;
+    color:var(--text);
+    font-size:22px;
+    line-height:1.4;
+}
+
+.content p{
+    margin:0 0 13px;
+    font-size:18px;
+}
+
+.formula-box{
+    margin:14px 0 18px;
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:#f7f9fa;
+}
+
+.formula-title{
+    margin-bottom:10px;
+    color:var(--primary);
+    font-size:18px;
+    font-weight:700;
+}
+
+.formula{
+    margin-bottom:8px;
+    color:#27313a;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:21px;
+    font-weight:700;
+    line-height:1.6;
+}
+
+.important-note{
+    margin:24px 0;
+    padding:16px 18px;
+    border-left:4px solid var(--primary);
+    border-radius:5px;
+    background:#f7f9fa;
+    color:var(--muted);
+    font-size:16px;
+}
+
+.important-note strong{
+    color:var(--text);
+}
+
+/* Footer */
+
+.footer{
+    margin-top:46px;
+    padding-top:22px;
+    border-top:1px solid var(--border);
+}
+
+.footer strong{
+    display:block;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.footer p{
+    margin:3px 0 0;
+    color:var(--muted);
+    font-size:16px;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .container{
+        padding:22px 16px 55px;
+    }
+
+    .breadcrumb{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    h1{
+        font-size:38px;
+    }
+
+    .intro{
+        font-size:18px;
+    }
+
+    .card-header{
+        padding:17px 20px;
+        font-size:20px;
+    }
+
+    .form-area{
+        padding:22px 20px;
+    }
+
+    .two-column,
+    .result-grid,
+    .goal-grid{
+        grid-template-columns:1fr;
+    }
+
+    label{
+        font-size:17px;
+    }
+
+    input,
+    select{
+        font-size:17px;
+        padding:14px;
+    }
+
+    .actions{
+        display:grid;
+        grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+        gap:10px;
+    }
+
+    button{
+        width:100%;
+        padding:14px 10px;
+    }
+
+    .main-result{
+        font-size:34px;
+    }
+
+    .content h2{
+        font-size:28px;
+    }
+
+    .content h3{
+        font-size:21px;
+    }
+
+    .content p{
+        font-size:17px;
+    }
+
+    .formula{
+        font-size:19px;
+    }
+}
+
+@media(max-width:390px){
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    h1{
+        font-size:35px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+<div class="breadcrumb">
+    <a href="/">Home</a>
+    <span>›</span>
+    <a href="/calculators/">All Calculators</a>
+    <span>›</span>
+    Calorie Calculator
+</div>
+
+<h1>Calorie Calculator</h1>
+
+<p class="intro">
+Estimate your daily calorie needs, maintenance calories, BMR, and calorie targets for weight management.
+</p>
+
+<section class="calculator-card">
+
+<div class="card-header">
+Enter Your Details
+</div>
+
+<div class="form-area">
+
+<div class="two-column">
+
+<div class="field">
+<label for="age">Age (Years)</label>
+<input
+    id="age"
+    type="number"
+    min="18"
+    max="100"
+    step="1"
+    placeholder="e.g. 30"
+>
+</div>
+
+<div class="field">
+<label for="sex">Sex</label>
+<select id="sex">
+    <option value="female">Female</option>
+    <option value="male">Male</option>
+</select>
+<div class="helper">
+Used in the BMR calculation formula.
+</div>
+</div>
+
+</div>
+
+<div class="field">
+<label for="unitSystem">Unit System</label>
+<select id="unitSystem" onchange="changeUnits()">
+    <option value="metric">Metric (kg, cm)</option>
+    <option value="us">US Units (lb, ft/in)</option>
+</select>
+</div>
+
+<div id="metricFields" class="two-column">
+
+<div class="field">
+<label for="weightKg">Weight (kg)</label>
+<input
+    id="weightKg"
+    type="number"
+    min="20"
+    max="400"
+    step="0.1"
+    placeholder="e.g. 65"
+>
+</div>
+
+<div class="field">
+<label for="heightCm">Height (cm)</label>
+<input
+    id="heightCm"
+    type="number"
+    min="100"
+    max="250"
+    step="0.1"
+    placeholder="e.g. 165"
+>
+</div>
+
+</div>
+
+<div id="usFields" class="hidden">
+
+<div class="field">
+<label for="weightLb">Weight (lb)</label>
+<input
+    id="weightLb"
+    type="number"
+    min="44"
+    max="880"
+    step="0.1"
+    placeholder="e.g. 145"
+>
+</div>
+
+<div class="field">
+<label>Height</label>
+
+<div class="height-us">
+
+<input
+    id="heightFt"
+    type="number"
+    min="3"
+    max="8"
+    step="1"
+    placeholder="Feet"
+    aria-label="Height in feet"
+>
+
+<input
+    id="heightIn"
+    type="number"
+    min="0"
+    max="11.9"
+    step="0.1"
+    placeholder="Inches"
+    aria-label="Height in inches"
+>
+
+</div>
+</div>
+
+</div>
+
+<div class="field">
+<label for="activity">Activity Level</label>
+
+<select id="activity">
+    <option value="1.2">Sedentary — little or no exercise</option>
+    <option value="1.375">Lightly Active — exercise 1–3 days/week</option>
+    <option value="1.55">Moderately Active — exercise 3–5 days/week</option>
+    <option value="1.725">Very Active — exercise 6–7 days/week</option>
+    <option value="1.9">Extra Active — very hard exercise or physical job</option>
+</select>
+
+</div>
+
+<div class="actions">
+
+<button
+    type="button"
+    class="calculate-btn"
+    onclick="calculateCalories()"
+>
+Calculate Calories
+</button>
+
+<button
+    type="button"
+    class="clear-btn"
+    onclick="clearCalculator()"
+>
+Clear
+</button>
+
+</div>
+
+<div id="error" class="error" aria-live="polite"></div>
+
+</div>
+</section>
+
+
+<section id="result" class="result">
+
+<div class="result-header">
+Your Daily Calorie Needs
+</div>
+
+<div class="result-body">
+
+<div id="maintenanceResult" class="main-result"></div>
+
+<div class="main-result-label">
+Estimated maintenance calories
+</div>
+
+<div class="result-grid">
+
+<div class="result-box">
+<strong>Estimated BMR</strong>
+<span id="bmrResult"></span>
+</div>
+
+<div class="result-box">
+<strong>Maintenance Calories</strong>
+<span id="maintenanceCard"></span>
+</div>
+
+<div class="result-box">
+<strong>Activity Level</strong>
+<span id="activityResult"></span>
+</div>
+
+<div class="result-box">
+<strong>Unit System</strong>
+<span id="unitResult"></span>
+</div>
+
+</div>
+
+
+<h3 class="goal-heading">
+Estimated Calorie Targets
+</h3>
+
+<div class="goal-grid">
+
+<div class="goal-box">
+<strong>Mild Weight Loss</strong>
+<span id="mildLoss"></span>
+<small>About 10% below maintenance</small>
+</div>
+
+<div class="goal-box">
+<strong>Weight Loss</strong>
+<span id="loss"></span>
+<small>About 20% below maintenance</small>
+</div>
+
+<div class="goal-box">
+<strong>Mild Weight Gain</strong>
+<span id="mildGain"></span>
+<small>About 10% above maintenance</small>
+</div>
+
+<div class="goal-box">
+<strong>Weight Gain</strong>
+<span id="gain"></span>
+<small>About 20% above maintenance</small>
+</div>
+
+</div>
+
+<p class="result-note">
+These calorie targets are general mathematical estimates, not personalized nutrition prescriptions. Individual needs can differ due to health, body composition, pregnancy, breastfeeding, medications, and other factors.
+</p>
+
+</div>
+</section>
+
+
+<section class="content">
+
+<h2>How Does This Calorie Calculator Work?</h2>
+
+<p>
+Enter your age, sex, weight, height, and activity level. The calculator first estimates your basal metabolic rate (BMR) using the Mifflin-St Jeor equation and then applies an activity multiplier to estimate how many calories you may need each day to maintain your current weight.
+</p>
+
+
+<h2>How Are Daily Calorie Needs Calculated?</h2>
+
+<div class="formula-box">
+
+<div class="formula-title">
+Mifflin-St Jeor Equation
+</div>
+
+<div class="formula">
+Men: BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age) + 5
+</div>
+
+<div class="formula">
+Women: BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age) − 161
+</div>
+
+</div>
+
+<p>
+After BMR is calculated, it is multiplied by the selected activity factor to estimate daily maintenance calories.
+</p>
+
+
+<h2>What Is BMR?</h2>
+
+<p>
+Basal metabolic rate, or BMR, is an estimate of the energy your body uses while at rest to support essential functions such as breathing, circulation, temperature regulation, and basic organ function.
+</p>
+
+
+<h2>What Are Maintenance Calories?</h2>
+
+<p>
+Maintenance calories are the estimated number of calories you would need each day to maintain approximately the same body weight when your activity level remains similar.
+</p>
+
+
+<h2>Calories for Weight Loss and Weight Gain</h2>
+
+<p>
+Eating below estimated maintenance calories generally creates a calorie deficit, while eating above maintenance creates a calorie surplus. This calculator shows example targets at approximately 10% and 20% below or above estimated maintenance calories.
+</p>
+
+<p>
+These values are estimates rather than individualized dietary recommendations. Actual energy requirements can vary according to body composition, training, health, metabolism, and other factors.
+</p>
+
+
+<div class="important-note">
+<strong>Important:</strong>
+This calorie calculator is intended for general informational purposes for adults. It is not a substitute for medical or nutritional advice. Pregnancy, breastfeeding, medical conditions, eating disorders, intensive athletic training, and other circumstances may require individualized professional guidance.
+</div>
+
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How many calories do I need per day?</h3>
+
+<p>
+Daily calorie needs vary according to age, sex, height, weight, and activity level. This calculator combines these factors to estimate your maintenance calorie needs.
+</p>
+
+
+<h3>How many calories should I eat to lose weight?</h3>
+
+<p>
+Weight loss generally requires consuming fewer calories than your body uses. The calculator displays example calorie-deficit targets based on your estimated maintenance calories, but individual nutritional needs can vary.
+</p>
+
+
+<h3>What are maintenance calories?</h3>
+
+<p>
+Maintenance calories are the estimated daily calories needed to keep your body weight relatively stable at your current activity level.
+</p>
+
+
+<h3>What is the difference between BMR and maintenance calories?</h3>
+
+<p>
+BMR estimates the calories your body uses at rest. Maintenance calories include BMR plus the additional energy associated with daily movement and physical activity.
+</p>
+
+
+<h3>Is this calorie calculator accurate?</h3>
+
+<p>
+The calculator provides an estimate based on established equations. Actual calorie requirements may be higher or lower depending on metabolism, body composition, health, activity patterns, and other individual factors.
+</p>
+
+</section>
+
+
+<footer class="footer">
+
+<strong>ZammioHub</strong>
+
+<p>
+Clear, accurate and mobile-friendly online calculators.
+</p>
+
+</footer>
+
+</main>
+
+
+<script>
+
+function changeUnits(){
+
+    const unit =
+        document.getElementById("unitSystem").value;
+
+    const metricFields =
+        document.getElementById("metricFields");
+
+    const usFields =
+        document.getElementById("usFields");
+
+    if(unit === "metric"){
+
+        metricFields.classList.remove("hidden");
+        usFields.classList.add("hidden");
+
+    }else{
+
+        metricFields.classList.add("hidden");
+        usFields.classList.remove("hidden");
+
+    }
+
+}
+
+
+function formatCalories(value){
+
+    return Math.round(value).toLocaleString() + " kcal/day";
+
+}
+
+
+function calculateCalories(){
+
+    const error =
+        document.getElementById("error");
+
+    error.textContent = "";
+
+    const age =
+        Number(document.getElementById("age").value);
+
+    const sex =
+        document.getElementById("sex").value;
+
+    const activity =
+        Number(document.getElementById("activity").value);
+
+    const unitSystem =
+        document.getElementById("unitSystem").value;
+
+    let weightKg;
+    let heightCm;
+
+
+    if(
+        !Number.isFinite(age) ||
+        age < 18 ||
+        age > 100
+    ){
+
+        error.textContent =
+            "Please enter an age between 18 and 100 years.";
+
+        return;
+
+    }
+
+
+    if(unitSystem === "metric"){
+
+        weightKg =
+            Number(document.getElementById("weightKg").value);
+
+        heightCm =
+            Number(document.getElementById("heightCm").value);
+
+
+        if(
+            !Number.isFinite(weightKg) ||
+            weightKg < 20 ||
+            weightKg > 400
+        ){
+
+            error.textContent =
+                "Please enter a valid weight in kilograms.";
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(heightCm) ||
+            heightCm < 100 ||
+            heightCm > 250
+        ){
+
+            error.textContent =
+                "Please enter a valid height in centimeters.";
+
+            return;
+
+        }
+
+    }else{
+
+        const weightLb =
+            Number(document.getElementById("weightLb").value);
+
+        const heightFt =
+            Number(document.getElementById("heightFt").value);
+
+        const heightIn =
+            Number(document.getElementById("heightIn").value);
+
+
+        if(
+            !Number.isFinite(weightLb) ||
+            weightLb < 44 ||
+            weightLb > 880
+        ){
+
+            error.textContent =
+                "Please enter a valid weight in pounds.";
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(heightFt) ||
+            !Number.isFinite(heightIn) ||
+            heightFt < 3 ||
+            heightFt > 8 ||
+            heightIn < 0 ||
+            heightIn >= 12
+        ){
+
+            error.textContent =
+                "Please enter a valid height in feet and inches.";
+
+            return;
+
+        }
+
+
+        weightKg =
+            weightLb * 0.45359237;
+
+        const totalInches =
+            (heightFt * 12) + heightIn;
+
+        heightCm =
+            totalInches * 2.54;
+
+    }
+
+
+    let bmr;
+
+
+    if(sex === "male"){
+
+        bmr =
+            (10 * weightKg) +
+            (6.25 * heightCm) -
+            (5 * age) +
+            5;
+
+    }else{
+
+        bmr =
+            (10 * weightKg) +
+            (6.25 * heightCm) -
+            (5 * age) -
+            161;
+
+    }
+
+
+    const maintenance =
+        bmr * activity;
+
+
+    const mildLossValue =
+        maintenance * 0.90;
+
+    const lossValue =
+        maintenance * 0.80;
+
+    const mildGainValue =
+        maintenance * 1.10;
+
+    const gainValue =
+        maintenance * 1.20;
+
+
+    document.getElementById("maintenanceResult")
+        .textContent =
+        formatCalories(maintenance);
+
+
+    document.getElementById("bmrResult")
+        .textContent =
+        formatCalories(bmr);
+
+
+    document.getElementById("maintenanceCard")
+        .textContent =
+        formatCalories(maintenance);
+
+
+    const activitySelect =
+        document.getElementById("activity");
+
+    const activityText =
+        activitySelect.options[
+            activitySelect.selectedIndex
+        ].text.split(" — ")[0];
+
+
+    document.getElementById("activityResult")
+        .textContent =
+        activityText;
+
+
+    document.getElementById("unitResult")
+        .textContent =
+        unitSystem === "metric"
+        ? "Metric"
+        : "US Units";
+
+
+    document.getElementById("mildLoss")
+        .textContent =
+        formatCalories(mildLossValue);
+
+
+    document.getElementById("loss")
+        .textContent =
+        formatCalories(lossValue);
+
+
+    document.getElementById("mildGain")
+        .textContent =
+        formatCalories(mildGainValue);
+
+
+    document.getElementById("gain")
+        .textContent =
+        formatCalories(gainValue);
+
+
+    const result =
+        document.getElementById("result");
+
+    result.style.display = "block";
+
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+
+function clearCalculator(){
+
+    document.getElementById("age").value = "";
+
+    document.getElementById("sex").value =
+        "female";
+
+    document.getElementById("unitSystem").value =
+        "metric";
+
+    document.getElementById("weightKg").value = "";
+
+    document.getElementById("heightCm").value = "";
+
+    document.getElementById("weightLb").value = "";
+
+    document.getElementById("heightFt").value = "";
+
+    document.getElementById("heightIn").value = "";
+
+    document.getElementById("activity").value =
+        "1.2";
+
+    document.getElementById("error").textContent =
+        "";
+
+    document.getElementById("result").style.display =
+        "none";
+
+    changeUnits();
+
+}
+
+</script>
+
+</body>
+</html>
