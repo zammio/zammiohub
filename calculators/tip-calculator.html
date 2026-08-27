@@ -541,7 +541,7 @@ data-tip="10">
 </button>
 
 <button
-class="tip-preset active"
+class="tip-preset"
 type="button"
 data-tip="15">
 15%
@@ -577,9 +577,7 @@ type="number"
 min="0"
 step="any"
 inputmode="decimal"
-value="15"
-aria-label="Custom tip percentage">
-
+placeholder="e.g. 15"
 </div>
 
 
@@ -595,10 +593,7 @@ type="number"
 min="1"
 step="1"
 inputmode="numeric"
-value="1">
-
-</div>
-
+placeholder="e.g. 2">
 
 <div class="actions">
 
@@ -996,9 +991,9 @@ function clearCalculator(){
 
 bill.value = '';
 
-tip.value = '15';
+tip.value = '';
 
-people.value = '1';
+people.value = '';
 
 error.textContent = '';
 
