@@ -811,6 +811,19 @@ function formatNumber(number){
 }
 
 
+
+function hideResult(){
+
+  document.getElementById("resultCard").style.display = "none";
+  document.getElementById("mainResult").textContent = "";
+  document.getElementById("differenceResult").textContent = "";
+  document.getElementById("percentageResult").textContent = "";
+  document.getElementById("initialResult").textContent = "";
+  document.getElementById("finalResult").textContent = "";
+
+}
+
+
 function calculatePercentage(){
 
   const initialInput =
@@ -832,6 +845,8 @@ function calculatePercentage(){
     !Number.isFinite(final)
   ){
 
+    hideResult();
+
     alert(
       "Please enter both the initial value and final value."
     );
@@ -842,6 +857,8 @@ function calculatePercentage(){
 
 
   if(initial === 0){
+
+    hideResult();
 
     alert(
       "Initial value cannot be zero when calculating percentage change."
@@ -942,49 +959,12 @@ function calculatePercentage(){
 
 function clearCalculator(){
 
-  document.getElementById(
-    "initialValue"
-  ).value = "";
+  document.getElementById("initialValue").value = "";
+  document.getElementById("finalValue").value = "";
 
+  hideResult();
 
-  document.getElementById(
-    "finalValue"
-  ).value = "";
-
-
-  document.getElementById(
-    "resultCard"
-  ).style.display = "none";
-
-
-  document.getElementById(
-    "mainResult"
-  ).textContent = "";
-
-
-  document.getElementById(
-    "differenceResult"
-  ).textContent = "";
-
-
-  document.getElementById(
-    "percentageResult"
-  ).textContent = "";
-
-
-  document.getElementById(
-    "initialResult"
-  ).textContent = "";
-
-
-  document.getElementById(
-    "finalResult"
-  ).textContent = "";
-
-
-  document.getElementById(
-    "initialValue"
-  ).focus();
+  document.getElementById("initialValue").focus();
 
 }
 
