@@ -582,26 +582,31 @@ date.getMonth();
 const day =
 date.getDate();
 
-const candidate =
-new Date(
-y,
-m,
-day
-);
-
+/*
+For a 29 February birth date, use 1 March
+as the anniversary in non-leap years.
+This keeps exact age and next birthday
+on the same convention.
+*/
 if(
-candidate.getMonth()!==m
+m===1 &&
+day===29 &&
+new Date(y,1,29).getMonth()!==1
 ){
 
 return new Date(
 y,
-m+1,
-0
+2,
+1
 );
 
 }
 
-return candidate;
+return new Date(
+y,
+m,
+day
+);
 
 }
 
