@@ -671,9 +671,16 @@ years
 
 }
 
+/*
+Count complete calendar months after the last
+completed birthday, but never allow the month
+part to reach 12. This is especially important
+for 29 February birthdays using the 1 March
+anniversary convention.
+*/
 let months=0;
 
-while(true){
+while(months<11){
 
 const next =
 addMonthsSafe(
