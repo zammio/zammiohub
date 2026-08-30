@@ -3,61 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mortgage Calculator | Monthly Mortgage Payment Calculator | ZammioHub</title>
+
 <meta name="description" content="Calculate your monthly mortgage payment, total interest, loan amount, and total repayment with this free mortgage calculator. Enter home price, down payment, interest rate, and loan term.">
 
 <style>
+
 :root{
   --primary:#17608a;
   --accent:#4b8f2b;
   --text:#27313a;
   --muted:#66727d;
-  --border:#d9e1e6
+  --border:#d9e1e6;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   background:#fff;
   color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
-  line-height:1.65
+  line-height:1.65;
 }
 
 .container{
   max-width:920px;
   margin:auto;
-  padding:30px 24px 70px
+  padding:30px 24px 70px;
 }
 
 .breadcrumb{
   font-size:16px;
   color:var(--primary);
-  margin-bottom:28px
+  margin-bottom:28px;
 }
 
 .breadcrumb a{
   color:var(--primary);
-  text-decoration:none
+  text-decoration:none;
 }
 
 .breadcrumb span{
   margin:0 7px;
-  color:#7b8790
+  color:#7b8790;
 }
 
 h1{
   font-size:46px;
   line-height:1.14;
   margin:0 0 14px;
-  color:#124c70
+  color:#124c70;
 }
 
 .intro{
   font-size:19px;
   margin:0 0 26px;
-  color:#37424b
+  color:#37424b;
 }
 
 .card{
@@ -65,7 +70,7 @@ h1{
   border-radius:12px;
   overflow:hidden;
   background:#fff;
-  box-shadow:0 5px 20px rgba(23,54,72,.08)
+  box-shadow:0 5px 20px rgba(23,54,72,.08);
 }
 
 .card-head{
@@ -73,17 +78,17 @@ h1{
   color:#fff;
   padding:18px 24px;
   font-size:20px;
-  font-weight:700
+  font-weight:700;
 }
 
 .form{
   padding:28px;
   background:#f7f9fa;
-  border-top:1px solid var(--border)
+  border-top:1px solid var(--border);
 }
 
 .field{
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 label{
@@ -91,29 +96,31 @@ label{
   font-weight:700;
   font-size:19px;
   margin:0 0 8px;
-  color:#263b48
+  color:#263b48;
 }
 
-input,select{
+input,
+select{
   width:100%;
   padding:15px 16px;
   border:1px solid #b9c5cc;
   border-radius:7px;
   font-size:18px;
   background:#fff;
-  outline:none
+  outline:none;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
   border-color:#356f9f;
-  box-shadow:0 0 0 3px rgba(53,111,159,.12)
+  box-shadow:0 0 0 3px rgba(53,111,159,.12);
 }
 
 .actions{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:8px
+  margin-top:8px;
 }
 
 button{
@@ -122,25 +129,25 @@ button{
   padding:14px 24px;
   font-size:17px;
   font-weight:700;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .calculate{
   background:var(--accent);
   color:#fff;
-  min-width:190px
+  min-width:190px;
 }
 
 .clear{
   background:#e4e8eb;
   color:#27313a;
-  min-width:100px
+  min-width:100px;
 }
 
 .error{
   color:#a12626;
   font-weight:700;
-  margin-top:12px
+  margin-top:12px;
 }
 
 .result{
@@ -149,7 +156,7 @@ button{
   border:1px solid var(--border);
   border-radius:10px;
   overflow:hidden;
-  background:#fff
+  background:#fff;
 }
 
 .result-head{
@@ -157,74 +164,74 @@ button{
   color:#fff;
   padding:17px 22px;
   font-size:21px;
-  font-weight:700
+  font-weight:700;
 }
 
 .result-body{
-  padding:24px
+  padding:24px;
 }
 
 .main{
   text-align:center;
   color:#123f67;
-  margin:0 0 22px
+  margin:0 0 22px;
 }
 
 .main .big{
   font-size:36px;
   font-weight:800;
-  display:block
+  display:block;
 }
 
 .main .small{
   font-size:17px;
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .result-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px
+  gap:14px;
 }
 
 .metric{
   background:#f7f9fa;
   border:1px solid var(--border);
   border-radius:8px;
-  padding:16px
+  padding:16px;
 }
 
 .metric strong{
   display:block;
   font-size:15px;
   color:var(--muted);
-  margin-bottom:4px
+  margin-bottom:4px;
 }
 
 .metric span{
   font-size:20px;
-  font-weight:700
+  font-weight:700;
 }
 
 .content{
-  margin-top:42px
+  margin-top:42px;
 }
 
 .content h2{
   font-size:30px;
   line-height:1.25;
   margin:34px 0 10px;
-  color:#263b48
+  color:#263b48;
 }
 
 .content h3{
   font-size:22px;
-  margin:28px 0 7px
+  margin:28px 0 7px;
 }
 
 .content p{
   font-size:18px;
-  margin:0 0 12px
+  margin:0 0 12px;
 }
 
 .formula{
@@ -232,14 +239,14 @@ button{
   padding:22px 24px;
   background:#f7f9fa;
   border:1px solid var(--border);
-  border-radius:8px
+  border-radius:8px;
 }
 
 .formula-title{
   font-size:18px;
   font-weight:700;
   color:var(--primary);
-  margin-bottom:10px
+  margin-bottom:10px;
 }
 
 .formula-line{
@@ -247,86 +254,92 @@ button{
   font-size:19px;
   font-weight:700;
   line-height:1.7;
-  color:#26333c
+  color:#26333c;
 }
 
 .note{
   font-size:15px!important;
   color:var(--muted);
-  margin-top:10px
+  margin-top:10px;
 }
 
 .schedule{
   width:100%;
   border-collapse:collapse;
   margin-top:18px;
-  font-size:16px
+  font-size:16px;
 }
 
 .schedule th,
 .schedule td{
   padding:10px;
   border:1px solid var(--border);
-  text-align:right
+  text-align:right;
 }
 
 .schedule th:first-child,
 .schedule td:first-child{
-  text-align:left
+  text-align:left;
 }
 
 .schedule th{
   background:#f0f4f6;
-  color:#263b48
+  color:#263b48;
 }
 
 footer{
   margin-top:48px;
   padding-top:25px;
   border-top:1px solid var(--border);
-  color:var(--muted)
+  color:var(--muted);
 }
 
 @media(max-width:700px){
+
   .result-grid{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
   }
 
   .schedule{
-    font-size:14px
+    font-size:14px;
   }
+
 }
 
 @media(max-width:520px){
+
   .container{
-    padding:22px 16px 55px
+    padding:22px 16px 55px;
   }
 
   h1{
-    font-size:38px
+    font-size:38px;
   }
 
   .intro{
-    font-size:18px
+    font-size:18px;
   }
 
   .result-grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .main .big{
-    font-size:30px
+    font-size:30px;
   }
 
   .schedule{
-    min-width:650px
+    min-width:650px;
   }
 
   .schedule-wrap{
-    overflow-x:auto
+    overflow-x:auto;
   }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -334,11 +347,11 @@ footer{
 <main class="container">
 
 <nav class="breadcrumb">
-<a href="#">Home</a>
-<span>›</span>
-<a href="#">All Calculators</a>
-<span>›</span>
-Mortgage Calculator
+  <a href="#">Home</a>
+  <span>›</span>
+  <a href="#">All Calculators</a>
+  <span>›</span>
+  Mortgage Calculator
 </nav>
 
 <h1>Mortgage Calculator</h1>
@@ -346,6 +359,7 @@ Mortgage Calculator
 <p class="intro">
 Calculate your monthly mortgage payment, total interest, and total repayment instantly.
 </p>
+
 
 <section class="card">
 
@@ -357,52 +371,108 @@ Enter Your Home Loan Details
 
 <div class="field">
 <label for="price">Home Price</label>
-<input id="price" type="number" min="0" step="any" placeholder="e.g. 300000">
+<input
+  id="price"
+  type="number"
+  min="0"
+  step="any"
+  placeholder="e.g. 300000"
+>
 </div>
+
 
 <div class="field">
 <label for="down">Down Payment</label>
-<input id="down" type="number" min="0" step="any" placeholder="e.g. 60000">
+<input
+  id="down"
+  type="number"
+  min="0"
+  step="any"
+  placeholder="e.g. 60000"
+>
 </div>
+
 
 <div class="field">
 <label for="rate">Annual Interest Rate (%)</label>
-<input id="rate" type="number" min="0" step="any" placeholder="e.g. 6.5">
+<input
+  id="rate"
+  type="number"
+  min="0"
+  step="any"
+  placeholder="e.g. 6.5"
+>
 </div>
+
 
 <div class="field">
 <label for="term">Mortgage Term (Years)</label>
-<input id="term" type="number" min="1" step="1" placeholder="e.g. 30">
+<input
+  id="term"
+  type="number"
+  min="1"
+  step="1"
+  placeholder="e.g. 30"
+>
 </div>
+
 
 <div class="field">
 <label for="tax">Annual Property Tax (Optional)</label>
-<input id="tax" type="number" min="0" step="any" placeholder="e.g. 3600">
+<input
+  id="tax"
+  type="number"
+  min="0"
+  step="any"
+  placeholder="e.g. 3600"
+>
 </div>
+
 
 <div class="field">
 <label for="insurance">Annual Home Insurance (Optional)</label>
-<input id="insurance" type="number" min="0" step="any" placeholder="e.g. 1200">
+<input
+  id="insurance"
+  type="number"
+  min="0"
+  step="any"
+  placeholder="e.g. 1200"
+>
 </div>
+
 
 <div class="actions">
 
-<button class="calculate" type="button" onclick="calculateMortgage()">
+<button
+  class="calculate"
+  type="button"
+  onclick="calculateMortgage()"
+>
 Calculate Mortgage
 </button>
 
-<button class="clear" type="button" onclick="clearCalc()">
+<button
+  class="clear"
+  type="button"
+  onclick="clearCalc()"
+>
 Clear
 </button>
 
 </div>
 
-<div id="error" class="error"></div>
+<div id="error" class="error" aria-live="polite"></div>
 
 </div>
+
 </section>
 
-<section id="result" class="result" aria-live="polite">
+
+<section
+  id="result"
+  class="result"
+  aria-live="polite"
+>
 
 <div class="result-head">
 Your Mortgage Result
@@ -411,11 +481,18 @@ Your Mortgage Result
 <div class="result-body">
 
 <div class="main">
-<span id="monthly" class="big"></span>
+
+<span
+  id="monthly"
+  class="big"
+></span>
+
 <span class="small">
-Estimated monthly payment including optional tax and insurance
+Estimated Monthly Mortgage Payment
 </span>
+
 </div>
+
 
 <div class="result-grid">
 
@@ -425,7 +502,7 @@ Estimated monthly payment including optional tax and insurance
 </div>
 
 <div class="metric">
-<strong>Principal & Interest</strong>
+<strong>Principal &amp; Interest</strong>
 <span id="piOut"></span>
 </div>
 
@@ -445,11 +522,12 @@ Estimated monthly payment including optional tax and insurance
 </div>
 
 <div class="metric">
-<strong>Total Repayment</strong>
+<strong>Estimated Total Payments</strong>
 <span id="totalOut"></span>
 </div>
 
 </div>
+
 
 <div class="schedule-wrap">
 
@@ -470,20 +548,29 @@ Estimated monthly payment including optional tax and insurance
 
 </div>
 
+
 <p class="note">
-This calculator provides an estimate for a fixed-rate mortgage. Actual payments may vary because of lender fees, local taxes, insurance, PMI, HOA fees, variable rates, or other costs.
+This calculator provides an estimate for a fixed-rate mortgage.
+Actual payments may vary because of lender fees, local taxes,
+insurance, PMI, HOA fees, variable rates, or other costs.
 </p>
 
 </div>
+
 </section>
+
 
 <section class="content">
 
 <h2>How Does This Mortgage Calculator Work?</h2>
 
 <p>
-Enter the home price, down payment, interest rate, and mortgage term to estimate your monthly principal and interest payment. Optional property tax and home insurance can be included for a broader monthly housing-cost estimate.
+Enter the home price, down payment, interest rate, and mortgage term
+to estimate your monthly principal and interest payment.
+Optional property tax and home insurance can be included
+for a broader monthly housing-cost estimate.
 </p>
+
 
 <h2>Mortgage Payment Formula</h2>
 
@@ -500,48 +587,76 @@ M = P × [r(1 + r)ⁿ] ÷ [(1 + r)ⁿ − 1]
 </div>
 
 <p>
-<strong>M</strong> is the monthly principal-and-interest payment, <strong>P</strong> is the loan principal, <strong>r</strong> is the monthly interest rate, and <strong>n</strong> is the total number of monthly payments.
+<strong>M</strong> is the monthly principal-and-interest payment,
+<strong>P</strong> is the loan principal,
+<strong>r</strong> is the monthly interest rate,
+and <strong>n</strong> is the total number of monthly payments.
 </p>
+
 
 <h2>What Is Included in a Mortgage Payment?</h2>
 
 <p>
-A mortgage payment commonly includes principal and interest. Property taxes and homeowners insurance may also be included, often through an escrow account. Mortgage insurance may apply to some loans, while HOA or condominium fees may be an additional housing cost and are often paid separately. This calculator can include property tax and home insurance in the estimate, but it does not currently calculate mortgage insurance, PMI, HOA fees, lender fees, or closing costs.
+A mortgage payment commonly includes principal and interest.
+Property taxes and homeowners insurance may also be included,
+often through an escrow account. Mortgage insurance may apply
+to some loans, while HOA or condominium fees may be an additional
+housing cost and are often paid separately. This calculator can
+include property tax and home insurance in the estimate, but it
+does not currently calculate mortgage insurance, PMI, HOA fees,
+lender fees, or closing costs.
 </p>
 
+
 <h2>Frequently Asked Questions About Mortgage Calculators</h2>
+
 
 <h3>How do I calculate my monthly mortgage payment?</h3>
 
 <p>
-Enter the home price, down payment, annual interest rate, and loan term. The calculator applies the standard fixed-rate mortgage formula to estimate the monthly principal and interest payment.
+Enter the home price, down payment, annual interest rate, and loan term.
+The calculator applies the standard fixed-rate mortgage formula
+to estimate the monthly principal and interest payment.
 </p>
+
 
 <h3>How much will my mortgage payment be with taxes and insurance?</h3>
 
 <p>
-Add your estimated annual property tax and homeowners insurance to the optional fields. The calculator divides those annual costs by 12 and adds them to the principal-and-interest payment.
+Add your estimated annual property tax and homeowners insurance
+to the optional fields. The calculator divides those annual costs
+by 12 and adds them to the principal-and-interest payment.
 </p>
+
 
 <h3>How does a down payment affect my mortgage payment?</h3>
 
 <p>
-A larger down payment reduces the amount you need to borrow, which generally lowers the monthly principal-and-interest payment and total interest over the loan term.
+A larger down payment reduces the amount you need to borrow,
+which generally lowers the monthly principal-and-interest payment
+and total interest over the loan term.
 </p>
+
 
 <h3>How does the mortgage term affect total interest?</h3>
 
 <p>
-A longer term can reduce the monthly payment but usually increases the total interest paid over the life of the mortgage.
+A longer term can reduce the monthly payment but usually increases
+the total interest paid over the life of the mortgage.
 </p>
+
 
 <h3>Does this mortgage calculator include PMI or HOA fees?</h3>
 
 <p>
-No. This calculator can include optional property tax and homeowners insurance, but it does not currently calculate private mortgage insurance (PMI) or HOA fees. If these costs apply to you, add them separately when estimating your total monthly housing cost.
+No. This calculator can include optional property tax and homeowners
+insurance, but it does not currently calculate private mortgage
+insurance (PMI) or HOA fees. If these costs apply to you,
+add them separately when estimating your total monthly housing cost.
 </p>
 
 </section>
+
 
 <footer>
 <strong>ZammioHub</strong><br>
@@ -550,9 +665,11 @@ Clear, accurate and mobile-friendly online calculators.
 
 </main>
 
+
 <script>
 
 function money(n){
+
   return n.toLocaleString(
     undefined,
     {
@@ -560,27 +677,45 @@ function money(n){
       maximumFractionDigits:2
     }
   );
+
 }
+
 
 function calculateMortgage(){
 
   const price =
-    parseFloat(document.getElementById('price').value);
+    Number(document.getElementById('price').value);
+
+  const downValue =
+    document.getElementById('down').value.trim();
 
   const down =
-    parseFloat(document.getElementById('down').value) || 0;
+    downValue === ''
+    ? 0
+    : Number(downValue);
 
   const annual =
-    parseFloat(document.getElementById('rate').value);
+    Number(document.getElementById('rate').value);
 
   const years =
-    parseInt(document.getElementById('term').value,10);
+    Number(document.getElementById('term').value);
+
+  const taxValue =
+    document.getElementById('tax').value.trim();
 
   const tax =
-    parseFloat(document.getElementById('tax').value) || 0;
+    taxValue === ''
+    ? 0
+    : Number(taxValue);
+
+  const insuranceValue =
+    document.getElementById('insurance').value.trim();
 
   const insurance =
-    parseFloat(document.getElementById('insurance').value) || 0;
+    insuranceValue === ''
+    ? 0
+    : Number(insuranceValue);
+
 
   const error =
     document.getElementById('error');
@@ -588,44 +723,155 @@ function calculateMortgage(){
   const result =
     document.getElementById('result');
 
+
   error.textContent = '';
+
   result.style.display = 'none';
 
+  document.getElementById('scheduleBody').innerHTML = '';
+
+
+  /* HOME PRICE VALIDATION */
+
   if(
+    document.getElementById('price').value.trim() === '' ||
     !Number.isFinite(price) ||
-    price <= 0 ||
+    price <= 0
+  ){
+
+    error.textContent =
+      'Home price must be greater than 0.';
+
+    return;
+
+  }
+
+
+  /* DOWN PAYMENT VALIDATION */
+
+  if(
+    !Number.isFinite(down) ||
+    down < 0
+  ){
+
+    error.textContent =
+      'Down payment cannot be negative.';
+
+    return;
+
+  }
+
+
+  if(down >= price){
+
+    error.textContent =
+      'Down payment must be less than the home price.';
+
+    return;
+
+  }
+
+
+  /* INTEREST RATE VALIDATION */
+
+  if(
+    document.getElementById('rate').value.trim() === '' ||
     !Number.isFinite(annual) ||
-    annual < 0 ||
+    annual < 0
+  ){
+
+    error.textContent =
+      'Interest rate cannot be negative. Enter 0 for a zero-interest mortgage.';
+
+    return;
+
+  }
+
+
+  /* MORTGAGE TERM VALIDATION */
+
+  if(
+    document.getElementById('term').value.trim() === '' ||
     !Number.isFinite(years) ||
-    years <= 0 ||
-    down < 0 ||
-    down >= price ||
-    tax < 0 ||
+    !Number.isInteger(years) ||
+    years <= 0
+  ){
+
+    error.textContent =
+      'Mortgage term must be a whole number greater than 0.';
+
+    return;
+
+  }
+
+
+  /* OPTIONAL PROPERTY TAX VALIDATION */
+
+  if(
+    !Number.isFinite(tax) ||
+    tax < 0
+  ){
+
+    error.textContent =
+      'Property tax cannot be negative.';
+
+    return;
+
+  }
+
+
+  /* OPTIONAL HOME INSURANCE VALIDATION */
+
+  if(
+    !Number.isFinite(insurance) ||
     insurance < 0
   ){
 
     error.textContent =
-      'Please enter valid mortgage details. Down payment must be less than the home price.';
+      'Home insurance cannot be negative.';
 
     return;
+
   }
 
-  const P = price - down;
-  const n = years * 12;
-  const r = annual / 100 / 12;
+
+  /* MORTGAGE CALCULATION */
+
+  const P =
+    price - down;
+
+  const n =
+    years * 12;
+
+  const r =
+    annual / 100 / 12;
+
 
   const pi =
     r === 0
     ? P / n
-    : P * r * Math.pow(1+r,n) /
-      (Math.pow(1+r,n)-1);
+    : P * r * Math.pow(1 + r,n) /
+      (Math.pow(1 + r,n) - 1);
 
-  const totalPI = pi * n;
-  const interest = totalPI - P;
-  const taxM = tax / 12;
-  const insM = insurance / 12;
-  const monthly = pi + taxM + insM;
-  const totalHousing = monthly * n;
+
+  const totalPI =
+    pi * n;
+
+  const interest =
+    totalPI - P;
+
+  const taxM =
+    tax / 12;
+
+  const insM =
+    insurance / 12;
+
+  const monthly =
+    pi + taxM + insM;
+
+  const totalHousing =
+    monthly * n;
+
 
   document.getElementById('monthly').textContent =
     money(monthly);
@@ -648,31 +894,62 @@ function calculateMortgage(){
   document.getElementById('totalOut').textContent =
     money(totalHousing);
 
-  let balance = P;
-  let body = '';
 
-  for(let y=1; y<=years; y++){
+  /* YEARLY AMORTIZATION SCHEDULE */
 
-    let principalYear = 0;
-    let interestYear = 0;
+  let balance =
+    P;
 
-    for(let m=0; m<12; m++){
+  let body =
+    '';
 
-      let i =
-        r === 0 ? 0 : balance * r;
 
-      let p = pi - i;
+  for(let y = 1; y <= years; y++){
+
+    let principalYear =
+      0;
+
+    let interestYear =
+      0;
+
+
+    for(let m = 0; m < 12; m++){
+
+      if(balance <= 0){
+        break;
+      }
+
+
+      const i =
+        r === 0
+        ? 0
+        : balance * r;
+
+
+      let p =
+        pi - i;
+
 
       if(p > balance){
         p = balance;
       }
 
-      interestYear += i;
-      principalYear += p;
+
+      interestYear +=
+        i;
+
+      principalYear +=
+        p;
+
 
       balance =
-        Math.max(0,balance-p);
+        Math.max(
+          0,
+          balance - p
+        );
+
     }
+
 
     body += `
       <tr>
@@ -682,13 +959,19 @@ function calculateMortgage(){
         <td>${money(balance)}</td>
       </tr>
     `;
+
   }
+
 
   document.getElementById('scheduleBody').innerHTML =
     body;
 
-  result.style.display = 'block';
+
+  result.style.display =
+    'block';
+
 }
+
 
 function clearCalc(){
 
@@ -700,20 +983,39 @@ function clearCalc(){
     'tax',
     'insurance'
   ].forEach(
-    id => document.getElementById(id).value=''
+    id =>
+      document.getElementById(id).value = ''
   );
 
-  document.getElementById('error').textContent='';
-  document.getElementById('result').style.display='none';
-  document.getElementById('scheduleBody').innerHTML='';
+
+  document.getElementById('error').textContent =
+    '';
+
+  document.getElementById('result').style.display =
+    'none';
+
+  document.getElementById('scheduleBody').innerHTML =
+    '';
+
 }
 
 </script>
 
+
 <noscript>
-<div style="max-width:920px;margin:20px auto;padding:16px;font-weight:700;color:#8a2020;">
+
+<div
+style="
+max-width:920px;
+margin:20px auto;
+padding:16px;
+font-weight:700;
+color:#8a2020;
+"
+>
 Please enable JavaScript to use this calculator.
 </div>
+
 </noscript>
 
 </body>
