@@ -506,7 +506,7 @@ Bill Amount
 <input
 id="bill"
 type="number"
-min="0"
+min="0.01"
 step="any"
 inputmode="decimal"
 placeholder="e.g. 100">
@@ -910,7 +910,7 @@ result.style.display =
 
 if(
 !Number.isFinite(billValue) ||
-billValue < 0 ||
+billValue <= 0 ||
 !Number.isFinite(tipValue) ||
 tipValue < 0 ||
 !Number.isInteger(peopleValue) ||
