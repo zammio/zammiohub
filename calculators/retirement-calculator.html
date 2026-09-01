@@ -3,382 +3,2411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Retirement Calculator | Retirement Savings Calculator | ZammioHub</title>
+
 <meta name="description" content="Estimate projected retirement savings, total contributions, investment growth, inflation-adjusted value, and illustrative retirement income.">
+
 <link rel="canonical" href="https://zammiohub.com/calculators/retirement-calculator.html">
+
 <style>
-*{box-sizing:border-box}html,body{width:100%;max-width:100%;margin:0;overflow-x:hidden}
-body{background:#fff;color:#263843;font-family:Arial,Helvetica,sans-serif;line-height:1.65}
-.container{width:90%;max-width:1100px;margin:0 auto;padding:35px 0 60px}
-.breadcrumb{margin-bottom:22px;color:#6d7880;font-size:15px;overflow-wrap:break-word}
-.breadcrumb a{color:#17698c;text-decoration:none}.breadcrumb span{margin:0 9px;color:#8a949b}
-h1{margin:0 0 10px;color:#145d7d;font-size:42px;line-height:1.2}
-.intro{margin:0 0 30px;color:#39474f;font-size:18px}
-.card,.result-card{width:100%;overflow:hidden;border:1px solid #d9e0e4;border-radius:12px;background:#fff}
-.card{margin-bottom:28px;box-shadow:0 7px 22px rgba(25,54,70,.05)}.result-card{display:none;margin-bottom:38px}
-.card-header,.result-header{padding:19px 28px;color:#fff;font-size:21px;font-weight:700}
-.card-header{background:#1e6e92}.result-header{background:#479629}
-.card-body{padding:28px;background:#f7f9fa}.result-body{padding:32px 28px 28px}
-.form-group{margin-bottom:22px}.form-group:last-of-type{margin-bottom:0}
-label{display:block;margin-bottom:8px;color:#263843;font-size:17px;font-weight:700}
-input,select{display:block;width:100%;max-width:100%;min-width:0;padding:14px 15px;border:1px solid #c9d2d7;border-radius:7px;outline:none;background:#fff;color:#1f2930;font-size:17px}
-input:focus,select:focus{border-color:#1e6e92;box-shadow:0 0 0 3px rgba(30,110,146,.10)}
-.help-text{margin:6px 0 0;color:#707d85;font-size:13px;line-height:1.5}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
-.calculate-btn,.clear-btn{max-width:100%;padding:14px 28px;border:0;border-radius:7px;font-size:16px;font-weight:700;cursor:pointer}
-.calculate-btn{min-width:190px;background:#479629;color:#fff}.calculate-btn:hover{background:#3d8423}
-.clear-btn{min-width:100px;background:#e5e9ec;color:#263843}
-.error{display:none;margin-bottom:20px;padding:13px 15px;border:1px solid #e2b4b4;border-radius:7px;background:#fff3f3;color:#a42b2b;font-size:14px}
-.main-result{margin-bottom:28px;text-align:center}.main-result-value{color:#11527b;font-size:39px;font-weight:800;line-height:1.2;overflow-wrap:anywhere}
-.main-result-label{margin-top:6px;color:#737e85;font-size:17px}
-.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.result-box{min-width:0;padding:18px;border:1px solid #d9e0e4;border-radius:8px;background:#f7f9fa}
-.result-box-label{margin-bottom:4px;color:#68757e;font-size:14px;font-weight:700}
-.result-box-value{color:#26343d;font-size:21px;font-weight:700;overflow-wrap:anywhere}
-.breakdown-title{margin:31px 0 7px;color:#263843;font-size:22px;line-height:1.35}
-.desktop-table{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;min-width:620px;margin-top:14px;border-collapse:collapse}
-th,td{padding:12px 13px;border:1px solid #d9e0e4;font-size:14px}th{background:#eef3f6;font-weight:700;text-align:right}td{text-align:right}
-th:first-child,td:first-child{text-align:left}
-.mobile-breakdown{display:none;margin-top:14px}
-.year-card{margin-bottom:12px;padding:15px;border:1px solid #d9e0e4;border-radius:8px;background:#f7f9fa}
-.year-card-title{margin-bottom:10px;color:#145d7d;font-size:17px;font-weight:800}
-.year-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.year-stat{min-width:0}
-.year-stat span{display:block;color:#73808a;font-size:12px;font-weight:700}
-.year-stat strong{display:block;margin-top:2px;color:#26343d;font-size:15px;overflow-wrap:anywhere}
-.disclaimer{margin:17px 0 0;color:#6f7a82;font-size:13px;line-height:1.6}
-.content-section{margin:0 0 28px}.content-section h2,.faq-section h2{margin:0 0 10px;color:#263f4c;font-size:29px;line-height:1.3}
-.content-section p{margin:0;color:#303b42;font-size:17px}
-.formula-box{margin-top:14px;padding:20px 23px;border:1px solid #d9e0e4;border-radius:8px;background:#f7f9fa}
-.formula{margin-bottom:10px;color:#26343d;font-family:Georgia,"Times New Roman",serif;font-size:19px;font-weight:700;line-height:1.7;overflow-wrap:anywhere}
-.formula-description{margin:0!important;color:#68757e!important;font-size:15px!important}
-.faq-section{margin-top:33px}.faq-section h2{margin-bottom:22px}.faq-item{margin-bottom:22px}
-.faq-item h3{margin:0 0 7px;color:#26343d;font-size:19px;line-height:1.4}.faq-item p{margin:0;color:#303b42;font-size:17px}
-footer{margin-top:42px;padding-top:24px;border-top:1px solid #dce2e5;color:#737e85;font-size:16px}
-footer strong{display:block;margin-bottom:2px;font-size:17px}
-@media(max-width:700px){
-.container{width:92%;padding-top:27px;padding-bottom:55px}.breadcrumb{margin-bottom:20px;font-size:14px;line-height:1.6}
-h1{font-size:35px;line-height:1.18}.intro{margin-bottom:25px;font-size:17px;line-height:1.55}
-.card-header,.result-header{padding:17px 20px;font-size:19px}.card-body{padding:23px 20px}label{font-size:17px}
-input,select{min-height:54px;padding:15px;font-size:17px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.calculate-btn,.clear-btn{width:100%;min-width:0;min-height:52px;padding:14px 10px}
-.result-body{padding:27px 20px 24px}.main-result-value{font-size:34px}.main-result-label{font-size:16px}
-.result-grid{grid-template-columns:1fr;gap:11px}.result-box{padding:17px}.result-box-value{font-size:20px}
-.breakdown-title{font-size:22px;margin-top:28px}.desktop-table{display:none}.mobile-breakdown{display:block}
-.content-section{margin-bottom:27px}.content-section h2,.faq-section h2{font-size:25px;line-height:1.3}
-.content-section p,.faq-item p{font-size:16px;line-height:1.65}.faq-item h3{font-size:18px;line-height:1.4}
-.formula-box{padding:18px}.formula{font-size:17px;line-height:1.6}.formula-description{font-size:14px!important;line-height:1.6!important}
+*{
+    box-sizing:border-box;
 }
-@media(max-width:400px){h1{font-size:32px}.main-result-value{font-size:31px}.year-card-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    overflow-x:hidden;
+}
+
+body{
+    background:#fff;
+    color:#263843;
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.65;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:35px 0 60px;
+}
+
+.breadcrumb{
+    margin-bottom:22px;
+    color:#6d7880;
+    font-size:15px;
+    overflow-wrap:break-word;
+}
+
+.breadcrumb a{
+    color:#17698c;
+    text-decoration:none;
+}
+
+.breadcrumb span{
+    margin:0 9px;
+    color:#8a949b;
+}
+
+h1{
+    margin:0 0 10px;
+    color:#145d7d;
+    font-size:42px;
+    line-height:1.2;
+}
+
+.intro{
+    margin:0 0 30px;
+    color:#39474f;
+    font-size:18px;
+}
+
+.card,
+.result-card{
+    width:100%;
+    overflow:hidden;
+    border:1px solid #d9e0e4;
+    border-radius:12px;
+    background:#fff;
+}
+
+.card{
+    margin-bottom:28px;
+    box-shadow:0 7px 22px rgba(25,54,70,.05);
+}
+
+.result-card{
+    display:none;
+    margin-bottom:38px;
+}
+
+.card-header,
+.result-header{
+    padding:19px 28px;
+    color:#fff;
+    font-size:21px;
+    font-weight:700;
+}
+
+.card-header{
+    background:#1e6e92;
+}
+
+.result-header{
+    background:#479629;
+}
+
+.card-body{
+    padding:28px;
+    background:#f7f9fa;
+}
+
+.result-body{
+    padding:32px 28px 28px;
+}
+
+.form-group{
+    margin-bottom:22px;
+}
+
+.form-group:last-of-type{
+    margin-bottom:0;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#263843;
+    font-size:17px;
+    font-weight:700;
+}
+
+input,
+select{
+    display:block;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    padding:14px 15px;
+    border:1px solid #c9d2d7;
+    border-radius:7px;
+    outline:none;
+    background:#fff;
+    color:#1f2930;
+    font-size:17px;
+}
+
+input:focus,
+select:focus,
+button:focus-visible{
+    border-color:#1e6e92;
+    box-shadow:0 0 0 3px rgba(30,110,146,.16);
+    outline:none;
+}
+
+.help-text{
+    margin:6px 0 0;
+    color:#707d85;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:27px;
+}
+
+.calculate-btn,
+.clear-btn,
+.projection-toggle{
+    max-width:100%;
+    padding:14px 28px;
+    border:0;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.calculate-btn{
+    min-width:190px;
+    background:#479629;
+    color:#fff;
+}
+
+.calculate-btn:hover{
+    background:#3d8423;
+}
+
+.clear-btn{
+    min-width:100px;
+    background:#e5e9ec;
+    color:#263843;
+}
+
+.error{
+    display:none;
+    margin-bottom:20px;
+    padding:13px 15px;
+    border:1px solid #e2b4b4;
+    border-radius:7px;
+    background:#fff3f3;
+    color:#a42b2b;
+    font-size:14px;
+}
+
+.main-result{
+    margin-bottom:28px;
+    text-align:center;
+}
+
+.main-result-value{
+    color:#11527b;
+    font-size:39px;
+    font-weight:800;
+    line-height:1.2;
+    overflow-wrap:anywhere;
+}
+
+.main-result-label{
+    margin-top:6px;
+    color:#737e85;
+    font-size:17px;
+}
+
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.result-box{
+    min-width:0;
+    padding:18px;
+    border:1px solid #d9e0e4;
+    border-radius:8px;
+    background:#f7f9fa;
+}
+
+.result-box-label{
+    margin-bottom:4px;
+    color:#68757e;
+    font-size:14px;
+    font-weight:700;
+}
+
+.result-box-value{
+    color:#26343d;
+    font-size:21px;
+    font-weight:700;
+    overflow-wrap:anywhere;
+}
+
+.assumptions{
+    margin-top:18px;
+    padding:14px 16px;
+    border-left:4px solid #1e6e92;
+    border-radius:6px;
+    background:#f7f9fa;
+    color:#68757e;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.assumptions strong{
+    color:#263843;
+}
+
+.breakdown-title{
+    margin:31px 0 7px;
+    color:#263843;
+    font-size:22px;
+    line-height:1.35;
+}
+
+.desktop-table{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+table{
+    width:100%;
+    min-width:680px;
+    margin-top:14px;
+    border-collapse:collapse;
+}
+
+caption{
+    padding:0 0 10px;
+    text-align:left;
+    color:#68757e;
+    font-size:13px;
+}
+
+th,
+td{
+    padding:12px 13px;
+    border:1px solid #d9e0e4;
+    font-size:14px;
+}
+
+th{
+    background:#eef3f6;
+    font-weight:700;
+    text-align:right;
+}
+
+td{
+    text-align:right;
+}
+
+th:first-child,
+td:first-child{
+    text-align:left;
+}
+
+.mobile-breakdown{
+    display:none;
+    margin-top:14px;
+}
+
+.year-card{
+    margin-bottom:12px;
+    padding:15px;
+    border:1px solid #d9e0e4;
+    border-radius:8px;
+    background:#f7f9fa;
+}
+
+.year-card-title{
+    margin-bottom:10px;
+    color:#145d7d;
+    font-size:17px;
+    font-weight:800;
+}
+
+.year-card-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.year-stat{
+    min-width:0;
+}
+
+.year-stat span{
+    display:block;
+    color:#73808a;
+    font-size:12px;
+    font-weight:700;
+}
+
+.year-stat strong{
+    display:block;
+    margin-top:2px;
+    color:#26343d;
+    font-size:15px;
+    overflow-wrap:anywhere;
+}
+
+.projection-gap{
+    margin:12px 0;
+    padding:7px 10px;
+    text-align:center;
+    color:#73808a;
+    font-size:13px;
+    font-weight:700;
+}
+
+.projection-toggle{
+    display:none;
+    width:100%;
+    margin-top:8px;
+    background:#e5e9ec;
+    color:#263843;
+}
+
+.disclaimer{
+    margin:17px 0 0;
+    color:#6f7a82;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.content-section{
+    margin:0 0 28px;
+}
+
+.content-section h2,
+.faq-section h2{
+    margin:0 0 10px;
+    color:#263f4c;
+    font-size:29px;
+    line-height:1.3;
+}
+
+.content-section p{
+    margin:0;
+    color:#303b42;
+    font-size:17px;
+}
+
+.formula-box{
+    margin-top:14px;
+    padding:20px 23px;
+    border:1px solid #d9e0e4;
+    border-radius:8px;
+    background:#f7f9fa;
+}
+
+.formula{
+    margin-bottom:10px;
+    color:#26343d;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:19px;
+    font-weight:700;
+    line-height:1.7;
+    overflow-wrap:anywhere;
+}
+
+.formula-description{
+    margin:0!important;
+    color:#68757e!important;
+    font-size:15px!important;
+}
+
+.faq-section{
+    margin-top:33px;
+}
+
+.faq-section h2{
+    margin-bottom:22px;
+}
+
+.faq-item{
+    margin-bottom:22px;
+}
+
+.faq-item h3{
+    margin:0 0 7px;
+    color:#26343d;
+    font-size:19px;
+    line-height:1.4;
+}
+
+.faq-item p{
+    margin:0;
+    color:#303b42;
+    font-size:17px;
+}
+
+footer{
+    margin-top:42px;
+    padding-top:24px;
+    border-top:1px solid #dce2e5;
+    color:#737e85;
+    font-size:16px;
+}
+
+footer strong{
+    display:block;
+    margin-bottom:2px;
+    font-size:17px;
+}
+
+@media(max-width:700px){
+
+    .container{
+        width:92%;
+        padding-top:27px;
+        padding-bottom:55px;
+    }
+
+    .breadcrumb{
+        margin-bottom:20px;
+        font-size:14px;
+        line-height:1.6;
+    }
+
+    h1{
+        font-size:35px;
+        line-height:1.18;
+    }
+
+    .intro{
+        margin-bottom:25px;
+        font-size:17px;
+        line-height:1.55;
+    }
+
+    .card-header,
+    .result-header{
+        padding:17px 20px;
+        font-size:19px;
+    }
+
+    .card-body{
+        padding:23px 20px;
+    }
+
+    label{
+        font-size:17px;
+    }
+
+    input,
+    select{
+        min-height:54px;
+        padding:15px;
+        font-size:17px;
+    }
+
+    .actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .calculate-btn,
+    .clear-btn{
+        width:100%;
+        min-width:0;
+        min-height:52px;
+        padding:14px 10px;
+    }
+
+    .result-body{
+        padding:27px 20px 24px;
+    }
+
+    .main-result-value{
+        font-size:34px;
+    }
+
+    .main-result-label{
+        font-size:16px;
+    }
+
+    .result-grid{
+        grid-template-columns:1fr;
+        gap:11px;
+    }
+
+    .result-box{
+        padding:17px;
+    }
+
+    .result-box-value{
+        font-size:20px;
+    }
+
+    .breakdown-title{
+        font-size:22px;
+        margin-top:28px;
+    }
+
+    .desktop-table{
+        display:none;
+    }
+
+    .mobile-breakdown{
+        display:block;
+    }
+
+    .projection-toggle{
+        display:block;
+    }
+
+    .content-section{
+        margin-bottom:27px;
+    }
+
+    .content-section h2,
+    .faq-section h2{
+        font-size:25px;
+        line-height:1.3;
+    }
+
+    .content-section p,
+    .faq-item p{
+        font-size:16px;
+        line-height:1.65;
+    }
+
+    .faq-item h3{
+        font-size:18px;
+        line-height:1.4;
+    }
+
+    .formula-box{
+        padding:18px;
+    }
+
+    .formula{
+        font-size:17px;
+        line-height:1.6;
+    }
+
+    .formula-description{
+        font-size:14px!important;
+        line-height:1.6!important;
+    }
+}
+
+@media(max-width:400px){
+
+    h1{
+        font-size:32px;
+    }
+
+    .main-result-value{
+        font-size:31px;
+    }
+
+    .year-card-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *{
+        scroll-behavior:auto!important;
+    }
+}
 </style>
 </head>
+
 <body>
+
 <main class="container">
+
 <nav class="breadcrumb" aria-label="Breadcrumb">
-<a href="/">Home</a><span>›</span><a href="/calculators/">All Calculators</a><span>›</span>Retirement Calculator
+<a href="/">Home</a>
+<span>›</span>
+<a href="/calculators/">All Calculators</a>
+<span>›</span>
+Retirement Calculator
 </nav>
 
 <h1>Retirement Calculator</h1>
-<p class="intro">Estimate your retirement savings, investment growth, and inflation-adjusted value.</p>
 
-<section class="card">
-<div class="card-header">Enter Your Retirement Details</div>
+<p class="intro">
+Estimate your retirement savings, investment growth, and inflation-adjusted value.
+</p>
+
+<section class="card" aria-labelledby="retirement-details-heading">
+
+<div class="card-header" id="retirement-details-heading">
+Enter Your Retirement Details
+</div>
+
 <div class="card-body">
-<div id="errorMessage" class="error" role="alert"></div>
+
+<div id="errorMessage"
+     class="error"
+     role="alert"
+     aria-live="assertive">
+</div>
 
 <div class="form-group">
+
 <label for="currency">Currency</label>
-<select id="currency">
+
+<select id="currency" aria-label="Currency">
+
 <option value="" selected disabled>Select currency</option>
+
 <option value="USD">USD — US Dollar</option>
+
 <option value="GBP">GBP — British Pound</option>
+
 <option value="EUR">EUR — Euro</option>
+
 <option value="CAD">CAD — Canadian Dollar</option>
+
 <option value="AUD">AUD — Australian Dollar</option>
+
 <option value="NZD">NZD — New Zealand Dollar</option>
+
 <option value="PKR">PKR — Pakistani Rupee</option>
+
 <option value="INR">INR — Indian Rupee</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
-<label for="currentAge">Current Age</label>
-<input type="number" id="currentAge" inputmode="numeric" min="1" max="119" step="1" placeholder="e.g. 35">
+
+<label for="currentAge">
+Current Age
+</label>
+
+<input
+type="number"
+id="currentAge"
+inputmode="numeric"
+min="1"
+max="119"
+step="1"
+placeholder="e.g. 35">
+
 </div>
 
 <div class="form-group">
-<label for="retirementAge">Retirement Age</label>
-<input type="number" id="retirementAge" inputmode="numeric" min="2" max="120" step="1" placeholder="e.g. 65">
+
+<label for="retirementAge">
+Retirement Age
+</label>
+
+<input
+type="number"
+id="retirementAge"
+inputmode="numeric"
+min="2"
+max="120"
+step="1"
+placeholder="e.g. 65">
+
 </div>
 
 <div class="form-group">
-<label for="currentSavings">Current Retirement Savings</label>
-<input type="number" id="currentSavings" inputmode="decimal" min="0" step="any" placeholder="e.g. 50000">
-<p class="help-text">Enter 0 if you are starting without existing retirement savings.</p>
+
+<label for="currentSavings">
+Current Retirement Savings
+</label>
+
+<input
+type="number"
+id="currentSavings"
+inputmode="decimal"
+min="0"
+step="any"
+placeholder="e.g. 50000"
+aria-describedby="currentSavingsHelp">
+
+<p class="help-text" id="currentSavingsHelp">
+Enter 0 if you are starting without existing retirement savings.
+</p>
+
 </div>
 
 <div class="form-group">
-<label for="monthlyContribution">Monthly Contribution</label>
-<input type="number" id="monthlyContribution" inputmode="decimal" min="0" step="any" placeholder="e.g. 500">
-<p class="help-text">Enter the amount you plan to add each month.</p>
+
+<label for="monthlyContribution">
+Monthly Contribution
+</label>
+
+<input
+type="number"
+id="monthlyContribution"
+inputmode="decimal"
+min="0"
+step="any"
+placeholder="e.g. 500"
+aria-describedby="monthlyContributionHelp">
+
+<p class="help-text" id="monthlyContributionHelp">
+Enter the amount you plan to add each month. Contributions are assumed to be added at the end of each month.
+</p>
+
 </div>
 
 <div class="form-group">
-<label for="annualReturn">Expected Annual Return (%)</label>
-<input type="number" id="annualReturn" inputmode="decimal" min="-99" step="any" placeholder="e.g. 7">
-<p class="help-text">Use your own expected annual investment return. Future returns are not guaranteed.</p>
+
+<label for="annualReturn">
+Expected Annual Return (%)
+</label>
+
+<input
+type="number"
+id="annualReturn"
+inputmode="decimal"
+min="-99"
+max="100"
+step="any"
+placeholder="e.g. 7"
+aria-describedby="annualReturnHelp">
+
+<p class="help-text" id="annualReturnHelp">
+Use your own expected annual investment return. The calculator converts it to a monthly rate by dividing by 12. Future returns are not guaranteed.
+</p>
+
 </div>
 
 <div class="form-group">
-<label for="inflationRate">Expected Inflation Rate (%)</label>
-<input type="number" id="inflationRate" inputmode="decimal" min="0" step="any" placeholder="e.g. 3">
-<p class="help-text">Used to estimate the future balance in today's purchasing power.</p>
+
+<label for="inflationRate">
+Expected Inflation Rate (%)
+</label>
+
+<input
+type="number"
+id="inflationRate"
+inputmode="decimal"
+min="0"
+max="100"
+step="any"
+placeholder="e.g. 3"
+aria-describedby="inflationHelp">
+
+<p class="help-text" id="inflationHelp">
+Used to estimate the future balance in today's purchasing power.
+</p>
+
 </div>
 
 <div class="form-group">
-<label for="withdrawalRate">Illustrative Annual Withdrawal Rate (%)</label>
-<input type="number" id="withdrawalRate" inputmode="decimal" min="0.01" step="any" placeholder="e.g. 4">
-<p class="help-text">Optional. Used only to estimate illustrative annual and monthly retirement income.</p>
+
+<label for="withdrawalRate">
+Illustrative Annual Withdrawal Rate (%)
+</label>
+
+<input
+type="number"
+id="withdrawalRate"
+inputmode="decimal"
+min="0.01"
+max="100"
+step="any"
+placeholder="e.g. 4"
+aria-describedby="withdrawalHelp">
+
+<p class="help-text" id="withdrawalHelp">
+Optional. Used only to estimate illustrative annual and monthly retirement income.
+</p>
+
 </div>
 
 <div class="actions">
-<button type="button" class="calculate-btn" id="calculateBtn">Calculate Retirement</button>
-<button type="button" class="clear-btn" id="clearBtn">Clear</button>
+
+<button
+type="button"
+class="calculate-btn"
+id="calculateBtn">
+Calculate Retirement
+</button>
+
+<button
+type="button"
+class="clear-btn"
+id="clearBtn">
+Clear
+</button>
+
 </div>
+
 </div>
+
 </section>
 
-<section class="result-card" id="resultSection" aria-live="polite">
-<div class="result-header">Your Retirement Projection</div>
+
+<section
+class="result-card"
+id="resultSection"
+aria-live="polite"
+aria-labelledby="result-heading"
+tabindex="-1">
+
+<div class="result-header" id="result-heading">
+Your Retirement Projection
+</div>
+
 <div class="result-body">
 
 <div class="main-result">
-<div class="main-result-value" id="projectedSavings">0.00</div>
-<div class="main-result-label">Projected savings at retirement</div>
+
+<div class="main-result-value" id="projectedSavings">
+0.00
 </div>
+
+<div class="main-result-label">
+Projected savings at retirement
+</div>
+
+</div>
+
 
 <div class="result-grid">
-<div class="result-box"><div class="result-box-label">Years Until Retirement</div><div class="result-box-value" id="yearsResult">0</div></div>
-<div class="result-box"><div class="result-box-label">Total Contributions</div><div class="result-box-value" id="contributionsResult">0.00</div></div>
-<div class="result-box"><div class="result-box-label">Estimated Investment Growth</div><div class="result-box-value" id="growthResult">0.00</div></div>
-<div class="result-box"><div class="result-box-label">Savings in Today's Money</div><div class="result-box-value" id="realValueResult">0.00</div></div>
-<div class="result-box" id="annualIncomeBox"><div class="result-box-label">Illustrative Annual Retirement Income</div><div class="result-box-value" id="annualIncomeResult">0.00</div></div>
-<div class="result-box" id="monthlyIncomeBox"><div class="result-box-label">Illustrative Monthly Retirement Income</div><div class="result-box-value" id="monthlyIncomeResult">0.00</div></div>
+
+<div class="result-box">
+
+<div class="result-box-label">
+Years Until Retirement
 </div>
 
-<h2 class="breakdown-title">Year-by-Year Savings Projection</h2>
+<div class="result-box-value" id="yearsResult">
+0
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<div class="result-box-label">
+Starting Savings
+</div>
+
+<div class="result-box-value" id="startingSavingsResult">
+0.00
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<div class="result-box-label">
+Future Contributions
+</div>
+
+<div class="result-box-value" id="futureContributionsResult">
+0.00
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<div class="result-box-label">
+Total Contributions
+</div>
+
+<div class="result-box-value" id="contributionsResult">
+0.00
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<div
+class="result-box-label"
+id="growthLabel">
+Estimated Investment Growth
+</div>
+
+<div
+class="result-box-value"
+id="growthResult">
+0.00
+</div>
+
+</div>
+
+
+<div class="result-box">
+
+<div class="result-box-label">
+Savings in Today's Money
+</div>
+
+<div
+class="result-box-value"
+id="realValueResult">
+0.00
+</div>
+
+</div>
+
+
+<div
+class="result-box"
+id="annualIncomeBox">
+
+<div class="result-box-label">
+Illustrative Annual Retirement Income
+</div>
+
+<div
+class="result-box-value"
+id="annualIncomeResult">
+0.00
+</div>
+
+</div>
+
+
+<div
+class="result-box"
+id="monthlyIncomeBox">
+
+<div class="result-box-label">
+Illustrative Monthly Retirement Income
+</div>
+
+<div
+class="result-box-value"
+id="monthlyIncomeResult">
+0.00
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="assumptions"
+id="assumptionsSummary">
+</div>
+
+
+<h2 class="breakdown-title">
+Year-by-Year Savings Projection
+</h2>
+
 
 <div class="desktop-table">
+
 <table>
-<thead><tr><th>Age</th><th>Total Contributions</th><th>Investment Growth</th><th>Projected Balance</th></tr></thead>
-<tbody id="projectionBody"></tbody>
+
+<caption>
+Projected retirement savings by age based on the values entered above.
+</caption>
+
+<thead>
+
+<tr>
+
+<th scope="col">
+Age
+</th>
+
+<th scope="col">
+Total Contributions
+</th>
+
+<th scope="col">
+Investment Growth / Loss
+</th>
+
+<th scope="col">
+Projected Balance
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="projectionBody">
+</tbody>
+
 </table>
+
 </div>
 
-<div class="mobile-breakdown" id="mobileBreakdown"></div>
 
-<p class="disclaimer">This calculator provides an illustrative estimate based on constant inputs and does not guarantee future returns or retirement income. Taxes, fees, changing contributions, market volatility, and other factors are not included.</p>
+<div
+class="mobile-breakdown"
+id="mobileBreakdown">
 </div>
+
+
+<button
+type="button"
+class="projection-toggle"
+id="projectionToggle"
+aria-expanded="false"
+aria-controls="mobileBreakdown">
+Show Full Projection
+</button>
+
+
+<p class="disclaimer">
+This calculator provides an illustrative estimate based on constant inputs and does not guarantee future returns or retirement income. Taxes, fees, changing contributions, market volatility, and other factors are not included.
+</p>
+
+</div>
+
 </section>
 
-<section class="content-section">
-<h2>How Does This Retirement Calculator Work?</h2>
-<p>Enter your ages, current savings, monthly contribution, expected return, and inflation rate. The calculator projects how your savings could grow by retirement and shows the estimated value in today's money.</p>
-</section>
 
 <section class="content-section">
-<h2>Retirement Savings Formula</h2>
+
+<h2>
+How Does This Retirement Calculator Work?
+</h2>
+
+<p>
+Enter your ages, current savings, monthly contribution, expected return, and inflation rate. The calculator projects how your savings could grow by retirement and shows the estimated value in today's money. Monthly contributions are assumed to be added at the end of each month.
+</p>
+
+</section>
+
+
+<section class="content-section">
+
+<h2>
+Retirement Savings Formula
+</h2>
+
 <div class="formula-box">
-<div class="formula">FV = PV(1 + r)<sup>n</sup> + PMT × [((1 + r)<sup>n</sup> − 1) ÷ r]</div>
-<p class="formula-description">FV is projected savings, PV is current savings, r is the monthly return rate, n is the number of months, and PMT is the monthly contribution. If the return rate is 0%, projected savings equal current savings plus total contributions.</p>
+
+<div class="formula">
+FV = PV(1 + r)<sup>n</sup> + PMT × [((1 + r)<sup>n</sup> − 1) ÷ r]
 </div>
+
+<p class="formula-description">
+FV is projected savings, PV is current savings, r is the monthly return rate, n is the number of months, and PMT is the monthly contribution. The calculator estimates the monthly rate as the entered annual return divided by 12. Monthly contributions are treated as end-of-month contributions. If the return rate is 0%, projected savings equal current savings plus total future contributions.
+</p>
+
+</div>
+
 </section>
+
 
 <section class="faq-section">
-<h2>Frequently Asked Questions About Retirement Savings</h2>
+
+<h2>
+Frequently Asked Questions About Retirement Savings
+</h2>
+
 
 <div class="faq-item">
-<h3>How much should I save for retirement?</h3>
-<p>The amount depends on your retirement age, spending needs, other income, investment returns, inflation, and how long retirement lasts. Use the calculator to compare different saving scenarios.</p>
+
+<h3>
+How much should I save for retirement?
+</h3>
+
+<p>
+The amount depends on your retirement age, spending needs, other income, investment returns, inflation, and how long retirement lasts. Use the calculator to compare different saving scenarios.
+</p>
+
 </div>
 
-<div class="faq-item">
-<h3>How does inflation affect retirement savings?</h3>
-<p>Inflation reduces purchasing power over time. The “Savings in Today's Money” result estimates what your projected future balance may be worth in today's terms.</p>
-</div>
 
 <div class="faq-item">
-<h3>What happens if I retire later?</h3>
-<p>Retiring later generally gives your savings more time to grow and allows additional contributions, which can increase the projected balance.</p>
+
+<h3>
+How does inflation affect retirement savings?
+</h3>
+
+<p>
+Inflation reduces purchasing power over time. The “Savings in Today's Money” result estimates what your projected future balance may be worth in today's terms.
+</p>
+
 </div>
+
+
+<div class="faq-item">
+
+<h3>
+What happens if I retire later?
+</h3>
+
+<p>
+Retiring later generally gives your savings more time to grow and allows additional contributions, which can increase the projected balance.
+</p>
+
+</div>
+
+
+<div class="faq-item">
+
+<h3>
+What rate of return should I use for retirement planning?
+</h3>
+
+<p>
+Use a reasonable long-term return assumption that fits your own investment mix and planning approach. Because future returns are uncertain, it can be useful to compare several different return-rate scenarios instead of relying on only one estimate.
+</p>
+
+</div>
+
 </section>
 
-<footer><strong>ZammioHub</strong>Clear, accurate and mobile-friendly online calculators.</footer>
+
+<footer>
+
+<strong>
+ZammioHub
+</strong>
+
+Clear, accurate and mobile-friendly online calculators.
+
+</footer>
+
 </main>
 
+
 <script>
+
 (function(){
-const currencyInput=document.getElementById("currency");
-const currentAgeInput=document.getElementById("currentAge");
-const retirementAgeInput=document.getElementById("retirementAge");
-const currentSavingsInput=document.getElementById("currentSavings");
-const monthlyContributionInput=document.getElementById("monthlyContribution");
-const annualReturnInput=document.getElementById("annualReturn");
-const inflationRateInput=document.getElementById("inflationRate");
-const withdrawalRateInput=document.getElementById("withdrawalRate");
-const calculateBtn=document.getElementById("calculateBtn");
-const clearBtn=document.getElementById("clearBtn");
-const errorMessage=document.getElementById("errorMessage");
-const resultSection=document.getElementById("resultSection");
-const projectedSavingsEl=document.getElementById("projectedSavings");
-const yearsResultEl=document.getElementById("yearsResult");
-const contributionsResultEl=document.getElementById("contributionsResult");
-const growthResultEl=document.getElementById("growthResult");
-const realValueResultEl=document.getElementById("realValueResult");
-const annualIncomeResultEl=document.getElementById("annualIncomeResult");
-const monthlyIncomeResultEl=document.getElementById("monthlyIncomeResult");
-const annualIncomeBox=document.getElementById("annualIncomeBox");
-const monthlyIncomeBox=document.getElementById("monthlyIncomeBox");
-const projectionBody=document.getElementById("projectionBody");
-const mobileBreakdown=document.getElementById("mobileBreakdown");
+
+const currencyInput =
+document.getElementById("currency");
+
+const currentAgeInput =
+document.getElementById("currentAge");
+
+const retirementAgeInput =
+document.getElementById("retirementAge");
+
+const currentSavingsInput =
+document.getElementById("currentSavings");
+
+const monthlyContributionInput =
+document.getElementById("monthlyContribution");
+
+const annualReturnInput =
+document.getElementById("annualReturn");
+
+const inflationRateInput =
+document.getElementById("inflationRate");
+
+const withdrawalRateInput =
+document.getElementById("withdrawalRate");
+
+const calculateBtn =
+document.getElementById("calculateBtn");
+
+const clearBtn =
+document.getElementById("clearBtn");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+const resultSection =
+document.getElementById("resultSection");
+
+const projectedSavingsEl =
+document.getElementById("projectedSavings");
+
+const yearsResultEl =
+document.getElementById("yearsResult");
+
+const startingSavingsResultEl =
+document.getElementById("startingSavingsResult");
+
+const futureContributionsResultEl =
+document.getElementById("futureContributionsResult");
+
+const contributionsResultEl =
+document.getElementById("contributionsResult");
+
+const growthLabelEl =
+document.getElementById("growthLabel");
+
+const growthResultEl =
+document.getElementById("growthResult");
+
+const realValueResultEl =
+document.getElementById("realValueResult");
+
+const annualIncomeResultEl =
+document.getElementById("annualIncomeResult");
+
+const monthlyIncomeResultEl =
+document.getElementById("monthlyIncomeResult");
+
+const annualIncomeBox =
+document.getElementById("annualIncomeBox");
+
+const monthlyIncomeBox =
+document.getElementById("monthlyIncomeBox");
+
+const assumptionsSummary =
+document.getElementById("assumptionsSummary");
+
+const projectionBody =
+document.getElementById("projectionBody");
+
+const mobileBreakdown =
+document.getElementById("mobileBreakdown");
+
+const projectionToggle =
+document.getElementById("projectionToggle");
+
+
+const MAX_MONEY = 1000000000000;
+
+let lastProjectionRows = [];
+
+let mobileProjectionExpanded = false;
+
+
+/* GET REQUIRED NUMBER */
 
 function requiredNumber(input){
- const text=input.value.trim();
- if(text==="")return NaN;
- const value=Number(text);
- return Number.isFinite(value)?value:NaN;
+
+    const text = input.value.trim();
+
+    if(text === ""){
+        return NaN;
+    }
+
+    const value = Number(text);
+
+    return Number.isFinite(value)
+        ? value
+        : NaN;
 }
+
+
+/* GET OPTIONAL NUMBER */
+
 function optionalNumber(input){
- const text=input.value.trim();
- if(text==="")return null;
- const value=Number(text);
- return Number.isFinite(value)?value:NaN;
+
+    const text = input.value.trim();
+
+    if(text === ""){
+        return null;
+    }
+
+    const value = Number(text);
+
+    return Number.isFinite(value)
+        ? value
+        : NaN;
 }
+
+
+/* FORMAT MONEY */
+
 function formatMoney(value){
- const currency=currencyInput.value;
- try{
-  return new Intl.NumberFormat("en-US",{style:"currency",currency:currency,minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
- }catch(e){
-  return currency+" "+Number(value).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
- }
+
+    const currency = currencyInput.value;
+
+    try{
+
+        return new Intl.NumberFormat(
+            "en-US",
+            {
+                style:"currency",
+                currency:currency,
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        ).format(value);
+
+    }
+
+    catch(e){
+
+        return currency +
+        " " +
+        Number(value).toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+    }
 }
+
+
+/* FORMAT PERCENT */
+
+function formatPercent(value){
+
+    return Number(value).toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits:4
+        }
+    ) + "%";
+
+}
+
+
+/* SHOW ERROR */
+
 function showError(message){
- errorMessage.textContent=message;
- errorMessage.style.display="block";
- resultSection.style.display="none";
+
+    errorMessage.textContent = message;
+
+    errorMessage.style.display = "block";
+
+    resultSection.style.display = "none";
+
+    errorMessage.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+
 }
+
+
+/* HIDE ERROR */
+
 function hideError(){
- errorMessage.textContent="";
- errorMessage.style.display="none";
+
+    errorMessage.textContent = "";
+
+    errorMessage.style.display = "none";
+
 }
-function projectBalance(startingBalance,monthlyContribution,monthlyRate,months){
- if(months<=0)return startingBalance;
- if(monthlyRate===0)return startingBalance+(monthlyContribution*months);
- const factor=Math.pow(1+monthlyRate,months);
- return startingBalance*factor+monthlyContribution*((factor-1)/monthlyRate);
+
+
+/* PROJECT BALANCE */
+
+function projectBalance(
+    startingBalance,
+    monthlyContribution,
+    monthlyRate,
+    months
+){
+
+    if(months <= 0){
+        return startingBalance;
+    }
+
+    if(monthlyRate === 0){
+
+        return startingBalance +
+        (monthlyContribution * months);
+
+    }
+
+    const factor =
+    Math.pow(
+        1 + monthlyRate,
+        months
+    );
+
+    return (
+        startingBalance * factor
+    ) +
+    monthlyContribution *
+    (
+        (factor - 1) /
+        monthlyRate
+    );
+
 }
-function buildYearlyProjection(PV,PMT,monthlyRate,currentAge,totalYears){
- const rows=[];
- for(let year=1;year<=totalYears;year++){
-  const months=year*12;
-  const balance=projectBalance(PV,PMT,monthlyRate,months);
-  const contributions=PV+(PMT*months);
-  const growth=balance-contributions;
-  rows.push({age:currentAge+year,contributions:contributions,growth:growth,balance:balance});
- }
- return rows;
+
+
+/* BUILD YEARLY PROJECTION */
+
+function buildYearlyProjection(
+    PV,
+    PMT,
+    monthlyRate,
+    currentAge,
+    totalYears
+){
+
+    const rows = [];
+
+    for(
+        let year = 1;
+        year <= totalYears;
+        year++
+    ){
+
+        const months =
+        year * 12;
+
+        const balance =
+        projectBalance(
+            PV,
+            PMT,
+            monthlyRate,
+            months
+        );
+
+        const contributions =
+        PV +
+        (PMT * months);
+
+        const growth =
+        balance -
+        contributions;
+
+        rows.push({
+
+            age:
+            currentAge + year,
+
+            contributions:
+            contributions,
+
+            growth:
+            growth,
+
+            balance:
+            balance
+
+        });
+
+    }
+
+    return rows;
+
 }
+
+
+/* CREATE MOBILE YEAR CARD */
+
+function createMobileCard(item){
+
+    const card =
+    document.createElement("div");
+
+    card.className =
+    "year-card";
+
+    const growthText =
+    item.growth < 0
+    ? "Investment Loss"
+    : "Investment Growth";
+
+    card.innerHTML =
+
+    '<div class="year-card-title">' +
+
+    'Age ' +
+    item.age +
+
+    '</div>' +
+
+    '<div class="year-card-grid">' +
+
+    '<div class="year-stat">' +
+
+    '<span>Total Contributions</span>' +
+
+    '<strong>' +
+    formatMoney(item.contributions) +
+    '</strong>' +
+
+    '</div>' +
+
+    '<div class="year-stat">' +
+
+    '<span>' +
+    growthText +
+    '</span>' +
+
+    '<strong>' +
+    formatMoney(Math.abs(item.growth)) +
+    '</strong>' +
+
+    '</div>' +
+
+    '<div class="year-stat">' +
+
+    '<span>Projected Balance</span>' +
+
+    '<strong>' +
+    formatMoney(item.balance) +
+    '</strong>' +
+
+    '</div>' +
+
+    '</div>';
+
+    return card;
+
+}
+
+
+/* MOBILE PROJECTION */
+
+function renderMobileProjection(rows){
+
+    mobileBreakdown.innerHTML = "";
+
+    if(!rows.length){
+
+        projectionToggle.style.display =
+        "none";
+
+        return;
+
+    }
+
+    const shouldCollapse =
+    rows.length > 10 &&
+    !mobileProjectionExpanded;
+
+    const visibleRows =
+    shouldCollapse
+    ?
+    rows.slice(0,5)
+    .concat(
+        rows.slice(-5)
+    )
+    :
+    rows;
+
+
+    visibleRows.forEach(
+        function(item,index){
+
+            if(
+                shouldCollapse &&
+                index === 5
+            ){
+
+                const gap =
+                document.createElement(
+                    "div"
+                );
+
+                gap.className =
+                "projection-gap";
+
+                gap.textContent =
+                "Years " +
+                rows[5].age +
+                "–" +
+                rows[
+                    rows.length - 6
+                ].age +
+                " hidden";
+
+                mobileBreakdown
+                .appendChild(gap);
+
+            }
+
+            mobileBreakdown
+            .appendChild(
+                createMobileCard(item)
+            );
+
+        }
+    );
+
+
+    if(rows.length > 10){
+
+        projectionToggle
+        .style.display = "";
+
+        projectionToggle
+        .textContent =
+        mobileProjectionExpanded
+        ?
+        "Show Less"
+        :
+        "Show Full Projection";
+
+        projectionToggle
+        .setAttribute(
+            "aria-expanded",
+            mobileProjectionExpanded
+            ?
+            "true"
+            :
+            "false"
+        );
+
+    }
+
+    else{
+
+        projectionToggle
+        .style.display =
+        "none";
+
+    }
+
+}
+
+
+/* RENDER FULL PROJECTION */
+
 function renderProjection(rows){
- projectionBody.innerHTML="";
- mobileBreakdown.innerHTML="";
- rows.forEach(function(item){
-  const row=document.createElement("tr");
-  row.innerHTML="<td>"+item.age+"</td><td>"+formatMoney(item.contributions)+"</td><td>"+formatMoney(item.growth)+"</td><td>"+formatMoney(item.balance)+"</td>";
-  projectionBody.appendChild(row);
-  const card=document.createElement("div");
-  card.className="year-card";
-  card.innerHTML='<div class="year-card-title">Age '+item.age+'</div><div class="year-card-grid"><div class="year-stat"><span>Total Contributions</span><strong>'+formatMoney(item.contributions)+'</strong></div><div class="year-stat"><span>Investment Growth</span><strong>'+formatMoney(item.growth)+'</strong></div><div class="year-stat"><span>Projected Balance</span><strong>'+formatMoney(item.balance)+'</strong></div></div>';
-  mobileBreakdown.appendChild(card);
- });
+
+    lastProjectionRows =
+    rows;
+
+    projectionBody.innerHTML =
+    "";
+
+    rows.forEach(
+        function(item){
+
+            const row =
+            document.createElement(
+                "tr"
+            );
+
+            row.innerHTML =
+
+            "<td>" +
+            item.age +
+            "</td>" +
+
+            "<td>" +
+            formatMoney(
+                item.contributions
+            ) +
+            "</td>" +
+
+            "<td>" +
+            formatMoney(
+                item.growth
+            ) +
+            "</td>" +
+
+            "<td>" +
+            formatMoney(
+                item.balance
+            ) +
+            "</td>";
+
+            projectionBody
+            .appendChild(row);
+
+        }
+    );
+
+    mobileProjectionExpanded =
+    false;
+
+    renderMobileProjection(rows);
+
 }
+
+
+/* CALCULATE */
+
 function calculateRetirement(){
- hideError();
- if(!currencyInput.value){showError("Please select a currency.");currencyInput.focus();return;}
 
- const currentAge=requiredNumber(currentAgeInput);
- const retirementAge=requiredNumber(retirementAgeInput);
- const currentSavings=requiredNumber(currentSavingsInput);
- const monthlyContribution=requiredNumber(monthlyContributionInput);
- const annualReturn=requiredNumber(annualReturnInput);
- const inflationRate=requiredNumber(inflationRateInput);
- const withdrawalRate=optionalNumber(withdrawalRateInput);
+    hideError();
 
- if(!Number.isInteger(currentAge)||currentAge<1||currentAge>=120){showError("Please enter a valid current age between 1 and 119.");currentAgeInput.focus();return;}
- if(!Number.isInteger(retirementAge)||retirementAge<=currentAge||retirementAge>120){showError("Please enter a retirement age greater than your current age and no more than 120.");retirementAgeInput.focus();return;}
- if(!Number.isFinite(currentSavings)||currentSavings<0){showError("Please enter current savings of 0 or greater.");currentSavingsInput.focus();return;}
- if(!Number.isFinite(monthlyContribution)||monthlyContribution<0){showError("Please enter a monthly contribution of 0 or greater.");monthlyContributionInput.focus();return;}
- if(currentSavings===0&&monthlyContribution===0){showError("Please enter current savings or a monthly contribution greater than 0.");currentSavingsInput.focus();return;}
- if(!Number.isFinite(annualReturn)||annualReturn<=-100||annualReturn>100){showError("Please enter an expected annual return greater than -100% and no more than 100%.");annualReturnInput.focus();return;}
- if(!Number.isFinite(inflationRate)||inflationRate<0||inflationRate>100){showError("Please enter an inflation rate from 0% to 100%.");inflationRateInput.focus();return;}
- if(withdrawalRate!==null&&(!Number.isFinite(withdrawalRate)||withdrawalRate<=0||withdrawalRate>100)){showError("Please enter a withdrawal rate greater than 0% and no more than 100%, or leave it blank.");withdrawalRateInput.focus();return;}
 
- const years=retirementAge-currentAge;
- const months=years*12;
- const monthlyRate=annualReturn/100/12;
- const projectedSavings=projectBalance(currentSavings,monthlyContribution,monthlyRate,months);
+    /* CURRENCY */
 
- if(!Number.isFinite(projectedSavings)){showError("Unable to calculate a reliable result from these values. Please use smaller inputs.");return;}
+    if(!currencyInput.value){
 
- const totalContributions=currentSavings+(monthlyContribution*months);
- const investmentGrowth=projectedSavings-totalContributions;
- const realValue=projectedSavings/Math.pow(1+inflationRate/100,years);
+        showError(
+            "Please select a currency."
+        );
 
- projectedSavingsEl.textContent=formatMoney(projectedSavings);
- yearsResultEl.textContent=years.toLocaleString("en-US");
- contributionsResultEl.textContent=formatMoney(totalContributions);
- growthResultEl.textContent=formatMoney(investmentGrowth);
- realValueResultEl.textContent=formatMoney(realValue);
+        currencyInput.focus();
 
- if(withdrawalRate===null){
-  annualIncomeBox.style.display="none";
-  monthlyIncomeBox.style.display="none";
- }else{
-  const annualIncome=projectedSavings*(withdrawalRate/100);
-  annualIncomeResultEl.textContent=formatMoney(annualIncome);
-  monthlyIncomeResultEl.textContent=formatMoney(annualIncome/12);
-  annualIncomeBox.style.display="";
-  monthlyIncomeBox.style.display="";
- }
+        return;
 
- renderProjection(buildYearlyProjection(currentSavings,monthlyContribution,monthlyRate,currentAge,years));
- resultSection.style.display="block";
- resultSection.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+
+    const currentAge =
+    requiredNumber(
+        currentAgeInput
+    );
+
+    const retirementAge =
+    requiredNumber(
+        retirementAgeInput
+    );
+
+    const currentSavings =
+    requiredNumber(
+        currentSavingsInput
+    );
+
+    const monthlyContribution =
+    requiredNumber(
+        monthlyContributionInput
+    );
+
+    const annualReturn =
+    requiredNumber(
+        annualReturnInput
+    );
+
+    const inflationRate =
+    requiredNumber(
+        inflationRateInput
+    );
+
+    const withdrawalRate =
+    optionalNumber(
+        withdrawalRateInput
+    );
+
+
+    /* CURRENT AGE VALIDATION */
+
+    if(
+        !Number.isInteger(
+            currentAge
+        ) ||
+        currentAge < 1 ||
+        currentAge >= 120
+    ){
+
+        showError(
+            "Please enter a valid current age between 1 and 119."
+        );
+
+        currentAgeInput.focus();
+
+        return;
+
+    }
+
+
+    /* RETIREMENT AGE VALIDATION */
+
+    if(
+        !Number.isInteger(
+            retirementAge
+        ) ||
+        retirementAge <=
+        currentAge ||
+        retirementAge > 120
+    ){
+
+        showError(
+            "Please enter a retirement age greater than your current age and no more than 120."
+        );
+
+        retirementAgeInput.focus();
+
+        return;
+
+    }
+
+
+    /* CURRENT SAVINGS VALIDATION */
+
+    if(
+        !Number.isFinite(
+            currentSavings
+        ) ||
+        currentSavings < 0 ||
+        currentSavings >
+        MAX_MONEY
+    ){
+
+        showError(
+            "Please enter current savings from 0 up to 1 trillion."
+        );
+
+        currentSavingsInput.focus();
+
+        return;
+
+    }
+
+
+    /* CONTRIBUTION VALIDATION */
+
+    if(
+        !Number.isFinite(
+            monthlyContribution
+        ) ||
+        monthlyContribution < 0 ||
+        monthlyContribution >
+        MAX_MONEY
+    ){
+
+        showError(
+            "Please enter a monthly contribution from 0 up to 1 trillion."
+        );
+
+        monthlyContributionInput
+        .focus();
+
+        return;
+
+    }
+
+
+    /* BOTH ZERO */
+
+    if(
+        currentSavings === 0 &&
+        monthlyContribution === 0
+    ){
+
+        showError(
+            "Please enter current savings or a monthly contribution greater than 0."
+        );
+
+        currentSavingsInput.focus();
+
+        return;
+
+    }
+
+
+    /* RETURN VALIDATION */
+
+    if(
+        !Number.isFinite(
+            annualReturn
+        ) ||
+        annualReturn <= -100 ||
+        annualReturn > 100
+    ){
+
+        showError(
+            "Please enter an expected annual return greater than -100% and no more than 100%."
+        );
+
+        annualReturnInput.focus();
+
+        return;
+
+    }
+
+
+    /* INFLATION VALIDATION */
+
+    if(
+        !Number.isFinite(
+            inflationRate
+        ) ||
+        inflationRate < 0 ||
+        inflationRate > 100
+    ){
+
+        showError(
+            "Please enter an inflation rate from 0% to 100%."
+        );
+
+        inflationRateInput.focus();
+
+        return;
+
+    }
+
+
+    /* WITHDRAWAL VALIDATION */
+
+    if(
+        withdrawalRate !== null &&
+        (
+            !Number.isFinite(
+                withdrawalRate
+            ) ||
+            withdrawalRate <= 0 ||
+            withdrawalRate > 100
+        )
+    ){
+
+        showError(
+            "Please enter a withdrawal rate greater than 0% and no more than 100%, or leave it blank."
+        );
+
+        withdrawalRateInput.focus();
+
+        return;
+
+    }
+
+
+    /* CALCULATIONS */
+
+    const years =
+    retirementAge -
+    currentAge;
+
+    const months =
+    years * 12;
+
+    const monthlyRate =
+    annualReturn /
+    100 /
+    12;
+
+
+    const projectedSavings =
+    projectBalance(
+        currentSavings,
+        monthlyContribution,
+        monthlyRate,
+        months
+    );
+
+
+    /* EXTREME RESULT CHECK */
+
+    if(
+        !Number.isFinite(
+            projectedSavings
+        ) ||
+        Math.abs(
+            projectedSavings
+        ) >
+        Number.MAX_SAFE_INTEGER
+    ){
+
+        showError(
+            "Unable to calculate a reliable result from these values. Please use smaller inputs."
+        );
+
+        return;
+
+    }
+
+
+    const futureContributions =
+    monthlyContribution *
+    months;
+
+
+    const totalContributions =
+    currentSavings +
+    futureContributions;
+
+
+    const investmentGrowth =
+    projectedSavings -
+    totalContributions;
+
+
+    const realValue =
+    projectedSavings /
+    Math.pow(
+        1 +
+        inflationRate / 100,
+        years
+    );
+
+
+    if(
+        !Number.isFinite(
+            realValue
+        )
+    ){
+
+        showError(
+            "Unable to calculate a reliable inflation-adjusted value from these inputs."
+        );
+
+        return;
+
+    }
+
+
+    /* MAIN RESULTS */
+
+    projectedSavingsEl
+    .textContent =
+    formatMoney(
+        projectedSavings
+    );
+
+
+    yearsResultEl
+    .textContent =
+    years.toLocaleString(
+        "en-US"
+    );
+
+
+    startingSavingsResultEl
+    .textContent =
+    formatMoney(
+        currentSavings
+    );
+
+
+    futureContributionsResultEl
+    .textContent =
+    formatMoney(
+        futureContributions
+    );
+
+
+    contributionsResultEl
+    .textContent =
+    formatMoney(
+        totalContributions
+    );
+
+
+    /* GROWTH OR LOSS */
+
+    if(
+        investmentGrowth < 0
+    ){
+
+        growthLabelEl
+        .textContent =
+        "Estimated Investment Loss";
+
+        growthResultEl
+        .textContent =
+        formatMoney(
+            Math.abs(
+                investmentGrowth
+            )
+        );
+
+    }
+
+    else{
+
+        growthLabelEl
+        .textContent =
+        "Estimated Investment Growth";
+
+        growthResultEl
+        .textContent =
+        formatMoney(
+            investmentGrowth
+        );
+
+    }
+
+
+    realValueResultEl
+    .textContent =
+    formatMoney(
+        realValue
+    );
+
+
+    /* WITHDRAWAL RESULTS */
+
+    if(
+        withdrawalRate === null
+    ){
+
+        annualIncomeBox
+        .style.display =
+        "none";
+
+        monthlyIncomeBox
+        .style.display =
+        "none";
+
+    }
+
+    else{
+
+        const annualIncome =
+        projectedSavings *
+        (
+            withdrawalRate /
+            100
+        );
+
+
+        annualIncomeResultEl
+        .textContent =
+        formatMoney(
+            annualIncome
+        );
+
+
+        monthlyIncomeResultEl
+        .textContent =
+        formatMoney(
+            annualIncome /
+            12
+        );
+
+
+        annualIncomeBox
+        .style.display =
+        "";
+
+
+        monthlyIncomeBox
+        .style.display =
+        "";
+
+    }
+
+
+    /* ASSUMPTIONS */
+
+    assumptionsSummary
+    .innerHTML =
+
+    "<strong>Projection assumptions:</strong> " +
+
+    formatPercent(
+        annualReturn
+    ) +
+
+    " annual return (approximately " +
+
+    formatPercent(
+        annualReturn / 12
+    ) +
+
+    " per month), " +
+
+    formatPercent(
+        inflationRate
+    ) +
+
+    " inflation, and monthly contributions added at the end of each month." +
+
+    (
+        withdrawalRate === null
+        ?
+        ""
+        :
+        " Illustrative retirement income uses a " +
+        formatPercent(
+            withdrawalRate
+        ) +
+        " annual withdrawal rate."
+    );
+
+
+    /* YEAR-BY-YEAR */
+
+    renderProjection(
+
+        buildYearlyProjection(
+            currentSavings,
+            monthlyContribution,
+            monthlyRate,
+            currentAge,
+            years
+        )
+
+    );
+
+
+    resultSection
+    .style.display =
+    "block";
+
+
+    resultSection
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+
+    setTimeout(
+        function(){
+
+            resultSection.focus({
+                preventScroll:true
+            });
+
+        },
+        350
+    );
+
 }
+
+
+/* CLEAR */
+
 function clearCalculator(){
- currencyInput.value="";
- currentAgeInput.value="";
- retirementAgeInput.value="";
- currentSavingsInput.value="";
- monthlyContributionInput.value="";
- annualReturnInput.value="";
- inflationRateInput.value="";
- withdrawalRateInput.value="";
- hideError();
- resultSection.style.display="none";
- projectionBody.innerHTML="";
- mobileBreakdown.innerHTML="";
- annualIncomeBox.style.display="";
- monthlyIncomeBox.style.display="";
- currencyInput.focus();
+
+    currencyInput.value =
+    "";
+
+    currentAgeInput.value =
+    "";
+
+    retirementAgeInput.value =
+    "";
+
+    currentSavingsInput.value =
+    "";
+
+    monthlyContributionInput.value =
+    "";
+
+    annualReturnInput.value =
+    "";
+
+    inflationRateInput.value =
+    "";
+
+    withdrawalRateInput.value =
+    "";
+
+
+    hideError();
+
+
+    resultSection
+    .style.display =
+    "none";
+
+
+    projectionBody
+    .innerHTML =
+    "";
+
+
+    mobileBreakdown
+    .innerHTML =
+    "";
+
+
+    assumptionsSummary
+    .innerHTML =
+    "";
+
+
+    annualIncomeBox
+    .style.display =
+    "";
+
+
+    monthlyIncomeBox
+    .style.display =
+    "";
+
+
+    growthLabelEl
+    .textContent =
+    "Estimated Investment Growth";
+
+
+    projectionToggle
+    .style.display =
+    "none";
+
+
+    projectionToggle
+    .setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+
+    mobileProjectionExpanded =
+    false;
+
+
+    lastProjectionRows =
+    [];
+
+
+    currencyInput.focus();
+
 }
-calculateBtn.addEventListener("click",calculateRetirement);
-clearBtn.addEventListener("click",clearCalculator);
-[currencyInput,currentAgeInput,retirementAgeInput,currentSavingsInput,monthlyContributionInput,annualReturnInput,inflationRateInput,withdrawalRateInput].forEach(function(input){
- input.addEventListener("keydown",function(event){if(event.key==="Enter")calculateRetirement();});
-});
+
+
+/* MOBILE SHOW FULL / SHOW LESS */
+
+projectionToggle
+.addEventListener(
+    "click",
+    function(){
+
+        mobileProjectionExpanded =
+        !mobileProjectionExpanded;
+
+        renderMobileProjection(
+            lastProjectionRows
+        );
+
+    }
+);
+
+
+/* BUTTON EVENTS */
+
+calculateBtn
+.addEventListener(
+    "click",
+    calculateRetirement
+);
+
+
+clearBtn
+.addEventListener(
+    "click",
+    clearCalculator
+);
+
+
+/* ENTER KEY SUPPORT */
+
+[
+    currencyInput,
+    currentAgeInput,
+    retirementAgeInput,
+    currentSavingsInput,
+    monthlyContributionInput,
+    annualReturnInput,
+    inflationRateInput,
+    withdrawalRateInput
+
+].forEach(
+
+    function(input){
+
+        input.addEventListener(
+            "keydown",
+            function(event){
+
+                if(
+                    event.key ===
+                    "Enter"
+                ){
+
+                    calculateRetirement();
+
+                }
+
+            }
+        );
+
+    }
+
+);
+
 })();
+
 </script>
+
 
 <script type="application/ld+json">
 {
@@ -391,5 +2420,53 @@ clearBtn.addEventListener("click",clearCalculator);
  "description":"Estimate projected retirement savings, total contributions, investment growth, inflation-adjusted value, and illustrative retirement income."
 }
 </script>
+
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+
+  {
+   "@type":"Question",
+   "name":"How much should I save for retirement?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"The amount depends on your retirement age, spending needs, other income, investment returns, inflation, and how long retirement lasts. Use the calculator to compare different saving scenarios."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"How does inflation affect retirement savings?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Inflation reduces purchasing power over time. The Savings in Today's Money result estimates what your projected future balance may be worth in today's terms."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"What happens if I retire later?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Retiring later generally gives your savings more time to grow and allows additional contributions, which can increase the projected balance."
+   }
+  },
+
+  {
+   "@type":"Question",
+   "name":"What rate of return should I use for retirement planning?",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"Use a reasonable long-term return assumption that fits your own investment mix and planning approach. Because future returns are uncertain, it can be useful to compare several different return-rate scenarios instead of relying on only one estimate."
+   }
+  }
+
+ ]
+}
+</script>
+
 </body>
 </html>
