@@ -920,7 +920,7 @@ Future Contributions
 <div class="result-box">
 
 <div class="result-box-label">
-Total Contributions
+Starting Savings + Contributions
 </div>
 
 <div class="result-box-value" id="contributionsResult">
@@ -935,7 +935,7 @@ Total Contributions
 <div
 class="result-box-label"
 id="growthLabel">
-Estimated Investment Growth
+Estimated Growth During Projection
 </div>
 
 <div
@@ -1026,7 +1026,7 @@ Age
 </th>
 
 <th scope="col">
-Total Contributions
+Starting Savings + Contributions
 </th>
 
 <th scope="col">
@@ -1081,7 +1081,7 @@ How Does This Retirement Calculator Work?
 </h2>
 
 <p>
-Enter your ages, current savings, monthly contribution, expected return, and inflation rate. The calculator projects how your savings could grow by retirement and shows the estimated value in today's money. Monthly contributions are assumed to be added at the end of each month.
+Enter your current age, retirement age, current savings, monthly contribution, expected return, and inflation rate. The calculator projects how your savings could grow by retirement and shows the estimated value in today's money. Monthly contributions are assumed to be added at the end of each month.
 </p>
 
 </section>
@@ -1519,7 +1519,7 @@ function createMobileCard(item){
 
     '<div class="year-stat">' +
 
-    '<span>Total Contributions</span>' +
+    '<span>Starting Savings + Contributions</span>' +
 
     '<strong>' +
     formatMoney(item.contributions) +
@@ -1578,9 +1578,9 @@ function renderMobileProjection(rows){
     const visibleRows =
     shouldCollapse
     ?
-    rows.slice(0,5)
+    rows.slice(0,3)
     .concat(
-        rows.slice(-5)
+        rows.slice(-3)
     )
     :
     rows;
@@ -1591,7 +1591,7 @@ function renderMobileProjection(rows){
 
             if(
                 shouldCollapse &&
-                index === 5
+                index === 3
             ){
 
                 const gap =
@@ -1603,11 +1603,11 @@ function renderMobileProjection(rows){
                 "projection-gap";
 
                 gap.textContent =
-                "Years " +
-                rows[5].age +
+                "Ages " +
+                rows[3].age +
                 "–" +
                 rows[
-                    rows.length - 6
+                    rows.length - 4
                 ].age +
                 " hidden";
 
@@ -2076,7 +2076,7 @@ function calculateRetirement(){
 
         growthLabelEl
         .textContent =
-        "Estimated Investment Loss";
+        "Estimated Loss During Projection";
 
         growthResultEl
         .textContent =
@@ -2092,7 +2092,7 @@ function calculateRetirement(){
 
         growthLabelEl
         .textContent =
-        "Estimated Investment Growth";
+        "Estimated Growth During Projection";
 
         growthResultEl
         .textContent =
@@ -2193,7 +2193,7 @@ function calculateRetirement(){
         ?
         ""
         :
-        " Illustrative retirement income uses a " +
+        " Illustrative retirement income is shown in future-value terms, is not adjusted for inflation, and uses a " +
         formatPercent(
             withdrawalRate
         ) +
@@ -2306,7 +2306,7 @@ function clearCalculator(){
 
     growthLabelEl
     .textContent =
-    "Estimated Investment Growth";
+    "Estimated Growth During Projection";
 
 
     projectionToggle
