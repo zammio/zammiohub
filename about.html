@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About ZammioHub | Free Online Calculators</title>
+
+  <meta
+    name="description"
+    content="Learn about ZammioHub, a collection of free, easy-to-use online calculators for finance, health, math and everyday calculations."
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://zammiohub.com/about.html">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --blue: #256be9;
+      --blue-dark: #1758ce;
+      --blue-soft: #edf4ff;
+      --navy: #101b32;
+      --text: #26364d;
+      --muted: #718096;
+      --border: #e1e7ef;
+      --section: #f7f9fc;
+      --footer: #101a31;
+      --max-width: 1180px;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    svg {
+      display: block;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid rgba(37,107,233,.25);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      position: relative;
+      z-index: 1000;
+      background: rgba(255,255,255,.98);
+      border-bottom: 1px solid #edf1f5;
+    }
+
+    .header-inner {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand-area {
+      position: relative;
+    }
+
+    .brand-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .brand-text {
+      font-size: 29px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      white-space: nowrap;
+    }
+
+    .brand-text span {
+      color: var(--blue);
+    }
+
+    .brand-chevron {
+      width: 17px;
+      height: 17px;
+      color: #697a91;
+      transition: transform .2s ease;
+    }
+
+    .brand-button.open .brand-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Brand dropdown */
+
+    .brand-dropdown {
+      position: absolute;
+      top: calc(100% + 22px);
+      left: 0;
+      width: min(690px, calc(100vw - 48px));
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 25px 70px rgba(15,35,65,.16);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px);
+
+      transition:
+        opacity .2s ease,
+        visibility .2s ease,
+        transform .2s ease;
+
+      z-index: 2000;
+    }
+
+    .brand-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-head {
+      padding-bottom: 14px;
+      margin-bottom: 17px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dropdown-head strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .dropdown-head span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dropdown-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+
+    .dropdown-title {
+      margin: 0 0 8px;
+      color: #8996a8;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .dropdown-link {
+      display: block;
+      margin-left: -7px;
+      padding: 7px;
+      border-radius: 8px;
+      color: #314158;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .dropdown-link:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    /* Desktop nav */
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .desktop-nav > a,
+    .calculators-button {
+      color: #314158;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .desktop-nav > a:hover,
+    .calculators-button:hover {
+      color: var(--blue);
+    }
+
+    .calculators-wrap {
+      position: relative;
+    }
+
+    .calculators-button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .calculators-button svg {
+      width: 15px;
+      height: 15px;
+      transition: transform .2s ease;
+    }
+
+    .calculators-button.open svg {
+      transform: rotate(180deg);
+    }
+
+    .calc-dropdown {
+      position: absolute;
+      top: calc(100% + 17px);
+      right: 0;
+      width: 420px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 25px 65px rgba(15,35,65,.15);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px);
+
+      transition:
+        opacity .2s ease,
+        visibility .2s ease,
+        transform .2s ease;
+
+      z-index: 2000;
+    }
+
+    .calc-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .calc-category + .calc-category {
+      border-top: 1px solid #edf1f5;
+    }
+
+    .category-button {
+      width: 100%;
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px;
+      background: transparent;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .category-button svg {
+      width: 15px;
+      height: 15px;
+      transition: transform .2s ease;
+    }
+
+    .category-button.open svg {
+      transform: rotate(180deg);
+    }
+
+    .category-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+    }
+
+    .category-panel.open {
+      max-height: 520px;
+    }
+
+    .tool-link {
+      display: block;
+      padding: 7px 11px;
+      border-radius: 8px;
+      color: #66768b;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .tool-link:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    /* Hamburger */
+
+    .menu-button {
+      display: none;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .menu-button svg {
+      width: 29px;
+      height: 29px;
+    }
+
+    .close-icon {
+      display: none;
+    }
+
+    .menu-button.open .menu-icon {
+      display: none;
+    }
+
+    .menu-button.open .close-icon {
+      display: block;
+    }
+
+    /* Mobile nav */
+
+    .mobile-nav {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      border-top: 1px solid #edf1f5;
+      transition: max-height .35s ease;
+    }
+
+    .mobile-nav.open {
+      max-height: 1400px;
+    }
+
+    .mobile-nav-inner {
+      padding: 8px 24px 20px;
+    }
+
+    .mobile-main-link,
+    .mobile-calc-button,
+    .mobile-category-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .mobile-main-link,
+    .mobile-calc-button {
+      min-height: 54px;
+      padding: 0 5px;
+      border-bottom: 1px solid #edf1f5;
+      color: #26364d;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .mobile-calc-button svg,
+    .mobile-category-button svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .2s ease;
+    }
+
+    .mobile-calc-button.open svg,
+    .mobile-category-button.open svg {
+      transform: rotate(180deg);
+    }
+
+    .mobile-calc-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .mobile-calc-panel.open {
+      max-height: 1100px;
+    }
+
+    .mobile-category {
+      margin-left: 9px;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .mobile-category-button {
+      min-height: 47px;
+      padding: 0 7px;
+      color: #4d5e74;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .mobile-category-panel {
+      max-height: 0;
+      overflow: hidden;
+      padding-left: 10px;
+      transition: max-height .3s ease;
+    }
+
+    .mobile-category-panel.open {
+      max-height: 600px;
+    }
+
+    .mobile-tool-link {
+      display: block;
+      padding: 8px 10px;
+      color: #718096;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .about-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 82px 0 76px;
+      background:
+        radial-gradient(
+          circle at 88% 20%,
+          rgba(37,107,233,.13),
+          transparent 34%
+        ),
+        linear-gradient(
+          180deg,
+          #fff 0%,
+          #f7faff 100%
+        );
+      border-bottom: 1px solid #edf1f5;
+    }
+
+    .about-hero::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: -130px;
+      bottom: -170px;
+      border-radius: 50%;
+      background: rgba(37,107,233,.04);
+      pointer-events: none;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 27px;
+      color: #718096;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .breadcrumb a {
+      color: var(--blue);
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb svg {
+      width: 14px;
+      height: 14px;
+      color: #9aa6b7;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      margin-bottom: 17px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .about-hero h1 {
+      max-width: 800px;
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(46px,6vw,68px);
+      line-height: 1.05;
+      letter-spacing: -2.7px;
+      font-weight: 800;
+    }
+
+    .about-hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-intro {
+      max-width: 800px;
+      margin: 24px 0 0;
+      color: #65758a;
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       MAIN ABOUT CONTENT
+    ========================= */
+
+    .about-main {
+      padding: 80px 0 90px;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .content-section {
+      padding-bottom: 46px;
+      margin-bottom: 46px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .content-section:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .content-section h2 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: 30px;
+      line-height: 1.25;
+      letter-spacing: -.8px;
+    }
+
+    .content-section p {
+      margin: 0 0 16px;
+      color: #627287;
+      font-size: 17px;
+    }
+
+    .content-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .text-link {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Categories */
+
+    .category-cards {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 15px;
+      margin-top: 26px;
+    }
+
+    .about-category-card {
+      display: block;
+      padding: 21px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: #fff;
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .about-category-card:hover {
+      transform: translateY(-2px);
+      border-color: #bfd3f7;
+      box-shadow: 0 10px 30px rgba(30,55,90,.07);
+    }
+
+    .category-icon {
+      width: 43px;
+      height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .category-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .about-category-card h3 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .about-category-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    /* Approach points */
+
+    .approach-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .approach-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 17px 18px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .check-icon {
+      width: 29px;
+      height: 29px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .check-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .approach-item strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--navy);
+      font-size: 16px;
+    }
+
+    .approach-item p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Notice */
+
+    .information-notice {
+      padding: 23px;
+      border: 1px solid #cfe0ff;
+      border-radius: 17px;
+      background: #f5f9ff;
+    }
+
+    .information-notice h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .information-notice p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+
+    .about-sidebar {
+      position: sticky;
+      top: 25px;
+    }
+
+    .sidebar-card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 12px 35px rgba(30,55,90,.06);
+    }
+
+    .sidebar-card + .sidebar-card {
+      margin-top: 18px;
+    }
+
+    .sidebar-card h3 {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #edf1f5;
+      color: #627287;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .sidebar-link:last-child {
+      border-bottom: 0;
+    }
+
+    .sidebar-link:hover {
+      color: var(--blue);
+    }
+
+    .sidebar-link span:last-child {
+      color: var(--blue);
+    }
+
+    .sidebar-card p {
+      margin: 0 0 17px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .sidebar-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 47px;
+      padding: 0 17px;
+      border-radius: 12px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+    .sidebar-button:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .about-cta-section {
+      padding: 0 0 90px;
+    }
+
+    .about-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 50px;
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          135deg,
+          #12213c 0%,
+          #173566 55%,
+          #1e63d9 100%
+        );
+      color: #fff;
+    }
+
+    .about-cta::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      right: -70px;
+      top: -100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+
+    .about-cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .about-cta h2 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
+
+    .about-cta p {
+      margin: 13px 0 25px;
+      color: #d7e4f8;
+      font-size: 16px;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 49px;
+      padding: 0 21px;
+      border-radius: 12px;
+      background: #fff;
+      color: #1758ce;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .cta-button svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .2s ease;
+    }
+
+    .cta-button:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .site-footer {
+      background: var(--footer);
+      color: #fff;
+    }
+
+    .footer-inner {
+      padding: 64px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-logo {
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .footer-logo span {
+      color: var(--blue);
+    }
+
+    .footer-brand p {
+      max-width: 370px;
+      margin: 19px 0 0;
+      color: #9ba9bd;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .footer-column h3 {
+      margin: 1px 0 17px;
+      font-size: 16px;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-bottom: 13px;
+      color: #9ba9bd;
+      font-size: 15px;
+    }
+
+    .footer-column a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid #24324c;
+      color: #7f8da3;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 980px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-button {
+        display: flex;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .about-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 18px;
+      }
+
+      .sidebar-card + .sidebar-card {
+        margin-top: 0;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(calc(100% - 30px), var(--max-width));
+      }
+
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .brand-text {
+        font-size: 24px;
+      }
+
+      .brand-dropdown {
+        position: fixed;
+        top: 78px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+        max-height: calc(100vh - 95px);
+        overflow-y: auto;
+        padding: 18px;
+      }
+
+      .dropdown-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .about-hero {
+        padding: 48px 0 52px;
+      }
+
+      .breadcrumb {
+        margin-bottom: 23px;
+        font-size: 13px;
+      }
+
+      .hero-label {
+        margin-bottom: 15px;
+        font-size: 10.5px;
+      }
+
+      .about-hero h1 {
+        font-size: 41px;
+        line-height: 1.08;
+        letter-spacing: -1.8px;
+      }
+
+      .hero-intro {
+        margin-top: 19px;
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .about-main {
+        padding: 55px 0 65px;
+      }
+
+      .about-layout {
+        gap: 37px;
+      }
+
+      .content-section {
+        padding-bottom: 34px;
+        margin-bottom: 34px;
+      }
+
+      .content-section h2 {
+        margin-bottom: 13px;
+        font-size: 25px;
+      }
+
+      .content-section p {
+        font-size: 15.5px;
+      }
+
+      .category-cards {
+        grid-template-columns: 1fr;
+        gap: 11px;
+        margin-top: 21px;
+      }
+
+      .about-category-card {
+        padding: 18px;
+      }
+
+      .category-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .approach-list {
+        margin-top: 20px;
+        gap: 10px;
+      }
+
+      .approach-item {
+        padding: 15px;
+      }
+
+      .information-notice {
+        padding: 19px;
+      }
+
+      .about-sidebar {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .sidebar-card {
+        padding: 20px;
+      }
+
+      .about-cta-section {
+        padding-bottom: 65px;
+      }
+
+      .about-cta {
+        padding: 31px 23px;
+        border-radius: 21px;
+      }
+
+      .about-cta h2 {
+        font-size: 27px;
+      }
+
+      .footer-inner {
+        padding-top: 50px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 25px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .copyright {
+        margin-top: 38px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .container {
+        width: min(calc(100% - 24px),var(--max-width));
+      }
+
+      .about-hero h1 {
+        font-size: 38px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="site-header">
+
+  <div class="container header-inner">
+
+    <div class="brand-area">
+
+      <button
+        class="brand-button"
+        id="brandButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="brandDropdown"
+      >
+        <span class="brand-text">
+          Zammio<span>Hub</span>
+        </span>
+
+        <svg
+          class="brand-chevron"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </button>
+
+      <div
+        class="brand-dropdown"
+        id="brandDropdown"
+      >
+
+        <div class="dropdown-head">
+          <strong>Explore ZammioHub</strong>
+          <span>Calculators and important site pages.</span>
+        </div>
+
+        <div class="dropdown-grid">
+
+          <div>
+            <p class="dropdown-title">Categories</p>
+
+            <a class="dropdown-link" href="/#calculators">
+              Finance Calculators
+            </a>
+
+            <a class="dropdown-link" href="/#calculators">
+              Health Calculators
+            </a>
+
+            <a class="dropdown-link" href="/#calculators">
+              Math Calculators
+            </a>
+
+            <a class="dropdown-link" href="/#calculators">
+              Everyday Calculators
+            </a>
+          </div>
+
+          <div>
+            <p class="dropdown-title">Popular Tools</p>
+
+            <a class="dropdown-link"
+               href="/calculators/age-calculator.html">
+              Age Calculator
+            </a>
+
+            <a class="dropdown-link"
+               href="/calculators/bmi-calculator.html">
+              BMI Calculator
+            </a>
+
+            <a class="dropdown-link"
+               href="/calculators/emi-calculator.html">
+              EMI Calculator
+            </a>
+
+            <a class="dropdown-link"
+               href="/calculators/mortgage-calculator.html">
+              Mortgage Calculator
+            </a>
+          </div>
+
+          <div>
+            <p class="dropdown-title">Pages</p>
+
+            <a class="dropdown-link" href="/about.html">
+              About Us
+            </a>
+
+            <a class="dropdown-link" href="/contact.html">
+              Contact Us
+            </a>
+
+            <a class="dropdown-link" href="/privacy-policy.html">
+              Privacy Policy
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <div class="calculators-wrap">
+
+        <button
+          class="calculators-button"
+          id="calculatorsButton"
+          type="button"
+          aria-expanded="false"
+        >
+          Calculators
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </button>
+
+        <div
+          class="calc-dropdown"
+          id="calcDropdown"
+        >
+
+          <!-- Finance -->
+
+          <div class="calc-category">
+
+            <button class="category-button" type="button">
+              Finance
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/auto-loan-calculator.html">
+                Auto Loan Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/compound-interest-calculator.html">
+                Compound Interest Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/emi-calculator.html">
+                EMI Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/loan-payment-calculator.html">
+                Loan Payment Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/mortgage-calculator.html">
+                Mortgage Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/retirement-calculator.html">
+                Retirement Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/salary-calculator.html">
+                Salary Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/tax-calculator.html">
+                Tax Calculator
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Health -->
+
+          <div class="calc-category">
+
+            <button class="category-button" type="button">
+              Health
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/bmi-calculator.html">
+                BMI Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/calorie-calculator.html">
+                Calorie Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/pregnancy-calculator.html">
+                Pregnancy Calculator
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Math -->
+
+          <div class="calc-category">
+
+            <button class="category-button" type="button">
+              Math
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/percentage-calculator.html">
+                Percentage Calculator
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Everyday -->
+
+          <div class="calc-category">
+
+            <button class="category-button" type="button">
+              Everyday
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/age-calculator.html">
+                Age Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/discount-calculator.html">
+                Discount Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/tip-calculator.html">
+                Tip Calculator
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+
+    </nav>
+
+    <!-- Mobile Menu Button -->
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+
+      <svg
+        class="menu-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.3"
+        stroke-linecap="round"
+      >
+        <path d="M4 6h16"/>
+        <path d="M4 12h16"/>
+        <path d="M4 18h16"/>
+      </svg>
+
+      <svg
+        class="close-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.3"
+        stroke-linecap="round"
+      >
+        <path d="M6 6l12 12"/>
+        <path d="M18 6 6 18"/>
+      </svg>
+
+    </button>
+
+  </div>
+
+  <!-- Mobile Navigation -->
+
+  <nav
+    class="mobile-nav"
+    id="mobileNav"
+    aria-label="Mobile navigation"
+  >
+
+    <div class="mobile-nav-inner">
+
+      <button
+        class="mobile-calc-button"
+        id="mobileCalcButton"
+        type="button"
+      >
+        Calculators
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+        >
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </button>
+
+      <div
+        class="mobile-calc-panel"
+        id="mobileCalcPanel"
+      >
+
+        <!-- Finance -->
+
+        <div class="mobile-category">
+
+          <button class="mobile-category-button" type="button">
+            Finance
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/auto-loan-calculator.html">
+              Auto Loan Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/compound-interest-calculator.html">
+              Compound Interest Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/emi-calculator.html">
+              EMI Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/loan-payment-calculator.html">
+              Loan Payment Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/mortgage-calculator.html">
+              Mortgage Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/retirement-calculator.html">
+              Retirement Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/salary-calculator.html">
+              Salary Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/tax-calculator.html">
+              Tax Calculator
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Health -->
+
+        <div class="mobile-category">
+
+          <button class="mobile-category-button" type="button">
+            Health
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/bmi-calculator.html">
+              BMI Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/calorie-calculator.html">
+              Calorie Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/pregnancy-calculator.html">
+              Pregnancy Calculator
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Math -->
+
+        <div class="mobile-category">
+
+          <button class="mobile-category-button" type="button">
+            Math
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/percentage-calculator.html">
+              Percentage Calculator
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Everyday -->
+
+        <div class="mobile-category">
+
+          <button class="mobile-category-button" type="button">
+            Everyday
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/age-calculator.html">
+              Age Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/discount-calculator.html">
+              Discount Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/tip-calculator.html">
+              Tip Calculator
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+      <a class="mobile-main-link" href="/about.html">
+        About Us <span>→</span>
+      </a>
+
+      <a class="mobile-main-link" href="/contact.html">
+        Contact Us <span>→</span>
+      </a>
+
+      <a class="mobile-main-link" href="/privacy-policy.html">
+        Privacy Policy <span>→</span>
+      </a>
+
+    </div>
+  </nav>
+
+</header>
+
+
+<main>
+
+  <!-- =========================
+       ABOUT HERO
+  ========================= -->
+
+  <section class="about-hero">
+
+    <div class="container">
+
+      <nav
+        class="breadcrumb"
+        aria-label="Breadcrumb"
+      >
+        <a href="/">Home</a>
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+
+        <span>About Us</span>
+      </nav>
+
+      <div class="hero-label">
+        ABOUT ZAMMIOHUB
+      </div>
+
+      <h1>
+        Simple calculations.
+        <span>Useful answers.</span>
+      </h1>
+
+      <p class="hero-intro">
+        ZammioHub is an independent online calculator platform
+        built to make common finance, health, math and everyday
+        calculations easier to understand and quicker to complete.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================= -->
+
+  <section class="about-main">
+
+    <div class="container about-layout">
+
+      <article>
+
+        <!-- Our Purpose -->
+
+        <section
+          class="content-section"
+          id="purpose"
+        >
+
+          <h2>Our Purpose</h2>
+
+          <p>
+            Everyday calculations should not have to feel complicated.
+            ZammioHub brings useful calculators together in one place
+            so you can enter the information you know and get a clear
+            result without unnecessary steps.
+          </p>
+
+          <p>
+            Our goal is to provide practical tools with simple inputs,
+            understandable results and a clean experience across
+            mobile phones, tablets and desktop computers.
+          </p>
+
+        </section>
+
+
+        <!-- What You Can Calculate -->
+
+        <section
+          class="content-section"
+          id="calculations"
+        >
+
+          <h2>What You Can Calculate</h2>
+
+          <p>
+            ZammioHub includes calculators for a range of common needs.
+            Our collection continues to grow as we add tools that can
+            provide practical value to users.
+          </p>
+
+          <div class="category-cards">
+
+            <a
+              class="about-category-card"
+              href="/#calculators"
+            >
+
+              <div class="category-icon">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="6" width="18" height="12" rx="2"/>
+                  <circle cx="12" cy="12" r="2.5"/>
+                </svg>
+
+              </div>
+
+              <h3>Finance</h3>
+
+              <p>
+                Loans, mortgages, EMI, tax, salary,
+                retirement and interest calculations.
+              </p>
+
+            </a>
+
+
+            <a
+              class="about-category-card"
+              href="/#calculators"
+            >
+
+              <div class="category-icon">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/>
+                </svg>
+
+              </div>
+
+              <h3>Health</h3>
+
+              <p>
+                BMI, calorie and pregnancy-related
+                estimation tools.
+              </p>
+
+            </a>
+
+
+            <a
+              class="about-category-card"
+              href="/#calculators"
+            >
+
+              <div class="category-icon">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="m19 5-14 14"/>
+                  <circle cx="6.5" cy="6.5" r="2.5"/>
+                  <circle cx="17.5" cy="17.5" r="2.5"/>
+                </svg>
+
+              </div>
+
+              <h3>Math</h3>
+
+              <p>
+                Quick percentage and other useful
+                mathematical calculations.
+              </p>
+
+            </a>
+
+
+            <a
+              class="about-category-card"
+              href="/#calculators"
+            >
+
+              <div class="category-icon">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3 2"/>
+                </svg>
+
+              </div>
+
+              <h3>Everyday</h3>
+
+              <p>
+                Age, discounts, tips and other
+                practical day-to-day calculations.
+              </p>
+
+            </a>
+
+          </div>
+
+        </section>
+
+
+        <!-- Approach -->
+
+        <section
+          class="content-section"
+          id="approach"
+        >
+
+          <h2>Our Approach</h2>
+
+          <p>
+            We focus on making calculators straightforward and useful
+            rather than adding unnecessary complexity.
+          </p>
+
+          <div class="approach-list">
+
+            <div class="approach-item">
+
+              <div class="check-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.3"
+                >
+                  <path d="m6 12 4 4 8-8"/>
+                </svg>
+              </div>
+
+              <div>
+                <strong>Simple to use</strong>
+                <p>
+                  Clear inputs and results help make each tool
+                  easier to understand.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="approach-item">
+
+              <div class="check-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.3"
+                >
+                  <path d="m6 12 4 4 8-8"/>
+                </svg>
+              </div>
+
+              <div>
+                <strong>Mobile friendly</strong>
+                <p>
+                  Our tools are designed to work across phones,
+                  tablets and larger screens.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="approach-item">
+
+              <div class="check-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.3"
+                >
+                  <path d="m6 12 4 4 8-8"/>
+                </svg>
+              </div>
+
+              <div>
+                <strong>No account required</strong>
+                <p>
+                  You can use our current calculators without
+                  creating a ZammioHub account.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="approach-item">
+
+              <div class="check-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.3"
+                >
+                  <path d="m6 12 4 4 8-8"/>
+                </svg>
+              </div>
+
+              <div>
+                <strong>Clear information</strong>
+                <p>
+                  Where useful, we explain formulas, assumptions
+                  and what calculator results mean.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- Accuracy -->
+
+        <section
+          class="content-section"
+          id="accuracy"
+        >
+
+          <h2>Accuracy &amp; Transparency</h2>
+
+          <p>
+            We aim to build our calculators using commonly accepted
+            formulas and calculation methods. We also work to present
+            results in a clear way so users can understand how a
+            calculation relates to the information they entered.
+          </p>
+
+          <p>
+            However, calculator results can depend on the accuracy of
+            your inputs, rounding, assumptions and the formula or method
+            used. Real-world figures may also vary because of factors
+            that a general online calculator cannot account for.
+          </p>
+
+          <p>
+            If you notice a possible calculation issue or unclear
+            information, we encourage you to
+            <a class="text-link" href="/contact.html">
+              contact us
+            </a>.
+          </p>
+
+        </section>
+
+
+        <!-- Free tools -->
+
+        <section
+          class="content-section"
+          id="access"
+        >
+
+          <h2>Free &amp; Accessible Tools</h2>
+
+          <p>
+            ZammioHub's current calculators are available to use
+            without creating an account. We aim to keep the core
+            experience quick and accessible, so users can get to the
+            calculation they need without unnecessary barriers.
+          </p>
+
+          <p>
+            As ZammioHub grows, we plan to continue improving existing
+            calculators and expanding the collection with useful new
+            tools.
+          </p>
+
+        </section>
+
+
+        <!-- Important information -->
+
+        <section
+          class="content-section"
+          id="important-information"
+        >
+
+          <h2>Important Information</h2>
+
+          <div class="information-notice">
+
+            <h3>Calculator results are informational</h3>
+
+            <p>
+              ZammioHub calculators provide general information and
+              estimates. They are not a substitute for professional
+              financial, tax, medical, legal or other qualified advice.
+              For decisions that may significantly affect your health,
+              finances or legal position, verify the relevant
+              information with an appropriate professional or official
+              source. Please see our
+              <a class="text-link" href="/disclaimer.html">
+                Disclaimer
+              </a>
+              for more information.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- Contact -->
+
+        <section
+          class="content-section"
+          id="contact"
+        >
+
+          <h2>Help Us Improve</h2>
+
+          <p>
+            Useful tools improve when users can report problems and
+            share feedback. If you find an error, have difficulty using
+            a calculator or would like to suggest a useful tool, you can
+            reach us through our Contact Us page.
+          </p>
+
+          <p>
+            <a
+              class="text-link"
+              href="/contact.html"
+            >
+              Contact ZammioHub →
+            </a>
+          </p>
+
+        </section>
+
+      </article>
+
+
+      <!-- =====================
+           SIDEBAR
+      ====================== -->
+
+      <aside class="about-sidebar">
+
+        <div class="sidebar-card">
+
+          <h3>On this page</h3>
+
+          <a class="sidebar-link" href="#purpose">
+            <span>Our Purpose</span>
+            <span>→</span>
+          </a>
+
+          <a class="sidebar-link" href="#calculations">
+            <span>What You Can Calculate</span>
+            <span>→</span>
+          </a>
+
+          <a class="sidebar-link" href="#approach">
+            <span>Our Approach</span>
+            <span>→</span>
+          </a>
+
+          <a class="sidebar-link" href="#accuracy">
+            <span>Accuracy &amp; Transparency</span>
+            <span>→</span>
+          </a>
+
+          <a class="sidebar-link" href="#important-information">
+            <span>Important Information</span>
+            <span>→</span>
+          </a>
+
+        </div>
+
+
+        <div class="sidebar-card">
+
+          <h3>Explore our tools</h3>
+
+          <p>
+            Browse ZammioHub's growing collection of online
+            calculators.
+          </p>
+
+          <a
+            class="sidebar-button"
+            href="/#calculators"
+          >
+            View Calculators →
+          </a>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CTA
+  ========================= -->
+
+  <section class="about-cta-section">
+
+    <div class="container">
+
+      <div class="about-cta">
+
+        <div class="about-cta-content">
+
+          <h2>
+            Find the calculator you need.
+          </h2>
+
+          <p>
+            Explore our finance, health, math and everyday
+            calculators and get started in seconds.
+          </p>
+
+          <a
+            class="cta-button"
+            href="/#calculators"
+          >
+            Explore Calculators
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            >
+              <path d="M5 12h14"/>
+              <path d="m13 6 6 6-6 6"/>
+            </svg>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+  <div class="container footer-inner">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <a class="footer-logo" href="/">
+          Zammio<span>Hub</span>
+        </a>
+
+        <p>
+          Free online calculators for finance, health,
+          math and everyday needs.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Quick Links</h3>
+
+        <a href="/about.html">About Us</a>
+        <a href="/contact.html">Contact Us</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Legal</h3>
+
+        <a href="/privacy-policy.html">
+          Privacy Policy
+        </a>
+
+        <a href="/terms-of-service.html">
+          Terms of Service
+        </a>
+
+        <a href="/disclaimer.html">
+          Disclaimer
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © <span id="currentYear"></span>
+      ZammioHub. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  "use strict";
+
+  /* =========================
+     ELEMENTS
+  ========================= */
+
+  const brandButton =
+    document.getElementById("brandButton");
+
+  const brandDropdown =
+    document.getElementById("brandDropdown");
+
+  const calculatorsButton =
+    document.getElementById("calculatorsButton");
+
+  const calcDropdown =
+    document.getElementById("calcDropdown");
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mobileNav =
+    document.getElementById("mobileNav");
+
+  const mobileCalcButton =
+    document.getElementById("mobileCalcButton");
+
+  const mobileCalcPanel =
+    document.getElementById("mobileCalcPanel");
+
+  const currentYear =
+    document.getElementById("currentYear");
+
+
+  /* =========================
+     BRAND DROPDOWN
+  ========================= */
+
+  function closeBrandDropdown() {
+
+    brandButton.classList.remove("open");
+    brandDropdown.classList.remove("open");
+
+    brandButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  }
+
+
+  function openBrandDropdown() {
+
+    closeCalculatorDropdown();
+    closeMobileMenu();
+
+    brandButton.classList.add("open");
+    brandDropdown.classList.add("open");
+
+    brandButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+  }
+
+
+  brandButton.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      if (brandDropdown.classList.contains("open")) {
+        closeBrandDropdown();
+      } else {
+        openBrandDropdown();
+      }
+
+    }
+  );
+
+
+  brandDropdown.addEventListener(
+    "click",
+    function (event) {
+      event.stopPropagation();
+    }
+  );
+
+
+  /* =========================
+     DESKTOP CALCULATORS
+  ========================= */
+
+  function closeCalculatorDropdown() {
+
+    calculatorsButton.classList.remove("open");
+    calcDropdown.classList.remove("open");
+
+    calculatorsButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  }
+
+
+  calculatorsButton.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      closeBrandDropdown();
+
+      const isOpen =
+        calcDropdown.classList.contains("open");
+
+      if (isOpen) {
+
+        closeCalculatorDropdown();
+
+      } else {
+
+        calculatorsButton.classList.add("open");
+        calcDropdown.classList.add("open");
+
+        calculatorsButton.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+      }
+
+    }
+  );
+
+
+  calcDropdown.addEventListener(
+    "click",
+    function (event) {
+      event.stopPropagation();
+    }
+  );
+
+
+  document
+    .querySelectorAll(".category-button")
+    .forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const panel =
+            button.nextElementSibling;
+
+          const isOpen =
+            panel.classList.contains("open");
+
+
+          document
+            .querySelectorAll(".category-panel")
+            .forEach(function (otherPanel) {
+              otherPanel.classList.remove("open");
+            });
+
+
+          document
+            .querySelectorAll(".category-button")
+            .forEach(function (otherButton) {
+              otherButton.classList.remove("open");
+            });
+
+
+          if (!isOpen) {
+            panel.classList.add("open");
+            button.classList.add("open");
+          }
+
+        }
+      );
+
+    });
+
+
+  /* =========================
+     MOBILE MENU
+  ========================= */
+
+  function closeMobileMenu() {
+
+    menuButton.classList.remove("open");
+    mobileNav.classList.remove("open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Open navigation menu"
+    );
+  }
+
+
+  function openMobileMenu() {
+
+    closeBrandDropdown();
+    closeCalculatorDropdown();
+
+    menuButton.classList.add("open");
+    mobileNav.classList.add("open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Close navigation menu"
+    );
+  }
+
+
+  menuButton.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      if (mobileNav.classList.contains("open")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+
+    }
+  );
+
+
+  /* =========================
+     MOBILE CALCULATORS
+  ========================= */
+
+  mobileCalcButton.addEventListener(
+    "click",
+    function () {
+
+      const isOpen =
+        mobileCalcPanel.classList.contains("open");
+
+      mobileCalcPanel.classList.toggle(
+        "open",
+        !isOpen
+      );
+
+      mobileCalcButton.classList.toggle(
+        "open",
+        !isOpen
+      );
+
+    }
+  );
+
+
+  /* =========================
+     MOBILE CATEGORY ACCORDIONS
+  ========================= */
+
+  document
+    .querySelectorAll(".mobile-category-button")
+    .forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const panel =
+            button.nextElementSibling;
+
+          const isOpen =
+            panel.classList.contains("open");
+
+
+          document
+            .querySelectorAll(".mobile-category-panel")
+            .forEach(function (otherPanel) {
+              otherPanel.classList.remove("open");
+            });
+
+
+          document
+            .querySelectorAll(".mobile-category-button")
+            .forEach(function (otherButton) {
+              otherButton.classList.remove("open");
+            });
+
+
+          if (!isOpen) {
+            panel.classList.add("open");
+            button.classList.add("open");
+          }
+
+        }
+      );
+
+    });
+
+
+  /* =========================
+     MOBILE LINKS
+  ========================= */
+
+  document
+    .querySelectorAll(".mobile-nav a")
+    .forEach(function (link) {
+
+      link.addEventListener(
+        "click",
+        function () {
+          closeMobileMenu();
+        }
+      );
+
+    });
+
+
+  /* =========================
+     OUTSIDE CLICK
+  ========================= */
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !brandDropdown.contains(event.target) &&
+        !brandButton.contains(event.target)
+      ) {
+        closeBrandDropdown();
+      }
+
+
+      if (
+        !calcDropdown.contains(event.target) &&
+        !calculatorsButton.contains(event.target)
+      ) {
+        closeCalculatorDropdown();
+      }
+
+    }
+  );
+
+
+  /* =========================
+     ESCAPE
+  ========================= */
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (event.key === "Escape") {
+
+        closeBrandDropdown();
+        closeCalculatorDropdown();
+        closeMobileMenu();
+
+      }
+
+    }
+  );
+
+
+  /* =========================
+     RESIZE
+  ========================= */
+
+  window.addEventListener(
+    "resize",
+    function () {
+
+      if (window.innerWidth > 980) {
+        closeMobileMenu();
+      }
+
+    }
+  );
+
+
+  /* =========================
+     YEAR
+  ========================= */
+
+  currentYear.textContent =
+    new Date().getFullYear();
+
+});
+</script>
+
+</body>
+</html>
