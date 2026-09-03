@@ -1,15 +1,8 @@
-/* =========================================================
-   ZAMMIOHUB HOMEPAGE
-   Dynamic Calculator Rendering
-   Search + Filters + Mobile Navigation
-   ========================================================= */
-
-
 document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     1. CALCULATOR DATABASE
+     1. CENTRAL TOOLS DATABASE
      ======================================================= */
 
   const tools = [
@@ -154,63 +147,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     2. ELEMENTS
-     ======================================================= */
-
-  const toolsGrid =
-    document.getElementById("toolsGrid");
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  const clearSearch =
-    document.getElementById("clearSearch");
-
-  const noResults =
-    document.getElementById("noResults");
-
-  const resetFilters =
-    document.getElementById("resetFilters");
-
-  const filterButtons =
-    document.querySelectorAll(".filter-button");
-
-  const menuButton =
-    document.getElementById("menuButton");
-
-  const mobileMenu =
-    document.getElementById("mobileMenu");
-
-  const currentYear =
-    document.getElementById("currentYear");
-
-
-  let activeCategory = "All";
-
-
-
-  /* =======================================================
-     3. INLINE SVG ICON LIBRARY
+     2. SVG ICONS
      ======================================================= */
 
   const icons = {
 
-
     calendar: `
       <svg viewBox="0 0 24 24">
-        <rect
-          x="3"
-          y="5"
-          width="18"
-          height="16"
-          rx="2"
-        ></rect>
+        <rect x="3" y="5" width="18" height="16" rx="2"></rect>
         <path d="M16 3v4"></path>
         <path d="M8 3v4"></path>
         <path d="M3 10h18"></path>
       </svg>
     `,
-
 
     car: `
       <svg viewBox="0 0 24 24">
@@ -222,20 +171,17 @@ document.addEventListener("DOMContentLoaded", function () {
       </svg>
     `,
 
-
     activity: `
       <svg viewBox="0 0 24 24">
         <path d="M3 12h4l2-6 4 12 2-6h6"></path>
       </svg>
     `,
 
-
     flame: `
       <svg viewBox="0 0 24 24">
         <path d="M12 22c4 0 7-3 7-7 0-5-4-8-6-12-1 4-5 6-5 11 0 2 1 4 4 5"></path>
       </svg>
     `,
-
 
     chart: `
       <svg viewBox="0 0 24 24">
@@ -245,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
       </svg>
     `,
 
-
     percent: `
       <svg viewBox="0 0 24 24">
         <path d="m19 5-14 14"></path>
@@ -254,35 +199,21 @@ document.addEventListener("DOMContentLoaded", function () {
       </svg>
     `,
 
-
     card: `
       <svg viewBox="0 0 24 24">
-        <rect
-          x="3"
-          y="5"
-          width="18"
-          height="14"
-          rx="2"
-        ></rect>
+        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
         <path d="M3 10h18"></path>
         <path d="M7 15h4"></path>
       </svg>
     `,
 
-
     coins: `
       <svg viewBox="0 0 24 24">
-        <ellipse
-          cx="12"
-          cy="7"
-          rx="7"
-          ry="3"
-        ></ellipse>
+        <ellipse cx="12" cy="7" rx="7" ry="3"></ellipse>
         <path d="M5 7v5c0 2 3 3 7 3s7-1 7-3V7"></path>
         <path d="M5 12v5c0 2 3 3 7 3s7-1 7-3v-5"></path>
       </svg>
     `,
-
 
     home: `
       <svg viewBox="0 0 24 24">
@@ -292,13 +223,11 @@ document.addEventListener("DOMContentLoaded", function () {
       </svg>
     `,
 
-
     heart: `
       <svg viewBox="0 0 24 24">
         <path d="M20.8 4.6c-2-2-5.2-2-7.2 0L12 6.2l-1.6-1.6c-2-2-5.2-2-7.2 0s-2 5.2 0 7.2L12 20l8.8-8.2c2-2 2-5.2 0-7.2z"></path>
       </svg>
     `,
-
 
     landmark: `
       <svg viewBox="0 0 24 24">
@@ -312,14 +241,12 @@ document.addEventListener("DOMContentLoaded", function () {
       </svg>
     `,
 
-
     wallet: `
       <svg viewBox="0 0 24 24">
         <path d="M4 6h14a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path>
         <path d="M16 11h5v4h-5a2 2 0 0 1 0-4z"></path>
       </svg>
     `,
-
 
     receipt: `
       <svg viewBox="0 0 24 24">
@@ -330,19 +257,13 @@ document.addEventListener("DOMContentLoaded", function () {
       </svg>
     `,
 
-
     dollar: `
       <svg viewBox="0 0 24 24">
-        <circle
-          cx="12"
-          cy="12"
-          r="9"
-        ></circle>
+        <circle cx="12" cy="12" r="9"></circle>
         <path d="M12 6v12"></path>
         <path d="M16 9h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"></path>
       </svg>
     `,
-
 
     arrow: `
       <svg viewBox="0 0 24 24">
@@ -356,7 +277,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     4. CREATE CARD
+     3. ELEMENTS
+     ======================================================= */
+
+  const toolsGrid =
+    document.getElementById("toolsGrid");
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  const clearSearch =
+    document.getElementById("clearSearch");
+
+  const autocompleteList =
+    document.getElementById("autocompleteList");
+
+  const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+  const noResults =
+    document.getElementById("noResults");
+
+  const resetFilters =
+    document.getElementById("resetFilters");
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mobileMenu =
+    document.getElementById("mobileMenu");
+
+  const currentYear =
+    document.getElementById("currentYear");
+
+  const brandDropdownWrap =
+    document.getElementById("brandDropdownWrap");
+
+  const brandDropdownButton =
+    document.getElementById("brandDropdownButton");
+
+  const brandDropdown =
+    document.getElementById("brandDropdown");
+
+  const dropdownCategoryButtons =
+    document.querySelectorAll("[data-dropdown-category]");
+
+
+  let activeCategory = "All";
+
+  let autocompleteIndex = -1;
+
+
+
+  /* =======================================================
+     4. TOOL CARD
      ======================================================= */
 
   function createToolCard(tool) {
@@ -365,9 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
       icons[tool.icon] ||
       icons.chart;
 
-
     return `
-
       <a
         class="tool-card"
         href="${tool.url}"
@@ -381,32 +353,24 @@ document.addEventListener("DOMContentLoaded", function () {
           ${icon}
         </div>
 
-
         <span class="tool-category">
           ${tool.category}
         </span>
-
 
         <h3>
           ${tool.name}
         </h3>
 
-
         <p>
           ${tool.description}
         </p>
 
-
         <span class="tool-action">
-
           Open
-
           ${icons.arrow}
-
         </span>
 
       </a>
-
     `;
 
   }
@@ -414,7 +378,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     5. GET FILTERED TOOLS
+     5. FILTER TOOLS
      ======================================================= */
 
   function getFilteredTools() {
@@ -426,19 +390,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .toLowerCase()
         : "";
 
-
     return tools.filter(function (tool) {
 
-
       const categoryMatches =
-
         activeCategory === "All" ||
-
         tool.category === activeCategory;
 
-
       const searchableText =
-
         (
           tool.name +
           " " +
@@ -447,16 +405,11 @@ document.addEventListener("DOMContentLoaded", function () {
           tool.description +
           " " +
           tool.keywords
-        )
-        .toLowerCase();
-
+        ).toLowerCase();
 
       const searchMatches =
-
         query === "" ||
-
         searchableText.includes(query);
-
 
       return (
         categoryMatches &&
@@ -470,64 +423,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     6. RENDER CARDS
+     6. RENDER TOOLS
      ======================================================= */
 
   function renderTools() {
 
-
     if (!toolsGrid) {
-
-      console.error(
-        "ZammioHub: toolsGrid container was not found."
-      );
-
       return;
-
     }
-
 
     const filteredTools =
       getFilteredTools();
-
 
     toolsGrid.innerHTML =
       filteredTools
         .map(createToolCard)
         .join("");
 
-
-    /*
-      IMPORTANT:
-      The calculator section and heading
-      are NEVER hidden.
-
-      Only the cards change.
-    */
-
-
     if (filteredTools.length === 0) {
 
-      toolsGrid.style.display = "none";
-
+      toolsGrid.style.display =
+        "none";
 
       if (noResults) {
-
         noResults.hidden = false;
-
       }
 
-    }
+    } else {
 
-    else {
-
-      toolsGrid.style.display = "grid";
-
+      toolsGrid.style.display =
+        "grid";
 
       if (noResults) {
-
         noResults.hidden = true;
-
       }
 
     }
@@ -537,16 +465,274 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     7. SEARCH
+     7. ACTIVE FILTER STATE
+     ======================================================= */
+
+  function setActiveCategory(category) {
+
+    activeCategory = category;
+
+    filterButtons.forEach(function (button) {
+
+      const isActive =
+        button.dataset.category === category;
+
+      button.classList.toggle(
+        "active",
+        isActive
+      );
+
+      button.setAttribute(
+        "aria-pressed",
+        isActive
+          ? "true"
+          : "false"
+      );
+
+    });
+
+    renderTools();
+
+  }
+
+
+
+  /* =======================================================
+     8. AUTOCOMPLETE
+     ======================================================= */
+
+  function getSuggestions(query) {
+
+    const cleanQuery =
+      query
+        .trim()
+        .toLowerCase();
+
+    if (!cleanQuery) {
+      return [];
+    }
+
+    return tools
+      .filter(function (tool) {
+
+        const searchable =
+          (
+            tool.name +
+            " " +
+            tool.category +
+            " " +
+            tool.keywords
+          ).toLowerCase();
+
+        return searchable.includes(
+          cleanQuery
+        );
+
+      })
+      .slice(0, 6);
+
+  }
+
+
+
+  function closeAutocomplete() {
+
+    autocompleteIndex = -1;
+
+    if (autocompleteList) {
+
+      autocompleteList.hidden = true;
+
+      autocompleteList.innerHTML = "";
+
+    }
+
+    if (searchInput) {
+
+      searchInput.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      searchInput.removeAttribute(
+        "aria-activedescendant"
+      );
+
+    }
+
+  }
+
+
+
+  function renderAutocomplete() {
+
+    if (
+      !autocompleteList ||
+      !searchInput
+    ) {
+      return;
+    }
+
+    const suggestions =
+      getSuggestions(
+        searchInput.value
+      );
+
+    autocompleteIndex = -1;
+
+    if (
+      suggestions.length === 0
+    ) {
+
+      closeAutocomplete();
+
+      return;
+
+    }
+
+    autocompleteList.innerHTML =
+      suggestions
+        .map(function (tool, index) {
+
+          const icon =
+            icons[tool.icon] ||
+            icons.chart;
+
+          return `
+            <button
+              type="button"
+              class="autocomplete-item"
+              role="option"
+              id="autocomplete-option-${index}"
+              data-url="${tool.url}"
+              data-name="${tool.name}"
+            >
+
+              <span
+                class="autocomplete-icon"
+                aria-hidden="true"
+              >
+                ${icon}
+              </span>
+
+              <span class="autocomplete-text">
+
+                <strong>
+                  ${tool.name}
+                </strong>
+
+                <span>
+                  ${tool.category}
+                </span>
+
+              </span>
+
+              <span
+                class="autocomplete-arrow"
+                aria-hidden="true"
+              >
+                ${icons.arrow}
+              </span>
+
+            </button>
+          `;
+
+        })
+        .join("");
+
+    autocompleteList.hidden = false;
+
+    searchInput.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+  }
+
+
+
+  function selectAutocompleteItem(
+    item
+  ) {
+
+    if (!item) {
+      return;
+    }
+
+    const url =
+      item.dataset.url;
+
+    if (url) {
+      window.location.href = url;
+    }
+
+  }
+
+
+
+  function updateKeyboardSelection() {
+
+    if (!autocompleteList) {
+      return;
+    }
+
+    const items =
+      autocompleteList
+        .querySelectorAll(
+          ".autocomplete-item"
+        );
+
+    items.forEach(
+      function (item, index) {
+
+        const active =
+          index === autocompleteIndex;
+
+        item.classList.toggle(
+          "keyboard-active",
+          active
+        );
+
+      }
+    );
+
+    if (
+      autocompleteIndex >= 0 &&
+      items[autocompleteIndex] &&
+      searchInput
+    ) {
+
+      searchInput.setAttribute(
+        "aria-activedescendant",
+        items[autocompleteIndex].id
+      );
+
+      items[autocompleteIndex]
+        .scrollIntoView({
+          block: "nearest"
+        });
+
+    } else if (searchInput) {
+
+      searchInput.removeAttribute(
+        "aria-activedescendant"
+      );
+
+    }
+
+  }
+
+
+
+  /* =======================================================
+     9. SEARCH EVENTS
      ======================================================= */
 
   if (searchInput) {
 
-
     searchInput.addEventListener(
       "input",
       function () {
-
 
         if (clearSearch) {
 
@@ -555,8 +741,91 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-
         renderTools();
+
+        renderAutocomplete();
+
+      }
+    );
+
+
+    searchInput.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          !autocompleteList ||
+          autocompleteList.hidden
+        ) {
+          return;
+        }
+
+        const items =
+          autocompleteList
+            .querySelectorAll(
+              ".autocomplete-item"
+            );
+
+        if (!items.length) {
+          return;
+        }
+
+
+        if (
+          event.key === "ArrowDown"
+        ) {
+
+          event.preventDefault();
+
+          autocompleteIndex =
+            Math.min(
+              autocompleteIndex + 1,
+              items.length - 1
+            );
+
+          updateKeyboardSelection();
+
+        }
+
+
+        else if (
+          event.key === "ArrowUp"
+        ) {
+
+          event.preventDefault();
+
+          autocompleteIndex =
+            Math.max(
+              autocompleteIndex - 1,
+              0
+            );
+
+          updateKeyboardSelection();
+
+        }
+
+
+        else if (
+          event.key === "Enter" &&
+          autocompleteIndex >= 0
+        ) {
+
+          event.preventDefault();
+
+          selectAutocompleteItem(
+            items[autocompleteIndex]
+          );
+
+        }
+
+
+        else if (
+          event.key === "Escape"
+        ) {
+
+          closeAutocomplete();
+
+        }
 
       }
     );
@@ -565,27 +834,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  if (clearSearch) {
+  /* =======================================================
+     10. AUTOCOMPLETE CLICK
+     ======================================================= */
 
+  if (autocompleteList) {
+
+    autocompleteList.addEventListener(
+      "click",
+      function (event) {
+
+        const item =
+          event.target.closest(
+            ".autocomplete-item"
+          );
+
+        if (item) {
+
+          selectAutocompleteItem(
+            item
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  /* =======================================================
+     11. CLEAR SEARCH
+     ======================================================= */
+
+  if (clearSearch) {
 
     clearSearch.addEventListener(
       "click",
       function () {
 
-
         if (!searchInput) {
           return;
         }
 
-
         searchInput.value = "";
-
 
         clearSearch.hidden = true;
 
+        closeAutocomplete();
 
         searchInput.focus();
-
 
         renderTools();
 
@@ -597,49 +896,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     8. FILTER BUTTONS
+     12. FILTER BUTTONS
      ======================================================= */
 
   filterButtons.forEach(
     function (button) {
 
-
       button.addEventListener(
         "click",
         function () {
 
-
-          activeCategory =
+          setActiveCategory(
             button.dataset.category ||
-            "All";
-
-
-          filterButtons.forEach(
-            function (item) {
-
-
-              const isActive =
-                item === button;
-
-
-              item.classList.toggle(
-                "active",
-                isActive
-              );
-
-
-              item.setAttribute(
-                "aria-pressed",
-                isActive
-                  ? "true"
-                  : "false"
-              );
-
-            }
+            "All"
           );
-
-
-          renderTools();
 
         }
       );
@@ -650,19 +920,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     9. RESET FILTER
+     13. RESET FILTER
      ======================================================= */
 
   if (resetFilters) {
 
-
     resetFilters.addEventListener(
       "click",
       function () {
-
-
-        activeCategory = "All";
-
 
         if (searchInput) {
 
@@ -670,42 +935,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-
         if (clearSearch) {
 
           clearSearch.hidden = true;
 
         }
 
+        closeAutocomplete();
 
-        filterButtons.forEach(
-          function (button) {
-
-
-            const isAll =
-
-              button.dataset.category ===
-              "All";
-
-
-            button.classList.toggle(
-              "active",
-              isAll
-            );
-
-
-            button.setAttribute(
-              "aria-pressed",
-              isAll
-                ? "true"
-                : "false"
-            );
-
-          }
-        );
-
-
-        renderTools();
+        setActiveCategory("All");
 
       }
     );
@@ -715,46 +953,171 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     10. MOBILE HAMBURGER MENU
+     14. GEMINI STYLE BRAND DROPDOWN
+     ======================================================= */
+
+  function closeBrandDropdown() {
+
+    if (
+      !brandDropdown ||
+      !brandDropdownButton
+    ) {
+      return;
+    }
+
+    brandDropdown.hidden = true;
+
+    brandDropdownButton.classList.remove(
+      "open"
+    );
+
+    brandDropdownButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  }
+
+
+
+  function openBrandDropdown() {
+
+    if (
+      !brandDropdown ||
+      !brandDropdownButton
+    ) {
+      return;
+    }
+
+    brandDropdown.hidden = false;
+
+    brandDropdownButton.classList.add(
+      "open"
+    );
+
+    brandDropdownButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+  }
+
+
+
+  if (
+    brandDropdownButton &&
+    brandDropdown
+  ) {
+
+    brandDropdownButton.addEventListener(
+      "click",
+      function (event) {
+
+        event.stopPropagation();
+
+        const isOpen =
+          !brandDropdown.hidden;
+
+        if (isOpen) {
+
+          closeBrandDropdown();
+
+        } else {
+
+          closeMobileMenu();
+
+          openBrandDropdown();
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  if (brandDropdown) {
+
+    brandDropdown.addEventListener(
+      "click",
+      function (event) {
+
+        event.stopPropagation();
+
+      }
+    );
+
+  }
+
+
+
+  dropdownCategoryButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const category =
+            button.dataset
+              .dropdownCategory;
+
+          if (!category) {
+            return;
+          }
+
+          setActiveCategory(
+            category
+          );
+
+          closeBrandDropdown();
+
+          document
+            .getElementById(
+              "calculators"
+            )
+            ?.scrollIntoView({
+              behavior: "smooth"
+            });
+
+        }
+      );
+
+    }
+  );
+
+
+
+  /* =======================================================
+     15. MOBILE MENU
      ======================================================= */
 
   const menuIcon = `
-
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-
       <path d="M4 7h16"></path>
-
       <path d="M4 12h16"></path>
-
       <path d="M4 17h16"></path>
-
     </svg>
-
   `;
 
 
   const closeIcon = `
-
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
     >
-
       <path d="M6 6l12 12"></path>
-
       <path d="M18 6 6 18"></path>
-
     </svg>
-
   `;
 
 
 
   function closeMobileMenu() {
-
 
     if (
       !menuButton ||
@@ -763,27 +1126,22 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-
     mobileMenu.classList.remove(
       "open"
     );
 
-
     menuButton.innerHTML =
       menuIcon;
-
 
     menuButton.setAttribute(
       "aria-expanded",
       "false"
     );
 
-
     menuButton.setAttribute(
       "aria-label",
       "Open navigation menu"
     );
-
 
     document.body.classList.remove(
       "menu-open"
@@ -798,56 +1156,42 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenu
   ) {
 
-
-    /*
-      Ensure hamburger is visible
-      immediately on mobile.
-    */
-
     menuButton.innerHTML =
       menuIcon;
-
 
     menuButton.addEventListener(
       "click",
       function () {
-
 
         const isOpen =
           mobileMenu.classList.contains(
             "open"
           );
 
+        closeBrandDropdown();
 
         if (isOpen) {
 
           closeMobileMenu();
 
-        }
-
-        else {
-
+        } else {
 
           mobileMenu.classList.add(
             "open"
           );
 
-
           menuButton.innerHTML =
             closeIcon;
-
 
           menuButton.setAttribute(
             "aria-expanded",
             "true"
           );
 
-
           menuButton.setAttribute(
             "aria-label",
             "Close navigation menu"
           );
-
 
           document.body.classList.add(
             "menu-open"
@@ -859,12 +1203,10 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     mobileMenu
       .querySelectorAll("a")
       .forEach(
         function (link) {
-
 
           link.addEventListener(
             "click",
@@ -874,48 +1216,96 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-
-
-    document.addEventListener(
-      "keydown",
-      function (event) {
-
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          closeMobileMenu();
-
-        }
-
-      }
-    );
-
-
-
-    window.addEventListener(
-      "resize",
-      function () {
-
-
-        if (
-          window.innerWidth > 767
-        ) {
-
-          closeMobileMenu();
-
-        }
-
-      }
-    );
-
   }
 
 
 
   /* =======================================================
-     11. CURRENT YEAR
+     16. CLICK OUTSIDE
+     ======================================================= */
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        brandDropdownWrap &&
+        !brandDropdownWrap.contains(
+          event.target
+        )
+      ) {
+
+        closeBrandDropdown();
+
+      }
+
+
+      if (
+        autocompleteList &&
+        searchInput &&
+        !autocompleteList.contains(
+          event.target
+        ) &&
+        event.target !== searchInput
+      ) {
+
+        closeAutocomplete();
+
+      }
+
+    }
+  );
+
+
+
+  /* =======================================================
+     17. ESCAPE KEY
+     ======================================================= */
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        closeBrandDropdown();
+
+        closeMobileMenu();
+
+        closeAutocomplete();
+
+      }
+
+    }
+  );
+
+
+
+  /* =======================================================
+     18. RESIZE
+     ======================================================= */
+
+  window.addEventListener(
+    "resize",
+    function () {
+
+      if (
+        window.innerWidth > 767
+      ) {
+
+        closeMobileMenu();
+
+      }
+
+    }
+  );
+
+
+
+  /* =======================================================
+     19. YEAR
      ======================================================= */
 
   if (currentYear) {
@@ -928,12 +1318,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =======================================================
-     12. INITIAL LOAD
-
-     THIS IS THE IMPORTANT FIX.
-
-     All 15 cards are rendered immediately
-     when the homepage opens.
+     20. INITIAL LOAD
      ======================================================= */
 
   activeCategory = "All";
