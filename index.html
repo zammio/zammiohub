@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
 
@@ -9,463 +8,1829 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>ZammioHub – Free Online Calculators & Useful Tools</title>
-
   <meta
     name="description"
-    content="ZammioHub offers free, fast and easy-to-use online calculators for finance, health, math and everyday needs."
+    content="Free online calculators for finance, health, math and everyday needs. Fast, accurate and easy-to-use tools from ZammioHub."
   >
 
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#ffffff">
+  <title>ZammioHub - Free Online Calculators</title>
 
-  <link
-    rel="canonical"
-    href="https://zammiohub.com/"
-  >
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
 
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-  <script
-    src="js/script.js"
-    defer
-  ></script>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      color: #111c32;
+      background: #ffffff;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+    }
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+      --blue: #2569eb;
+      --blue-dark: #1556d6;
+      --blue-soft: #eef5ff;
+      --blue-light: #dceaff;
+
+      --text: #111c32;
+      --muted: #697a91;
+      --border: #e3e9f1;
+
+      --section: #f8fafc;
+      --white: #ffffff;
+      --footer: #101a31;
+
+      --shadow:
+        0 18px 55px rgba(30, 55, 90, 0.09);
+
+      --card-shadow:
+        0 10px 35px rgba(31, 54, 88, 0.07);
+
+      --radius-lg: 26px;
+      --radius-md: 19px;
+      --radius-sm: 13px;
+
+      --max-width: 1220px;
+    }
+
+    /* =========================================================
+       ACCESSIBILITY
+    ========================================================= */
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 20px;
+      z-index: 9999;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: var(--text);
+      color: white;
+    }
+
+    .skip-link:focus {
+      top: 20px;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 3px solid rgba(37, 105, 235, 0.28);
+      outline-offset: 3px;
+    }
+
+    /* =========================================================
+       CONTAINER
+    ========================================================= */
+
+    .container {
+      width: min(calc(100% - 48px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .site-header {
+      position: relative;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid #edf0f5;
+    }
+
+    .header-inner {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    /* =========================================================
+       BRAND
+    ========================================================= */
+
+    .brand-area {
+      position: relative;
+    }
+
+    .brand-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      background: transparent;
+      padding: 4px 2px;
+
+      color: var(--text);
+      cursor: pointer;
+
+      position: relative;
+      z-index: 1002;
+    }
+
+    .brand-text {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      white-space: nowrap;
+    }
+
+    .brand-text .blue {
+      color: var(--blue);
+    }
+
+    .brand-arrow {
+      width: 18px;
+      height: 18px;
+      color: #62728b;
+
+      transition:
+        transform 0.22s ease;
+    }
+
+    .brand-button.active .brand-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* =========================================================
+       GEMINI-STYLE DROPDOWN
+    ========================================================= */
+
+    .brand-dropdown {
+      position: absolute;
+      top: calc(100% + 18px);
+      left: 0;
+
+      width: min(700px, calc(100vw - 48px));
+
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+
+      background: #ffffff;
+      box-shadow:
+        0 25px 70px rgba(18, 35, 65, 0.16);
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.98);
+
+      pointer-events: none;
+
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+
+      z-index: 2000;
+    }
+
+    .brand-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .dropdown-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+
+      margin-bottom: 18px;
+      padding-bottom: 15px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dropdown-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .dropdown-subtitle {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .dropdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .dropdown-column-title {
+      margin: 0 0 9px;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+
+      color: #8592a5;
+    }
+
+    .dropdown-link {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      min-height: 39px;
+      padding: 8px 10px;
+      margin-left: -10px;
+
+      border-radius: 10px;
+
+      font-size: 14px;
+      font-weight: 650;
+
+      transition:
+        background-color 0.18s ease,
+        color 0.18s ease;
+    }
+
+    .dropdown-link:hover {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .dropdown-link svg {
+      width: 17px;
+      height: 17px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       DESKTOP NAV
+    ========================================================= */
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .desktop-nav a {
+      font-size: 15px;
+      font-weight: 650;
+      color: #314158;
+      transition: color 0.18s ease;
+    }
+
+    .desktop-nav a:hover {
+      color: var(--blue);
+    }
+
+    /* =========================================================
+       MOBILE MENU BUTTON
+    ========================================================= */
+
+    .menu-button {
+      display: none;
+
+      width: 48px;
+      height: 48px;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+      background: transparent;
+
+      color: var(--text);
+      cursor: pointer;
+
+      position: relative;
+      z-index: 1002;
+    }
+
+    .menu-button:hover {
+      background: #f5f7fa;
+    }
+
+    .menu-button svg {
+      width: 31px;
+      height: 31px;
+    }
+
+    .menu-close-icon {
+      display: none;
+    }
+
+    .menu-button.open .menu-icon {
+      display: none;
+    }
+
+    .menu-button.open .menu-close-icon {
+      display: block;
+    }
+
+    /* =========================================================
+       MOBILE NAVIGATION
+    ========================================================= */
+
+    .mobile-nav {
+      display: none;
+      background: #ffffff;
+      border-top: 1px solid #edf1f6;
+
+      overflow: hidden;
+      max-height: 0;
+
+      transition:
+        max-height 0.3s ease;
+    }
+
+    .mobile-nav.open {
+      max-height: 600px;
+    }
+
+    .mobile-nav-inner {
+      padding: 10px 24px 25px;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 15px 4px;
+
+      border-bottom: 1px solid #edf1f6;
+
+      font-weight: 700;
+      color: #27364c;
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: 0;
+    }
+
+    .mobile-nav a:hover {
+      color: var(--blue);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+
+      padding:
+        95px 0
+        72px;
+
+      overflow: visible;
+
+      background:
+        radial-gradient(
+          circle at 85% 22%,
+          rgba(76, 138, 255, 0.13),
+          rgba(76, 138, 255, 0) 35%
+        ),
+        linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #fbfdff 55%,
+          #f7f9fc 100%
+        );
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+
+      margin-bottom: 31px;
+
+      padding: 8px 17px;
+
+      border-radius: 999px;
+
+      background: #edf4ff;
+      color: #1d66dc;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+
+      max-width: 1000px;
+
+      font-size: clamp(50px, 6vw, 77px);
+      line-height: 1.04;
+
+      font-weight: 800;
+      letter-spacing: -3.5px;
+
+      color: var(--text);
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-description {
+      max-width: 870px;
+
+      margin:
+        28px 0
+        0;
+
+      font-size: 23px;
+      line-height: 1.55;
+
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       SEARCH PANEL
+    ========================================================= */
+
+    .search-panel {
+      position: relative;
+      z-index: 20;
+
+      margin-top: 74px;
+
+      padding: 21px;
+
+      border: 1px solid #e6ebf2;
+      border-radius: var(--radius-lg);
+
+      background: rgba(255, 255, 255, 0.98);
+
+      box-shadow: var(--shadow);
+    }
+
+    .search-wrapper {
+      position: relative;
+      z-index: 30;
+
+      display: flex;
+      align-items: center;
+
+      min-height: 68px;
+
+      border: 1px solid #dce3ec;
+      border-radius: 18px;
+
+      background: #ffffff;
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .search-wrapper:focus-within {
+      border-color: #8db3ff;
+
+      box-shadow:
+        0 0 0 4px rgba(37, 105, 235, 0.09);
+    }
+
+    .search-icon {
+      width: 22px;
+      height: 22px;
+
+      margin-left: 23px;
+
+      flex-shrink: 0;
+
+      color: #64758d;
+
+      pointer-events: none;
+    }
+
+    #toolSearch {
+      position: relative;
+      z-index: 40;
+
+      display: block;
+
+      width: 100%;
+      height: 66px;
+
+      padding:
+        0 52px
+        0 17px;
+
+      border: 0;
+      outline: 0;
+
+      background: transparent;
+
+      color: #18243a;
+
+      font-size: 18px;
+
+      cursor: text;
+
+      pointer-events: auto !important;
+      user-select: text;
+      -webkit-user-select: text;
+      touch-action: manipulation;
+
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    #toolSearch::placeholder {
+      color: #9aa6b7;
+      opacity: 1;
+    }
+
+    .clear-search {
+      position: absolute;
+      z-index: 50;
+
+      right: 10px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      width: 44px;
+      height: 44px;
+
+      border-radius: 50%;
+
+      background: transparent;
+      color: #718198;
+
+      cursor: pointer;
+
+      pointer-events: auto;
+    }
+
+    .clear-search.visible {
+      display: flex;
+    }
+
+    .clear-search:hover {
+      background: #f2f5f9;
+      color: var(--blue);
+    }
+
+    .clear-search svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* =========================================================
+       FILTERS
+    ========================================================= */
+
+    .filters {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 16px;
+    }
+
+    .filter-button {
+      min-height: 45px;
+
+      padding: 0 21px;
+
+      border: 1px solid #dce3ec;
+      border-radius: 999px;
+
+      background: #ffffff;
+      color: #586a81;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        color 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .filter-button:hover {
+      border-color: #adc8fc;
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .filter-button.active {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: #ffffff;
+
+      box-shadow:
+        0 7px 18px rgba(37, 105, 235, 0.22);
+    }
+
+    /* =========================================================
+       CALCULATORS SECTION
+    ========================================================= */
+
+    .calculators-section {
+      padding:
+        60px 0
+        100px;
+
+      background: #f8fafc;
+    }
+
+    .section-label {
+      margin: 0 0 9px;
+
+      color: var(--blue);
+
+      font-size: 13px;
+      font-weight: 800;
+
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      margin: 0;
+
+      font-size: clamp(34px, 4vw, 47px);
+      line-height: 1.12;
+
+      font-weight: 800;
+      letter-spacing: -1.8px;
+
+      color: var(--text);
+    }
+
+    .section-description {
+      margin: 9px 0 0;
+
+      color: var(--muted);
+
+      font-size: 16px;
+    }
+
+    /* =========================================================
+       TOOL GRID
+    ========================================================= */
+
+    #toolsGrid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 21px;
+
+      margin-top: 38px;
+
+      min-height: 10px;
+    }
+
+    .tool-card {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      min-height: 230px;
+
+      padding: 25px;
+
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+
+      background: #ffffff;
+
+      box-shadow: var(--card-shadow);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+      animation: cardFade 0.28s ease both;
+    }
+
+    .tool-card::after {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 92px;
+      height: 92px;
+
+      border-radius: 0 0 0 100%;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(37, 105, 235, 0.05),
+          rgba(37, 105, 235, 0.11)
+        );
+
+      pointer-events: none;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+
+      border-color: #bed2f8;
+
+      box-shadow:
+        0 18px 42px rgba(30, 62, 110, 0.12);
+    }
+
+    @keyframes cardFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tool-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .tool-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 51px;
+      height: 51px;
+
+      border-radius: 14px;
+
+      background: var(--blue-soft);
+      color: var(--blue);
+
+      flex-shrink: 0;
+    }
+
+    .tool-icon svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .tool-category {
+      padding: 5px 9px;
+
+      border-radius: 999px;
+
+      background: #f4f7fb;
+      color: #78879b;
+
+      font-size: 11px;
+      font-weight: 800;
+
+      text-transform: uppercase;
+      letter-spacing: 0.055em;
+    }
+
+    .tool-card h3 {
+      margin:
+        19px 0
+        7px;
+
+      font-size: 20px;
+      line-height: 1.28;
+
+      font-weight: 800;
+      letter-spacing: -0.35px;
+
+      color: var(--text);
+    }
+
+    .tool-card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      margin-top: auto;
+      padding-top: 20px;
+
+      color: var(--blue);
+
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .tool-link svg {
+      width: 15px;
+      height: 15px;
+
+      transition:
+        transform 0.18s ease;
+    }
+
+    .tool-card:hover .tool-link svg {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       EMPTY SEARCH STATE
+    ========================================================= */
+
+    .no-results {
+      grid-column: 1 / -1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 240px;
+
+      padding: 40px;
+
+      border: 1px dashed #d4dce7;
+      border-radius: 20px;
+
+      background: #ffffff;
+
+      text-align: center;
+    }
+
+    .no-results-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 60px;
+      height: 60px;
+
+      margin-bottom: 15px;
+
+      border-radius: 50%;
+
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .no-results-icon svg {
+      width: 27px;
+      height: 27px;
+    }
+
+    .no-results h3 {
+      margin: 0 0 6px;
+
+      font-size: 21px;
+    }
+
+    .no-results p {
+      margin: 0;
+
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       FEATURES
+    ========================================================= */
+
+    .features-section {
+      padding:
+        90px 0
+        105px;
+
+      background: #ffffff;
+    }
+
+    .features-heading {
+      margin: 0;
+
+      font-size: clamp(34px, 4vw, 47px);
+      line-height: 1.15;
+
+      font-weight: 800;
+      letter-spacing: -1.7px;
+
+      color: var(--text);
+    }
+
+    .features-description {
+      max-width: 840px;
+
+      margin:
+        14px 0
+        0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 17px;
+
+      margin-top: 38px;
+    }
+
+    .feature-card {
+      display: flex;
+      align-items: center;
+
+      gap: 19px;
+
+      min-height: 108px;
+
+      padding: 20px 23px;
+
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+
+      background: #ffffff;
+
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+
+      border-color: #c8d9f8;
+
+      box-shadow:
+        0 10px 28px rgba(35, 60, 95, 0.06);
+    }
+
+    .feature-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 58px;
+      height: 58px;
+
+      border-radius: 15px;
+
+      background: var(--blue-soft);
+      color: var(--blue);
+
+      flex-shrink: 0;
+    }
+
+    .feature-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .feature-card h3 {
+      margin: 0;
+
+      font-size: 17px;
+      font-weight: 800;
+
+      color: var(--text);
+    }
+
+    .feature-card p {
+      margin: 3px 0 0;
+
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .site-footer {
+      background: var(--footer);
+      color: #ffffff;
+    }
+
+    .footer-inner {
+      padding:
+        72px 0
+        34px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 70px;
+    }
+
+    .footer-logo {
+      display: inline-block;
+
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1.1px;
+    }
+
+    .footer-logo span {
+      color: var(--blue);
+    }
+
+    .footer-brand p {
+      max-width: 385px;
+
+      margin:
+        22px 0
+        0;
+
+      color: #9ba9bd;
+
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .footer-column h3 {
+      margin:
+        2px 0
+        20px;
+
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .footer-column a {
+      display: block;
+
+      width: fit-content;
+
+      margin-bottom: 15px;
+
+      color: #9ba9bd;
+
+      font-size: 15px;
+
+      transition: color 0.18s ease;
+    }
+
+    .footer-column a:hover {
+      color: #ffffff;
+    }
+
+    .copyright {
+      margin-top: 58px;
+      padding-top: 27px;
+
+      border-top: 1px solid #24324c;
+
+      text-align: center;
+
+      color: #7d8ca3;
+
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 980px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-button {
+        display: flex;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      #toolsGrid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          1.5fr 1fr 1fr;
+
+        gap: 38px;
+      }
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(calc(100% - 32px), var(--max-width));
+      }
+
+      .header-inner {
+        min-height: 74px;
+      }
+
+      .brand-text {
+        font-size: 25px;
+      }
+
+      .brand-dropdown {
+        position: fixed;
+
+        top: 82px;
+        left: 16px;
+        right: 16px;
+
+        width: auto;
+
+        max-height: calc(100vh - 105px);
+        overflow-y: auto;
+
+        padding: 18px;
+      }
+
+      .dropdown-grid {
+        grid-template-columns: 1fr;
+        gap: 19px;
+      }
+
+      .hero {
+        padding:
+          66px 0
+          53px;
+      }
+
+      .hero-badge {
+        margin-bottom: 26px;
+
+        padding:
+          7px 14px;
+
+        font-size: 12px;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 12.5vw, 62px);
+        letter-spacing: -2.4px;
+      }
+
+      .hero-description {
+        margin-top: 23px;
+
+        font-size: 19px;
+        line-height: 1.52;
+      }
+
+      .search-panel {
+        margin-top: 53px;
+        padding: 15px;
+
+        border-radius: 22px;
+      }
+
+      .search-wrapper {
+        min-height: 64px;
+        border-radius: 16px;
+      }
+
+      #toolSearch {
+        height: 62px;
+        font-size: 16px;
+      }
+
+      .search-icon {
+        margin-left: 17px;
+      }
+
+      .filters {
+        flex-wrap: nowrap;
+
+        margin-top: 13px;
+
+        padding-bottom: 3px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .filters::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-button {
+        min-height: 43px;
+
+        padding:
+          0 18px;
+
+        flex: 0 0 auto;
+      }
+
+      .calculators-section {
+        padding:
+          48px 0
+          75px;
+      }
+
+      .section-heading {
+        font-size: 34px;
+        letter-spacing: -1.4px;
+      }
+
+      #toolsGrid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 29px;
+      }
+
+      .tool-card {
+        min-height: 215px;
+      }
+
+      .features-section {
+        padding:
+          73px 0
+          82px;
+      }
+
+      .features-heading {
+        font-size: 34px;
+      }
+
+      .features-description {
+        font-size: 17px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        margin-top: 30px;
+      }
+
+      .feature-card {
+        min-height: 95px;
+      }
+
+      .footer-inner {
+        padding-top: 55px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 42px 30px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .copyright {
+        margin-top: 45px;
+      }
+    }
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 430px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .brand-text {
+        font-size: 24px;
+      }
+
+      .hero {
+        padding-top: 57px;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .hero-description {
+        font-size: 18px;
+      }
+
+      .search-panel {
+        padding: 12px;
+      }
+
+      #toolSearch {
+        padding-left: 13px;
+      }
+
+      .section-heading,
+      .features-heading {
+        font-size: 32px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <a href="#calculators" class="skip-link">
+    Skip to calculators
+  </a>
 
-  <!-- =====================================================
+  <!-- =======================================================
        HEADER
-  ====================================================== -->
+  ======================================================== -->
 
   <header class="site-header">
-
     <div class="container header-inner">
 
-
-      <!-- BRAND + GEMINI STYLE DROPDOWN -->
-
-      <div
-        class="brand-dropdown-wrap"
-        id="brandDropdownWrap"
-      >
+      <div class="brand-area">
 
         <button
-          class="brand-dropdown-button"
+          class="brand-button"
           id="brandDropdownButton"
           type="button"
-          aria-label="Open ZammioHub navigation menu"
+          aria-haspopup="true"
           aria-expanded="false"
           aria-controls="brandDropdown"
         >
 
-          <span class="logo-text">
-            Zammio<span>Hub</span>
+          <span class="brand-text">
+            Zammio<span class="blue">Hub</span>
           </span>
 
           <svg
-            class="brand-chevron"
+            class="brand-arrow"
             viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
             aria-hidden="true"
           >
-            <path d="m7 10 5 5 5-5"></path>
+            <path d="m6 9 6 6 6-6"/>
           </svg>
 
         </button>
 
-
-
-        <!-- FLOATING DROPDOWN -->
+        <!-- Gemini-style dropdown -->
 
         <div
           class="brand-dropdown"
           id="brandDropdown"
-          hidden
+          role="menu"
+          aria-hidden="true"
         >
 
+          <div class="dropdown-header">
+            <div>
+              <p class="dropdown-title">
+                Explore ZammioHub
+              </p>
 
-          <!-- Categories -->
-
-          <div class="dropdown-section">
-
-            <div class="dropdown-label">
-              Categories
+              <p class="dropdown-subtitle">
+                Calculators and useful pages in one place.
+              </p>
             </div>
+          </div>
 
-            <div class="dropdown-category-grid">
+          <div class="dropdown-grid">
 
-              <button
-                type="button"
-                class="dropdown-category"
+            <!-- Categories -->
+
+            <div>
+              <p class="dropdown-column-title">
+                Categories
+              </p>
+
+              <a
+                href="#calculators"
+                class="dropdown-link dropdown-filter-link"
                 data-dropdown-category="Finance"
               >
-                <span class="dropdown-small-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect
-                      x="3"
-                      y="5"
-                      width="18"
-                      height="14"
-                      rx="2"
-                    ></rect>
-                    <path d="M3 10h18"></path>
-                  </svg>
-                </span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2"/>
+                  <path d="M3 10h18"/>
+                </svg>
 
                 Finance
-              </button>
+              </a>
 
-
-              <button
-                type="button"
-                class="dropdown-category"
+              <a
+                href="#calculators"
+                class="dropdown-link dropdown-filter-link"
                 data-dropdown-category="Health"
               >
-                <span class="dropdown-small-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M3 12h4l2-6 4 12 2-6h6"></path>
-                  </svg>
-                </span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/>
+                </svg>
 
                 Health
-              </button>
+              </a>
 
-
-              <button
-                type="button"
-                class="dropdown-category"
+              <a
+                href="#calculators"
+                class="dropdown-link dropdown-filter-link"
                 data-dropdown-category="Math"
               >
-                <span class="dropdown-small-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path d="m19 5-14 14"></path>
-                    <circle cx="7" cy="7" r="2"></circle>
-                    <circle cx="17" cy="17" r="2"></circle>
-                  </svg>
-                </span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M7 3v18M3 7h8M14 7h7M14 17h7M17.5 13.5v7"/>
+                </svg>
 
                 Math
-              </button>
+              </a>
 
-
-              <button
-                type="button"
-                class="dropdown-category"
+              <a
+                href="#calculators"
+                class="dropdown-link dropdown-filter-link"
                 data-dropdown-category="Everyday"
               >
-                <span class="dropdown-small-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect
-                      x="3"
-                      y="5"
-                      width="18"
-                      height="16"
-                      rx="2"
-                    ></rect>
-                    <path d="M16 3v4"></path>
-                    <path d="M8 3v4"></path>
-                    <path d="M3 10h18"></path>
-                  </svg>
-                </span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3 2"/>
+                </svg>
 
                 Everyday
-              </button>
+              </a>
+            </div>
 
+            <!-- Popular tools -->
+
+            <div>
+              <p class="dropdown-column-title">
+                Popular Tools
+              </p>
+
+              <a
+                href="/age-calculator/"
+                class="dropdown-link"
+              >
+                Age Calculator
+              </a>
+
+              <a
+                href="/bmi-calculator/"
+                class="dropdown-link"
+              >
+                BMI Calculator
+              </a>
+
+              <a
+                href="/emi-calculator/"
+                class="dropdown-link"
+              >
+                EMI Calculator
+              </a>
+
+              <a
+                href="/mortgage-calculator/"
+                class="dropdown-link"
+              >
+                Mortgage Calculator
+              </a>
+            </div>
+
+            <!-- Pages -->
+
+            <div>
+              <p class="dropdown-column-title">
+                ZammioHub
+              </p>
+
+              <a
+                href="/about/"
+                class="dropdown-link"
+              >
+                About Us
+              </a>
+
+              <a
+                href="/contact/"
+                class="dropdown-link"
+              >
+                Contact Us
+              </a>
+
+              <a
+                href="/privacy-policy/"
+                class="dropdown-link"
+              >
+                Privacy Policy
+              </a>
             </div>
 
           </div>
-
-
-
-          <!-- Popular Tools -->
-
-          <div class="dropdown-section">
-
-            <div class="dropdown-label">
-              Popular Tools
-            </div>
-
-            <a
-              href="calculators/age-calculator.html"
-              class="dropdown-link"
-            >
-              Age Calculator
-
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14"></path>
-                <path d="m14 7 5 5-5 5"></path>
-              </svg>
-            </a>
-
-            <a
-              href="calculators/bmi-calculator.html"
-              class="dropdown-link"
-            >
-              BMI Calculator
-
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14"></path>
-                <path d="m14 7 5 5-5 5"></path>
-              </svg>
-            </a>
-
-            <a
-              href="calculators/emi-calculator.html"
-              class="dropdown-link"
-            >
-              EMI Calculator
-
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14"></path>
-                <path d="m14 7 5 5-5 5"></path>
-              </svg>
-            </a>
-
-          </div>
-
-
-
-          <!-- Pages -->
-
-          <div class="dropdown-section">
-
-            <div class="dropdown-label">
-              Pages
-            </div>
-
-            <a
-              href="about.html"
-              class="dropdown-link"
-            >
-              About
-            </a>
-
-            <a
-              href="contact.html"
-              class="dropdown-link"
-            >
-              Contact
-            </a>
-
-            <a
-              href="privacy-policy.html"
-              class="dropdown-link"
-            >
-              Privacy Policy
-            </a>
-
-          </div>
-
         </div>
 
       </div>
 
-
-
-      <!-- DESKTOP NAV -->
+      <!-- Desktop menu -->
 
       <nav
         class="desktop-nav"
         aria-label="Main navigation"
       >
-
         <a href="#calculators">
           Calculators
         </a>
 
-        <a href="about.html">
+        <a href="/about/">
           About
         </a>
 
-        <a href="contact.html">
+        <a href="/contact/">
           Contact
         </a>
-
       </nav>
 
-
-
-      <!-- MOBILE HAMBURGER -->
+      <!-- Mobile hamburger -->
 
       <button
         class="menu-button"
-        id="menuButton"
+        id="mobileMenuButton"
         type="button"
         aria-label="Open navigation menu"
         aria-expanded="false"
-        aria-controls="mobileMenu"
+        aria-controls="mobileNav"
       >
 
         <svg
+          class="menu-icon"
           viewBox="0 0 24 24"
-          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
         >
-          <path d="M4 7h16"></path>
-          <path d="M4 12h16"></path>
-          <path d="M4 17h16"></path>
+          <path d="M4 6h16"/>
+          <path d="M4 12h16"/>
+          <path d="M4 18h16"/>
+        </svg>
+
+        <svg
+          class="menu-close-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+        >
+          <path d="M6 6l12 12"/>
+          <path d="M18 6 6 18"/>
         </svg>
 
       </button>
 
     </div>
 
-
-
-    <!-- MOBILE NAV -->
+    <!-- Mobile navigation -->
 
     <nav
-      class="mobile-menu"
-      id="mobileMenu"
+      class="mobile-nav"
+      id="mobileNav"
       aria-label="Mobile navigation"
     >
 
-      <div class="container mobile-menu-links">
+      <div class="mobile-nav-inner">
 
         <a href="#calculators">
           Calculators
+          <span>→</span>
         </a>
 
-        <a href="about.html">
-          About
+        <a href="/about/">
+          About Us
+          <span>→</span>
         </a>
 
-        <a href="contact.html">
-          Contact
+        <a href="/contact/">
+          Contact Us
+          <span>→</span>
         </a>
 
-        <a href="privacy-policy.html">
+        <a href="/privacy-policy/">
           Privacy Policy
+          <span>→</span>
         </a>
 
       </div>
-
     </nav>
 
   </header>
 
-
-
   <main>
-
 
     <!-- =====================================================
          HERO
     ====================================================== -->
 
     <section class="hero">
-
-      <div class="container hero-content">
-
-        <div class="hero-badge">
-          FREE • FAST • EASY TO USE
-        </div>
-
-        <h1>
-          Smart Tools for
-          <span>Everyday Life</span>
-        </h1>
-
-        <p>
-          Fast, accurate online calculators for finance,
-          health, math and everyday needs.
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         CALCULATORS
-    ====================================================== -->
-
-    <section
-      class="calculators-section"
-      id="calculators"
-    >
-
       <div class="container">
 
+        <div class="hero-content">
 
-        <!-- SEARCH + FILTERS -->
+          <div class="hero-badge">
+            FREE • FAST • EASY TO USE
+          </div>
 
-        <div class="finder">
+          <h1>
+            Smart Tools for
+            <span>Everyday Life</span>
+          </h1>
 
+          <p class="hero-description">
+            Fast, accurate online calculators for finance,
+            health, math and everyday needs.
+          </p>
 
-          <!-- SEARCH -->
+        </div>
 
-          <div class="search-area">
+        <!-- Search and filters -->
 
-            <div class="search-box">
+        <div class="search-panel">
 
-              <span
-                class="search-icon"
-                aria-hidden="true"
+          <div class="search-wrapper">
+
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-3.6-3.6"/>
+            </svg>
+
+            <input
+              type="search"
+              id="toolSearch"
+              name="toolSearch"
+              placeholder="Search calculators..."
+              aria-label="Search calculators"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+            >
+
+            <button
+              class="clear-search"
+              id="clearSearch"
+              type="button"
+              aria-label="Clear search"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
               >
-
-                <svg viewBox="0 0 24 24">
-                  <circle
-                    cx="11"
-                    cy="11"
-                    r="7"
-                  ></circle>
-
-                  <path d="m20 20-4-4"></path>
-                </svg>
-
-              </span>
-
-
-              <input
-                id="searchInput"
-                type="search"
-                placeholder="Search calculators..."
-                autocomplete="off"
-                aria-label="Search calculators"
-                role="combobox"
-                aria-autocomplete="list"
-                aria-expanded="false"
-                aria-controls="autocompleteList"
-              >
-
-
-              <button
-                id="clearSearch"
-                class="clear-search"
-                type="button"
-                aria-label="Clear search"
-                hidden
-              >
-                ×
-              </button>
-
-            </div>
-
-
-
-            <!-- LIVE AUTOCOMPLETE -->
-
-            <div
-              class="autocomplete-list"
-              id="autocompleteList"
-              role="listbox"
-              hidden
-            ></div>
+                <path d="M6 6l12 12"/>
+                <path d="M18 6 6 18"/>
+              </svg>
+            </button>
 
           </div>
 
-
-
-          <!-- FILTER TABS -->
-
           <div
-            class="filter-tabs"
+            class="filters"
+            id="filterButtons"
             aria-label="Calculator categories"
           >
 
@@ -478,7 +1843,6 @@
               All
             </button>
 
-
             <button
               class="filter-button"
               type="button"
@@ -487,7 +1851,6 @@
             >
               Finance
             </button>
-
 
             <button
               class="filter-button"
@@ -498,7 +1861,6 @@
               Health
             </button>
 
-
             <button
               class="filter-button"
               type="button"
@@ -507,7 +1869,6 @@
             >
               Math
             </button>
-
 
             <button
               class="filter-button"
@@ -522,239 +1883,197 @@
 
         </div>
 
-
-
-        <!-- SECTION HEADING -->
-
-        <div class="section-heading">
-
-          <span class="eyebrow">
-            ONLINE CALCULATORS
-          </span>
-
-          <h2>
-            Explore Our Calculators
-          </h2>
-
-          <p>
-            Find the right calculator quickly and get your result in seconds.
-          </p>
-
-        </div>
-
-
-
-        <!-- DYNAMIC GRID -->
-
-        <div
-          class="tools-grid"
-          id="toolsGrid"
-        ></div>
-
-
-
-        <!-- NO RESULTS -->
-
-        <div
-          class="no-results"
-          id="noResults"
-          hidden
-        >
-
-          <div class="no-results-icon">
-
-            <svg viewBox="0 0 24 24">
-              <circle
-                cx="11"
-                cy="11"
-                r="7"
-              ></circle>
-
-              <path d="m20 20-4-4"></path>
-              <path d="M8 8l6 6"></path>
-              <path d="m14 8-6 6"></path>
-            </svg>
-
-          </div>
-
-
-          <h3>
-            No calculators found
-          </h3>
-
-          <p>
-            Try another search or select a different category.
-          </p>
-
-          <button
-            id="resetFilters"
-            type="button"
-          >
-            View All Calculators
-          </button>
-
-        </div>
-
       </div>
-
     </section>
 
-
-
     <!-- =====================================================
-         TRUST
+         CALCULATORS
     ====================================================== -->
 
-    <section class="trust-section">
+    <section
+      class="calculators-section"
+      id="calculators"
+    >
 
       <div class="container">
 
+        <p class="section-label">
+          ONLINE CALCULATORS
+        </p>
 
-        <div class="trust-heading">
+        <h2 class="section-heading">
+          Explore Our Calculators
+        </h2>
 
-          <span class="eyebrow">
-            WHY ZAMMIOHUB?
-          </span>
+        <p class="section-description">
+          Find the right calculator quickly and get your result in seconds.
+        </p>
 
-          <h2>
-            Simple tools. Clear results.
-          </h2>
+        <!--
+          IMPORTANT:
+          JavaScript immediately renders all 15 calculator
+          cards inside this container on DOMContentLoaded.
+        -->
 
-          <p>
-            Built to make everyday calculations quick,
-            straightforward and easy to use.
-          </p>
-
-        </div>
-
-
-
-        <div class="trust-grid">
-
-
-          <div class="trust-item">
-
-            <div class="trust-icon">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M13 2 4 14h7l-1 8 9-12h-7z"></path>
-              </svg>
-
-            </div>
-
-            <div>
-              <strong>Fast</strong>
-              <span>Instant results.</span>
-            </div>
-
-          </div>
-
-
-
-          <div class="trust-item">
-
-            <div class="trust-icon">
-
-              <svg viewBox="0 0 24 24">
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9"
-                ></circle>
-
-                <path d="m8 12 2.5 2.5L16 9"></path>
-              </svg>
-
-            </div>
-
-            <div>
-              <strong>Easy to Use</strong>
-              <span>Simple and clear.</span>
-            </div>
-
-          </div>
-
-
-
-          <div class="trust-item">
-
-            <div class="trust-icon">
-
-              <svg viewBox="0 0 24 24">
-                <rect
-                  x="7"
-                  y="2"
-                  width="10"
-                  height="20"
-                  rx="2"
-                ></rect>
-
-                <path d="M11 18h2"></path>
-              </svg>
-
-            </div>
-
-            <div>
-              <strong>Mobile Friendly</strong>
-              <span>Works on any screen.</span>
-            </div>
-
-          </div>
-
-
-
-          <div class="trust-item">
-
-            <div class="trust-icon">
-
-              <svg viewBox="0 0 24 24">
-                <circle
-                  cx="12"
-                  cy="8"
-                  r="4"
-                ></circle>
-
-                <path d="M4 21c1.5-5 14.5-5 16 0"></path>
-                <path d="m17 11 2 2 4-4"></path>
-              </svg>
-
-            </div>
-
-            <div>
-              <strong>No Sign-Up</strong>
-              <span>Use tools freely.</span>
-            </div>
-
-          </div>
-
-        </div>
+        <div
+          id="toolsGrid"
+          aria-live="polite"
+        ></div>
 
       </div>
-
     </section>
 
+    <!-- =====================================================
+         FEATURES
+    ====================================================== -->
+
+    <section class="features-section">
+
+      <div class="container">
+
+        <p class="section-label">
+          WHY ZAMMIOHUB?
+        </p>
+
+        <h2 class="features-heading">
+          Simple tools. Clear results.
+        </h2>
+
+        <p class="features-description">
+          Built to make everyday calculations quick,
+          straightforward and easy to use.
+        </p>
+
+        <div class="features-grid">
+
+          <!-- Fast -->
+
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/>
+              </svg>
+            </div>
+
+            <div>
+              <h3>Fast</h3>
+              <p>Instant results.</p>
+            </div>
+
+          </article>
+
+          <!-- Easy -->
+
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m8 12 2.5 2.5L16 9"/>
+              </svg>
+            </div>
+
+            <div>
+              <h3>Easy to Use</h3>
+              <p>Simple and clear.</p>
+            </div>
+
+          </article>
+
+          <!-- Mobile -->
+
+          <article class="feature-card">
+
+            <div class="feature-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="7" y="2" width="10" height="20" rx="2"/>
+                <path d="M11 18h2"/>
+              </svg>
+            </div>
+
+            <div>
+              <h3>Mobile Friendly</h3>
+              <p>Works on any screen.</p>
+            </div>
+
+          </article>
+
+          <!-- No Sign-Up
+               USER ICON REMOVED
+               REPLACED WITH SHIELD-CHECK
+          -->
+
+          <article class="feature-card">
+
+            <div class="feature-icon">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"
+                />
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+
+            </div>
+
+            <div>
+              <h3>No Sign-Up</h3>
+              <p>Use tools freely.</p>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
 
   </main>
 
-
-
-  <!-- =====================================================
+  <!-- =======================================================
        FOOTER
-  ====================================================== -->
+  ======================================================== -->
 
   <footer class="site-footer">
 
-    <div class="container">
-
+    <div class="container footer-inner">
 
       <div class="footer-grid">
-
 
         <div class="footer-brand">
 
           <a
-            href="/"
             class="footer-logo"
+            href="/"
             aria-label="ZammioHub homepage"
           >
             Zammio<span>Hub</span>
@@ -767,70 +2086,1126 @@
 
         </div>
 
+        <div class="footer-column">
 
+          <h3>Quick Links</h3>
 
-        <nav
-          class="footer-column"
-          aria-label="Quick links"
-        >
-
-          <h3>
-            Quick Links
-          </h3>
-
-          <a href="about.html">
+          <a href="/about/">
             About Us
           </a>
 
-          <a href="contact.html">
+          <a href="/contact/">
             Contact Us
           </a>
 
-        </nav>
+        </div>
 
+        <div class="footer-column">
 
+          <h3>Legal</h3>
 
-        <nav
-          class="footer-column"
-          aria-label="Legal links"
-        >
-
-          <h3>
-            Legal
-          </h3>
-
-          <a href="privacy-policy.html">
+          <a href="/privacy-policy/">
             Privacy Policy
           </a>
 
-          <a href="terms.html">
+          <a href="/terms-of-service/">
             Terms of Service
           </a>
 
-          <a href="disclaimer.html">
+          <a href="/disclaimer/">
             Disclaimer
           </a>
 
-        </nav>
-
+        </div>
 
       </div>
 
-
-
-      <div class="footer-bottom">
-
-        ©
-        <span id="currentYear"></span>
+      <div class="copyright">
+        © <span id="currentYear"></span>
         ZammioHub. All rights reserved.
-
       </div>
-
 
     </div>
 
   </footer>
 
+  <!-- =======================================================
+       JAVASCRIPT
+       IMPORTANT:
+       ALL event listeners are inside DOMContentLoaded.
+  ======================================================== -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      "use strict";
+
+      /* =====================================================
+         ELEMENT REFERENCES
+      ====================================================== */
+
+      const brandButton =
+        document.getElementById("brandDropdownButton");
+
+      const brandDropdown =
+        document.getElementById("brandDropdown");
+
+      const mobileMenuButton =
+        document.getElementById("mobileMenuButton");
+
+      const mobileNav =
+        document.getElementById("mobileNav");
+
+      const searchInput =
+        document.getElementById("toolSearch");
+
+      const clearSearchButton =
+        document.getElementById("clearSearch");
+
+      const filterContainer =
+        document.getElementById("filterButtons");
+
+      const toolsGrid =
+        document.getElementById("toolsGrid");
+
+      const currentYear =
+        document.getElementById("currentYear");
+
+
+      /* =====================================================
+         SVG ICONS
+      ====================================================== */
+
+      const icons = {
+
+        calculator: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <path d="M8 6h8"/>
+            <path d="M8 11h.01"/>
+            <path d="M12 11h.01"/>
+            <path d="M16 11h.01"/>
+            <path d="M8 15h.01"/>
+            <path d="M12 15h.01"/>
+            <path d="M16 15h.01"/>
+            <path d="M8 19h.01"/>
+            <path d="M12 19h.01"/>
+            <path d="M16 19h.01"/>
+          </svg>
+        `,
+
+        heart: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/>
+          </svg>
+        `,
+
+        calendar: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M16 3v4"/>
+            <path d="M8 3v4"/>
+            <path d="M3 10h18"/>
+          </svg>
+        `,
+
+        percent: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m19 5-14 14"/>
+            <circle cx="6.5" cy="6.5" r="2.5"/>
+            <circle cx="17.5" cy="17.5" r="2.5"/>
+          </svg>
+        `,
+
+        money: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="6" width="18" height="12" rx="2"/>
+            <circle cx="12" cy="12" r="2.5"/>
+            <path d="M7 9h.01"/>
+            <path d="M17 15h.01"/>
+          </svg>
+        `,
+
+        home: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m3 11 9-8 9 8"/>
+            <path d="M5 10v10h14V10"/>
+            <path d="M9 20v-6h6v6"/>
+          </svg>
+        `,
+
+        chart: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 20V10"/>
+            <path d="M10 20V4"/>
+            <path d="M16 20v-7"/>
+            <path d="M22 20H2"/>
+          </svg>
+        `,
+
+        clock: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        `,
+
+        baby: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="8"/>
+            <path d="M9 10h.01"/>
+            <path d="M15 10h.01"/>
+            <path d="M9 15c1.5 1.4 4.5 1.4 6 0"/>
+            <path d="M12 4c0-1.2 1-2 2-2"/>
+          </svg>
+        `,
+
+        scale: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 20h14"/>
+            <path d="M6 20 8 6h8l2 14"/>
+            <path d="M10 10h4"/>
+          </svg>
+        `,
+
+        tip: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 18h6"/>
+            <path d="M10 22h4"/>
+            <path d="M8.2 14a7 7 0 1 1 7.6 0c-.8.6-1.3 1.2-1.5 2H9.7c-.2-.8-.7-1.4-1.5-2Z"/>
+          </svg>
+        `,
+
+        arrow: `
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"/>
+            <path d="m13 6 6 6-6 6"/>
+          </svg>
+        `
+      };
+
+
+      /* =====================================================
+         15 ACTIVE CALCULATORS
+
+         IMPORTANT:
+         All cards are defined here and rendered immediately
+         when DOMContentLoaded fires.
+      ====================================================== */
+
+      const tools = [
+
+        {
+          name: "BMI Calculator",
+          category: "Health",
+          description:
+            "Calculate your Body Mass Index using metric or US units.",
+          url: "/bmi-calculator/",
+          icon: "heart",
+          keywords:
+            "bmi body mass index weight height health"
+        },
+
+        {
+          name: "Age Calculator",
+          category: "Everyday",
+          description:
+            "Calculate your exact age in years, months and days.",
+          url: "/age-calculator/",
+          icon: "calendar",
+          keywords:
+            "age birthday date years months days"
+        },
+
+        {
+          name: "Percentage Calculator",
+          category: "Math",
+          description:
+            "Calculate percentages, increases and decreases instantly.",
+          url: "/percentage-calculator/",
+          icon: "percent",
+          keywords:
+            "percentage percent increase decrease math"
+        },
+
+        {
+          name: "Discount Calculator",
+          category: "Everyday",
+          description:
+            "Calculate discount savings and the final sale price.",
+          url: "/discount-calculator/",
+          icon: "percent",
+          keywords:
+            "discount sale saving price percentage shopping"
+        },
+
+        {
+          name: "EMI Calculator",
+          category: "Finance",
+          description:
+            "Estimate monthly EMI payments for loans quickly.",
+          url: "/emi-calculator/",
+          icon: "money",
+          keywords:
+            "emi loan monthly installment finance payment"
+        },
+
+        {
+          name: "Tax Calculator",
+          category: "Finance",
+          description:
+            "Calculate tax amount and total price after tax.",
+          url: "/tax-calculator/",
+          icon: "calculator",
+          keywords:
+            "tax sales tax amount price finance"
+        },
+
+        {
+          name: "Loan Payment Calculator",
+          category: "Finance",
+          description:
+            "Estimate loan payments, interest and total repayment.",
+          url: "/loan-payment-calculator/",
+          icon: "money",
+          keywords:
+            "loan payment interest repayment finance"
+        },
+
+        {
+          name: "Mortgage Calculator",
+          category: "Finance",
+          description:
+            "Estimate monthly mortgage payments and total interest.",
+          url: "/mortgage-calculator/",
+          icon: "home",
+          keywords:
+            "mortgage home house loan payment finance"
+        },
+
+        {
+          name: "Pregnancy Calculator",
+          category: "Health",
+          description:
+            "Estimate pregnancy due date and important milestones.",
+          url: "/pregnancy-calculator/",
+          icon: "baby",
+          keywords:
+            "pregnancy due date maternity weeks health"
+        },
+
+        {
+          name: "Salary Calculator",
+          category: "Finance",
+          description:
+            "Convert salary between hourly, weekly and monthly pay.",
+          url: "/salary-calculator/",
+          icon: "money",
+          keywords:
+            "salary income pay hourly weekly monthly finance"
+        },
+
+        {
+          name: "Compound Interest Calculator",
+          category: "Finance",
+          description:
+            "Estimate investment growth with compound interest.",
+          url: "/compound-interest-calculator/",
+          icon: "chart",
+          keywords:
+            "compound interest investment savings finance growth"
+        },
+
+        {
+          name: "Simple Interest Calculator",
+          category: "Finance",
+          description:
+            "Calculate simple interest, principal and total amount.",
+          url: "/simple-interest-calculator/",
+          icon: "chart",
+          keywords:
+            "simple interest principal amount finance"
+        },
+
+        {
+          name: "Tip Calculator",
+          category: "Everyday",
+          description:
+            "Calculate a tip and split your bill quickly.",
+          url: "/tip-calculator/",
+          icon: "tip",
+          keywords:
+            "tip bill restaurant split everyday"
+        },
+
+        {
+          name: "Time Calculator",
+          category: "Math",
+          description:
+            "Add, subtract and calculate differences between times.",
+          url: "/time-calculator/",
+          icon: "clock",
+          keywords:
+            "time hours minutes difference math"
+        },
+
+        {
+          name: "Weight Converter",
+          category: "Everyday",
+          description:
+            "Convert weight between kilograms, pounds and other units.",
+          url: "/weight-converter/",
+          icon: "scale",
+          keywords:
+            "weight converter kilograms pounds kg lbs everyday"
+        }
+
+      ];
+
+
+      /* =====================================================
+         STATE
+      ====================================================== */
+
+      let activeCategory = "All";
+      let currentSearch = "";
+
+
+      /* =====================================================
+         HTML ESCAPING
+         Prevent accidental HTML injection from future data.
+      ====================================================== */
+
+      function escapeHTML(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+
+      /* =====================================================
+         RENDER TOOL CARDS
+      ====================================================== */
+
+      function renderTools() {
+
+        if (!toolsGrid) {
+          return;
+        }
+
+        const normalizedSearch =
+          currentSearch.trim().toLowerCase();
+
+        const filteredTools =
+          tools.filter(function (tool) {
+
+            const categoryMatch =
+              activeCategory === "All" ||
+              tool.category === activeCategory;
+
+            const searchableText = (
+              tool.name + " " +
+              tool.category + " " +
+              tool.description + " " +
+              tool.keywords
+            ).toLowerCase();
+
+            const searchMatch =
+              normalizedSearch === "" ||
+              searchableText.includes(normalizedSearch);
+
+            return categoryMatch && searchMatch;
+          });
+
+
+        /* No matching tools */
+
+        if (filteredTools.length === 0) {
+
+          toolsGrid.innerHTML = `
+            <div class="no-results">
+
+              <div class="no-results-icon">
+
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <circle cx="11" cy="11" r="7"/>
+                  <path d="m20 20-3.5-3.5"/>
+                </svg>
+
+              </div>
+
+              <h3>No calculators found</h3>
+
+              <p>
+                Try another search or select a different category.
+              </p>
+
+            </div>
+          `;
+
+          return;
+        }
+
+
+        /* Render all filtered cards */
+
+        const cardsHTML =
+          filteredTools.map(function (tool, index) {
+
+            const iconHTML =
+              icons[tool.icon] || icons.calculator;
+
+            return `
+              <article
+                class="tool-card"
+                style="animation-delay:${index * 25}ms"
+              >
+
+                <div class="tool-card-top">
+
+                  <div class="tool-icon">
+                    ${iconHTML}
+                  </div>
+
+                  <span class="tool-category">
+                    ${escapeHTML(tool.category)}
+                  </span>
+
+                </div>
+
+                <h3>
+                  ${escapeHTML(tool.name)}
+                </h3>
+
+                <p>
+                  ${escapeHTML(tool.description)}
+                </p>
+
+                <a
+                  class="tool-link"
+                  href="${escapeHTML(tool.url)}"
+                  aria-label="Open ${escapeHTML(tool.name)}"
+                >
+                  Open Calculator
+                  ${icons.arrow}
+                </a>
+
+              </article>
+            `;
+          }).join("");
+
+
+        toolsGrid.innerHTML = cardsHTML;
+      }
+
+
+      /* =====================================================
+         UPDATE ACTIVE FILTER
+      ====================================================== */
+
+      function setCategory(category) {
+
+        activeCategory = category;
+
+        const filterButtons =
+          document.querySelectorAll(".filter-button");
+
+        filterButtons.forEach(function (button) {
+
+          const buttonCategory =
+            button.getAttribute("data-category");
+
+          const isActive =
+            buttonCategory === category;
+
+          button.classList.toggle(
+            "active",
+            isActive
+          );
+
+          button.setAttribute(
+            "aria-pressed",
+            isActive ? "true" : "false"
+          );
+
+        });
+
+        renderTools();
+      }
+
+
+      /* =====================================================
+         SEARCH INPUT
+      ====================================================== */
+
+      if (searchInput) {
+
+        /*
+          Ensures input is interactive even if old CSS
+          accidentally placed an overlay above it.
+        */
+
+        searchInput.disabled = false;
+        searchInput.readOnly = false;
+
+        searchInput.addEventListener(
+          "input",
+          function () {
+
+            currentSearch = searchInput.value;
+
+            if (clearSearchButton) {
+              clearSearchButton.classList.toggle(
+                "visible",
+                currentSearch.length > 0
+              );
+            }
+
+            renderTools();
+          }
+        );
+
+
+        /*
+          Clicking input always allows normal browser focus.
+        */
+
+        searchInput.addEventListener(
+          "click",
+          function () {
+            searchInput.focus();
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         CLEAR SEARCH
+      ====================================================== */
+
+      if (clearSearchButton && searchInput) {
+
+        clearSearchButton.addEventListener(
+          "click",
+          function () {
+
+            searchInput.value = "";
+            currentSearch = "";
+
+            clearSearchButton.classList.remove(
+              "visible"
+            );
+
+            renderTools();
+
+            searchInput.focus();
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         CATEGORY FILTER BUTTONS
+      ====================================================== */
+
+      if (filterContainer) {
+
+        filterContainer.addEventListener(
+          "click",
+          function (event) {
+
+            const clickedButton =
+              event.target.closest(
+                ".filter-button"
+              );
+
+            if (!clickedButton) {
+              return;
+            }
+
+            const category =
+              clickedButton.getAttribute(
+                "data-category"
+              );
+
+            if (!category) {
+              return;
+            }
+
+            setCategory(category);
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         BRAND / GEMINI-STYLE DROPDOWN
+      ====================================================== */
+
+      function openBrandDropdown() {
+
+        if (!brandDropdown || !brandButton) {
+          return;
+        }
+
+        brandDropdown.classList.add("open");
+        brandButton.classList.add("active");
+
+        brandButton.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+        brandDropdown.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+      }
+
+
+      function closeBrandDropdown() {
+
+        if (!brandDropdown || !brandButton) {
+          return;
+        }
+
+        brandDropdown.classList.remove("open");
+        brandButton.classList.remove("active");
+
+        brandButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        brandDropdown.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+      }
+
+
+      function toggleBrandDropdown() {
+
+        if (!brandDropdown) {
+          return;
+        }
+
+        if (
+          brandDropdown.classList.contains("open")
+        ) {
+          closeBrandDropdown();
+        } else {
+          openBrandDropdown();
+        }
+      }
+
+
+      if (brandButton) {
+
+        brandButton.addEventListener(
+          "click",
+          function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            toggleBrandDropdown();
+
+            /*
+              Prevent both mobile menu and dropdown
+              from remaining open together.
+            */
+
+            closeMobileMenu();
+          }
+        );
+
+      }
+
+
+      if (brandDropdown) {
+
+        brandDropdown.addEventListener(
+          "click",
+          function (event) {
+
+            /*
+              Allow clicks inside dropdown without
+              document outside-click handler firing.
+            */
+
+            event.stopPropagation();
+
+            const normalLink =
+              event.target.closest(
+                "a:not(.dropdown-filter-link)"
+              );
+
+            if (normalLink) {
+              closeBrandDropdown();
+            }
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         DROPDOWN CATEGORY LINKS
+      ====================================================== */
+
+      const dropdownCategoryLinks =
+        document.querySelectorAll(
+          ".dropdown-filter-link"
+        );
+
+      dropdownCategoryLinks.forEach(
+        function (link) {
+
+          link.addEventListener(
+            "click",
+            function (event) {
+
+              event.preventDefault();
+
+              const category =
+                link.getAttribute(
+                  "data-dropdown-category"
+                );
+
+              if (category) {
+                setCategory(category);
+              }
+
+              closeBrandDropdown();
+
+              const calculatorsSection =
+                document.getElementById(
+                  "calculators"
+                );
+
+              if (calculatorsSection) {
+
+                calculatorsSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+                });
+
+              }
+            }
+          );
+
+        }
+      );
+
+
+      /* =====================================================
+         MOBILE MENU
+      ====================================================== */
+
+      function openMobileMenu() {
+
+        if (
+          !mobileNav ||
+          !mobileMenuButton
+        ) {
+          return;
+        }
+
+        mobileNav.classList.add("open");
+        mobileMenuButton.classList.add("open");
+
+        mobileMenuButton.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+        mobileMenuButton.setAttribute(
+          "aria-label",
+          "Close navigation menu"
+        );
+
+        closeBrandDropdown();
+      }
+
+
+      function closeMobileMenu() {
+
+        if (
+          !mobileNav ||
+          !mobileMenuButton
+        ) {
+          return;
+        }
+
+        mobileNav.classList.remove("open");
+        mobileMenuButton.classList.remove("open");
+
+        mobileMenuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        mobileMenuButton.setAttribute(
+          "aria-label",
+          "Open navigation menu"
+        );
+      }
+
+
+      function toggleMobileMenu() {
+
+        if (!mobileNav) {
+          return;
+        }
+
+        if (
+          mobileNav.classList.contains("open")
+        ) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+
+      if (mobileMenuButton) {
+
+        mobileMenuButton.addEventListener(
+          "click",
+          function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            toggleMobileMenu();
+          }
+        );
+
+      }
+
+
+      /* =====================================================
+         CLOSE MOBILE MENU AFTER LINK CLICK
+      ====================================================== */
+
+      const mobileLinks =
+        document.querySelectorAll(
+          "#mobileNav a"
+        );
+
+      mobileLinks.forEach(
+        function (link) {
+
+          link.addEventListener(
+            "click",
+            function () {
+              closeMobileMenu();
+            }
+          );
+
+        }
+      );
+
+
+      /* =====================================================
+         OUTSIDE CLICK
+         Closes dropdown / mobile menu.
+      ====================================================== */
+
+      document.addEventListener(
+        "click",
+        function (event) {
+
+          if (
+            brandDropdown &&
+            brandButton &&
+            !brandDropdown.contains(event.target) &&
+            !brandButton.contains(event.target)
+          ) {
+            closeBrandDropdown();
+          }
+
+          if (
+            mobileNav &&
+            mobileMenuButton &&
+            !mobileNav.contains(event.target) &&
+            !mobileMenuButton.contains(event.target)
+          ) {
+            closeMobileMenu();
+          }
+
+        }
+      );
+
+
+      /* =====================================================
+         ESC KEY
+      ====================================================== */
+
+      document.addEventListener(
+        "keydown",
+        function (event) {
+
+          if (event.key === "Escape") {
+
+            closeBrandDropdown();
+            closeMobileMenu();
+
+          }
+
+        }
+      );
+
+
+      /* =====================================================
+         WINDOW RESIZE
+         Close mobile menu when desktop layout returns.
+      ====================================================== */
+
+      window.addEventListener(
+        "resize",
+        function () {
+
+          if (window.innerWidth > 980) {
+            closeMobileMenu();
+          }
+
+        }
+      );
+
+
+      /* =====================================================
+         FOOTER YEAR
+      ====================================================== */
+
+      if (currentYear) {
+        currentYear.textContent =
+          new Date().getFullYear();
+      }
+
+
+      /* =====================================================
+         INITIAL PAGE LOAD
+
+         THIS IS THE KEY FIX:
+         renderTools() runs immediately after DOM is ready,
+         therefore all 15 calculator cards appear without
+         needing any click/filter/search action.
+      ====================================================== */
+
+      setCategory("All");
+
+    });
+  </script>
 
 </body>
-</html>
+</html>     
