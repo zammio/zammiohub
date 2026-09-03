@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
 
@@ -9,17 +8,14 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    ZammioHub – Free Online Calculators & Useful Tools
-  </title>
+  <title>ZammioHub – Free Online Calculators & Useful Tools</title>
 
   <meta
     name="description"
-    content="Free online calculators for finance, health, math and everyday needs. Fast, simple and easy to use on any device."
+    content="ZammioHub offers free, fast and easy-to-use online calculators for finance, health, math and everyday needs."
   >
 
   <meta name="robots" content="index, follow">
-
   <meta name="theme-color" content="#ffffff">
 
   <link
@@ -32,9 +28,8 @@
     href="css/style.css"
   >
 
-  <!-- Lucide SVG Icons -->
   <script
-    src="https://unpkg.com/lucide@latest"
+    src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
     defer
   ></script>
 
@@ -44,14 +39,9 @@
   ></script>
 </head>
 
-
 <body>
 
-
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
-
+  <!-- HEADER -->
   <header class="site-header">
 
     <div class="container header-inner">
@@ -64,19 +54,18 @@
         Zammio<span>Hub</span>
       </a>
 
-
       <nav
         class="desktop-nav"
         aria-label="Main navigation"
       >
-        <a href="#tools">Calculators</a>
-        <a href="#why-zammiohub">Why ZammioHub</a>
+        <a href="#calculators">Calculators</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
-
       <button
-        class="menu-btn"
-        id="menuBtn"
+        class="menu-button"
+        id="menuButton"
         type="button"
         aria-label="Open navigation menu"
         aria-expanded="false"
@@ -87,108 +76,76 @@
 
     </div>
 
-
-    <!-- Mobile Navigation -->
-
     <nav
       class="mobile-menu"
       id="mobileMenu"
       aria-label="Mobile navigation"
     >
-
-      <div class="container mobile-menu-inner">
-
-        <a href="#tools">
-          Calculators
-        </a>
-
-        <a href="#why-zammiohub">
-          Why ZammioHub
-        </a>
-
+      <div class="container mobile-menu-links">
+        <a href="#calculators">Calculators</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </div>
-
     </nav>
 
   </header>
 
 
-
   <main>
 
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
+    <!-- HERO -->
     <section class="hero">
 
-      <div class="container hero-inner">
+      <div class="container hero-content">
 
-        <div class="hero-content">
-
-          <div class="hero-badge">
-            FREE • FAST • EASY TO USE
-          </div>
-
-
-          <h1>
-            Smart Tools for
-            <span>Everyday Life</span>
-          </h1>
-
-
-          <p>
-            Fast, accurate online calculators for finance,
-            health, math and everyday needs.
-          </p>
-
+        <div class="hero-badge">
+          FREE • FAST • EASY TO USE
         </div>
+
+        <h1>
+          Smart Tools for
+          <span>Everyday Life</span>
+        </h1>
+
+        <p>
+          Fast, accurate online calculators for finance,
+          health, math and everyday needs.
+        </p>
 
       </div>
 
     </section>
 
 
-
-    <!-- =====================================================
-         SEARCH + FILTERS
-    ====================================================== -->
-
+    <!-- CALCULATORS -->
     <section
-      class="tool-finder"
-      id="tools"
+      class="calculators-section"
+      id="calculators"
     >
 
       <div class="container">
 
+        <!-- Search -->
+        <div class="finder">
 
-        <div class="finder-panel">
-
-
-          <!-- Search -->
-
-          <div class="search-wrapper">
+          <div class="search-box">
 
             <i
               data-lucide="search"
-              class="search-icon"
               aria-hidden="true"
             ></i>
 
-
             <input
-              type="search"
               id="searchInput"
+              type="search"
               placeholder="Search calculators..."
               autocomplete="off"
               aria-label="Search calculators"
             >
 
-
             <button
-              class="clear-search"
               id="clearSearch"
+              class="clear-search"
               type="button"
               aria-label="Clear search"
               hidden
@@ -199,60 +156,51 @@
           </div>
 
 
-
-          <!-- Filter Tabs -->
-
+          <!-- Filters -->
           <div
             class="filter-tabs"
-            id="filterTabs"
-            role="group"
-            aria-label="Filter calculators by category"
+            aria-label="Calculator categories"
           >
 
             <button
+              class="filter-button active"
               type="button"
-              class="filter-btn active"
               data-category="All"
               aria-pressed="true"
             >
               All
-              <span id="allCount">15</span>
             </button>
 
-
             <button
+              class="filter-button"
               type="button"
-              class="filter-btn"
               data-category="Finance"
               aria-pressed="false"
             >
               Finance
             </button>
 
-
             <button
+              class="filter-button"
               type="button"
-              class="filter-btn"
               data-category="Health"
               aria-pressed="false"
             >
               Health
             </button>
 
-
             <button
+              class="filter-button"
               type="button"
-              class="filter-btn"
               data-category="Math"
               aria-pressed="false"
             >
               Math
             </button>
 
-
             <button
+              class="filter-button"
               type="button"
-              class="filter-btn"
               data-category="Everyday"
               aria-pressed="false"
             >
@@ -264,60 +212,32 @@
         </div>
 
 
+        <!-- Heading -->
+        <div class="section-heading">
 
-        <!-- =================================================
-             TOOL SECTION HEADING
-        ================================================== -->
+          <span class="eyebrow">
+            ONLINE CALCULATORS
+          </span>
 
-        <div class="tools-heading">
+          <h2>
+            Explore Our Calculators
+          </h2>
 
-          <div>
-
-            <span class="eyebrow">
-              ONLINE CALCULATORS
-            </span>
-
-            <h2>
-              Explore Our Calculators
-            </h2>
-
-            <p>
-              Choose a calculator or search to find
-              exactly what you need.
-            </p>
-
-          </div>
-
-
-          <div
-            class="results-count"
-            id="resultsCount"
-            aria-live="polite"
-          >
-            15 calculators
-          </div>
+          <p>
+            Find the right calculator quickly and get your result in seconds.
+          </p>
 
         </div>
 
 
-
-        <!-- =================================================
-             DYNAMIC TOOL CARDS
-
-             IMPORTANT:
-             Cards will be generated automatically
-             by js/script.js
-        ================================================== -->
-
+        <!-- Dynamic tools -->
         <div
           class="tools-grid"
           id="toolsGrid"
         ></div>
 
 
-
-        <!-- No Results -->
-
+        <!-- No results -->
         <div
           class="no-results"
           id="noResults"
@@ -328,42 +248,30 @@
             <i data-lucide="search-x"></i>
           </div>
 
-          <h3>
-            No calculators found
-          </h3>
+          <h3>No calculators found</h3>
 
           <p>
-            Try another search or choose a different category.
+            Try another search or select a different category.
           </p>
 
           <button
-            type="button"
             id="resetFilters"
-            class="reset-btn"
+            type="button"
           >
-            View all calculators
+            View All Calculators
           </button>
 
         </div>
-
 
       </div>
 
     </section>
 
 
-
-    <!-- =====================================================
-         WHY ZAMMIOHUB
-    ====================================================== -->
-
-    <section
-      class="trust-section"
-      id="why-zammiohub"
-    >
+    <!-- TRUST -->
+    <section class="trust-section">
 
       <div class="container">
-
 
         <div class="trust-heading">
 
@@ -376,16 +284,14 @@
           </h2>
 
           <p>
-            Useful calculators designed to be quick,
+            Built to make everyday calculations quick,
             straightforward and easy to use.
           </p>
 
         </div>
 
 
-
         <div class="trust-grid">
-
 
           <div class="trust-item">
 
@@ -395,11 +301,10 @@
 
             <div>
               <strong>Fast</strong>
-              <span>Get results instantly.</span>
+              <span>Instant results.</span>
             </div>
 
           </div>
-
 
 
           <div class="trust-item">
@@ -410,11 +315,10 @@
 
             <div>
               <strong>Easy to Use</strong>
-              <span>Clean and simple tools.</span>
+              <span>Simple and clear.</span>
             </div>
 
           </div>
-
 
 
           <div class="trust-item">
@@ -431,20 +335,18 @@
           </div>
 
 
-
           <div class="trust-item">
 
             <div class="trust-icon">
-              <i data-lucide="user-round-x"></i>
+              <i data-lucide="user-round-check"></i>
             </div>
 
             <div>
               <strong>No Sign-Up</strong>
-              <span>Use calculators freely.</span>
+              <span>Use tools freely.</span>
             </div>
 
           </div>
-
 
         </div>
 
@@ -452,67 +354,87 @@
 
     </section>
 
-
   </main>
 
 
-
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
-
+  <!-- FOOTER -->
   <footer class="site-footer">
 
     <div class="container">
 
+      <div class="footer-grid">
 
-      <div class="footer-main">
-
-
+        <!-- Brand -->
         <div class="footer-brand">
 
           <a
             href="/"
-            class="logo"
+            class="footer-logo"
             aria-label="ZammioHub homepage"
           >
             Zammio<span>Hub</span>
           </a>
 
           <p>
-            Free online calculators for everyday needs.
+            Free online calculators for finance,
+            health, math and everyday needs.
           </p>
 
         </div>
 
 
-        <div class="footer-note">
+        <!-- Quick Links -->
+        <nav
+          class="footer-column"
+          aria-label="Quick links"
+        >
 
-          <p>
-            Simple. Fast. Useful.
-          </p>
+          <h3>Quick Links</h3>
 
-        </div>
+          <a href="about.html">
+            About Us
+          </a>
 
+          <a href="contact.html">
+            Contact Us
+          </a>
+
+        </nav>
+
+
+        <!-- Legal -->
+        <nav
+          class="footer-column"
+          aria-label="Legal"
+        >
+
+          <h3>Legal</h3>
+
+          <a href="privacy-policy.html">
+            Privacy Policy
+          </a>
+
+          <a href="terms.html">
+            Terms of Service
+          </a>
+
+          <a href="disclaimer.html">
+            Disclaimer
+          </a>
+
+        </nav>
 
       </div>
 
 
       <div class="footer-bottom">
-
-        <p>
-          © <span id="currentYear"></span>
-          ZammioHub. All rights reserved.
-        </p>
-
+        © <span id="currentYear"></span>
+        ZammioHub. All rights reserved.
       </div>
-
 
     </div>
 
   </footer>
 
-
 </body>
-
 </html>
