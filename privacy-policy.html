@@ -576,8 +576,13 @@
     .policy-layout {
       display: grid;
       grid-template-columns: minmax(0,1fr) 290px;
+      grid-template-areas: "content sidebar";
       gap: 60px;
       align-items: start;
+    }
+
+    .policy-layout > article {
+      grid-area: content;
     }
 
     .policy-section {
@@ -682,6 +687,7 @@
     /* Sidebar */
 
     .policy-sidebar {
+      grid-area: sidebar;
       position: sticky;
       top: 25px;
     }
@@ -826,7 +832,10 @@
 
       .policy-layout {
         grid-template-columns: 1fr;
-        gap: 42px;
+        grid-template-areas:
+          "sidebar"
+          "content";
+        gap: 32px;
       }
 
       .policy-sidebar {
@@ -1707,6 +1716,74 @@
 
     <div class="container policy-layout">
 
+      <!-- SIDEBAR -->
+
+      <aside class="policy-sidebar">
+
+        <div class="sidebar-card">
+
+          <h3>Privacy Policy</h3>
+
+          <a class="sidebar-link" href="#information">
+            Information We May Receive
+          </a>
+
+          <a class="sidebar-link" href="#calculator-data">
+            Calculator Inputs
+          </a>
+
+          <a class="sidebar-link" href="#cookies">
+            Cookies
+          </a>
+
+          <a class="sidebar-link" href="#third-parties">
+            Third Parties
+          </a>
+
+          <a class="sidebar-link" href="#retention">
+            Data Retention
+          </a>
+
+          <a class="sidebar-link" href="#security">
+            Data Security
+          </a>
+
+          <a class="sidebar-link" href="#children">
+            Children's Privacy
+          </a>
+
+          <a class="sidebar-link" href="#choices">
+            Privacy Choices
+          </a>
+
+          <a class="sidebar-link" href="#contact">
+            Contact Us
+          </a>
+
+        </div>
+
+
+        <div class="sidebar-card">
+
+          <h3>Privacy question?</h3>
+
+          <p>
+            Contact ZammioHub if you have a question concerning this
+            policy or information you have sent to us.
+          </p>
+
+          <a
+            class="contact-button"
+            href="mailto:contact@zammiohub.com"
+          >
+            contact@zammiohub.com
+          </a>
+
+        </div>
+
+      </aside>
+
+
       <article>
 
 
@@ -2132,72 +2209,7 @@
       </article>
 
 
-      <!-- SIDEBAR -->
 
-      <aside class="policy-sidebar">
-
-        <div class="sidebar-card">
-
-          <h3>Privacy Policy</h3>
-
-          <a class="sidebar-link" href="#information">
-            Information We May Receive
-          </a>
-
-          <a class="sidebar-link" href="#calculator-data">
-            Calculator Inputs
-          </a>
-
-          <a class="sidebar-link" href="#cookies">
-            Cookies
-          </a>
-
-          <a class="sidebar-link" href="#third-parties">
-            Third Parties
-          </a>
-
-          <a class="sidebar-link" href="#retention">
-            Data Retention
-          </a>
-
-          <a class="sidebar-link" href="#security">
-            Data Security
-          </a>
-
-          <a class="sidebar-link" href="#children">
-            Children's Privacy
-          </a>
-
-          <a class="sidebar-link" href="#choices">
-            Privacy Choices
-          </a>
-
-          <a class="sidebar-link" href="#contact">
-            Contact Us
-          </a>
-
-        </div>
-
-
-        <div class="sidebar-card">
-
-          <h3>Privacy question?</h3>
-
-          <p>
-            Contact ZammioHub if you have a question concerning this
-            policy or information you have sent to us.
-          </p>
-
-          <a
-            class="contact-button"
-            href="mailto:contact@zammiohub.com"
-          >
-            contact@zammiohub.com
-          </a>
-
-        </div>
-
-      </aside>
 
     </div>
 
