@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Privacy Policy | ZammioHub</title>
+
+  <meta
+    name="description"
+    content="Read the ZammioHub Privacy Policy to learn how information is handled when you use our free online calculators and website."
+  >
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zammiohub.com/privacy-policy.html">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --blue: #256be9;
+      --blue-dark: #1758ce;
+      --blue-soft: #edf4ff;
+      --navy: #101b32;
+      --text: #26364d;
+      --muted: #6f7f94;
+      --border: #e1e7ef;
+      --section: #f7f9fc;
+      --footer: #101a31;
+      --max-width: 1180px;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    svg {
+      display: block;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid rgba(37,107,233,.25);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .site-header {
+      position: relative;
+      z-index: 1000;
+      background: rgba(255,255,255,.98);
+      border-bottom: 1px solid #edf1f5;
+    }
+
+    .header-inner {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand-area {
+      position: relative;
+    }
+
+    .brand-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .brand-text {
+      font-size: 29px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      white-space: nowrap;
+    }
+
+    .brand-text span {
+      color: var(--blue);
+    }
+
+    .brand-chevron {
+      width: 17px;
+      height: 17px;
+      color: #697a91;
+      transition: transform .2s ease;
+    }
+
+    .brand-button.open .brand-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Brand dropdown */
+
+    .brand-dropdown {
+      position: absolute;
+      top: calc(100% + 22px);
+      left: 0;
+      width: min(690px, calc(100vw - 48px));
+      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 25px 70px rgba(15,35,65,.16);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px);
+
+      transition:
+        opacity .2s ease,
+        visibility .2s ease,
+        transform .2s ease;
+
+      z-index: 2000;
+    }
+
+    .brand-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-head {
+      padding-bottom: 14px;
+      margin-bottom: 17px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dropdown-head strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .dropdown-head span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dropdown-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 22px;
+    }
+
+    .dropdown-title {
+      margin: 0 0 8px;
+      color: #8996a8;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .dropdown-link {
+      display: block;
+      margin-left: -7px;
+      padding: 7px;
+      border-radius: 8px;
+      color: #314158;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .dropdown-link:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    /* Desktop nav */
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .desktop-nav > a,
+    .calculators-button {
+      color: #314158;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .desktop-nav > a:hover,
+    .calculators-button:hover {
+      color: var(--blue);
+    }
+
+    .calculators-wrap {
+      position: relative;
+    }
+
+    .calculators-button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .calculators-button svg {
+      width: 15px;
+      height: 15px;
+      transition: transform .2s ease;
+    }
+
+    .calculators-button.open svg {
+      transform: rotate(180deg);
+    }
+
+    .calc-dropdown {
+      position: absolute;
+      top: calc(100% + 17px);
+      right: 0;
+      width: 420px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 25px 65px rgba(15,35,65,.15);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px);
+
+      transition:
+        opacity .2s ease,
+        visibility .2s ease,
+        transform .2s ease;
+
+      z-index: 2000;
+    }
+
+    .calc-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .calc-category + .calc-category {
+      border-top: 1px solid #edf1f5;
+    }
+
+    .category-button {
+      width: 100%;
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px;
+      background: transparent;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .category-button svg {
+      width: 15px;
+      height: 15px;
+      transition: transform .2s ease;
+    }
+
+    .category-button.open svg {
+      transform: rotate(180deg);
+    }
+
+    .category-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+    }
+
+    .category-panel.open {
+      max-height: 520px;
+    }
+
+    .tool-link {
+      display: block;
+      padding: 7px 11px;
+      border-radius: 8px;
+      color: #66768b;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .tool-link:hover {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    /* Hamburger */
+
+    .menu-button {
+      display: none;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .menu-button svg {
+      width: 29px;
+      height: 29px;
+    }
+
+    .close-icon {
+      display: none;
+    }
+
+    .menu-button.open .menu-icon {
+      display: none;
+    }
+
+    .menu-button.open .close-icon {
+      display: block;
+    }
+
+    /* Mobile nav */
+
+    .mobile-nav {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      border-top: 1px solid #edf1f5;
+      transition: max-height .35s ease;
+    }
+
+    .mobile-nav.open {
+      max-height: 1800px;
+    }
+
+    .mobile-nav-inner {
+      padding: 8px 24px 20px;
+    }
+
+    .mobile-main-link,
+    .mobile-calc-button,
+    .mobile-category-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .mobile-main-link,
+    .mobile-calc-button {
+      min-height: 54px;
+      padding: 0 5px;
+      border-bottom: 1px solid #edf1f5;
+      color: #26364d;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .mobile-main-link.active {
+      color: var(--blue);
+    }
+
+    .mobile-calc-button svg,
+    .mobile-category-button svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .2s ease;
+    }
+
+    .mobile-calc-button.open svg,
+    .mobile-category-button.open svg {
+      transform: rotate(180deg);
+    }
+
+    .mobile-calc-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .mobile-calc-panel.open {
+      max-height: 1500px;
+    }
+
+    .mobile-category {
+      margin-left: 9px;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .mobile-category-button {
+      min-height: 47px;
+      padding: 0 7px;
+      color: #4d5e74;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .mobile-category-panel {
+      max-height: 0;
+      overflow: hidden;
+      padding-left: 10px;
+      transition: max-height .3s ease;
+    }
+
+    .mobile-category-panel.open {
+      max-height: 700px;
+    }
+
+    .mobile-tool-link {
+      display: block;
+      padding: 8px 10px;
+      color: #718096;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .policy-hero {
+      padding: 70px 0 66px;
+      background:
+        radial-gradient(
+          circle at 88% 20%,
+          rgba(37,107,233,.13),
+          transparent 34%
+        ),
+        linear-gradient(
+          180deg,
+          #fff 0%,
+          #f7faff 100%
+        );
+      border-bottom: 1px solid #edf1f5;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 27px;
+      color: #718096;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .breadcrumb a {
+      color: var(--blue);
+    }
+
+    .breadcrumb svg {
+      width: 14px;
+      height: 14px;
+      color: #9aa6b7;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      margin-bottom: 17px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .policy-hero h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(44px,6vw,64px);
+      line-height: 1.06;
+      letter-spacing: -2.4px;
+      font-weight: 800;
+    }
+
+    .policy-intro {
+      max-width: 800px;
+      margin: 22px 0 0;
+      color: #65758a;
+      font-size: 19px;
+    }
+
+    .updated {
+      display: inline-flex;
+      margin-top: 22px;
+      padding: 8px 13px;
+      border: 1px solid #d8e3f4;
+      border-radius: 10px;
+      background: #fff;
+      color: #718096;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    /* =========================
+       POLICY
+    ========================= */
+
+    .policy-main {
+      padding: 72px 0 90px;
+    }
+
+    .policy-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 290px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .policy-section {
+      padding-bottom: 38px;
+      margin-bottom: 38px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .policy-section h2 {
+      margin: 0 0 15px;
+      color: var(--navy);
+      font-size: 27px;
+      line-height: 1.3;
+      letter-spacing: -.6px;
+    }
+
+    .policy-section h3 {
+      margin: 24px 0 8px;
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .policy-section p {
+      margin: 0 0 15px;
+      color: #617186;
+      font-size: 16px;
+    }
+
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-section ul {
+      margin: 14px 0 16px;
+      padding-left: 24px;
+      color: #617186;
+    }
+
+    .policy-section li {
+      margin-bottom: 9px;
+      padding-left: 3px;
+    }
+
+    .text-link {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Highlight */
+
+    .privacy-highlight {
+      display: flex;
+      gap: 17px;
+      align-items: flex-start;
+      padding: 22px;
+      margin-bottom: 38px;
+      border: 1px solid #cfe0ff;
+      border-radius: 18px;
+      background: #f5f9ff;
+    }
+
+    .highlight-icon {
+      width: 43px;
+      height: 43px;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--blue);
+    }
+
+    .highlight-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .privacy-highlight strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--navy);
+      font-size: 16px;
+    }
+
+    .privacy-highlight p {
+      margin: 0;
+      color: #65758a;
+      font-size: 14.5px;
+    }
+
+    /* Sidebar */
+
+    .policy-sidebar {
+      position: sticky;
+      top: 25px;
+    }
+
+    .sidebar-card {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(30,55,90,.05);
+    }
+
+    .sidebar-card + .sidebar-card {
+      margin-top: 17px;
+    }
+
+    .sidebar-card h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 17px;
+    }
+
+    .sidebar-link {
+      display: block;
+      padding: 8px 0;
+      border-bottom: 1px solid #edf1f5;
+      color: #65758a;
+      font-size: 13.5px;
+      font-weight: 650;
+    }
+
+    .sidebar-link:last-child {
+      border-bottom: 0;
+    }
+
+    .sidebar-link:hover {
+      color: var(--blue);
+    }
+
+    .sidebar-card p {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 46px;
+      padding: 0 14px;
+      border-radius: 11px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 800;
+    }
+
+    .contact-button:hover {
+      background: var(--blue-dark);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .site-footer {
+      background: var(--footer);
+      color: #fff;
+    }
+
+    .footer-inner {
+      padding: 64px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-logo {
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .footer-logo span {
+      color: var(--blue);
+    }
+
+    .footer-brand p {
+      max-width: 370px;
+      margin: 19px 0 0;
+      color: #9ba9bd;
+      font-size: 15px;
+    }
+
+    .footer-column h3 {
+      margin: 1px 0 17px;
+      font-size: 16px;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-bottom: 13px;
+      color: #9ba9bd;
+      font-size: 15px;
+    }
+
+    .footer-column a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid #24324c;
+      color: #7f8da3;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 980px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-button {
+        display: flex;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .policy-layout {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .policy-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2,minmax(0,1fr));
+        gap: 16px;
+      }
+
+      .sidebar-card + .sidebar-card {
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(calc(100% - 30px), var(--max-width));
+      }
+
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .brand-text {
+        font-size: 24px;
+      }
+
+      .brand-dropdown {
+        position: fixed;
+        top: 78px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+        max-height: calc(100vh - 95px);
+        overflow-y: auto;
+        padding: 18px;
+      }
+
+      .dropdown-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .policy-hero {
+        padding: 47px 0 49px;
+      }
+
+      .breadcrumb {
+        margin-bottom: 22px;
+        font-size: 13px;
+      }
+
+      .hero-label {
+        margin-bottom: 14px;
+        font-size: 10.5px;
+      }
+
+      .policy-hero h1 {
+        font-size: 39px;
+        letter-spacing: -1.5px;
+      }
+
+      .policy-intro {
+        margin-top: 18px;
+        font-size: 16.5px;
+      }
+
+      .updated {
+        margin-top: 18px;
+        font-size: 12px;
+      }
+
+      .policy-main {
+        padding: 52px 0 65px;
+      }
+
+      .privacy-highlight {
+        padding: 18px;
+        gap: 13px;
+        margin-bottom: 32px;
+      }
+
+      .highlight-icon {
+        width: 39px;
+        height: 39px;
+      }
+
+      .policy-section {
+        padding-bottom: 31px;
+        margin-bottom: 31px;
+      }
+
+      .policy-section h2 {
+        font-size: 23px;
+      }
+
+      .policy-section h3 {
+        font-size: 17px;
+      }
+
+      .policy-section p,
+      .policy-section li {
+        font-size: 15px;
+      }
+
+      .policy-sidebar {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .sidebar-card {
+        padding: 20px;
+      }
+
+      .footer-inner {
+        padding-top: 50px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px 25px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .copyright {
+        margin-top: 38px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .container {
+        width: min(calc(100% - 24px),var(--max-width));
+      }
+
+      .policy-hero h1 {
+        font-size: 36px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <div class="container header-inner">
+
+    <div class="brand-area">
+
+      <button
+        class="brand-button"
+        id="brandButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="brandDropdown"
+      >
+
+        <span class="brand-text">
+          Zammio<span>Hub</span>
+        </span>
+
+        <svg
+          class="brand-chevron"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+
+      </button>
+
+
+      <div
+        class="brand-dropdown"
+        id="brandDropdown"
+      >
+
+        <div class="dropdown-head">
+          <strong>Explore ZammioHub</strong>
+          <span>Calculators and important site pages.</span>
+        </div>
+
+        <div class="dropdown-grid">
+
+          <div>
+
+            <p class="dropdown-title">
+              Categories
+            </p>
+
+            <a class="dropdown-link" href="/#calculators">
+              Finance Calculators
+            </a>
+
+            <a class="dropdown-link" href="/#calculators">
+              Health Calculators
+            </a>
+
+            <a class="dropdown-link" href="/#calculators">
+              Math Calculators
+            </a>
+
+            <a class="dropdown-link" href="/#calculators">
+              Everyday Calculators
+            </a>
+
+          </div>
+
+
+          <div>
+
+            <p class="dropdown-title">
+              Popular Tools
+            </p>
+
+            <a
+              class="dropdown-link"
+              href="/calculators/age-calculator.html"
+            >
+              Age Calculator
+            </a>
+
+            <a
+              class="dropdown-link"
+              href="/calculators/bmi-calculator.html"
+            >
+              BMI Calculator
+            </a>
+
+            <a
+              class="dropdown-link"
+              href="/calculators/emi-calculator.html"
+            >
+              EMI Calculator
+            </a>
+
+            <a
+              class="dropdown-link"
+              href="/calculators/mortgage-calculator.html"
+            >
+              Mortgage Calculator
+            </a>
+
+          </div>
+
+
+          <div>
+
+            <p class="dropdown-title">
+              Pages
+            </p>
+
+            <a class="dropdown-link" href="/about.html">
+              About Us
+            </a>
+
+            <a class="dropdown-link" href="/contact.html">
+              Contact Us
+            </a>
+
+            <a class="dropdown-link" href="/privacy-policy.html">
+              Privacy Policy
+            </a>
+
+            <a class="dropdown-link" href="/disclaimer.html">
+              Disclaimer
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Desktop Navigation -->
+
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+
+      <div class="calculators-wrap">
+
+        <button
+          class="calculators-button"
+          id="calculatorsButton"
+          type="button"
+          aria-expanded="false"
+        >
+          Calculators
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+          >
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+
+        </button>
+
+
+        <div
+          class="calc-dropdown"
+          id="calcDropdown"
+        >
+
+          <!-- Finance -->
+
+          <div class="calc-category">
+
+            <button
+              class="category-button"
+              type="button"
+            >
+              Finance
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/auto-loan-calculator.html">
+                Auto Loan Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/compound-interest-calculator.html">
+                Compound Interest Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/emi-calculator.html">
+                EMI Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/loan-payment-calculator.html">
+                Loan Payment Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/mortgage-calculator.html">
+                Mortgage Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/retirement-calculator.html">
+                Retirement Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/salary-calculator.html">
+                Salary Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/tax-calculator.html">
+                Tax Calculator
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- Health -->
+
+          <div class="calc-category">
+
+            <button
+              class="category-button"
+              type="button"
+            >
+              Health
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/bmi-calculator.html">
+                BMI Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/calorie-calculator.html">
+                Calorie Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/pregnancy-calculator.html">
+                Pregnancy Calculator
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- Math -->
+
+          <div class="calc-category">
+
+            <button
+              class="category-button"
+              type="button"
+            >
+              Math
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/percentage-calculator.html">
+                Percentage Calculator
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- Everyday -->
+
+          <div class="calc-category">
+
+            <button
+              class="category-button"
+              type="button"
+            >
+              Everyday
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+
+            </button>
+
+            <div class="category-panel">
+
+              <a class="tool-link"
+                 href="/calculators/age-calculator.html">
+                Age Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/discount-calculator.html">
+                Discount Calculator
+              </a>
+
+              <a class="tool-link"
+                 href="/calculators/tip-calculator.html">
+                Tip Calculator
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+
+    </nav>
+
+
+    <!-- Mobile Button -->
+
+    <button
+      class="menu-button"
+      id="menuButton"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+
+      <svg
+        class="menu-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.3"
+        stroke-linecap="round"
+      >
+        <path d="M4 6h16"/>
+        <path d="M4 12h16"/>
+        <path d="M4 18h16"/>
+      </svg>
+
+      <svg
+        class="close-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.3"
+        stroke-linecap="round"
+      >
+        <path d="M6 6l12 12"/>
+        <path d="M18 6 6 18"/>
+      </svg>
+
+    </button>
+
+  </div>
+
+
+  <!-- Mobile Navigation -->
+
+  <nav
+    class="mobile-nav"
+    id="mobileNav"
+    aria-label="Mobile navigation"
+  >
+
+    <div class="mobile-nav-inner">
+
+      <button
+        class="mobile-calc-button"
+        id="mobileCalcButton"
+        type="button"
+      >
+        Calculators
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+        >
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+
+      </button>
+
+
+      <div
+        class="mobile-calc-panel"
+        id="mobileCalcPanel"
+      >
+
+        <!-- Finance -->
+
+        <div class="mobile-category">
+
+          <button
+            class="mobile-category-button"
+            type="button"
+          >
+            Finance
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/auto-loan-calculator.html">
+              Auto Loan Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/compound-interest-calculator.html">
+              Compound Interest Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/emi-calculator.html">
+              EMI Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/loan-payment-calculator.html">
+              Loan Payment Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/mortgage-calculator.html">
+              Mortgage Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/retirement-calculator.html">
+              Retirement Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/salary-calculator.html">
+              Salary Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/tax-calculator.html">
+              Tax Calculator
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Health -->
+
+        <div class="mobile-category">
+
+          <button
+            class="mobile-category-button"
+            type="button"
+          >
+            Health
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/bmi-calculator.html">
+              BMI Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/calorie-calculator.html">
+              Calorie Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/pregnancy-calculator.html">
+              Pregnancy Calculator
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Math -->
+
+        <div class="mobile-category">
+
+          <button
+            class="mobile-category-button"
+            type="button"
+          >
+            Math
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/percentage-calculator.html">
+              Percentage Calculator
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Everyday -->
+
+        <div class="mobile-category">
+
+          <button
+            class="mobile-category-button"
+            type="button"
+          >
+            Everyday
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/age-calculator.html">
+              Age Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/discount-calculator.html">
+              Discount Calculator
+            </a>
+
+            <a class="mobile-tool-link"
+               href="/calculators/tip-calculator.html">
+              Tip Calculator
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="mobile-main-link"
+        href="/about.html"
+      >
+        About Us <span>→</span>
+      </a>
+
+      <a
+        class="mobile-main-link"
+        href="/contact.html"
+      >
+        Contact Us <span>→</span>
+      </a>
+
+      <a
+        class="mobile-main-link active"
+        href="/privacy-policy.html"
+      >
+        Privacy Policy <span>→</span>
+      </a>
+
+      <a
+        class="mobile-main-link"
+        href="/disclaimer.html"
+      >
+        Disclaimer <span>→</span>
+      </a>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="policy-hero">
+
+    <div class="container">
+
+      <nav
+        class="breadcrumb"
+        aria-label="Breadcrumb"
+      >
+
+        <a href="/">Home</a>
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="m9 18 6-6-6-6"/>
+        </svg>
+
+        <span>Privacy Policy</span>
+
+      </nav>
+
+
+      <div class="hero-label">
+        YOUR PRIVACY
+      </div>
+
+
+      <h1>
+        Privacy Policy
+      </h1>
+
+
+      <p class="policy-intro">
+        This Privacy Policy explains how ZammioHub handles information
+        when you visit our website and use our online calculators.
+      </p>
+
+
+      <div class="updated">
+        Last updated: September 3, 2026
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- POLICY CONTENT -->
+
+  <section class="policy-main">
+
+    <div class="container policy-layout">
+
+      <article>
+
+
+        <!-- Highlight -->
+
+        <div class="privacy-highlight">
+
+          <div class="highlight-icon">
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 3 5 6v5c0 4.6 2.9 8.4 7 10 4.1-1.6 7-5.4 7-10V6l-7-3Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+
+          </div>
+
+          <div>
+
+            <strong>
+              Privacy-focused calculator experience
+            </strong>
+
+            <p>
+              ZammioHub does not currently require users to create an
+              account to use its calculators. Calculator values entered
+              into our current browser-based tools are used to perform
+              the requested calculation and are not used to create a
+              personal ZammioHub profile.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- 1 -->
+
+        <section
+          class="policy-section"
+          id="overview"
+        >
+
+          <h2>1. Overview</h2>
+
+          <p>
+            ZammioHub provides online calculators and related
+            informational content. This Privacy Policy describes the
+            types of information that may be handled when you use
+            ZammioHub, why that information may be used, and the choices
+            available to you.
+          </p>
+
+          <p>
+            By using ZammioHub, you acknowledge the practices described
+            in this Privacy Policy.
+          </p>
+
+        </section>
+
+
+        <!-- 2 -->
+
+        <section
+          class="policy-section"
+          id="information"
+        >
+
+          <h2>2. Information We May Receive</h2>
+
+          <h3>Information you choose to provide</h3>
+
+          <p>
+            ZammioHub currently does not require an account or
+            registration to use its calculators. However, if you contact
+            us by email, we may receive information that you voluntarily
+            provide, such as:
+          </p>
+
+          <ul>
+            <li>Your email address.</li>
+            <li>Your name, if you choose to provide it.</li>
+            <li>The content of your message.</li>
+            <li>
+              Any other information you voluntarily include in your
+              communication.
+            </li>
+          </ul>
+
+          <p>
+            Please avoid sending passwords, payment card information,
+            government identification numbers, medical records or other
+            unnecessary sensitive personal information.
+          </p>
+
+          <h3>Technical information</h3>
+
+          <p>
+            Like most websites, basic technical information may be
+            processed automatically by the services and infrastructure
+            used to deliver and protect the website. This can include
+            information such as IP address, browser type, device type,
+            requested pages, timestamps and security-related request
+            information.
+          </p>
+
+        </section>
+
+
+        <!-- 3 -->
+
+        <section
+          class="policy-section"
+          id="calculator-data"
+        >
+
+          <h2>3. Calculator Inputs &amp; Results</h2>
+
+          <p>
+            ZammioHub's current calculators are designed to perform
+            calculations using the values you enter. We do not currently
+            require you to submit those values as part of a user account
+            or personal profile.
+          </p>
+
+          <p>
+            You should nevertheless avoid entering unnecessary
+            personally identifying or confidential information into
+            calculator fields. Calculator results are intended for
+            general informational or estimation purposes as explained
+            further in our
+            <a class="text-link" href="/disclaimer.html">
+              Disclaimer
+            </a>.
+          </p>
+
+        </section>
+
+
+        <!-- 4 -->
+
+        <section
+          class="policy-section"
+          id="use"
+        >
+
+          <h2>4. How We May Use Information</h2>
+
+          <p>
+            Information available to us may be used for legitimate
+            website-related purposes, including to:
+          </p>
+
+          <ul>
+            <li>Operate, maintain and secure ZammioHub.</li>
+            <li>
+              Respond to questions, feedback and calculator issue
+              reports.
+            </li>
+            <li>
+              Diagnose technical problems and improve website
+              functionality.
+            </li>
+            <li>
+              Prevent abuse, malicious activity or security threats.
+            </li>
+            <li>
+              Comply with applicable legal obligations when required.
+            </li>
+          </ul>
+
+        </section>
+
+
+        <!-- 5 -->
+
+        <section
+          class="policy-section"
+          id="cookies"
+        >
+
+          <h2>5. Cookies &amp; Similar Technologies</h2>
+
+          <p>
+            ZammioHub does not currently use Google Analytics or Google
+            AdSense on the website.
+          </p>
+
+          <p>
+            The website or the infrastructure used to deliver and secure
+            it may use technically necessary cookies or similar
+            technologies for functionality, security, performance or
+            abuse prevention.
+          </p>
+
+          <p>
+            If ZammioHub introduces analytics, advertising or other
+            services that materially change how cookies or similar
+            technologies are used, this Privacy Policy will be updated
+            as appropriate.
+          </p>
+
+        </section>
+
+
+        <!-- 6 -->
+
+        <section
+          class="policy-section"
+          id="third-parties"
+        >
+
+          <h2>6. Service Providers &amp; Third Parties</h2>
+
+          <p>
+            ZammioHub relies on third-party infrastructure and service
+            providers to make the website available, route website
+            traffic, provide security and support website-related
+            communications. These providers may process limited
+            technical information as necessary to provide their
+            services.
+          </p>
+
+          <p>
+            We do not currently operate a system in which users create
+            ZammioHub accounts containing calculator histories or
+            personal profiles.
+          </p>
+
+        </section>
+
+
+        <!-- 7 -->
+
+        <section
+          class="policy-section"
+          id="links"
+        >
+
+          <h2>7. Links to Other Websites</h2>
+
+          <p>
+            ZammioHub may contain links to external websites or
+            resources. We are not responsible for the privacy practices,
+            security or content of websites operated by other parties.
+          </p>
+
+          <p>
+            We encourage you to review the privacy policy of any
+            third-party website you choose to visit.
+          </p>
+
+        </section>
+
+
+        <!-- 8 -->
+
+        <section
+          class="policy-section"
+          id="retention"
+        >
+
+          <h2>8. Data Retention</h2>
+
+          <p>
+            Information you send to us directly, such as an email
+            enquiry, may be retained for as long as reasonably necessary
+            to respond to the enquiry, maintain relevant records,
+            protect the website, resolve disputes or comply with
+            applicable legal obligations.
+          </p>
+
+          <p>
+            We aim not to retain personal information longer than
+            reasonably necessary for the purpose for which it is
+            handled.
+          </p>
+
+        </section>
+
+
+        <!-- 9 -->
+
+        <section
+          class="policy-section"
+          id="security"
+        >
+
+          <h2>9. Data Security</h2>
+
+          <p>
+            We take reasonable steps to support the security and
+            integrity of ZammioHub. However, no website, network,
+            electronic transmission or storage system can be guaranteed
+            to be completely secure.
+          </p>
+
+          <p>
+            For this reason, users should avoid sending unnecessary
+            confidential or highly sensitive information through email
+            or website interactions.
+          </p>
+
+        </section>
+
+
+        <!-- 10 -->
+
+        <section
+          class="policy-section"
+          id="children"
+        >
+
+          <h2>10. Children's Privacy</h2>
+
+          <p>
+            ZammioHub is a general-purpose calculator website and is not
+            designed to knowingly collect personal information from
+            children through user accounts or profiles.
+          </p>
+
+          <p>
+            If you believe a child has provided personal information to
+            us through a direct communication and you would like to
+            request its review or deletion, please contact us.
+          </p>
+
+        </section>
+
+
+        <!-- 11 -->
+
+        <section
+          class="policy-section"
+          id="choices"
+        >
+
+          <h2>11. Your Privacy Choices</h2>
+
+          <p>
+            Depending on where you live, applicable privacy laws may
+            provide certain rights concerning your personal information.
+            These rights can vary by jurisdiction.
+          </p>
+
+          <p>
+            If you have contacted ZammioHub and would like to ask about
+            personal information associated with that communication,
+            you can contact us at the email address below. We may need
+            to verify a request before acting on it where appropriate.
+          </p>
+
+        </section>
+
+
+        <!-- 12 -->
+
+        <section
+          class="policy-section"
+          id="changes"
+        >
+
+          <h2>12. Changes to This Privacy Policy</h2>
+
+          <p>
+            We may update this Privacy Policy as ZammioHub changes,
+            including when new website features, analytics,
+            advertising or other services are introduced.
+          </p>
+
+          <p>
+            When we make changes, the updated version will be posted on
+            this page and the “Last updated” date will be revised.
+            We encourage users to review this page periodically.
+          </p>
+
+        </section>
+
+
+        <!-- 13 -->
+
+        <section
+          class="policy-section"
+          id="contact"
+        >
+
+          <h2>13. Contact Us</h2>
+
+          <p>
+            If you have a question about this Privacy Policy or a
+            privacy-related enquiry concerning ZammioHub, contact us at:
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            <a
+              class="text-link"
+              href="mailto:contact@zammiohub.com"
+            >
+              contact@zammiohub.com
+            </a>
+          </p>
+
+          <p>
+            You can also visit our
+            <a
+              class="text-link"
+              href="/contact.html"
+            >
+              Contact Us
+            </a>
+            page for general website enquiries.
+          </p>
+
+        </section>
+
+      </article>
+
+
+      <!-- SIDEBAR -->
+
+      <aside class="policy-sidebar">
+
+        <div class="sidebar-card">
+
+          <h3>Privacy Policy</h3>
+
+          <a class="sidebar-link" href="#information">
+            Information We May Receive
+          </a>
+
+          <a class="sidebar-link" href="#calculator-data">
+            Calculator Inputs
+          </a>
+
+          <a class="sidebar-link" href="#cookies">
+            Cookies
+          </a>
+
+          <a class="sidebar-link" href="#third-parties">
+            Third Parties
+          </a>
+
+          <a class="sidebar-link" href="#retention">
+            Data Retention
+          </a>
+
+          <a class="sidebar-link" href="#security">
+            Data Security
+          </a>
+
+          <a class="sidebar-link" href="#children">
+            Children's Privacy
+          </a>
+
+          <a class="sidebar-link" href="#choices">
+            Privacy Choices
+          </a>
+
+          <a class="sidebar-link" href="#contact">
+            Contact Us
+          </a>
+
+        </div>
+
+
+        <div class="sidebar-card">
+
+          <h3>Privacy question?</h3>
+
+          <p>
+            Contact ZammioHub if you have a question concerning this
+            policy or information you have sent to us.
+          </p>
+
+          <a
+            class="contact-button"
+            href="mailto:contact@zammiohub.com"
+          >
+            contact@zammiohub.com
+          </a>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+  <div class="container footer-inner">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <a class="footer-logo" href="/">
+          Zammio<span>Hub</span>
+        </a>
+
+        <p>
+          Free online calculators for finance, health,
+          math and everyday needs.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Quick Links</h3>
+
+        <a href="/about.html">About Us</a>
+        <a href="/contact.html">Contact Us</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>Legal</h3>
+
+        <a href="/privacy-policy.html">
+          Privacy Policy
+        </a>
+
+        <a href="/terms-of-service.html">
+          Terms of Service
+        </a>
+
+        <a href="/disclaimer.html">
+          Disclaimer
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © <span id="currentYear"></span>
+      ZammioHub. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  "use strict";
+
+  const brandButton =
+    document.getElementById("brandButton");
+
+  const brandDropdown =
+    document.getElementById("brandDropdown");
+
+  const calculatorsButton =
+    document.getElementById("calculatorsButton");
+
+  const calcDropdown =
+    document.getElementById("calcDropdown");
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mobileNav =
+    document.getElementById("mobileNav");
+
+  const mobileCalcButton =
+    document.getElementById("mobileCalcButton");
+
+  const mobileCalcPanel =
+    document.getElementById("mobileCalcPanel");
+
+  const currentYear =
+    document.getElementById("currentYear");
+
+
+  function closeBrandDropdown() {
+
+    brandButton.classList.remove("open");
+    brandDropdown.classList.remove("open");
+
+    brandButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  }
+
+
+  function openBrandDropdown() {
+
+    closeCalculatorDropdown();
+    closeMobileMenu();
+
+    brandButton.classList.add("open");
+    brandDropdown.classList.add("open");
+
+    brandButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+  }
+
+
+  brandButton.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      if (brandDropdown.classList.contains("open")) {
+        closeBrandDropdown();
+      } else {
+        openBrandDropdown();
+      }
+
+    }
+  );
+
+
+  brandDropdown.addEventListener(
+    "click",
+    function (event) {
+      event.stopPropagation();
+    }
+  );
+
+
+  function closeCalculatorDropdown() {
+
+    calculatorsButton.classList.remove("open");
+    calcDropdown.classList.remove("open");
+
+    calculatorsButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  }
+
+
+  calculatorsButton.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      closeBrandDropdown();
+
+      const isOpen =
+        calcDropdown.classList.contains("open");
+
+      if (isOpen) {
+
+        closeCalculatorDropdown();
+
+      } else {
+
+        calculatorsButton.classList.add("open");
+        calcDropdown.classList.add("open");
+
+        calculatorsButton.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+      }
+
+    }
+  );
+
+
+  calcDropdown.addEventListener(
+    "click",
+    function (event) {
+      event.stopPropagation();
+    }
+  );
+
+
+  document
+    .querySelectorAll(".category-button")
+    .forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const panel =
+            button.nextElementSibling;
+
+          const isOpen =
+            panel.classList.contains("open");
+
+
+          document
+            .querySelectorAll(".category-panel")
+            .forEach(function (otherPanel) {
+              otherPanel.classList.remove("open");
+            });
+
+
+          document
+            .querySelectorAll(".category-button")
+            .forEach(function (otherButton) {
+              otherButton.classList.remove("open");
+            });
+
+
+          if (!isOpen) {
+            panel.classList.add("open");
+            button.classList.add("open");
+          }
+
+        }
+      );
+
+    });
+
+
+  function closeMobileMenu() {
+
+    menuButton.classList.remove("open");
+    mobileNav.classList.remove("open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Open navigation menu"
+    );
+  }
+
+
+  function openMobileMenu() {
+
+    closeBrandDropdown();
+    closeCalculatorDropdown();
+
+    menuButton.classList.add("open");
+    mobileNav.classList.add("open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      "Close navigation menu"
+    );
+  }
+
+
+  menuButton.addEventListener(
+    "click",
+    function (event) {
+
+      event.stopPropagation();
+
+      if (mobileNav.classList.contains("open")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+
+    }
+  );
+
+
+  mobileCalcButton.addEventListener(
+    "click",
+    function () {
+
+      const isOpen =
+        mobileCalcPanel.classList.contains("open");
+
+      mobileCalcPanel.classList.toggle(
+        "open",
+        !isOpen
+      );
+
+      mobileCalcButton.classList.toggle(
+        "open",
+        !isOpen
+      );
+
+    }
+  );
+
+
+  document
+    .querySelectorAll(".mobile-category-button")
+    .forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const panel =
+            button.nextElementSibling;
+
+          const isOpen =
+            panel.classList.contains("open");
+
+
+          document
+            .querySelectorAll(".mobile-category-panel")
+            .forEach(function (otherPanel) {
+              otherPanel.classList.remove("open");
+            });
+
+
+          document
+            .querySelectorAll(".mobile-category-button")
+            .forEach(function (otherButton) {
+              otherButton.classList.remove("open");
+            });
+
+
+          if (!isOpen) {
+            panel.classList.add("open");
+            button.classList.add("open");
+          }
+
+        }
+      );
+
+    });
+
+
+  document
+    .querySelectorAll(".mobile-nav a")
+    .forEach(function (link) {
+
+      link.addEventListener(
+        "click",
+        function () {
+          closeMobileMenu();
+        }
+      );
+
+    });
+
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !brandDropdown.contains(event.target) &&
+        !brandButton.contains(event.target)
+      ) {
+        closeBrandDropdown();
+      }
+
+
+      if (
+        !calcDropdown.contains(event.target) &&
+        !calculatorsButton.contains(event.target)
+      ) {
+        closeCalculatorDropdown();
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (event.key === "Escape") {
+
+        closeBrandDropdown();
+        closeCalculatorDropdown();
+        closeMobileMenu();
+
+      }
+
+    }
+  );
+
+
+  window.addEventListener(
+    "resize",
+    function () {
+
+      if (window.innerWidth > 980) {
+        closeMobileMenu();
+      }
+
+    }
+  );
+
+
+  if (currentYear) {
+    currentYear.textContent =
+      new Date().getFullYear();
+  }
+
+});
+</script>
+
+</body>
+</html>
