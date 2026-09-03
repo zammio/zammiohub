@@ -1,18 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================================================
-     ZAMMIOHUB
-     Homepage V2
-     Dynamic Tools + Search + Filters
-     ========================================================= */
+  /* =======================================================
+     ZAMMIOHUB TOOLS DATABASE
 
-
-  /* =========================================================
-     1. TOOLS DATABASE
-
-     Future calculator add karne ke liye sirf yahan
-     ek new object add karna hoga.
-     ========================================================= */
+     Future mein new calculator add karne ke liye
+     sirf is array mein ek new object add karein.
+     ======================================================= */
 
   const tools = [
 
@@ -30,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Finance",
       icon: "car",
       url: "calculators/auto-loan-calculator.html",
-      description: "Estimate car loan payments and borrowing costs.",
+      description: "Estimate auto loan payments and borrowing costs.",
       keywords: "auto car vehicle loan finance payment"
     },
 
@@ -39,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Health",
       icon: "activity",
       url: "calculators/bmi-calculator.html",
-      description: "Calculate your BMI using metric or US units.",
+      description: "Calculate BMI using metric or US units.",
       keywords: "bmi body mass index weight height health"
     },
 
@@ -49,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "flame",
       url: "calculators/calorie-calculator.html",
       description: "Estimate your daily calorie needs.",
-      keywords: "calorie calories health fitness food energy weight"
+      keywords: "calorie calories health fitness food weight"
     },
 
     {
@@ -57,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Finance",
       icon: "chart-no-axes-combined",
       url: "calculators/compound-interest-calculator.html",
-      description: "Calculate compound growth on savings or investments.",
-      keywords: "compound interest investment savings growth finance"
+      description: "Calculate compound growth on savings and investments.",
+      keywords: "compound interest savings investment growth finance"
     },
 
     {
@@ -66,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Math",
       icon: "badge-percent",
       url: "calculators/discount-calculator.html",
-      description: "Find your discount, savings and final sale price.",
-      keywords: "discount sale price saving percentage math"
+      description: "Calculate discounts, savings and final prices.",
+      keywords: "discount sale saving price percentage math"
     },
 
     {
@@ -94,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "house",
       url: "calculators/mortgage-calculator.html",
       description: "Estimate mortgage payments and loan costs.",
-      keywords: "mortgage house home loan payment finance property"
+      keywords: "mortgage home house property loan finance"
     },
 
     {
@@ -103,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "percent",
       url: "calculators/percentage-calculator.html",
       description: "Calculate percentages, increases and decreases.",
-      keywords: "percentage percent increase decrease change math"
+      keywords: "percentage percent increase decrease math"
     },
 
     {
@@ -121,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "landmark",
       url: "calculators/retirement-calculator.html",
       description: "Estimate retirement savings and future income.",
-      keywords: "retirement pension savings investment finance future"
+      keywords: "retirement pension savings future investment finance"
     },
 
     {
@@ -129,8 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Finance",
       icon: "wallet-cards",
       url: "calculators/salary-calculator.html",
-      description: "Convert and compare salary across different pay periods.",
-      keywords: "salary income wage monthly weekly annual finance pay"
+      description: "Compare salary across different pay periods.",
+      keywords: "salary wage income pay weekly monthly annual finance"
     },
 
     {
@@ -138,8 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "Finance",
       icon: "receipt-text",
       url: "calculators/tax-calculator.html",
-      description: "Calculate tax and the amount after tax.",
-      keywords: "tax rate amount price finance calculation"
+      description: "Calculate tax and the final amount after tax.",
+      keywords: "tax rate amount price finance"
     },
 
     {
@@ -148,274 +141,183 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "circle-dollar-sign",
       url: "calculators/tip-calculator.html",
       description: "Calculate tips and split bills quickly.",
-      keywords: "tip bill restaurant split money everyday"
+      keywords: "tip restaurant bill split everyday"
     }
 
   ];
 
 
-
-  /* =========================================================
-     2. ELEMENTS
-     ========================================================= */
+  /* =======================================================
+     ELEMENTS
+     ======================================================= */
 
   const toolsGrid =
-    document.querySelector("#toolsGrid");
+    document.getElementById("toolsGrid");
 
   const searchInput =
-    document.querySelector("#searchInput");
+    document.getElementById("searchInput");
 
   const clearSearch =
-    document.querySelector("#clearSearch");
-
-  const filterButtons =
-    document.querySelectorAll(".filter-btn");
-
-  const resultsCount =
-    document.querySelector("#resultsCount");
-
-  const allCount =
-    document.querySelector("#allCount");
+    document.getElementById("clearSearch");
 
   const noResults =
-    document.querySelector("#noResults");
+    document.getElementById("noResults");
 
   const resetFilters =
-    document.querySelector("#resetFilters");
+    document.getElementById("resetFilters");
+
+  const filterButtons =
+    document.querySelectorAll(".filter-button");
 
   const menuButton =
-    document.querySelector("#menuBtn");
+    document.getElementById("menuButton");
 
   const mobileMenu =
-    document.querySelector("#mobileMenu");
+    document.getElementById("mobileMenu");
 
-  const currentYear =
-    document.querySelector("#currentYear");
+  const yearElement =
+    document.getElementById("currentYear");
 
 
   let activeCategory = "All";
 
 
+  /* =======================================================
+     ICONS
+     ======================================================= */
 
-  /* =========================================================
-     3. SAFE HTML
-     ========================================================= */
+  function createIcons() {
 
-  const escapeHTML = (value) => {
+    if (
+      window.lucide &&
+      typeof window.lucide.createIcons === "function"
+    ) {
+      window.lucide.createIcons();
+    }
 
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  };
-
+  }
 
 
-  /* =========================================================
-     4. CREATE TOOL CARD
-     ========================================================= */
+  /* =======================================================
+     CARD TEMPLATE
+     ======================================================= */
 
-  const createToolCard = (tool) => {
-
-    const name =
-      escapeHTML(tool.name);
-
-    const category =
-      escapeHTML(tool.category);
-
-    const description =
-      escapeHTML(tool.description);
-
-    const url =
-      escapeHTML(tool.url);
-
-    const icon =
-      escapeHTML(tool.icon);
-
+  function toolCard(tool) {
 
     return `
       <a
-        href="${url}"
         class="tool-card"
-        aria-label="Open ${name}"
+        href="${tool.url}"
+        aria-label="Open ${tool.name}"
       >
 
         <div
           class="tool-icon"
           aria-hidden="true"
         >
-          <i data-lucide="${icon}"></i>
+          <i data-lucide="${tool.icon}"></i>
         </div>
 
-
         <span class="tool-category">
-          ${category}
+          ${tool.category}
         </span>
 
-
         <h3>
-          ${name}
+          ${tool.name}
         </h3>
 
-
         <p>
-          ${description}
+          ${tool.description}
         </p>
 
-
-        <span class="tool-link">
-          Open calculator
-          <i
-            data-lucide="arrow-right"
-            aria-hidden="true"
-          ></i>
+        <span class="tool-action">
+          Open
+          <i data-lucide="arrow-right"></i>
         </span>
 
       </a>
     `;
 
-  };
+  }
 
 
+  /* =======================================================
+     FILTER
+     ======================================================= */
 
-  /* =========================================================
-     5. INITIALIZE LUCIDE ICONS
-     ========================================================= */
+  function getFilteredTools() {
 
-  const refreshIcons = () => {
-
-    if (
-      window.lucide &&
-      typeof window.lucide.createIcons === "function"
-    ) {
-
-      window.lucide.createIcons();
-
-    }
-
-  };
-
-
-
-  /* =========================================================
-     6. FILTER TOOLS
-     ========================================================= */
-
-  const getFilteredTools = () => {
-
-    const searchTerm =
+    const search =
       searchInput
-        ? searchInput.value.toLowerCase().trim()
+        ? searchInput.value
+            .trim()
+            .toLowerCase()
         : "";
-
 
     return tools.filter((tool) => {
 
-      const categoryMatches =
+      const categoryMatch =
         activeCategory === "All" ||
         tool.category === activeCategory;
 
+      const searchableText =
+        [
+          tool.name,
+          tool.category,
+          tool.description,
+          tool.keywords
+        ]
+          .join(" ")
+          .toLowerCase();
 
-      const searchableText = `
-        ${tool.name}
-        ${tool.category}
-        ${tool.description}
-        ${tool.keywords || ""}
-      `.toLowerCase();
+      const searchMatch =
+        !search ||
+        searchableText.includes(search);
 
-
-      const searchMatches =
-        searchTerm === "" ||
-        searchableText.includes(searchTerm);
-
-
-      return categoryMatches && searchMatches;
+      return (
+        categoryMatch &&
+        searchMatch
+      );
 
     });
 
-  };
+  }
 
 
+  /* =======================================================
+     RENDER
+     ======================================================= */
 
-  /* =========================================================
-     7. RENDER TOOLS
-     ========================================================= */
-
-  const renderTools = () => {
+  function renderTools() {
 
     if (!toolsGrid) {
       return;
     }
 
-
-    const filteredTools =
+    const filtered =
       getFilteredTools();
 
-
     toolsGrid.innerHTML =
-      filteredTools
-        .map(createToolCard)
+      filtered
+        .map(toolCard)
         .join("");
 
-
-    /* Results counter */
-
-    if (resultsCount) {
-
-      resultsCount.textContent =
-        `${filteredTools.length} ${
-          filteredTools.length === 1
-            ? "calculator"
-            : "calculators"
-        }`;
-
-    }
-
-
-    /* No results */
+    toolsGrid.hidden =
+      filtered.length === 0;
 
     if (noResults) {
-
       noResults.hidden =
-        filteredTools.length !== 0;
-
+        filtered.length !== 0;
     }
 
-
-    /* Hide empty grid */
-
-    toolsGrid.hidden =
-      filteredTools.length === 0;
-
-
-    /* Rebuild Lucide icons after
-       dynamic HTML is inserted */
-
-    refreshIcons();
-
-  };
-
-
-
-  /* =========================================================
-     8. SET TOTAL COUNT AUTOMATICALLY
-     ========================================================= */
-
-  if (allCount) {
-
-    allCount.textContent =
-      tools.length;
+    createIcons();
 
   }
 
 
-
-  /* =========================================================
-     9. SEARCH
-     ========================================================= */
+  /* =======================================================
+     SEARCH
+     ======================================================= */
 
   if (searchInput) {
 
@@ -424,10 +326,8 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         if (clearSearch) {
-
           clearSearch.hidden =
             searchInput.value.length === 0;
-
         }
 
         renderTools();
@@ -438,21 +338,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
-  /* =========================================================
-     10. CLEAR SEARCH
-     ========================================================= */
-
   if (clearSearch) {
 
     clearSearch.addEventListener(
       "click",
       () => {
-
-        if (!searchInput) {
-          return;
-        }
-
 
         searchInput.value = "";
 
@@ -468,10 +358,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
-  /* =========================================================
-     11. CATEGORY FILTERS
-     ========================================================= */
+  /* =======================================================
+     FILTER BUTTONS
+     ======================================================= */
 
   filterButtons.forEach((button) => {
 
@@ -480,28 +369,28 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
 
         activeCategory =
-          button.dataset.category || "All";
+          button.dataset.category;
 
+        filterButtons.forEach(
+          (item) => {
 
-        filterButtons.forEach((item) => {
+            const active =
+              item === button;
 
-          const isActive =
-            item === button;
+            item.classList.toggle(
+              "active",
+              active
+            );
 
+            item.setAttribute(
+              "aria-pressed",
+              active
+                ? "true"
+                : "false"
+            );
 
-          item.classList.toggle(
-            "active",
-            isActive
-          );
-
-
-          item.setAttribute(
-            "aria-pressed",
-            String(isActive)
-          );
-
-        });
-
+          }
+        );
 
         renderTools();
 
@@ -511,10 +400,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
-  /* =========================================================
-     12. RESET SEARCH + FILTER
-     ========================================================= */
+  /* =======================================================
+     RESET
+     ======================================================= */
 
   if (resetFilters) {
 
@@ -524,49 +412,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
         activeCategory = "All";
 
-
         if (searchInput) {
-
           searchInput.value = "";
-
         }
-
 
         if (clearSearch) {
-
           clearSearch.hidden = true;
-
         }
 
+        filterButtons.forEach(
+          (button) => {
 
-        filterButtons.forEach((button) => {
+            const active =
+              button.dataset.category ===
+              "All";
 
-          const isAll =
-            button.dataset.category === "All";
+            button.classList.toggle(
+              "active",
+              active
+            );
 
+            button.setAttribute(
+              "aria-pressed",
+              active
+                ? "true"
+                : "false"
+            );
 
-          button.classList.toggle(
-            "active",
-            isAll
-          );
-
-
-          button.setAttribute(
-            "aria-pressed",
-            String(isAll)
-          );
-
-        });
-
+          }
+        );
 
         renderTools();
-
-
-        if (searchInput) {
-
-          searchInput.focus();
-
-        }
 
       }
     );
@@ -574,102 +450,93 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  /* =======================================================
+     MOBILE MENU
+     ======================================================= */
 
-  /* =========================================================
-     13. MOBILE MENU
-     ========================================================= */
+  function closeMenu() {
 
-  const closeMobileMenu = () => {
-
-    if (!mobileMenu || !menuButton) {
+    if (
+      !menuButton ||
+      !mobileMenu
+    ) {
       return;
     }
 
-
-    mobileMenu.classList.remove("active");
-
+    mobileMenu.classList.remove(
+      "open"
+    );
 
     menuButton.setAttribute(
       "aria-expanded",
       "false"
     );
 
+    menuButton.setAttribute(
+      "aria-label",
+      "Open navigation menu"
+    );
+
+    menuButton.innerHTML =
+      '<i data-lucide="menu"></i>';
 
     document.body.classList.remove(
       "menu-open"
     );
 
+    createIcons();
 
-    const menuIcon =
-      menuButton.querySelector("svg");
-
-
-    if (menuIcon) {
-
-      menuIcon.setAttribute(
-        "data-lucide",
-        "menu"
-      );
-
-      refreshIcons();
-
-    }
-
-  };
+  }
 
 
-
-  if (menuButton && mobileMenu) {
+  if (
+    menuButton &&
+    mobileMenu
+  ) {
 
     menuButton.addEventListener(
       "click",
       () => {
 
-        const isOpen =
-          mobileMenu.classList.toggle(
-            "active"
+        const opening =
+          !mobileMenu.classList.contains(
+            "open"
           );
 
+        mobileMenu.classList.toggle(
+          "open",
+          opening
+        );
 
         menuButton.setAttribute(
           "aria-expanded",
-          String(isOpen)
+          opening
+            ? "true"
+            : "false"
         );
-
-
-        document.body.classList.toggle(
-          "menu-open",
-          isOpen
-        );
-
-
-        /*
-          Replace button content so
-          Menu becomes X when open.
-        */
-
-        menuButton.innerHTML =
-          isOpen
-            ? '<i data-lucide="x"></i>'
-            : '<i data-lucide="menu"></i>';
-
 
         menuButton.setAttribute(
           "aria-label",
-          isOpen
+          opening
             ? "Close navigation menu"
             : "Open navigation menu"
         );
 
+        menuButton.innerHTML =
+          opening
+            ? '<i data-lucide="x"></i>'
+            : '<i data-lucide="menu"></i>';
 
-        refreshIcons();
+        document.body.classList.toggle(
+          "menu-open",
+          opening
+        );
+
+        createIcons();
 
       }
     );
 
-
-
-    /* Close after clicking link */
 
     mobileMenu
       .querySelectorAll("a")
@@ -677,14 +544,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         link.addEventListener(
           "click",
-          closeMobileMenu
+          closeMenu
         );
 
       });
 
-
-
-    /* Escape key */
 
     document.addEventListener(
       "keydown",
@@ -693,11 +557,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (
           event.key === "Escape" &&
           mobileMenu.classList.contains(
-            "active"
+            "open"
           )
         ) {
 
-          closeMobileMenu();
+          closeMenu();
 
           menuButton.focus();
 
@@ -707,17 +571,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-
-    /* Desktop resize */
-
     window.addEventListener(
       "resize",
       () => {
 
-        if (window.innerWidth > 767) {
-
-          closeMobileMenu();
-
+        if (
+          window.innerWidth > 767
+        ) {
+          closeMenu();
         }
 
       }
@@ -726,26 +587,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  /* =======================================================
+     YEAR
+     ======================================================= */
 
-  /* =========================================================
-     14. CURRENT YEAR
-     ========================================================= */
+  if (yearElement) {
 
-  if (currentYear) {
-
-    currentYear.textContent =
+    yearElement.textContent =
       new Date().getFullYear();
 
   }
 
 
-
-  /* =========================================================
-     15. INITIAL PAGE RENDER
-     ========================================================= */
+  /* =======================================================
+     INITIAL LOAD
+     ======================================================= */
 
   renderTools();
 
-  refreshIcons();
+  /*
+    Lucide script defer ke saath load hoti hai.
+    Extra attempt external icon script ke
+    slightly late load hone ko handle karta hai.
+  */
+
+  createIcons();
+
+  window.addEventListener(
+    "load",
+    createIcons
+  );
 
 });
