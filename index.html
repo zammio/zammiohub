@@ -1,750 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ZammioHub – Free Online Calculators & Useful Tools</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <meta name="description"
-        content="ZammioHub offers free, fast and easy-to-use online calculators and useful digital tools for finance, health, math, everyday life and more.">
+  <title>
+    ZammioHub – Free Online Calculators & Useful Tools
+  </title>
+
+  <meta
+    name="description"
+    content="Free online calculators for finance, health, math and everyday needs. Fast, simple and easy to use on any device."
+  >
 
   <meta name="robots" content="index, follow">
 
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#ffffff">
+
+  <link
+    rel="canonical"
+    href="https://zammiohub.com/"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <!-- Lucide SVG Icons -->
+  <script
+    src="https://unpkg.com/lucide@latest"
+    defer
+  ></script>
+
+  <script
+    src="js/script.js"
+    defer
+  ></script>
 </head>
+
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
 
-<header class="header">
-  <div class="container nav">
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-    <a href="/" class="logo" aria-label="ZammioHub Home">
-      Zammio<span>Hub</span>
-    </a>
+  <header class="site-header">
 
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#calculators">Calculators</a>
-      <a href="#categories">Categories</a>
-      <a href="#about">About</a>
-    </nav>
-
-    <button
-      class="menu-btn"
-      id="menuBtn"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobileMenu">
-      ☰
-    </button>
-
-  </div>
-
-  <!-- Mobile Menu -->
-
-  <nav
-    class="mobile-menu"
-    id="mobileMenu"
-    aria-label="Mobile navigation">
-
-    <div class="container mobile-menu-links">
-      <a href="#calculators">Calculators</a>
-      <a href="#categories">Categories</a>
-      <a href="#about">About</a>
-    </div>
-
-  </nav>
-</header>
-
-
-<main>
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-  <div class="container hero-content">
-
-    <div class="hero-text">
-
-      <span class="badge">
-        FREE • FAST • EASY TO USE
-      </span>
-
-      <h1>
-        Smart Tools for
-        <span>Everyday Life</span>
-      </h1>
-
-      <p>
-        Calculate, convert and solve everyday problems with
-        simple, accurate and mobile-friendly online tools.
-      </p>
-
-      <a href="#calculators" class="primary-btn">
-        Explore Tools →
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SEARCH
-========================= -->
-
-<section class="search-section">
-
-  <div class="container">
-
-    <div class="search-box">
-
-      <span aria-hidden="true">🔍</span>
-
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Search calculators and tools..."
-        aria-label="Search calculators and tools"
-        autocomplete="off">
-
-    </div>
-
-    <p
-      class="search-status"
-      id="searchStatus"
-      aria-live="polite">
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     POPULAR CALCULATORS
-========================= -->
-
-<section class="section" id="calculators">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <div>
-        <span class="section-label">POPULAR TOOLS</span>
-
-        <h2>Popular Calculators</h2>
-
-        <p>
-          Quick and useful calculators for everyday needs.
-        </p>
-      </div>
-
-      <a href="#all-calculators" class="view-all">
-        View All ↓
-      </a>
-
-    </div>
-
-
-    <div class="calculator-grid">
-
-      <!-- BMI -->
-
-      <article
-        class="tool-card"
-        data-search="bmi body mass index health weight calculator">
-
-        <div class="tool-icon">⚖️</div>
-
-        <h3>BMI Calculator</h3>
-
-        <p>
-          Calculate your BMI using metric or US units.
-        </p>
-
-        <a
-          href="calculators/bmi-calculator.html"
-          class="card-link">
-          Calculate →
-        </a>
-
-      </article>
-
-
-      <!-- Age -->
-
-      <article
-        class="tool-card"
-        data-search="age birthday date years months days calculator">
-
-        <div class="tool-icon">🎂</div>
-
-        <h3>Age Calculator</h3>
-
-        <p>
-          Calculate your exact age in years, months and days.
-        </p>
-
-        <a
-          href="calculators/age-calculator.html"
-          class="card-link">
-          Calculate →
-        </a>
-
-      </article>
-
-
-      <!-- Percentage -->
-
-      <article
-        class="tool-card"
-        data-search="percentage percent increase decrease math calculator">
-
-        <div class="tool-icon">%</div>
-
-        <h3>Percentage Calculator</h3>
-
-        <p>
-          Calculate percentages, increases and decreases.
-        </p>
-
-        <a
-          href="calculators/percentage-calculator.html"
-          class="card-link">
-          Calculate →
-        </a>
-
-      </article>
-
-
-      <!-- Discount -->
-
-      <article
-        class="tool-card"
-        data-search="discount sale price saving shopping calculator">
-
-        <div class="tool-icon">🏷️</div>
-
-        <h3>Discount Calculator</h3>
-
-        <p>
-          Find your discount, savings and final sale price.
-        </p>
-
-        <a
-          href="calculators/discount-calculator.html"
-          class="card-link">
-          Calculate →
-        </a>
-
-      </article>
-
-
-      <!-- EMI -->
-
-      <article
-        class="tool-card"
-        data-search="emi loan finance monthly payment interest calculator">
-
-        <div class="tool-icon">💳</div>
-
-        <h3>EMI Calculator</h3>
-
-        <p>
-          Calculate monthly EMI and total loan payments.
-        </p>
-
-        <a
-          href="calculators/emi-calculator.html"
-          class="card-link">
-          Calculate →
-        </a>
-
-      </article>
-
-
-      <!-- Mortgage -->
-
-      <article
-        class="tool-card"
-        data-search="mortgage home house loan payment finance calculator">
-
-        <div class="tool-icon">🏠</div>
-
-        <h3>Mortgage Calculator</h3>
-
-        <p>
-          Estimate mortgage payments and loan costs.
-        </p>
-
-        <a
-          href="calculators/mortgage-calculator.html"
-          class="card-link">
-          Calculate →
-        </a>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CATEGORIES
-========================= -->
-
-<section
-  class="section categories-section"
-  id="categories">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <div>
-        <span class="section-label">EXPLORE</span>
-
-        <h2>Browse Tool Categories</h2>
-
-        <p>
-          Find the right tool quickly by category.
-        </p>
-      </div>
-
-    </div>
-
-
-    <div class="category-grid">
-
-      <a href="#all-calculators" class="category-card">
-
-        <span>🧮</span>
-
-        <h3>Calculators</h3>
-
-        <p>
-          Finance, health, math, date and everyday calculators.
-        </p>
-
-      </a>
-
-
-      <div class="category-card coming-soon">
-
-        <span>📄</span>
-
-        <h3>PDF Tools</h3>
-
-        <p>
-          Convert, merge, split, compress and manage PDFs.
-        </p>
-
-        <small>Coming Soon</small>
-
-      </div>
-
-
-      <div class="category-card coming-soon">
-
-        <span>🖼️</span>
-
-        <h3>Image Tools</h3>
-
-        <p>
-          Compress, resize and convert images easily.
-        </p>
-
-        <small>Coming Soon</small>
-
-      </div>
-
-
-      <div class="category-card coming-soon">
-
-        <span>✍️</span>
-
-        <h3>Text & Writing</h3>
-
-        <p>
-          Word counters, text converters and writing helpers.
-        </p>
-
-        <small>Coming Soon</small>
-
-      </div>
-
-
-      <div class="category-card coming-soon">
-
-        <span>📚</span>
-
-        <h3>English & Grammar</h3>
-
-        <p>
-          Grammar, vocabulary and English learning tools.
-        </p>
-
-        <small>Coming Soon</small>
-
-      </div>
-
-
-      <div class="category-card coming-soon">
-
-        <span>🔄</span>
-
-        <h3>Converters</h3>
-
-        <p>
-          Unit, length, weight, temperature and other converters.
-        </p>
-
-        <small>Coming Soon</small>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ALL CURRENT CALCULATORS
-========================= -->
-
-<section
-  class="section all-tools-section"
-  id="all-calculators">
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <div>
-
-        <span class="section-label">
-          ALL CALCULATORS
-        </span>
-
-        <h2>Explore All Calculators</h2>
-
-        <p>
-          Browse our growing collection of free calculators.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="all-tools-grid">
-
-
-      <a
-        href="calculators/age-calculator.html"
-        class="mini-tool">
-        <span>🎂</span>
-        Age Calculator
-      </a>
-
-
-      <a
-        href="calculators/auto-loan-calculator.html"
-        class="mini-tool">
-        <span>🚗</span>
-        Auto Loan Calculator
-      </a>
-
-
-      <a
-        href="calculators/bmi-calculator.html"
-        class="mini-tool">
-        <span>⚖️</span>
-        BMI Calculator
-      </a>
-
-
-      <a
-        href="calculators/calorie-calculator.html"
-        class="mini-tool">
-        <span>🔥</span>
-        Calorie Calculator
-      </a>
-
-
-      <a
-        href="calculators/compound-interest-calculator.html"
-        class="mini-tool">
-        <span>📈</span>
-        Compound Interest Calculator
-      </a>
-
-
-      <a
-        href="calculators/discount-calculator.html"
-        class="mini-tool">
-        <span>🏷️</span>
-        Discount Calculator
-      </a>
-
-
-      <a
-        href="calculators/emi-calculator.html"
-        class="mini-tool">
-        <span>💳</span>
-        EMI Calculator
-      </a>
-
-
-      <a
-        href="calculators/loan-payment-calculator.html"
-        class="mini-tool">
-        <span>💰</span>
-        Loan Payment Calculator
-      </a>
-
-
-      <a
-        href="calculators/mortgage-calculator.html"
-        class="mini-tool">
-        <span>🏠</span>
-        Mortgage Calculator
-      </a>
-
-
-      <a
-        href="calculators/percentage-calculator.html"
-        class="mini-tool">
-        <span>%</span>
-        Percentage Calculator
-      </a>
-
-
-      <a
-        href="calculators/pregnancy-calculator.html"
-        class="mini-tool">
-        <span>📅</span>
-        Pregnancy Calculator
-      </a>
-
-
-      <a
-        href="calculators/retirement-calculator.html"
-        class="mini-tool">
-        <span>🌴</span>
-        Retirement Calculator
-      </a>
-
-
-      <a
-        href="calculators/salary-calculator.html"
-        class="mini-tool">
-        <span>💵</span>
-        Salary Calculator
-      </a>
-
-
-      <a
-        href="calculators/tax-calculator.html"
-        class="mini-tool">
-        <span>🧾</span>
-        Tax Calculator
-      </a>
-
-
-      <a
-        href="calculators/tip-calculator.html"
-        class="mini-tool">
-        <span>🍽️</span>
-        Tip Calculator
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-  class="section about-section"
-  id="about">
-
-  <div class="container about-content">
-
-    <span class="section-label">
-      WHY ZAMMIOHUB?
-    </span>
-
-    <h2>
-      Simple Tools. Clear Results.
-    </h2>
-
-    <p>
-      ZammioHub provides free online calculators and useful
-      digital tools designed to make everyday tasks quicker
-      and easier on phones, tablets and computers.
-    </p>
-
-
-    <div class="features">
-
-      <div class="feature">
-
-        <strong>✓ Simple</strong>
-
-        <span>
-          Clean and easy-to-understand tools.
-        </span>
-
-      </div>
-
-
-      <div class="feature">
-
-        <strong>✓ Accurate</strong>
-
-        <span>
-          Reliable calculations with clear results.
-        </span>
-
-      </div>
-
-
-      <div class="feature">
-
-        <strong>✓ Free</strong>
-
-        <span>
-          Useful tools without unnecessary sign-ups.
-        </span>
-
-      </div>
-
-
-      <div class="feature">
-
-        <strong>✓ Mobile Friendly</strong>
-
-        <span>
-          Designed for phones, tablets and computers.
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CTA
-========================= -->
-
-<section class="cta-section">
-
-  <div class="container">
-
-    <h2>
-      Find the Right Tool in Seconds
-    </h2>
-
-    <p>
-      Explore ZammioHub's growing collection of
-      free calculators and online tools.
-    </p>
-
-    <a href="#calculators" class="primary-btn">
-      Explore Tools →
-    </a>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="footer">
-
-  <div class="container footer-content">
-
-    <div>
+    <div class="container header-inner">
 
       <a
         href="/"
         class="logo"
-        aria-label="ZammioHub Home">
-
+        aria-label="ZammioHub homepage"
+      >
         Zammio<span>Hub</span>
-
       </a>
 
-      <p>
-        Free online calculators and useful digital tools
-        for everyday needs.
-      </p>
+
+      <nav
+        class="desktop-nav"
+        aria-label="Main navigation"
+      >
+        <a href="#tools">Calculators</a>
+        <a href="#why-zammiohub">Why ZammioHub</a>
+      </nav>
+
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <i data-lucide="menu"></i>
+      </button>
 
     </div>
 
 
-    <div class="footer-links">
+    <!-- Mobile Navigation -->
 
-      <a href="#calculators">
-        Calculators
-      </a>
+    <nav
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-label="Mobile navigation"
+    >
 
-      <a href="#categories">
-        Categories
-      </a>
+      <div class="container mobile-menu-inner">
 
-      <a href="#about">
-        About
-      </a>
+        <a href="#tools">
+          Calculators
+        </a>
+
+        <a href="#why-zammiohub">
+          Why ZammioHub
+        </a>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+      <div class="container hero-inner">
+
+        <div class="hero-content">
+
+          <div class="hero-badge">
+            FREE • FAST • EASY TO USE
+          </div>
+
+
+          <h1>
+            Smart Tools for
+            <span>Everyday Life</span>
+          </h1>
+
+
+          <p>
+            Fast, accurate online calculators for finance,
+            health, math and everyday needs.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SEARCH + FILTERS
+    ====================================================== -->
+
+    <section
+      class="tool-finder"
+      id="tools"
+    >
+
+      <div class="container">
+
+
+        <div class="finder-panel">
+
+
+          <!-- Search -->
+
+          <div class="search-wrapper">
+
+            <i
+              data-lucide="search"
+              class="search-icon"
+              aria-hidden="true"
+            ></i>
+
+
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search calculators..."
+              autocomplete="off"
+              aria-label="Search calculators"
+            >
+
+
+            <button
+              class="clear-search"
+              id="clearSearch"
+              type="button"
+              aria-label="Clear search"
+              hidden
+            >
+              <i data-lucide="x"></i>
+            </button>
+
+          </div>
+
+
+
+          <!-- Filter Tabs -->
+
+          <div
+            class="filter-tabs"
+            id="filterTabs"
+            role="group"
+            aria-label="Filter calculators by category"
+          >
+
+            <button
+              type="button"
+              class="filter-btn active"
+              data-category="All"
+              aria-pressed="true"
+            >
+              All
+              <span id="allCount">15</span>
+            </button>
+
+
+            <button
+              type="button"
+              class="filter-btn"
+              data-category="Finance"
+              aria-pressed="false"
+            >
+              Finance
+            </button>
+
+
+            <button
+              type="button"
+              class="filter-btn"
+              data-category="Health"
+              aria-pressed="false"
+            >
+              Health
+            </button>
+
+
+            <button
+              type="button"
+              class="filter-btn"
+              data-category="Math"
+              aria-pressed="false"
+            >
+              Math
+            </button>
+
+
+            <button
+              type="button"
+              class="filter-btn"
+              data-category="Everyday"
+              aria-pressed="false"
+            >
+              Everyday
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TOOL SECTION HEADING
+        ================================================== -->
+
+        <div class="tools-heading">
+
+          <div>
+
+            <span class="eyebrow">
+              ONLINE CALCULATORS
+            </span>
+
+            <h2>
+              Explore Our Calculators
+            </h2>
+
+            <p>
+              Choose a calculator or search to find
+              exactly what you need.
+            </p>
+
+          </div>
+
+
+          <div
+            class="results-count"
+            id="resultsCount"
+            aria-live="polite"
+          >
+            15 calculators
+          </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DYNAMIC TOOL CARDS
+
+             IMPORTANT:
+             Cards will be generated automatically
+             by js/script.js
+        ================================================== -->
+
+        <div
+          class="tools-grid"
+          id="toolsGrid"
+        ></div>
+
+
+
+        <!-- No Results -->
+
+        <div
+          class="no-results"
+          id="noResults"
+          hidden
+        >
+
+          <div class="no-results-icon">
+            <i data-lucide="search-x"></i>
+          </div>
+
+          <h3>
+            No calculators found
+          </h3>
+
+          <p>
+            Try another search or choose a different category.
+          </p>
+
+          <button
+            type="button"
+            id="resetFilters"
+            class="reset-btn"
+          >
+            View all calculators
+          </button>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHY ZAMMIOHUB
+    ====================================================== -->
+
+    <section
+      class="trust-section"
+      id="why-zammiohub"
+    >
+
+      <div class="container">
+
+
+        <div class="trust-heading">
+
+          <span class="eyebrow">
+            WHY ZAMMIOHUB?
+          </span>
+
+          <h2>
+            Simple tools. Clear results.
+          </h2>
+
+          <p>
+            Useful calculators designed to be quick,
+            straightforward and easy to use.
+          </p>
+
+        </div>
+
+
+
+        <div class="trust-grid">
+
+
+          <div class="trust-item">
+
+            <div class="trust-icon">
+              <i data-lucide="zap"></i>
+            </div>
+
+            <div>
+              <strong>Fast</strong>
+              <span>Get results instantly.</span>
+            </div>
+
+          </div>
+
+
+
+          <div class="trust-item">
+
+            <div class="trust-icon">
+              <i data-lucide="circle-check"></i>
+            </div>
+
+            <div>
+              <strong>Easy to Use</strong>
+              <span>Clean and simple tools.</span>
+            </div>
+
+          </div>
+
+
+
+          <div class="trust-item">
+
+            <div class="trust-icon">
+              <i data-lucide="smartphone"></i>
+            </div>
+
+            <div>
+              <strong>Mobile Friendly</strong>
+              <span>Works on any screen.</span>
+            </div>
+
+          </div>
+
+
+
+          <div class="trust-item">
+
+            <div class="trust-icon">
+              <i data-lucide="user-round-x"></i>
+            </div>
+
+            <div>
+              <strong>No Sign-Up</strong>
+              <span>Use calculators freely.</span>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+
+      <div class="footer-main">
+
+
+        <div class="footer-brand">
+
+          <a
+            href="/"
+            class="logo"
+            aria-label="ZammioHub homepage"
+          >
+            Zammio<span>Hub</span>
+          </a>
+
+          <p>
+            Free online calculators for everyday needs.
+          </p>
+
+        </div>
+
+
+        <div class="footer-note">
+
+          <p>
+            Simple. Fast. Useful.
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © <span id="currentYear"></span>
+          ZammioHub. All rights reserved.
+        </p>
+
+      </div>
+
 
     </div>
 
-  </div>
+  </footer>
 
-
-  <div class="copyright">
-
-    © <span id="currentYear">2026</span>
-    ZammioHub. All rights reserved.
-
-  </div>
-
-</footer>
-
-
-<script src="js/script.js"></script>
 
 </body>
+
 </html>
