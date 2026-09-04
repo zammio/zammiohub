@@ -128,7 +128,43 @@
       gap: 30px;
     }
 
+    /* =====================================================
+       BRAND
+    ===================================================== */
 
+    .brand-area {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+    }
+
+    .brand-button {
+      display: inline-flex;
+      align-items: center;
+
+      padding: 4px 0;
+
+      background: transparent;
+      color: var(--text);
+
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .brand-text {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      white-space: nowrap;
+    }
+
+    .brand-text span {
+      color: var(--blue);
+    }
+
+    .brand-button:hover .brand-text {
+      opacity: 0.92;
+    }
 
     /* =====================================================
        DESKTOP NAV
@@ -1241,7 +1277,8 @@
       }
 
       .brand-text {
-        font-size: 24px;
+        font-size: 27px;
+        letter-spacing: -1px;
       }
 .hero {
         padding:
@@ -3064,8 +3101,6 @@ const desktopCalculatorsButton =
 
       event.stopPropagation();
 
-      closeBrandDropdown();
-
       const isOpen =
         desktopCalcDropdown.classList.contains("open");
 
@@ -3168,7 +3203,6 @@ const desktopCalculatorsButton =
 
   function openMobileMenu() {
 
-    closeBrandDropdown();
     closeDesktopCalculatorDropdown();
 
     mobileMenuButton.classList.add("open");
@@ -3312,7 +3346,8 @@ const desktopCalculatorsButton =
   document.addEventListener(
     "click",
     function (event) {
-if (
+
+      if (
         !desktopCalcDropdown.contains(event.target) &&
         !desktopCalculatorsButton.contains(event.target)
       ) {
@@ -3335,7 +3370,6 @@ if (
 
       if (event.key === "Escape") {
 
-        closeBrandDropdown();
         closeDesktopCalculatorDropdown();
         closeMobileMenu();
 
