@@ -2536,121 +2536,39 @@ const desktopCalculatorsButton =
 
   const icons = {
 
-    heart: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/>
-      </svg>
-    `,
+    heart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10Z"/></svg>`,
 
-    calendar: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <rect x="3" y="5" width="18" height="16" rx="2"/>
-        <path d="M16 3v4M8 3v4M3 10h18"/>
-      </svg>
-    `,
+    calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>`,
 
-    percent: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round">
-        <path d="m19 5-14 14"/>
-        <circle cx="6.5" cy="6.5" r="2.5"/>
-        <circle cx="17.5" cy="17.5" r="2.5"/>
-      </svg>
-    `,
+    percent: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`,
 
-    money: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <rect x="3" y="6" width="18" height="12" rx="2"/>
-        <circle cx="12" cy="12" r="2.5"/>
-      </svg>
-    `,
+    tag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>`,
 
-    calculator: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <rect x="5" y="2" width="14" height="20" rx="2"/>
-        <path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/>
-      </svg>
-    `,
+    creditCard: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`,
 
-    home: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <path d="m3 11 9-8 9 8"/>
-        <path d="M5 10v10h14V10"/>
-        <path d="M9 20v-6h6v6"/>
-      </svg>
-    `,
+    receipt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-2 2 2 2-2 2 2 2-2 2 2 2-2 2 2V2l-2 2-2-2-2 2-2-2-2 2-2-2-2 2Z"/><path d="M16 8h-6M16 12h-6M13 16h-3"/></svg>`,
 
-    chart: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
-      </svg>
-    `,
+    banknote: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>`,
 
-    baby: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <circle cx="12" cy="12" r="8"/>
-        <path d="M9 10h.01M15 10h.01M9 15c1.5 1.4 4.5 1.4 6 0M12 4c0-1.2 1-2 2-2"/>
-      </svg>
-    `,
+    home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>`,
 
-    flame: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M12 22c4 0 7-3 7-7 0-5-4-8-6-12 0 4-4 5-5 8-1-2-2-3-3-4 0 6-2 8-2 10 0 3 4 5 9 5Z"/>
-      </svg>
-    `,
+    car: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 8 1.5-4h9L18 8"/><path d="M5 8h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"/><path d="M7 18v2M17 18v2"/><path d="M5 13h2M17 13h2"/><path d="M8 8h8"/></svg>`,
 
-    tip: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-        <path d="M9 18h6M10 22h4"/>
-        <path d="M8.2 14a7 7 0 1 1 7.6 0c-.8.6-1.3 1.2-1.5 2H9.7c-.2-.8-.7-1.4-1.5-2Z"/>
-      </svg>
-    `,
+    flame: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4 0 7-3 7-7 0-5-4-8-6-12 0 4-4 5-5 8-1-2-2-3-3-4 0 6-2 8-2 10 0 3 4 5 9 5Z"/></svg>`,
 
-    arrow: `
-      <svg viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
-        stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M5 12h14"/>
-        <path d="m13 6 6 6-6 6"/>
-      </svg>
-    `
+    trendingUp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+
+    motherBaby: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h2l2.2 9.2A2 2 0 0 0 10.1 16H18"/><path d="M8 9h10a5 5 0 0 1-5 5H9.2"/><path d="M13 9V4a5 5 0 0 1 5 5"/><circle cx="10" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>`,
+
+    landmark: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>`,
+
+    briefcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M2 12h20M10 12v2h4v-2"/></svg>`,
+
+    handCoins: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m2 16 6 6"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>`,
+
+    calculator: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg>`,
+
+    arrow: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>`
   };
 
 
@@ -2692,7 +2610,7 @@ const desktopCalculatorsButton =
       category: "Everyday",
       description: "Calculate discount savings and the final sale price.",
       url: "/calculators/discount-calculator.html",
-      icon: "percent",
+      icon: "tag",
       keywords: "discount saving sale shopping percentage"
     },
 
@@ -2701,7 +2619,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Estimate monthly EMI payments for loans quickly.",
       url: "/calculators/emi-calculator.html",
-      icon: "money",
+      icon: "creditCard",
       keywords: "emi loan installment finance monthly payment"
     },
 
@@ -2710,7 +2628,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Calculate tax amount and total price after tax.",
       url: "/calculators/tax-calculator.html",
-      icon: "calculator",
+      icon: "receipt",
       keywords: "tax amount sales tax finance price"
     },
 
@@ -2719,7 +2637,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Estimate loan payments, interest and total repayment.",
       url: "/calculators/loan-payment-calculator.html",
-      icon: "money",
+      icon: "banknote",
       keywords: "loan payment interest repayment finance"
     },
 
@@ -2737,7 +2655,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Estimate car loan payments, interest and repayment cost.",
       url: "/calculators/auto-loan-calculator.html",
-      icon: "money",
+      icon: "car",
       keywords: "auto car vehicle loan payment finance"
     },
 
@@ -2755,7 +2673,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Estimate investment growth with compound interest.",
       url: "/calculators/compound-interest-calculator.html",
-      icon: "chart",
+      icon: "trendingUp",
       keywords: "compound interest investment savings growth finance"
     },
 
@@ -2764,7 +2682,7 @@ const desktopCalculatorsButton =
       category: "Health",
       description: "Estimate pregnancy due date and important milestones.",
       url: "/calculators/pregnancy-calculator.html",
-      icon: "baby",
+      icon: "motherBaby",
       keywords: "pregnancy due date weeks health"
     },
 
@@ -2773,7 +2691,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Estimate how much you may need to save for retirement.",
       url: "/calculators/retirement-calculator.html",
-      icon: "chart",
+      icon: "landmark",
       keywords: "retirement savings future investment finance"
     },
 
@@ -2782,7 +2700,7 @@ const desktopCalculatorsButton =
       category: "Finance",
       description: "Convert salary between hourly, weekly and monthly pay.",
       url: "/calculators/salary-calculator.html",
-      icon: "money",
+      icon: "briefcase",
       keywords: "salary hourly weekly monthly income pay finance"
     },
 
@@ -2791,7 +2709,7 @@ const desktopCalculatorsButton =
       category: "Everyday",
       description: "Calculate a tip and split your bill quickly.",
       url: "/calculators/tip-calculator.html",
-      icon: "tip",
+      icon: "handCoins",
       keywords: "tip restaurant bill split everyday"
     }
 
