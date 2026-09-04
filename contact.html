@@ -2281,223 +2281,84 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
   "use strict";
 
-  const calculatorsButton =
-    document.getElementById("calculatorsButton");
-
-  const calcDropdown =
-    document.getElementById("calcDropdown");
-
-  const menuButton =
-    document.getElementById("menuButton");
-
-  const mobileNav =
-    document.getElementById("mobileNav");
-
-  const mobileCalcButton =
-    document.getElementById("mobileCalcButton");
-
-  const mobileCalcPanel =
-    document.getElementById("mobileCalcPanel");
-
-  const currentYear =
-    document.getElementById("currentYear");
-
-
-  /* =========================
-     BRAND DROPDOWN
-  ========================= */
-
-  function closeBrandDropdown() {
-
-    brandButton.classList.remove("open");
-    brandDropdown.classList.remove("open");
-
-    brandButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-  }
-
-
-  function openBrandDropdown() {
-
-    closeCalculatorDropdown();
-    closeMobileMenu();
-
-    brandButton.classList.add("open");
-    brandDropdown.classList.add("open");
-
-    brandButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-  }
-
-
-  brandButton.addEventListener(
-    "click",
-    function (event) {
-
-      event.stopPropagation();
-
-      if (brandDropdown.classList.contains("open")) {
-          } else {
-        openBrandDropdown();
-      }
-
-    }
-  );
-
-
-  brandDropdown.addEventListener(
-    "click",
-    function (event) {
-      event.stopPropagation();
-    }
-  );
-
-
-  /* =========================
-     DESKTOP CALCULATORS
-  ========================= */
+  const calculatorsButton = document.getElementById("calculatorsButton");
+  const calcDropdown = document.getElementById("calcDropdown");
+  const menuButton = document.getElementById("menuButton");
+  const mobileNav = document.getElementById("mobileNav");
+  const mobileCalcButton = document.getElementById("mobileCalcButton");
+  const mobileCalcPanel = document.getElementById("mobileCalcPanel");
+  const currentYear = document.getElementById("currentYear");
 
   function closeCalculatorDropdown() {
-
+    if (!calculatorsButton || !calcDropdown) return;
     calculatorsButton.classList.remove("open");
     calcDropdown.classList.remove("open");
-
-    calculatorsButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+    calculatorsButton.setAttribute("aria-expanded", "false");
   }
 
-
-  calculatorsButton.addEventListener(
-    "click",
-    function (event) {
-
+  if (calculatorsButton && calcDropdown) {
+    calculatorsButton.addEventListener("click", function (event) {
       event.stopPropagation();
+      const isOpen = calcDropdown.classList.contains("open");
+      closeCalculatorDropdown();
 
-  
-      const isOpen =
-        calcDropdown.classList.contains("open");
-
-      if (isOpen) {
-
-        closeCalculatorDropdown();
-
-      } else {
-
+      if (!isOpen) {
         calculatorsButton.classList.add("open");
         calcDropdown.classList.add("open");
-
-        calculatorsButton.setAttribute(
-          "aria-expanded",
-          "true"
-        );
-
+        calculatorsButton.setAttribute("aria-expanded", "true");
       }
-
-    }
-  );
-
-
-  calcDropdown.addEventListener(
-    "click",
-    function (event) {
-      event.stopPropagation();
-    }
-  );
-
-
-  document
-    .querySelectorAll(".category-button")
-    .forEach(function (button) {
-
-      button.addEventListener(
-        "click",
-        function () {
-
-          const panel =
-            button.nextElementSibling;
-
-          const isOpen =
-            panel.classList.contains("open");
-
-
-          document
-            .querySelectorAll(".category-panel")
-            .forEach(function (otherPanel) {
-              otherPanel.classList.remove("open");
-            });
-
-
-          document
-            .querySelectorAll(".category-button")
-            .forEach(function (otherButton) {
-              otherButton.classList.remove("open");
-            });
-
-
-          if (!isOpen) {
-            panel.classList.add("open");
-            button.classList.add("open");
-          }
-
-        }
-      );
-
     });
 
+    calcDropdown.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+  }
 
-  /* =========================
-     MOBILE MENU
-  ========================= */
+  document.querySelectorAll(".category-button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const panel = button.nextElementSibling;
+      if (!panel) return;
+
+      const isOpen = panel.classList.contains("open");
+
+      document.querySelectorAll(".category-panel").forEach(function (otherPanel) {
+        otherPanel.classList.remove("open");
+      });
+
+      document.querySelectorAll(".category-button").forEach(function (otherButton) {
+        otherButton.classList.remove("open");
+      });
+
+      if (!isOpen) {
+        panel.classList.add("open");
+        button.classList.add("open");
+      }
+    });
+  });
 
   function closeMobileMenu() {
+    if (!menuButton || !mobileNav) return;
 
     menuButton.classList.remove("open");
     mobileNav.classList.remove("open");
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Open navigation menu"
-    );
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation menu");
   }
-
 
   function openMobileMenu() {
+    if (!menuButton || !mobileNav) return;
 
     closeCalculatorDropdown();
-
     menuButton.classList.add("open");
     mobileNav.classList.add("open");
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Close navigation menu"
-    );
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "Close navigation menu");
   }
 
-
-  menuButton.addEventListener(
-    "click",
-    function (event) {
-
+  if (menuButton && mobileNav) {
+    menuButton.addEventListener("click", function (event) {
       event.stopPropagation();
 
       if (mobileNav.classList.contains("open")) {
@@ -2505,168 +2366,79 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         openMobileMenu();
       }
-
-    }
-  );
-
-
-  /* =========================
-     MOBILE CALCULATORS
-  ========================= */
-
-  mobileCalcButton.addEventListener(
-    "click",
-    function () {
-
-      const isOpen =
-        mobileCalcPanel.classList.contains("open");
-
-      mobileCalcPanel.classList.toggle(
-        "open",
-        !isOpen
-      );
-
-      mobileCalcButton.classList.toggle(
-        "open",
-        !isOpen
-      );
-
-    }
-  );
-
-
-  /* =========================
-     MOBILE CATEGORY ACCORDIONS
-  ========================= */
-
-  document
-    .querySelectorAll(".mobile-category-button")
-    .forEach(function (button) {
-
-      button.addEventListener(
-        "click",
-        function () {
-
-          const panel =
-            button.nextElementSibling;
-
-          const isOpen =
-            panel.classList.contains("open");
-
-
-          document
-            .querySelectorAll(".mobile-category-panel")
-            .forEach(function (otherPanel) {
-              otherPanel.classList.remove("open");
-            });
-
-
-          document
-            .querySelectorAll(".mobile-category-button")
-            .forEach(function (otherButton) {
-              otherButton.classList.remove("open");
-            });
-
-
-          if (!isOpen) {
-            panel.classList.add("open");
-            button.classList.add("open");
-          }
-
-        }
-      );
-
     });
-
-
-  /* =========================
-     MOBILE LINKS
-  ========================= */
-
-  document
-    .querySelectorAll(".mobile-nav a")
-    .forEach(function (link) {
-
-      link.addEventListener(
-        "click",
-        function () {
-          closeMobileMenu();
-        }
-      );
-
-    });
-
-
-  /* =========================
-     OUTSIDE CLICK
-  ========================= */
-
-  document.addEventListener(
-    "click",
-    function (event) {
-
-      if (
-        !brandDropdown.contains(event.target) &&
-        !brandButton.contains(event.target)
-      ) {
-          }
-
-
-      if (
-        !calcDropdown.contains(event.target) &&
-        !calculatorsButton.contains(event.target)
-      ) {
-        closeCalculatorDropdown();
-      }
-
-    }
-  );
-
-
-  /* =========================
-     ESCAPE
-  ========================= */
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
-
-      if (event.key === "Escape") {
-
-            closeCalculatorDropdown();
-        closeMobileMenu();
-
-      }
-
-    }
-  );
-
-
-  /* =========================
-     RESIZE
-  ========================= */
-
-  window.addEventListener(
-    "resize",
-    function () {
-
-      if (window.innerWidth > 980) {
-        closeMobileMenu();
-      }
-
-    }
-  );
-
-
-  /* =========================
-     YEAR
-  ========================= */
-
-  if (currentYear) {
-    currentYear.textContent =
-      new Date().getFullYear();
   }
 
+  if (mobileCalcButton && mobileCalcPanel) {
+    mobileCalcButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      const isOpen = mobileCalcPanel.classList.contains("open");
+      mobileCalcPanel.classList.toggle("open", !isOpen);
+      mobileCalcButton.classList.toggle("open", !isOpen);
+      mobileCalcButton.setAttribute("aria-expanded", String(!isOpen));
+    });
+  }
+
+  document.querySelectorAll(".mobile-category-button").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      const panel = button.nextElementSibling;
+      if (!panel) return;
+
+      const isOpen = panel.classList.contains("open");
+
+      document.querySelectorAll(".mobile-category-panel").forEach(function (otherPanel) {
+        otherPanel.classList.remove("open");
+      });
+
+      document.querySelectorAll(".mobile-category-button").forEach(function (otherButton) {
+        otherButton.classList.remove("open");
+      });
+
+      if (!isOpen) {
+        panel.classList.add("open");
+        button.classList.add("open");
+      }
+    });
+  });
+
+  document.querySelectorAll(".mobile-nav a").forEach(function (link) {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  document.addEventListener("click", function (event) {
+    if (
+      calculatorsButton &&
+      calcDropdown &&
+      !calcDropdown.contains(event.target) &&
+      !calculatorsButton.contains(event.target)
+    ) {
+      closeCalculatorDropdown();
+    }
+
+    if (
+      menuButton &&
+      mobileNav &&
+      mobileNav.classList.contains("open") &&
+      !mobileNav.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeCalculatorDropdown();
+      closeMobileMenu();
+    }
+  });
+
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
 });
 </script>
 
