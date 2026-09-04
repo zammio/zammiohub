@@ -1035,124 +1035,9 @@
 
   <div class="container header-inner">
 
-    <div class="brand-area">
-
-      <button
-        class="brand-button"
-        id="brandButton"
-        type="button"
-        aria-expanded="false"
-        aria-controls="brandDropdown"
-      >
-
-        <span class="brand-text">
-          Zammio<span>Hub</span>
-        </span>
-
-        <svg
-          class="brand-chevron"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="m6 9 6 6 6-6"/>
-        </svg>
-
-      </button>
-
-
-      <div
-        class="brand-dropdown"
-        id="brandDropdown"
-      >
-
-        <div class="dropdown-head">
-          <strong>Explore ZammioHub</strong>
-          <span>Calculators and important site pages.</span>
-        </div>
-
-        <div class="dropdown-grid">
-
-          <div>
-
-            <p class="dropdown-title">Categories</p>
-
-            <a class="dropdown-link" href="/#calculators">
-              Finance Calculators
-            </a>
-
-            <a class="dropdown-link" href="/#calculators">
-              Health Calculators
-            </a>
-
-            <a class="dropdown-link" href="/#calculators">
-              Math Calculators
-            </a>
-
-            <a class="dropdown-link" href="/#calculators">
-              Everyday Calculators
-            </a>
-
-          </div>
-
-
-          <div>
-
-            <p class="dropdown-title">Popular Tools</p>
-
-            <a class="dropdown-link"
-               href="/calculators/age-calculator.html">
-              Age Calculator
-            </a>
-
-            <a class="dropdown-link"
-               href="/calculators/bmi-calculator.html">
-              BMI Calculator
-            </a>
-
-            <a class="dropdown-link"
-               href="/calculators/emi-calculator.html">
-              EMI Calculator
-            </a>
-
-            <a class="dropdown-link"
-               href="/calculators/mortgage-calculator.html">
-              Mortgage Calculator
-            </a>
-
-          </div>
-
-
-          <div>
-
-            <p class="dropdown-title">Pages</p>
-
-            <a class="dropdown-link" href="/about.html">
-              About Us
-            </a>
-
-            <a class="dropdown-link" href="/contact.html">
-              Contact Us
-            </a>
-
-            <a class="dropdown-link" href="/privacy-policy.html">
-              Privacy Policy
-            </a>
-
-            <a class="dropdown-link" href="/disclaimer.html">
-              Disclaimer
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
+    <a href="/" class="brand-text" aria-label="ZammioHub Home">
+      Zammio<span>Hub</span>
+    </a>
 
 
     <!-- Desktop navigation -->
@@ -2407,12 +2292,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   "use strict";
 
-  const brandButton =
-    document.getElementById("brandButton");
-
-  const brandDropdown =
-    document.getElementById("brandDropdown");
-
   const calculatorsButton =
     document.getElementById("calculatorsButton");
 
@@ -2436,61 +2315,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =========================
-     BRAND DROPDOWN
-  ========================= */
-
-  function closeBrandDropdown() {
-
-    brandButton.classList.remove("open");
-    brandDropdown.classList.remove("open");
-
-    brandButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-  }
-
-
-  function openBrandDropdown() {
-
-    closeCalculatorDropdown();
-    closeMobileMenu();
-
-    brandButton.classList.add("open");
-    brandDropdown.classList.add("open");
-
-    brandButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-  }
-
-
-  brandButton.addEventListener(
-    "click",
-    function (event) {
-
-      event.stopPropagation();
-
-      if (brandDropdown.classList.contains("open")) {
-        closeBrandDropdown();
-      } else {
-        openBrandDropdown();
-      }
-
-    }
-  );
-
-
-  brandDropdown.addEventListener(
-    "click",
-    function (event) {
-      event.stopPropagation();
-    }
-  );
-
-
-  /* =========================
      DESKTOP CALCULATORS
   ========================= */
 
@@ -2511,8 +2335,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function (event) {
 
       event.stopPropagation();
-
-      closeBrandDropdown();
 
       const isOpen =
         calcDropdown.classList.contains("open");
@@ -2608,7 +2430,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openMobileMenu() {
 
-    closeBrandDropdown();
     closeCalculatorDropdown();
 
     menuButton.classList.add("open");
@@ -2738,14 +2559,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function (event) {
 
       if (
-        !brandDropdown.contains(event.target) &&
-        !brandButton.contains(event.target)
-      ) {
-        closeBrandDropdown();
-      }
-
-
-      if (
         !calcDropdown.contains(event.target) &&
         !calculatorsButton.contains(event.target)
       ) {
@@ -2766,8 +2579,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (event.key === "Escape") {
 
-        closeBrandDropdown();
-        closeCalculatorDropdown();
+            closeCalculatorDropdown();
         closeMobileMenu();
 
       }
