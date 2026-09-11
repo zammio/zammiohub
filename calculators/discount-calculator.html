@@ -1,1 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Discount Calculator - Calculate Discount, Savings & Sale Price | ZammioHub</title>
+<meta name="description" content="Use the free ZammioHub Discount Calculator to calculate discount amount, savings, sale price and final price. Quickly calculate percentage discounts and see how much you save.">
+
+<style>
+:root{
+  --navy:#0d3f69;
+  --blue:#356d9d;
+  --green:#4b8628;
+  --text:#292d31;
+  --border:#c7cbd0;
+  --panel:#f1f1f1;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#fff;
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:18px;
+  line-height:1.45;
+}
+
+.site-header{
+  height:76px;
+  background:var(--navy);
+  display:flex;
+  align-items:center;
+  color:#fff;
+  padding:0 20px;
+}
+
+.menu{
+  font-size:38px;
+  width:54px;
+  line-height:1;
+}
+
+.brand{
+  flex:1;
+  text-align:center;
+  font-size:40px;
+  font-weight:700;
+  letter-spacing:-1px;
+}
+
+.brand span{color:#a7df54}
+
+.container{
+  width:min(980px,94%);
+  margin:auto;
+}
+
+.crumbs{
+  margin:18px 0 8px;
+  color:#1b6388;
+  font-size:17px;
+}
+
+h1{
+  font-size:42px;
+  color:#0b3f68;
+  margin:6px 0 10px;
+  font-weight:700;
+}
+
+.intro{
+  font-size:20px;
+  margin:0 0 18px;
+  max-width:850px;
+}
+
+.calculator{
+  background:var(--panel);
+  border:1px solid #bbb;
+  padding:0 28px 28px;
+}
+
+.panel{
+  max-width:760px;
+  margin:0 auto;
+  background:#f5f5f5;
+  border:1px solid #c8c8c8;
+  padding:22px 26px 26px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.field label{
+  display:block;
+  font-size:21px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+input{
+  width:100%;
+  min-height:54px;
+  border:1px solid #9da6ae;
+  background:#fff;
+  border-radius:4px;
+  padding:9px 13px;
+  font-size:21px;
+}
+
+.form-note{
+  font-size:16px;
+  color:#687078;
+  margin-top:5px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+
+.action{
+  border:0;
+  border-radius:3px;
+  padding:13px 30px;
+  font-size:21px;
+  cursor:pointer;
+}
+
+.calculate{
+  background:var(--green);
+  color:#fff;
+  font-weight:700;
+}
+
+.clear{
+  background:#aaa;
+  color:#fff;
+}
+
+.discount-result{
+  display:none;
+  max-width:760px;
+  margin:0 auto 22px;
+  background:#fff;
+  border:1px solid #c0c5c9;
+  overflow:hidden;
+}
+
+.result-head{
+  background:var(--green);
+  color:#fff;
+  padding:10px 16px;
+  font-size:23px;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.result-head small{
+  font-size:15px;
+  font-weight:400;
+  opacity:.9;
+}
+
+.result-body{
+  padding:17px 20px 20px;
+}
+
+.money-result{
+  text-align:center;
+  margin:3px 0 10px;
+}
+
+.money-result .label{
+  font-size:20px;
+  font-weight:700;
+  color:#40464b;
+}
+
+.money-result .amount{
+  display:block;
+  font-size:40px;
+  font-weight:800;
+  color:#0d3f69;
+  margin-top:2px;
+}
+
+.savings{
+  text-align:center;
+  font-size:20px;
+  margin:0 0 17px;
+}
+
+.savings strong{
+  color:#3f7d25;
+}
+
+.result-box-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:12px 0;
+}
+
+.result-box{
+  background:#f4f6f7;
+  border:1px solid #d1d5d8;
+  border-radius:4px;
+  padding:13px 14px;
+}
+
+.result-box strong{
+  display:block;
+  font-size:17px;
+  color:#444b50;
+  margin-bottom:4px;
+}
+
+.result-box span{
+  font-size:21px;
+  font-weight:700;
+  color:#222;
+}
+
+.formula-card{
+  background:#f7f8f8;
+  border:1px solid #cdd2d5;
+  border-radius:6px;
+  padding:16px 18px;
+  margin-top:18px;
+  box-shadow:0 2px 8px rgba(13,63,105,.06);
+}
+
+.formula-card h3{
+  margin:0 0 10px;
+  font-size:21px;
+  color:#0d3f69;
+  font-weight:700;
+}
+
+.formula-line{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  font-weight:700;
+  line-height:1.6;
+  margin:6px 0;
+  color:#30363a;
+}
+
+.article{
+  max-width:760px;
+  margin:25px auto 60px;
+}
+
+.article h2{
+  font-size:28px;
+  color:#30363a;
+  margin:25px 0 8px;
+}
+
+.article h3{
+  font-size:22px;
+  color:#343a3f;
+  margin:18px 0 6px;
+}
+
+.article p{
+  font-size:19px;
+  margin:0 0 10px;
+}
+
+.article ul{
+  padding-left:25px;
+  font-size:19px;
+}
+
+.article li{
+  margin:6px 0;
+}
+
+.faq{
+  padding-top:6px;
+  margin-top:12px;
+}
+
+.faq h3{
+  margin-top:18px;
+}
+
+.disclaimer{
+  background:#f4f6f7;
+  border-left:4px solid #356d9d;
+  padding:13px 15px;
+  margin-top:24px;
+}
+
+@media(max-width:700px){
+
+  body{font-size:17px}
+
+  .brand{font-size:31px}
+
+  .menu{
+    font-size:34px;
+    width:44px;
+  }
+
+  h1{font-size:35px}
+
+  .intro{font-size:18px}
+
+  .calculator{
+    padding:0 10px 20px;
+  }
+
+  .panel{
+    padding:18px 12px 22px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .result-box-grid{
+    grid-template-columns:1fr;
+  }
+
+  .money-result .amount{
+    font-size:34px;
+  }
+
+  .article p{
+    font-size:18px;
+  }
+}
+
+/* ===== ZammioHub Mobile Polish ===== */
+
+@media (max-width:700px){
+
+  .site-header{
+    height:64px;
+    padding:0 14px;
+  }
+
+  .brand{
+    font-size:29px;
+  }
+
+  .menu{
+    font-size:30px;
+    width:38px;
+  }
+
+  .container{
+    width:94%;
+  }
+
+  .crumbs{
+    font-size:15px;
+    margin:14px 0 6px;
+  }
+
+  h1{
+    font-size:32px;
+    line-height:1.15;
+    margin:5px 0 12px;
+  }
+
+  .intro{
+    font-size:17px;
+    line-height:1.5;
+    margin-bottom:18px;
+  }
+
+  .calculator{
+    padding:0 8px 16px;
+  }
+
+  .panel{
+    padding:16px 14px 18px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .field label{
+    font-size:18px;
+    margin-bottom:6px;
+  }
+
+  input{
+    min-height:50px;
+    font-size:18px;
+    padding:9px 12px;
+  }
+
+  .form-note{
+    font-size:15px;
+    line-height:1.4;
+  }
+
+  .buttons{
+    margin-top:18px;
+    gap:8px;
+  }
+
+  .action{
+    padding:11px 22px;
+    font-size:18px;
+  }
+
+  .article{
+    margin:20px auto 40px;
+  }
+
+  .article h2{
+    font-size:24px;
+    line-height:1.25;
+    margin:23px 0 8px;
+  }
+
+  .article h3{
+    font-size:19px;
+    line-height:1.35;
+    margin:16px 0 6px;
+  }
+
+  .article p{
+    font-size:17px;
+    line-height:1.55;
+    margin-bottom:9px;
+  }
+
+  .article ul{
+    font-size:17px;
+    line-height:1.5;
+    padding-left:22px;
+  }
+
+  .faq{
+    margin-top:8px;
+    padding-top:3px;
+  }
+
+  .faq h3{
+    margin-top:14px;
+  }
+
+  .formula-card{
+    padding:14px;
+    margin-top:15px;
+  }
+
+  .formula-card h3{
+    font-size:19px;
+  }
+
+  .formula-line{
+    font-size:16px;
+    line-height:1.55;
+  }
+
+  .result-head{
+    font-size:20px;
+  }
+
+  .money-result .label{
+    font-size:18px;
+  }
+
+  .money-result .amount{
+    font-size:32px;
+  }
+
+  .savings{
+    font-size:18px;
+  }
+
+  .result-box-grid{
+    grid-template-columns:1fr;
+  }
+
+  .result-box strong{
+    font-size:16px;
+  }
+
+  .result-box span{
+    font-size:19px;
+  }
+
+  .disclaimer{
+    font-size:16px;
+    padding:11px 12px;
+  }
+}
+
+/* Final mobile content adjustment */
+
+@media (max-width:700px){
+
+  .article h2{
+    font-size:22px;
+    line-height:1.3;
+    margin:20px 0 8px;
+  }
+
+  .article h3{
+    font-size:18px;
+    line-height:1.35;
+    margin:15px 0 5px;
+  }
+
+  .article p,
+  .article li{
+    font-size:16px;
+    line-height:1.5;
+  }
+
+  .faq h3{
+    margin-top:18px;
+  }
+
+  .disclaimer{
+    font-size:15px;
+    line-height:1.5;
+  }
+}
+
+/* ===== ZammioHub Working Navigation ===== */
+.menu{
+  background:none;
+  border:0;
+  color:#fff;
+  cursor:pointer;
+  padding:0;
+  text-align:left;
+}
+.brand{
+  color:#fff;
+  text-decoration:none;
+}
+.crumbs{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.crumbs a,
+.crumb-link{
+  color:#1b6388;
+  text-decoration:none;
+}
+.crumbs a:hover,
+.crumb-link:hover{
+  text-decoration:underline;
+}
+.crumb-link{
+  border:0;
+  background:none;
+  padding:0;
+  margin:0;
+  font:inherit;
+  cursor:pointer;
+}
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:9998;
+  display:none;
+}
+.drawer-overlay.open{display:block}
+.nav-drawer{
+  position:fixed;
+  top:0;
+  left:0;
+  width:min(360px,88vw);
+  height:100vh;
+  background:#fff;
+  z-index:9999;
+  transform:translateX(-100%);
+  transition:transform .25s ease;
+  overflow-y:auto;
+  box-shadow:4px 0 18px rgba(0,0,0,.18);
+}
+.nav-drawer.open{transform:translateX(0)}
+.drawer-head{
+  min-height:76px;
+  background:var(--navy);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+.drawer-brand{
+  font-size:28px;
+  font-weight:700;
+}
+.drawer-brand span{color:#a7df54}
+.drawer-close{
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:38px;
+  line-height:1;
+  cursor:pointer;
+}
+.drawer-body{padding:18px 20px 30px}
+.drawer-home{
+  display:block;
+  color:#173f5f;
+  text-decoration:none;
+  font-size:21px;
+  font-weight:700;
+  padding:10px 0 18px;
+  border-bottom:1px solid #e2e5e8;
+}
+.drawer-title{
+  margin:20px 0 10px;
+  color:#667684;
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+}
+.drawer-link{
+  display:block;
+  color:#173f5f;
+  text-decoration:none;
+  font-size:18px;
+  padding:10px 0;
+}
+.drawer-link:hover{text-decoration:underline}
+body.menu-open{overflow:hidden}
+
+@media(max-width:700px){
+  .drawer-head{min-height:64px}
+  .drawer-brand{font-size:27px}
+  .drawer-link{font-size:17px;padding:9px 0}
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <button class="menu" id="menuButton" type="button" aria-label="Open calculator menu" aria-controls="navDrawer" aria-expanded="false">☰</button>
+  <a class="brand" href="/" aria-label="ZammioHub home">Zammio<span>Hub</span></a>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+<aside class="nav-drawer" id="navDrawer" aria-label="Calculator navigation" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="drawer-brand">Zammio<span>Hub</span></div>
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Close menu">×</button>
+  </div>
+  <nav class="drawer-body">
+    <a class="drawer-home" href="/">Home</a>
+    <div class="drawer-title">All Calculators</div>
+
+    <a class="drawer-link" href="/calculators/auto-loan-calculator">Auto Loan Calculator</a>
+    <a class="drawer-link" href="/calculators/compound-interest-calculator">Compound Interest Calculator</a>
+    <a class="drawer-link" href="/calculators/emi-calculator">EMI Calculator</a>
+    <a class="drawer-link" href="/calculators/loan-payment-calculator">Loan Payment Calculator</a>
+    <a class="drawer-link" href="/calculators/mortgage-calculator">Mortgage Calculator</a>
+    <a class="drawer-link" href="/calculators/retirement-calculator">Retirement Calculator</a>
+    <a class="drawer-link" href="/calculators/salary-calculator">Salary Calculator</a>
+    <a class="drawer-link" href="/calculators/tax-calculator">Tax Calculator</a>
+    <a class="drawer-link" href="/calculators/bmi-calculator">BMI Calculator</a>
+    <a class="drawer-link" href="/calculators/calorie-calculator">Calorie Calculator</a>
+    <a class="drawer-link" href="/calculators/pregnancy-calculator">Pregnancy Calculator</a>
+    <a class="drawer-link" href="/calculators/percentage-calculator">Percentage Calculator</a>
+    <a class="drawer-link" href="/calculators/age-calculator">Age Calculator</a>
+    <a class="drawer-link" href="/calculators/discount-calculator" aria-current="page">Discount Calculator</a>
+    <a class="drawer-link" href="/calculators/tip-calculator">Tip Calculator</a>
+  </nav>
+</aside>
+
+<main class="container">
+
+  <div class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">›</span>
+    <button type="button" class="crumb-link" id="allCalculatorsCrumb">All Calculators</button>
+    <span aria-hidden="true">›</span>
+    <span>Discount Calculator</span>
+  </div>
+
+  <h1>Discount Calculator</h1>
+
+  <p class="intro">
+    Calculate your discount, savings, and final sale price instantly.
+  </p>
+
+  <section class="discount-result" id="result">
+
+    <div class="result-head">
+      <span>Result</span>
+      <small>Discount Calculator</small>
+    </div>
+
+    <div class="result-body">
+
+      <div class="money-result">
+        <span class="label">Final Price</span>
+        <span class="amount" id="finalPrice">—</span>
+      </div>
+
+      <p class="savings">
+        You save
+        <strong id="savedAmount">—</strong>
+        <span id="savedPercent"></span>
+      </p>
+
+      <div class="result-box-grid">
+
+        <div class="result-box">
+          <strong>Original Price</strong>
+          <span id="originalResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Discount Amount</strong>
+          <span id="discountResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Discount Percentage</strong>
+          <span id="percentResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Final Sale Price</strong>
+          <span id="finalResult">—</span>
+        </div>
+
+      </div>
+
+      <div class="formula-card">
+
+        <h3>Discount Formula</h3>
+
+        <div class="formula-line">
+          Discount Amount = Original Price × Discount % ÷ 100
+        </div>
+
+        <div class="formula-line">
+          Final Price = Original Price − Discount Amount
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="calculator">
+
+    <div class="panel">
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label for="price">
+            Original Price
+          </label>
+
+          <input
+            id="price"
+            type="number"
+            inputmode="decimal"
+            step="any"
+            min="0"
+            placeholder="e.g. 5000"
+            aria-label="Original price"
+          >
+
+          <div class="form-note">
+            Enter the price before discount.
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label for="discount">
+            Discount Percentage
+          </label>
+
+          <input
+            id="discount"
+            type="number"
+            inputmode="decimal"
+            step="any"
+            min="0"
+            max="100"
+            placeholder="e.g. 20"
+            aria-label="Discount percentage"
+          >
+
+          <div class="form-note">
+            Enter a discount from 0% to 100%.
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="buttons">
+
+        <button
+          class="action calculate"
+          type="button"
+          onclick="calculateDiscount()"
+        >
+          Calculate
+        </button>
+
+        <button
+          class="action clear"
+          type="button"
+          onclick="clearDiscount()"
+        >
+          Clear
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <article class="article">
+
+    <h2>What Is a Discount Calculator?</h2>
+
+    <p>
+      A discount calculator is an online tool that helps you calculate the
+      discount amount, money saved, and final sale price from an original
+      price and discount percentage. It is useful for shopping, online deals,
+      retail offers, and everyday price calculations.
+    </p>
+
+    <h2>How Does This Discount Calculator Work?</h2>
+
+    <p>
+      Enter the original price and discount percentage. The calculator
+      instantly shows the discount amount, how much you save, and the final
+      price you pay after the discount.
+    </p>
+
+    <h2>How to Find the Final Price After a Discount</h2>
+
+    <p>
+      First calculate the discount amount by multiplying the original price
+      by the discount percentage and dividing by 100. Then subtract the
+      discount amount from the original price to get the final sale price.
+      This calculator performs both steps automatically.
+    </p>
+
+    <h2>Discount Calculation Example</h2>
+
+    <p>
+      Suppose an item has an original price of 10,000 and a discount of 25%:
+    </p>
+
+    <ul>
+      <li>Discount amount = 10,000 × 25 ÷ 100 = 2,500</li>
+      <li>Money saved = 2,500</li>
+      <li>Final price = 10,000 − 2,500 = 7,500</li>
+    </ul>
+
+    <h2>Frequently Asked Questions About Discounts</h2>
+
+    <div class="faq">
+
+      <h3>How do I calculate a discount percentage?</h3>
+
+      <p>
+        Multiply the original price by the discount percentage and divide
+        by 100. The result is the discount amount you save.
+      </p>
+
+    </div>
+
+    <div class="faq">
+
+      <h3>How do I calculate the final price after a discount?</h3>
+
+      <p>
+        Subtract the discount amount from the original price. The remaining
+        amount is the final price you pay after the discount.
+      </p>
+
+    </div>
+
+    <div class="faq">
+
+      <h3>What is the difference between discount amount and final price?</h3>
+
+      <p>
+        The discount amount is the money you save. The final price is the
+        amount you pay after that discount has been subtracted from the
+        original price.
+      </p>
+
+    </div>
+
+    <p class="disclaimer">
+      <strong>Note:</strong>
+      This calculator is provided for general calculations. It does not
+      include sales tax, VAT, shipping, or additional fees unless those
+      amounts are calculated separately.
+    </p>
+
+  </article>
+
+</main>
+
+<script>
+
+function money(x) {
+  return Number(x).toLocaleString(
+    undefined,
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
+}
+
+function calculateDiscount() {
+
+  const price =
+    Number(document.getElementById('price').value);
+
+  const discount =
+    Number(document.getElementById('discount').value);
+
+  if (
+    !Number.isFinite(price) ||
+    !Number.isFinite(discount) ||
+    price < 0 ||
+    discount < 0 ||
+    discount > 100
+  ) {
+
+    showError(
+      'Please enter a valid original price and a discount between 0% and 100%.'
+    );
+
+    return;
+  }
+
+  const amount =
+    price * discount / 100;
+
+  const finalPrice =
+    price - amount;
+
+  document.getElementById('finalPrice').textContent =
+    money(finalPrice);
+
+  document.getElementById('savedAmount').textContent =
+    money(amount);
+
+  document.getElementById('savedPercent').textContent =
+    '(' + discount + '%)';
+
+  document.getElementById('originalResult').textContent =
+    money(price);
+
+  document.getElementById('discountResult').textContent =
+    money(amount);
+
+  document.getElementById('percentResult').textContent =
+    discount + '%';
+
+  document.getElementById('finalResult').textContent =
+    money(finalPrice);
+
+  document.getElementById('result').style.display =
+    'block';
+
+  document.getElementById('result').scrollIntoView(
+    {
+      behavior:'smooth',
+      block:'start'
+    }
+  );
+}
+
+function showError(message) {
+
+  const result =
+    document.getElementById('result');
+
+  result.style.display =
+    'block';
+
+  result.innerHTML =
+    '<div class="result-head">' +
+    '<span>Result</span>' +
+    '<small>Discount Calculator</small>' +
+    '</div>' +
+
+    '<div class="result-body">' +
+    '<p style="text-align:center;font-size:20px;font-weight:700;color:#a22d2d;margin:8px 0;">' +
+    message +
+    '</p>' +
+    '</div>';
+
+  result.scrollIntoView(
+    {
+      behavior:'smooth',
+      block:'start'
+    }
+  );
+}
+
+function clearDiscount() {
+
+  document.getElementById('price').value =
+    '';
+
+  document.getElementById('discount').value =
+    '';
+
+  document.getElementById('result').style.display =
+    'none';
+
+  document.getElementById('result').innerHTML = `
+
+    <div class="result-head">
+      <span>Result</span>
+      <small>Discount Calculator</small>
+    </div>
+
+    <div class="result-body">
+
+      <div class="money-result">
+        <span class="label">Final Price</span>
+        <span class="amount" id="finalPrice">—</span>
+      </div>
+
+      <p class="savings">
+        You save
+        <strong id="savedAmount">—</strong>
+        <span id="savedPercent"></span>
+      </p>
+
+      <div class="result-box-grid">
+
+        <div class="result-box">
+          <strong>Original Price</strong>
+          <span id="originalResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Discount Amount</strong>
+          <span id="discountResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Discount Percentage</strong>
+          <span id="percentResult">—</span>
+        </div>
+
+        <div class="result-box">
+          <strong>Final Sale Price</strong>
+          <span id="finalResult">—</span>
+        </div>
+
+      </div>
+
+      <div class="formula-card">
+
+        <h3>Discount Formula</h3>
+
+        <div class="formula-line">
+          Discount Amount = Original Price × Discount % ÷ 100
+        </div>
+
+        <div class="formula-line">
+          Final Price = Original Price − Discount Amount
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const menuButton = document.getElementById('menuButton');
+  const drawer = document.getElementById('navDrawer');
+  const overlay = document.getElementById('drawerOverlay');
+  const closeButton = document.getElementById('drawerClose');
+  const allCalculatorsCrumb = document.getElementById('allCalculatorsCrumb');
+
+  function openMenu() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    menuButton.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    menuButton.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuButton.addEventListener('click', openMenu);
+  allCalculatorsCrumb.addEventListener('click', openMenu);
+  closeButton.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeMenu();
+  });
+});
+
+</script>
+
+</body>
+</html>
