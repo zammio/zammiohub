@@ -77,6 +77,215 @@ h1{
   max-width:850px;
 }
 
+
+/* ===== SITE NAVIGATION ===== */
+.site-header{
+  position:relative;
+  z-index:1000;
+}
+
+.menu-button{
+  width:44px;
+  height:44px;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:31px;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+}
+
+.brand-link{
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+}
+
+.brand-link .brand{
+  display:block;
+}
+
+.nav-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.38);
+  z-index:1998;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .2s ease, visibility .2s ease;
+}
+
+.nav-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.mobile-nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:min(340px,88vw);
+  height:100dvh;
+  background:#fff;
+  z-index:1999;
+  transform:translateX(-100%);
+  transition:transform .25s ease;
+  box-shadow:8px 0 28px rgba(0,0,0,.18);
+  overflow-y:auto;
+}
+
+.mobile-nav.open{
+  transform:translateX(0);
+}
+
+.mobile-nav-head{
+  background:var(--navy);
+  color:#fff;
+  min-height:76px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.mobile-nav-title{
+  font-size:24px;
+  font-weight:700;
+}
+
+.nav-close{
+  width:42px;
+  height:42px;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:31px;
+  cursor:pointer;
+}
+
+.nav-links{
+  padding:14px 14px 28px;
+}
+
+.nav-links a{
+  display:block;
+  color:#17344e;
+  text-decoration:none;
+  padding:12px 10px;
+  border-radius:7px;
+  font-size:17px;
+}
+
+.nav-links a:hover,
+.nav-links a:focus{
+  background:#eef5fb;
+}
+
+.nav-home{
+  font-weight:700;
+  border-bottom:1px solid #e1e6ea;
+  margin-bottom:8px;
+}
+
+.nav-section-title{
+  margin:16px 10px 7px;
+  color:#607080;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* ===== BREADCRUMB ===== */
+.crumbs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  align-items:center;
+}
+
+.crumbs a{
+  color:#1b6388;
+  text-decoration:none;
+}
+
+.crumbs a:hover,
+.crumbs a:focus{
+  text-decoration:underline;
+}
+
+.crumb-sep{
+  color:#8b98a4;
+}
+
+/* ===== FOOTER ===== */
+.site-footer{
+  background:#0d1b2f;
+  color:#aebbd0;
+  margin-top:50px;
+  padding:42px 0 22px;
+}
+
+.footer-inner{
+  width:min(980px,94%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.35fr 1fr 1fr;
+  gap:34px;
+}
+
+.footer-brand{
+  color:#fff;
+  font-size:30px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.footer-brand span{color:#2f76e8}
+
+.footer-heading{
+  color:#fff;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.site-footer a{
+  color:#aebbd0;
+  text-decoration:none;
+  display:block;
+  margin:9px 0;
+}
+
+.site-footer a:hover,
+.site-footer a:focus{
+  color:#fff;
+}
+
+.footer-copy{
+  width:min(980px,94%);
+  margin:28px auto 0;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:18px;
+  text-align:center;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+  .mobile-nav-head{min-height:64px}
+  .footer-inner{
+    grid-template-columns:1fr 1fr;
+    gap:24px 26px;
+  }
+  .footer-about{
+    grid-column:1/-1;
+  }
+}
+
 /* CALCULATOR */
 
 .calculator{
@@ -533,13 +742,62 @@ input{
 <body>
 
 <header class="site-header">
-  <div class="menu">☰</div>
-  <div class="brand">Zammio<span>Hub</span></div>
+  <button class="menu-button" id="menuButton" type="button"
+          aria-label="Open navigation menu"
+          aria-controls="mobileNav"
+          aria-expanded="false">☰</button>
+
+  <a class="brand-link" href="/" aria-label="ZammioHub Home">
+    <span class="brand">Zammio<span>Hub</span></span>
+  </a>
 </header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Main navigation">
+  <div class="mobile-nav-head">
+    <div class="mobile-nav-title">ZammioHub</div>
+    <button class="nav-close" id="navClose" type="button" aria-label="Close navigation menu">×</button>
+  </div>
+
+  <div class="nav-links">
+    <a class="nav-home" href="/">Home</a>
+
+    <div class="nav-section-title">All Calculators</div>
+    <a href="/calculators/auto-loan-calculator">Auto Loan Calculator</a>
+    <a href="/calculators/compound-interest-calculator">Compound Interest Calculator</a>
+    <a href="/calculators/emi-calculator">EMI Calculator</a>
+    <a href="/calculators/loan-payment-calculator">Loan Payment Calculator</a>
+    <a href="/calculators/mortgage-calculator">Mortgage Calculator</a>
+    <a href="/calculators/retirement-calculator">Retirement Calculator</a>
+    <a href="/calculators/salary-calculator">Salary Calculator</a>
+    <a href="/calculators/tax-calculator">Tax Calculator</a>
+    <a href="/calculators/bmi-calculator" aria-current="page">BMI Calculator</a>
+    <a href="/calculators/calorie-calculator">Calorie Calculator</a>
+    <a href="/calculators/pregnancy-calculator">Pregnancy Calculator</a>
+    <a href="/calculators/percentage-calculator">Percentage Calculator</a>
+    <a href="/calculators/age-calculator">Age Calculator</a>
+    <a href="/calculators/discount-calculator">Discount Calculator</a>
+    <a href="/calculators/tip-calculator">Tip Calculator</a>
+
+    <div class="nav-section-title">Pages</div>
+    <a href="/about">About Us</a>
+    <a href="/contact">Contact Us</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-of-service">Terms of Service</a>
+    <a href="/disclaimer">Disclaimer</a>
+  </div>
+</nav>
 
 <main class="container">
 
-<div class="crumbs">Home / BMI Calculator</div>
+<div class="crumbs" aria-label="Breadcrumb">
+  <a href="/">Home</a>
+  <span class="crumb-sep">›</span>
+  <a href="/#calculators">All Calculators</a>
+  <span class="crumb-sep">›</span>
+  <span>BMI Calculator</span>
+</div>
 
 <h1>BMI Calculator</h1>
 
@@ -904,7 +1162,66 @@ This BMI calculator is intended for general educational and screening purposes. 
 
 </main>
 
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-about">
+      <div class="footer-brand">Zammio<span>Hub</span></div>
+      <div>Free online calculators for finance, health, math and everyday needs.</div>
+    </div>
+
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <a href="/about">About Us</a>
+      <a href="/contact">Contact Us</a>
+    </div>
+
+    <div>
+      <div class="footer-heading">Legal</div>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms-of-service">Terms of Service</a>
+      <a href="/disclaimer">Disclaimer</a>
+    </div>
+  </div>
+
+  <div class="footer-copy">© 2026 ZammioHub. All rights reserved.</div>
+</footer>
+
 <script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  const menuButton = document.getElementById('menuButton');
+  const mobileNav = document.getElementById('mobileNav');
+  const navOverlay = document.getElementById('navOverlay');
+  const navClose = document.getElementById('navClose');
+
+  function openMenu(){
+    mobileNav.classList.add('open');
+    navOverlay.classList.add('open');
+    menuButton.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeMenu(){
+    mobileNav.classList.remove('open');
+    navOverlay.classList.remove('open');
+    menuButton.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }
+
+  menuButton.addEventListener('click', openMenu);
+  navClose.addEventListener('click', closeMenu);
+  navOverlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  mobileNav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', closeMenu);
+  });
+
+});
 
 let currentUnit='us';
 
