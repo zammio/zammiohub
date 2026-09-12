@@ -325,6 +325,13 @@
       background: var(--blue-soft);
     }
 
+    .desktop-all-calculators-link {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:5px; padding:11px 10px; border-radius:10px;
+      background:var(--blue-soft); color:var(--blue);
+      font-size:14px; font-weight:800;
+    }
+
     /* =====================================================
        HAMBURGER
     ===================================================== */
@@ -489,6 +496,13 @@
 
     .mobile-tool-link:last-child {
       padding-bottom: 13px;
+    }
+
+    .mobile-all-calculators-link {
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:48px; margin:5px 9px 3px; padding:0 12px;
+      border-radius:10px; background:var(--blue-soft); color:var(--blue);
+      font-size:14px; font-weight:800;
     }
 
     /* =====================================================
@@ -1601,6 +1615,10 @@
           id="desktopCalcDropdown"
         >
 
+          <a class="desktop-all-calculators-link" href="/calculators/">
+            <span>All Calculators</span><span aria-hidden="true">→</span>
+          </a>
+
           <!-- Finance -->
 
           <div class="desktop-accordion-item">
@@ -1877,6 +1895,10 @@
         class="mobile-calculators-panel"
         id="mobileCalculatorsPanel"
       >
+
+        <a class="mobile-all-calculators-link" href="/calculators/">
+          <span>All Calculators</span><span aria-hidden="true">→</span>
+        </a>
 
         <!-- Finance -->
 
