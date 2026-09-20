@@ -2171,236 +2171,139 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
   "use strict";
 
-  const brandButton =
-    document.getElementById("brandButton");
+  const calculatorsButton = document.getElementById("calculatorsButton");
+  const calcDropdown = document.getElementById("calcDropdown");
+  const menuButton = document.getElementById("menuButton");
+  const mobileNav = document.getElementById("mobileNav");
+  const mobileCalcButton = document.getElementById("mobileCalcButton");
+  const mobileCalcPanel = document.getElementById("mobileCalcPanel");
+  const currentYear = document.getElementById("currentYear");
 
-  const brandDropdown =
-    document.getElementById("brandDropdown");
+  function closeCalculatorDropdown() {
+    if (!calculatorsButton || !calcDropdown) return;
+    calculatorsButton.classList.remove("open");
+    calcDropdown.classList.remove("open");
+    calculatorsButton.setAttribute("aria-expanded", "false");
+  }
 
-  const calculatorsButton =
-    document.getElementById("calculatorsButton");
-
-  const calcDropdown =
-    document.getElementById("calcDropdown");
-
-  const menuButton =
-    document.getElementById("menuButton");
-
-  const mobileNav =
-    document.getElementById("mobileNav");
-
-  const mobileCalcButton =
-    document.getElementById("mobileCalcButton");
-
-  const mobileCalcPanel =
-    document.getElementById("mobileCalcPanel");
-
-  const currentYear =
-    document.getElementById("currentYear");
-
-
-          document
-            .querySelectorAll(".category-button")
-            .forEach(function (otherButton) {
-              otherButton.classList.remove("open");
-            });
-
-
-          if (!isOpen) {
-            panel.classList.add("open");
-            button.classList.add("open");
-          }
-
-        }
-      );
-
+  if (calculatorsButton && calcDropdown) {
+    calculatorsButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const isOpen = calcDropdown.classList.contains("open");
+      closeMobileMenu();
+      if (!isOpen) {
+        calculatorsButton.classList.add("open");
+        calcDropdown.classList.add("open");
+        calculatorsButton.setAttribute("aria-expanded", "true");
+      }
     });
 
+    calcDropdown.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+  }
+
+  document.querySelectorAll(".category-button").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const panel = button.nextElementSibling;
+      if (!panel) return;
+      const isOpen = panel.classList.contains("open");
+
+      document.querySelectorAll(".category-panel").forEach(function (otherPanel) {
+        otherPanel.classList.remove("open");
+      });
+      document.querySelectorAll(".category-button").forEach(function (otherButton) {
+        otherButton.classList.remove("open");
+      });
+
+      if (!isOpen) {
+        panel.classList.add("open");
+        button.classList.add("open");
+      }
+    });
+  });
 
   function closeMobileMenu() {
-
+    if (!menuButton || !mobileNav) return;
     menuButton.classList.remove("open");
     mobileNav.classList.remove("open");
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Open navigation menu"
-    );
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation menu");
   }
-
 
   function openMobileMenu() {
-
-        closeCalculatorDropdown();
-
+    if (!menuButton || !mobileNav) return;
+    closeCalculatorDropdown();
     menuButton.classList.add("open");
     mobileNav.classList.add("open");
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Close navigation menu"
-    );
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", "Close navigation menu");
   }
 
-
-  menuButton.addEventListener(
-    "click",
-    function (event) {
-
+  if (menuButton && mobileNav) {
+    menuButton.addEventListener("click", function (event) {
       event.stopPropagation();
-
-      if (mobileNav.classList.contains("open")) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-
-    }
-  );
-
-
-  mobileCalcButton.addEventListener(
-    "click",
-    function () {
-
-      const isOpen =
-        mobileCalcPanel.classList.contains("open");
-
-      mobileCalcPanel.classList.toggle(
-        "open",
-        !isOpen
-      );
-
-      mobileCalcButton.classList.toggle(
-        "open",
-        !isOpen
-      );
-
-    }
-  );
-
-
-  document
-    .querySelectorAll(".mobile-category-button")
-    .forEach(function (button) {
-
-      button.addEventListener(
-        "click",
-        function () {
-
-          const panel =
-            button.nextElementSibling;
-
-          const isOpen =
-            panel.classList.contains("open");
-
-
-          document
-            .querySelectorAll(".mobile-category-panel")
-            .forEach(function (otherPanel) {
-              otherPanel.classList.remove("open");
-            });
-
-
-          document
-            .querySelectorAll(".mobile-category-button")
-            .forEach(function (otherButton) {
-              otherButton.classList.remove("open");
-            });
-
-
-          if (!isOpen) {
-            panel.classList.add("open");
-            button.classList.add("open");
-          }
-
-        }
-      );
-
+      if (mobileNav.classList.contains("open")) closeMobileMenu();
+      else openMobileMenu();
     });
-
-
-  document
-    .querySelectorAll(".mobile-nav a")
-    .forEach(function (link) {
-
-      link.addEventListener(
-        "click",
-        function () {
-          closeMobileMenu();
-        }
-      );
-
-    });
-
-
-  document.addEventListener(
-    "click",
-    function (event) {
-
-      if (
-        !brandDropdown.contains(event.target) &&
-        !brandButton.contains(event.target)
-      ) {
-              }
-
-
-      if (
-        !calcDropdown.contains(event.target) &&
-        !calculatorsButton.contains(event.target)
-      ) {
-        closeCalculatorDropdown();
-      }
-
-    }
-  );
-
-
-  document.addEventListener(
-    "keydown",
-    function (event) {
-
-      if (event.key === "Escape") {
-
-                closeCalculatorDropdown();
-        closeMobileMenu();
-
-      }
-
-    }
-  );
-
-
-  window.addEventListener(
-    "resize",
-    function () {
-
-      if (window.innerWidth > 980) {
-        closeMobileMenu();
-      }
-
-    }
-  );
-
-
-  if (currentYear) {
-    currentYear.textContent =
-      new Date().getFullYear();
   }
 
+  if (mobileCalcButton && mobileCalcPanel) {
+    mobileCalcButton.addEventListener("click", function () {
+      const isOpen = mobileCalcPanel.classList.contains("open");
+      mobileCalcPanel.classList.toggle("open", !isOpen);
+      mobileCalcButton.classList.toggle("open", !isOpen);
+    });
+  }
+
+  document.querySelectorAll(".mobile-category-button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const panel = button.nextElementSibling;
+      if (!panel) return;
+      const isOpen = panel.classList.contains("open");
+
+      document.querySelectorAll(".mobile-category-panel").forEach(function (otherPanel) {
+        otherPanel.classList.remove("open");
+      });
+      document.querySelectorAll(".mobile-category-button").forEach(function (otherButton) {
+        otherButton.classList.remove("open");
+      });
+
+      if (!isOpen) {
+        panel.classList.add("open");
+        button.classList.add("open");
+      }
+    });
+  });
+
+  document.querySelectorAll(".mobile-nav a").forEach(function (link) {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  document.addEventListener("click", function (event) {
+    if (calcDropdown && calculatorsButton &&
+        !calcDropdown.contains(event.target) &&
+        !calculatorsButton.contains(event.target)) {
+      closeCalculatorDropdown();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeCalculatorDropdown();
+      closeMobileMenu();
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 980) closeMobileMenu();
+  });
+
+  if (currentYear) currentYear.textContent = new Date().getFullYear();
 });
 </script>
 
