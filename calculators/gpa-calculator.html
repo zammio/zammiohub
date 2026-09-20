@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GPA Calculator | Calculate Your GPA | ZammioHub</title>
-<meta name="description" content="Calculate your GPA quickly using letter grades and credit hours with ZammioHub's free, mobile-friendly GPA calculator.">
+<title>GPA Calculator – Semester & Cumulative GPA | ZammioHub</title>
+<meta name="description" content="Calculate your semester or cumulative GPA using grades and credit hours. Free 4.0 GPA calculator for college and high school students.">
 <link rel="canonical" href="https://zammiohub.com/calculators/gpa-calculator">
 
 <style>
@@ -107,11 +107,16 @@ button{border:0;border-radius:7px;padding:13px 22px;font-size:16px;font-weight:7
   padding:20px 22px;margin:18px 0 26px;
 }
 .formula-title{color:#17608a;font-size:17px;font-weight:700;margin-bottom:10px}
-.formula{font-family:Georgia,"Times New Roman",serif;font-size:21px;font-weight:700;line-height:1.55;color:#27313a}
+.formula{font-family:Georgia,"Times New Roman",serif;font-size:21px;font-weight:700;line-height:1.55;color:#27313a;overflow-wrap:anywhere;word-break:normal}
 .table-wrap{overflow-x:auto;margin:18px 0 26px}
 .gpa-table{width:100%;border-collapse:collapse;font-size:17px}
 .gpa-table th,.gpa-table td{border:1px solid var(--border);padding:11px 14px;text-align:left}
 .gpa-table th{background:var(--soft);color:#263d49}
+
+.cumulative-formula{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fraction{display:inline-flex;flex-direction:column;text-align:center;max-width:100%;font-size:18px;line-height:1.35}
+.fraction span:first-child{border-bottom:2px solid #27313a;padding:0 7px 5px}
+.fraction span:last-child{padding:5px 7px 0}
 
 /* Footer */
 footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#69757e}
@@ -163,6 +168,12 @@ footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#6975
   .formula-box{padding:16px 17px;margin:15px 0 23px}
   .formula-title{font-size:15px;line-height:1.45;margin-bottom:8px}
   .formula{font-size:16.5px;line-height:1.6;overflow-wrap:anywhere}
+  .cumulative-formula{display:block;text-align:center}
+  .cumulative-formula>div:first-child{margin-bottom:8px}
+  .fraction{display:flex;width:100%;font-size:14.5px;line-height:1.35}
+  .fraction span{overflow-wrap:anywhere}
+  .fraction span:first-child{padding:0 3px 5px}
+  .fraction span:last-child{padding:5px 3px 0}
   .gpa-table{font-size:15px}
   .gpa-table th,.gpa-table td{padding:9px 10px}
   footer{margin-top:34px;padding-top:18px}
@@ -305,7 +316,13 @@ footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#6975
 
     <div class="formula-box">
       <div class="formula-title">Cumulative GPA Formula</div>
-      <div class="formula">(Previous GPA × Previous Credits + Current Grade Points) ÷ (Previous Credits + Current Credits)</div>
+      <div class="formula cumulative-formula">
+        <div>Cumulative GPA =</div>
+        <div class="fraction" aria-label="Previous total points plus current grade points divided by previous credits plus current credits">
+          <span>Previous Total Points + Current Grade Points</span>
+          <span>Previous Credits + Current Credits</span>
+        </div>
+      </div>
     </div>
 
     <h2>Frequently Asked Questions</h2>
@@ -316,8 +333,8 @@ footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#6975
     <h3>Why are A+ and A both 4.0?</h3>
     <p>On the common unweighted 4.0 scale used by this calculator, A+ and A both receive 4.0 points. Some institutions use a different scale, such as 4.33 for A+.</p>
 
-    <h3>What is a 4.0 GPA scale?</h3>
-    <p>A 4.0 scale is a common grading system in which an A is generally worth 4.0 grade points. Exact values can vary between institutions.</p>
+    <h3>How do I calculate cumulative GPA?</h3>
+    <p>Multiply your previous GPA by your previous credits to get previous total points. Add your current semester grade points, then divide by your previous credits plus your current semester credits.</p>
 
     <h3>What is the difference between semester GPA and cumulative GPA?</h3>
     <p>Semester GPA uses only the courses from one term. Cumulative GPA combines your previous GPA and credits with your current semester results.</p>
