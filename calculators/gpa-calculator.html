@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GPA Calculator | Calculate Your GPA | ZammioHub</title>
+<meta name="description" content="Calculate your GPA quickly using letter grades and credit hours with ZammioHub's free, mobile-friendly GPA calculator.">
+<link rel="canonical" href="https://zammiohub.com/calculators/gpa-calculator">
+
+<style>
+:root{
+  --primary:#17608a;
+  --accent:#4b8f2b;
+  --text:#27313a;
+  --muted:#66727d;
+  --border:#d9e1e6;
+  --soft:#f5f8fa;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#fff;color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.65;
+}
+.container{max-width:920px;margin:auto;padding:30px 24px 70px}
+
+/* Breadcrumb */
+.breadcrumb{font-size:16px;color:var(--primary);margin-bottom:28px}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.breadcrumb span{margin:0 7px;color:#7c8790}
+
+/* Typography */
+h1{color:#12577d;font-size:42px;line-height:1.15;margin:0 0 14px}
+.intro{font-size:19px;margin:0 0 28px;color:#39444d}
+h2{font-size:30px;line-height:1.25;margin:34px 0 10px;color:#263d49}
+h3{font-size:21px;line-height:1.35;margin:26px 0 8px;color:#27313a}
+p{font-size:18px;margin:0 0 18px}
+
+/* Calculator */
+.calculator-card{
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  background:var(--soft);box-shadow:0 8px 20px rgba(26,52,67,.06);
+  margin-top:20px;
+}
+.card-title{background:#1d6b94;color:#fff;padding:18px 24px;font-size:20px;font-weight:700}
+.card-body{padding:28px}
+.course-head,.course-row{
+  display:grid;grid-template-columns:minmax(0,1.7fr) minmax(120px,.9fr) minmax(100px,.7fr) 44px;
+  gap:10px;align-items:end;
+}
+.course-head{align-items:center;margin-bottom:8px;color:#263d49;font-weight:700;font-size:15px}
+.course-row{margin-bottom:12px}
+.course-row input,.course-row select{
+  width:100%;min-width:0;padding:12px 12px;font-size:16px;border:1px solid #cbd5db;
+  border-radius:7px;background:#fff;color:#202930;outline:none;min-height:48px;
+}
+.course-row input:focus,.course-row select:focus{
+  border-color:#17608a;box-shadow:0 0 0 2px rgba(23,96,138,.1);
+}
+.remove-btn{
+  width:44px;height:48px;padding:0;border:1px solid #d3dce1;background:#fff;
+  color:#6a747b;border-radius:7px;font-size:23px;line-height:1;cursor:pointer;
+}
+.remove-btn:hover{background:#f0f3f5}
+.add-btn{
+  margin-top:5px;background:#fff;color:var(--primary);border:1px solid var(--primary);
+}
+.buttons{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:7px;padding:13px 22px;font-size:16px;font-weight:700;cursor:pointer}
+.calculate-btn{background:var(--accent);color:#fff}
+.clear-btn{background:#e2e7eb;color:#27313a}
+.error-message{display:none;color:#a32727;font-size:15px;font-weight:700;margin:14px 0 0}
+
+/* GPA mode */
+.mode-field{margin-bottom:22px}
+.mode-label{display:block;font-size:18px;font-weight:700;margin-bottom:8px;color:#263d49}
+.mode-select,.previous-field input{
+  width:100%;padding:14px 16px;font-size:17px;border:1px solid #cbd5db;
+  border-radius:7px;background:#fff;color:#202930;outline:none;
+}
+.mode-select:focus,.previous-field input:focus{border-color:#17608a;box-shadow:0 0 0 2px rgba(23,96,138,.1)}
+.previous-section{
+  display:none;background:#fff;border:1px solid var(--border);border-radius:8px;
+  padding:18px;margin-bottom:22px;
+}
+.previous-title{font-size:17px;font-weight:700;color:#17608a;margin-bottom:13px}
+.previous-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.previous-field label{display:block;font-size:15px;font-weight:700;margin-bottom:6px;color:#263d49}
+
+/* Result */
+.result-card{
+  display:none;border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  margin-top:24px;background:#fff;
+}
+.result-title{background:var(--accent);color:#fff;padding:18px 24px;font-size:20px;font-weight:700}
+.result-body{padding:28px 24px}
+.main-result{text-align:center;color:#114e78;font-size:32px;font-weight:700;margin:0 0 24px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.result-item{background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:18px}
+.result-label{color:var(--muted);font-size:15px;font-weight:700;margin-bottom:4px}
+.result-value{color:#27313a;font-size:20px;font-weight:700}
+
+/* Formula / table */
+.formula-box{
+  background:var(--soft);border:1px solid var(--border);border-radius:8px;
+  padding:20px 22px;margin:18px 0 26px;
+}
+.formula-title{color:#17608a;font-size:17px;font-weight:700;margin-bottom:10px}
+.formula{font-family:Georgia,"Times New Roman",serif;font-size:21px;font-weight:700;line-height:1.55;color:#27313a}
+.table-wrap{overflow-x:auto;margin:18px 0 26px}
+.gpa-table{width:100%;border-collapse:collapse;font-size:17px}
+.gpa-table th,.gpa-table td{border:1px solid var(--border);padding:11px 14px;text-align:left}
+.gpa-table th{background:var(--soft);color:#263d49}
+
+/* Footer */
+footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#69757e}
+.footer-name{font-size:17px;font-weight:700;margin-bottom:2px}
+.footer-text{font-size:16px;margin:0}
+
+@media(max-width:600px){
+  body{line-height:1.58}
+  .container{padding:22px 18px 48px}
+  .breadcrumb{font-size:14px;line-height:1.5;margin-bottom:22px}
+  .breadcrumb span{margin:0 5px}
+  h1{font-size:30px;line-height:1.18;margin-bottom:13px}
+  .intro{font-size:16px;line-height:1.55;margin-bottom:23px}
+  h2{font-size:22px;line-height:1.3;margin-top:28px;margin-bottom:9px}
+  h3{font-size:18px;line-height:1.4;margin-top:22px;margin-bottom:7px}
+  p{font-size:16px;line-height:1.6;margin-bottom:15px}
+  .calculator-card{margin-top:16px;border-radius:10px}
+  .card-title{font-size:18px;line-height:1.4;padding:15px 18px}
+  .card-body{padding:21px 18px 23px}
+
+  .mode-label{font-size:16px}
+  .mode-select,.previous-field input{min-height:50px;font-size:16px}
+  .previous-section{padding:15px}
+  .previous-grid{grid-template-columns:1fr}
+  .course-head{display:none}
+  .course-row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px;
+    gap:9px;padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid var(--border);
+  }
+  .course-row .course-name{grid-column:1 / -1}
+  .course-row .grade-select{grid-column:1}
+  .course-row .credits-input{grid-column:2}
+  .course-row .remove-btn{grid-column:3;grid-row:2}
+  .course-row input,.course-row select{font-size:16px;min-height:48px}
+  .add-btn{width:100%;min-height:48px}
+  .buttons{flex-wrap:nowrap;gap:10px;margin-top:18px}
+  button{min-height:48px;padding:11px 14px;font-size:15px}
+  .calculate-btn{flex:1;min-width:0}
+  .clear-btn{min-width:88px;flex:0 0 auto}
+
+  .result-card{border-radius:10px;margin-top:22px}
+  .result-title{font-size:18px;padding:15px 18px}
+  .result-body{padding:22px 18px}
+  .main-result{font-size:27px;line-height:1.25;margin-bottom:20px}
+  .result-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .result-item{padding:14px}
+  .result-label{font-size:13px;line-height:1.35}
+  .result-value{font-size:18px;line-height:1.3}
+  .formula-box{padding:16px 17px;margin:15px 0 23px}
+  .formula-title{font-size:15px;line-height:1.45;margin-bottom:8px}
+  .formula{font-size:16.5px;line-height:1.6;overflow-wrap:anywhere}
+  .gpa-table{font-size:15px}
+  .gpa-table th,.gpa-table td{padding:9px 10px}
+  footer{margin-top:34px;padding-top:18px}
+  .footer-name{font-size:16px}
+  .footer-text{font-size:14px;line-height:1.5}
+}
+@media(max-width:360px){
+  h1{font-size:28px} h2{font-size:21px} h3{font-size:17px}
+  p,.intro{font-size:15.5px}.formula{font-size:16px}
+  .result-grid{grid-template-columns:1fr}
+  .calculate-btn{font-size:14px;padding-left:10px;padding-right:10px}
+  .clear-btn{min-width:78px}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"GPA Calculator",
+  "url":"https://zammiohub.com/calculators/gpa-calculator",
+  "applicationCategory":"EducationalApplication",
+  "operatingSystem":"Any",
+  "description":"Free GPA calculator for semester and cumulative GPA using a common unweighted 4.0 scale.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+
+</head>
+
+<body>
+<main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span>›</span>
+    <a href="/calculators/">All Calculators</a><span>›</span>
+    GPA Calculator
+  </nav>
+
+  <h1>GPA Calculator</h1>
+  <p class="intro">Calculate your GPA quickly using letter grades and credit hours.</p>
+
+  <section class="calculator-card">
+    <div class="card-title">Enter Your Courses</div>
+    <div class="card-body">
+      <div class="mode-field">
+        <label class="mode-label" for="gpaType">GPA Type</label>
+        <select class="mode-select" id="gpaType">
+          <option value="semester">Semester GPA</option>
+          <option value="cumulative">Cumulative GPA</option>
+        </select>
+      </div>
+
+      <div class="previous-section" id="previousSection">
+        <div class="previous-title">Previous Academic Record</div>
+        <div class="previous-grid">
+          <div class="previous-field">
+            <label for="previousGpa">Previous Cumulative GPA</label>
+            <input id="previousGpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" placeholder="e.g. 3.40">
+          </div>
+          <div class="previous-field">
+            <label for="previousCredits">Previous Total Credits</label>
+            <input id="previousCredits" type="number" inputmode="decimal" min="0.1" step="0.1" placeholder="e.g. 60">
+          </div>
+        </div>
+      </div>
+
+      <div class="course-head" aria-hidden="true">
+        <div>Course Name</div><div>Grade</div><div>Credits</div><div></div>
+      </div>
+
+      <div id="courseRows"></div>
+
+      <button type="button" class="add-btn" id="addCourseBtn">+ Add Course</button>
+      <p class="error-message" id="errorMessage" role="alert"></p>
+
+      <div class="buttons">
+        <button type="button" class="calculate-btn" id="calculateBtn">Calculate GPA</button>
+        <button type="button" class="clear-btn" id="clearBtn">Clear</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard" aria-live="polite">
+    <div class="result-title">Your GPA Result</div>
+    <div class="result-body">
+      <div class="main-result" id="mainResult"></div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-label" id="creditsLabel">Semester Credits</div>
+          <div class="result-value" id="creditsResult"></div>
+        </div>
+        <div class="result-item">
+          <div class="result-label" id="pointsLabel">Semester Grade Points</div>
+          <div class="result-value" id="pointsResult"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How Does This GPA Calculator Work?</h2>
+    <p>Choose Semester GPA to calculate your current term, or Cumulative GPA to combine your previous academic record with your current courses. Enter each letter grade and its credit hours, then select Calculate GPA.</p>
+
+    <h2>How to Calculate GPA</h2>
+    <p>Convert each letter grade to its grade-point value. Multiply that value by the course credit hours, add the grade points for all courses, and divide by the total number of credits.</p>
+
+    <div class="formula-box">
+      <div class="formula-title">GPA Formula</div>
+      <div class="formula">GPA = Total Grade Points ÷ Total Credit Hours</div>
+    </div>
+
+    <h2>4.0 GPA Scale</h2>
+    <p>This calculator uses a common unweighted 4.0 scale. On this scale, both A+ and A are worth 4.0 grade points. Some schools use different values, including 4.33 for A+, so check your institution's official grading policy when needed.</p>
+
+    <div class="table-wrap">
+      <table class="gpa-table">
+        <thead><tr><th>Letter Grade</th><th>Grade Points</th></tr></thead>
+        <tbody>
+          <tr><td>A+</td><td>4.0</td></tr>
+          <tr><td>A</td><td>4.0</td></tr>
+          <tr><td>A−</td><td>3.7</td></tr>
+          <tr><td>B+</td><td>3.3</td></tr>
+          <tr><td>B</td><td>3.0</td></tr>
+          <tr><td>B−</td><td>2.7</td></tr>
+          <tr><td>C+</td><td>2.3</td></tr>
+          <tr><td>C</td><td>2.0</td></tr>
+          <tr><td>C−</td><td>1.7</td></tr>
+          <tr><td>D+</td><td>1.3</td></tr>
+          <tr><td>D</td><td>1.0</td></tr>
+          <tr><td>F</td><td>0.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>GPA Calculation Example</h2>
+    <p>If you earn an A (4.0) in a 3-credit course, you receive 4.0 × 3 = 12 grade points. A B (3.0) in another 3-credit course gives 3.0 × 3 = 9 grade points. The total is 21 grade points across 6 credits, so 21 ÷ 6 = a 3.50 GPA.</p>
+
+    <h2>Semester GPA and Cumulative GPA</h2>
+    <p>A semester GPA measures the courses in one term. A cumulative GPA combines your previous academic record with the courses in your current semester. This makes the calculator useful as a college GPA calculator, semester GPA calculator, and cumulative GPA calculator when your institution uses the displayed 4.0 scale.</p>
+
+    <div class="formula-box">
+      <div class="formula-title">Cumulative GPA Formula</div>
+      <div class="formula">(Previous GPA × Previous Credits + Current Grade Points) ÷ (Previous Credits + Current Credits)</div>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What is GPA?</h3>
+    <p>GPA stands for Grade Point Average. It summarizes academic performance by converting course grades into numerical grade points.</p>
+
+    <h3>Why are A+ and A both 4.0?</h3>
+    <p>On the common unweighted 4.0 scale used by this calculator, A+ and A both receive 4.0 points. Some institutions use a different scale, such as 4.33 for A+.</p>
+
+    <h3>What is a 4.0 GPA scale?</h3>
+    <p>A 4.0 scale is a common grading system in which an A is generally worth 4.0 grade points. Exact values can vary between institutions.</p>
+
+    <h3>What is the difference between semester GPA and cumulative GPA?</h3>
+    <p>Semester GPA uses only the courses from one term. Cumulative GPA combines your previous GPA and credits with your current semester results.</p>
+
+    <h3>Can I use this as a high school GPA calculator?</h3>
+    <p>Yes, if your high school uses the displayed unweighted 4.0 scale. Weighted AP, IB, or honors grading can use different point values.</p>
+
+    <h3>Do credit hours affect GPA?</h3>
+    <p>Yes. A course with more credit hours has a greater effect on your GPA because its grade contributes more total grade points.</p>
+
+    <h3>Can I add more courses?</h3>
+    <p>Yes. Select the Add Course button to include additional courses before calculating your GPA.</p>
+
+    <h3>Can I use this calculator if my school uses a different GPA scale?</h3>
+    <p>This calculator is designed for the displayed 4.0 scale. If your school uses different grade-point values, use your institution's official grading rules for an exact result.</p>
+  </section>
+
+  <footer>
+    <div class="footer-name">ZammioHub</div>
+    <p class="footer-text">Clear, accurate and mobile-friendly online calculators.</p>
+  </footer>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  const gradePoints = {
+    "A+":4.0,"A":4.0,"A-":3.7,"B+":3.3,"B":3.0,"B-":2.7,
+    "C+":2.3,"C":2.0,"C-":1.7,"D+":1.3,"D":1.0,"F":0.0
+  };
+
+  const rows = document.getElementById("courseRows");
+  const resultCard = document.getElementById("resultCard");
+  const errorMessage = document.getElementById("errorMessage");
+  const gpaType = document.getElementById("gpaType");
+  const previousSection = document.getElementById("previousSection");
+  const previousGpa = document.getElementById("previousGpa");
+  const previousCredits = document.getElementById("previousCredits");
+
+  function gradeOptions(){
+    return '<option value="">Select grade</option>' +
+      Object.keys(gradePoints).map(g => '<option value="'+g+'">'+g+'</option>').join("");
+  }
+
+  function addCourse(name="", grade="", credits=""){
+    if(rows.children.length >= 20){
+      showError("You can add up to 20 courses.");
+      return;
+    }
+    const row = document.createElement("div");
+    row.className = "course-row";
+    row.innerHTML =
+      '<input class="course-name" type="text" maxlength="80" placeholder="Course name (optional)" aria-label="Course name">' +
+      '<select class="grade-select" aria-label="Letter grade">'+gradeOptions()+'</select>' +
+      '<input class="credits-input" type="number" inputmode="decimal" min="0.1" max="99" step="0.1" placeholder="Credits" aria-label="Credit hours">' +
+      '<button type="button" class="remove-btn" aria-label="Remove course" title="Remove course">×</button>';
+
+    row.querySelector(".course-name").value = name;
+    row.querySelector(".grade-select").value = grade;
+    row.querySelector(".credits-input").value = credits;
+
+    row.querySelector(".remove-btn").addEventListener("click", function(){
+      if(rows.children.length > 1){
+        row.remove();
+        hideResult();
+        hideError();
+      }else{
+        row.querySelector(".course-name").value = "";
+        row.querySelector(".grade-select").value = "";
+        row.querySelector(".credits-input").value = "";
+      }
+    });
+    rows.appendChild(row);
+  }
+
+  function showError(message){
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+  }
+  function hideError(){
+    errorMessage.textContent = "";
+    errorMessage.style.display = "none";
+  }
+  function hideResult(){
+    resultCard.style.display = "none";
+  }
+
+  function calculateGPA(){
+    hideError();
+    hideResult();
+
+    let totalCredits = 0;
+    let totalGradePoints = 0;
+    let completed = 0;
+    const courseRows = rows.querySelectorAll(".course-row");
+
+    for(const row of courseRows){
+      const grade = row.querySelector(".grade-select").value;
+      const creditsText = row.querySelector(".credits-input").value.trim();
+      const nameText = row.querySelector(".course-name").value.trim();
+
+      const completelyBlank = !grade && !creditsText && !nameText;
+      if(completelyBlank) continue;
+
+      if(!grade){
+        showError("Please select a grade for every course you want to include.");
+        return;
+      }
+
+      const credits = Number(creditsText);
+      if(!creditsText || !Number.isFinite(credits) || credits <= 0 || credits > 99){
+        showError("Please enter valid credit hours greater than 0 for every included course.");
+        return;
+      }
+
+      totalCredits += credits;
+      totalGradePoints += gradePoints[grade] * credits;
+      completed++;
+    }
+
+    if(completed === 0 || totalCredits <= 0){
+      showError("Please enter at least one grade and its credit hours.");
+      return;
+    }
+
+    let gpa = totalGradePoints / totalCredits;
+    let shownCredits = totalCredits;
+    let shownPoints = totalGradePoints;
+
+    if(gpaType.value === "cumulative"){
+      const oldGpa = Number(previousGpa.value);
+      const oldCredits = Number(previousCredits.value);
+
+      if(previousGpa.value.trim() === "" || !Number.isFinite(oldGpa) || oldGpa < 0 || oldGpa > 4){
+        showError("Please enter a valid previous cumulative GPA from 0.00 to 4.00.");
+        return;
+      }
+      if(previousCredits.value.trim() === "" || !Number.isFinite(oldCredits) || oldCredits <= 0){
+        showError("Please enter valid previous total credits greater than 0.");
+        return;
+      }
+
+      const previousPoints = oldGpa * oldCredits;
+      shownPoints = previousPoints + totalGradePoints;
+      shownCredits = oldCredits + totalCredits;
+      gpa = shownPoints / shownCredits;
+
+      document.getElementById("mainResult").textContent = "Your Cumulative GPA: " + gpa.toFixed(2) + " / 4.00";
+      document.getElementById("creditsLabel").textContent = "Total Credits";
+      document.getElementById("pointsLabel").textContent = "Total Grade Points";
+    } else {
+      document.getElementById("mainResult").textContent = "Your Semester GPA: " + gpa.toFixed(2) + " / 4.00";
+      document.getElementById("creditsLabel").textContent = "Semester Credits";
+      document.getElementById("pointsLabel").textContent = "Semester Grade Points";
+    }
+
+    document.getElementById("creditsResult").textContent =
+      shownCredits.toLocaleString(undefined,{maximumFractionDigits:2});
+    document.getElementById("pointsResult").textContent =
+      shownPoints.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+
+    resultCard.style.display = "block";
+    resultCard.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+
+  function clearCalculator(){
+    rows.innerHTML = "";
+    gpaType.value = "semester";
+    previousSection.style.display = "none";
+    previousGpa.value = "";
+    previousCredits.value = "";
+    for(let i=0;i<4;i++) addCourse();
+    hideError();
+    hideResult();
+    const firstName = rows.querySelector(".course-name");
+    if(firstName) firstName.focus();
+  }
+
+  gpaType.addEventListener("change", function(){
+    previousSection.style.display = gpaType.value === "cumulative" ? "block" : "none";
+    hideError();
+    hideResult();
+  });
+
+  document.getElementById("addCourseBtn").addEventListener("click", function(){
+    hideError();
+    addCourse();
+  });
+  document.getElementById("calculateBtn").addEventListener("click", calculateGPA);
+  document.getElementById("clearBtn").addEventListener("click", clearCalculator);
+
+  rows.addEventListener("keydown", function(event){
+    if(event.key === "Enter" && event.target.tagName !== "SELECT"){
+      event.preventDefault();
+      calculateGPA();
+    }
+  });
+
+  for(let i=0;i<4;i++) addCourse();
+});
+</script>
+</body>
+</html>
