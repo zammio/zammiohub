@@ -997,136 +997,11 @@
 
     <div class="brand-area">
 
-      <button
-        class="brand-button"
-        id="brandButton"
-        type="button"
-        aria-expanded="false"
-        aria-controls="brandDropdown"
-      >
-
-        <span class="brand-text">
-          Zammio<span>Hub</span>
-        </span>
-
-        <svg
-          class="brand-chevron"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="m6 9 6 6 6-6"/>
-        </svg>
-
-      </button>
-
-
-      <div
-        class="brand-dropdown"
-        id="brandDropdown"
-      >
-
-        <div class="dropdown-head">
-          <strong>Explore ZammioHub</strong>
-          <span>Calculators and important site pages.</span>
-        </div>
-
-        <div class="dropdown-grid">
-
-          <div>
-
-            <p class="dropdown-title">
-              Categories
-            </p>
-
-            <a class="dropdown-link" href="/#calculators">
-              Finance Calculators
-            </a>
-
-            <a class="dropdown-link" href="/#calculators">
-              Health Calculators
-            </a>
-
-            <a class="dropdown-link" href="/#calculators">
-              Math Calculators
-            </a>
-
-            <a class="dropdown-link" href="/#calculators">
-              Everyday Calculators
-            </a>
-
-          </div>
-
-
-          <div>
-
-            <p class="dropdown-title">
-              Popular Tools
-            </p>
-
-            <a
-              class="dropdown-link"
-              href="/calculators/age-calculator"
-            >
-              Age Calculator
-            </a>
-
-            <a
-              class="dropdown-link"
-              href="/calculators/bmi-calculator"
-            >
-              BMI Calculator
-            </a>
-
-            <a
-              class="dropdown-link"
-              href="/calculators/emi-calculator"
-            >
-              EMI Calculator
-            </a>
-
-            <a
-              class="dropdown-link"
-              href="/calculators/mortgage-calculator"
-            >
-              Mortgage Calculator
-            </a>
-
-          </div>
-
-
-          <div>
-
-            <p class="dropdown-title">
-              Pages
-            </p>
-
-            <a class="dropdown-link" href="/about">
-              About Us
-            </a>
-
-            <a class="dropdown-link" href="/contact">
-              Contact Us
-            </a>
-
-            <a class="dropdown-link" href="/privacy-policy">
-              Privacy Policy
-            </a>
-
-            <a class="dropdown-link" href="/disclaimer">
-              Disclaimer
-            </a>
-
-          </div>
-
-        </div>
-      </div>
+      <a class="brand-button" href="/" aria-label="ZammioHub home">
+          <span class="brand-text">Zammio<span>Hub</span></span>
+        </a>
 
     </div>
-
 
     <!-- Desktop Navigation -->
 
@@ -1702,7 +1577,7 @@
 
 
       <div class="updated">
-        Last updated: September 3, 2026
+        Last updated: September 20, 2026
       </div>
 
     </div>
@@ -1971,25 +1846,38 @@
           id="cookies"
         >
 
-          <h2>5. Cookies &amp; Similar Technologies</h2>
+          <h2>5. Cookies, Advertising &amp; Similar Technologies</h2>
 
           <p>
-            ZammioHub does not currently use Google Analytics or Google
-            AdSense on the website.
+            ZammioHub may use third-party advertising services, including
+            Google AdSense, to display advertisements on the website.
           </p>
 
           <p>
-            The website or the infrastructure used to deliver and secure
-            it may use technically necessary cookies or similar
-            technologies for functionality, security, performance or
-            abuse prevention.
+            Google and its advertising partners may use cookies, web beacons,
+            or similar technologies to serve, personalize, and measure
+            advertisements, subject to applicable laws and user consent
+            requirements.
           </p>
 
           <p>
-            If ZammioHub introduces analytics, advertising or other
-            services that materially change how cookies or similar
-            technologies are used, this Privacy Policy will be updated
-            as appropriate.
+            These technologies may process information such as your device
+            information, browser information, IP address, interactions with
+            advertisements, and visits to this or other websites for purposes
+            such as ad delivery, measurement, fraud prevention, and, where
+            permitted, personalization.
+          </p>
+
+          <p>
+            You can learn more about how Google uses information from sites
+            and apps that use its services by reviewing Google's privacy and
+            advertising information.
+          </p>
+
+          <p>
+            ZammioHub may also use technically necessary cookies or similar
+            technologies for website functionality, security, performance,
+            and abuse prevention.
           </p>
 
         </section>
@@ -2314,130 +2202,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("currentYear");
 
 
-  function closeBrandDropdown() {
-
-    brandButton.classList.remove("open");
-    brandDropdown.classList.remove("open");
-
-    brandButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-  }
-
-
-  function openBrandDropdown() {
-
-    closeCalculatorDropdown();
-    closeMobileMenu();
-
-    brandButton.classList.add("open");
-    brandDropdown.classList.add("open");
-
-    brandButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-  }
-
-
-  brandButton.addEventListener(
-    "click",
-    function (event) {
-
-      event.stopPropagation();
-
-      if (brandDropdown.classList.contains("open")) {
-        closeBrandDropdown();
-      } else {
-        openBrandDropdown();
-      }
-
-    }
-  );
-
-
-  brandDropdown.addEventListener(
-    "click",
-    function (event) {
-      event.stopPropagation();
-    }
-  );
-
-
-  function closeCalculatorDropdown() {
-
-    calculatorsButton.classList.remove("open");
-    calcDropdown.classList.remove("open");
-
-    calculatorsButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-  }
-
-
-  calculatorsButton.addEventListener(
-    "click",
-    function (event) {
-
-      event.stopPropagation();
-
-      closeBrandDropdown();
-
-      const isOpen =
-        calcDropdown.classList.contains("open");
-
-      if (isOpen) {
-
-        closeCalculatorDropdown();
-
-      } else {
-
-        calculatorsButton.classList.add("open");
-        calcDropdown.classList.add("open");
-
-        calculatorsButton.setAttribute(
-          "aria-expanded",
-          "true"
-        );
-
-      }
-
-    }
-  );
-
-
-  calcDropdown.addEventListener(
-    "click",
-    function (event) {
-      event.stopPropagation();
-    }
-  );
-
-
-  document
-    .querySelectorAll(".category-button")
-    .forEach(function (button) {
-
-      button.addEventListener(
-        "click",
-        function () {
-
-          const panel =
-            button.nextElementSibling;
-
-          const isOpen =
-            panel.classList.contains("open");
-
-
-          document
-            .querySelectorAll(".category-panel")
-            .forEach(function (otherPanel) {
-              otherPanel.classList.remove("open");
-            });
-
-
           document
             .querySelectorAll(".category-button")
             .forEach(function (otherButton) {
@@ -2475,8 +2239,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openMobileMenu() {
 
-    closeBrandDropdown();
-    closeCalculatorDropdown();
+        closeCalculatorDropdown();
 
     menuButton.classList.add("open");
     mobileNav.classList.add("open");
@@ -2592,8 +2355,7 @@ document.addEventListener("DOMContentLoaded", function () {
         !brandDropdown.contains(event.target) &&
         !brandButton.contains(event.target)
       ) {
-        closeBrandDropdown();
-      }
+              }
 
 
       if (
@@ -2613,8 +2375,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (event.key === "Escape") {
 
-        closeBrandDropdown();
-        closeCalculatorDropdown();
+                closeCalculatorDropdown();
         closeMobileMenu();
 
       }
