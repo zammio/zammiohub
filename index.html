@@ -13,10 +13,10 @@
 
   <meta
     name="description"
-    content="Free online calculators for finance, health, math and everyday needs. Fast, accurate and easy-to-use tools from ZammioHub."
+    content="Free online calculators for finance, health, education, math and everyday needs. Fast, accurate and easy-to-use tools from ZammioHub."
   >
 
-  <title>Free Online Calculators for Finance, Health & Math | ZammioHub</title>
+  <title>Free Online Calculators for Finance, Health, Education & Math | ZammioHub</title>
 <link rel="canonical" href="https://zammiohub.com/">
   <style>
     /* =====================================================
@@ -1359,7 +1359,7 @@
       .filters {
         display: grid;
         grid-template-columns:
-          repeat(5,minmax(0,1fr));
+          repeat(6,minmax(0,1fr));
 
         gap: 6px;
 
@@ -1372,7 +1372,7 @@
 
         padding: 0 3px;
 
-        font-size: 11.5px;
+        font-size: 10.5px;
       }
 
       .calculators-section {
@@ -1766,6 +1766,39 @@
 
           </div>
 
+          <!-- Education -->
+
+          <div class="desktop-accordion-item">
+
+            <button
+              class="desktop-category-button"
+              type="button"
+            >
+
+              Education
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+
+            </button>
+
+            <div class="desktop-category-panel">
+
+              <a class="desktop-tool-link"
+                 href="/calculators/gpa-calculator">
+                GPA Calculator
+              </a>
+
+            </div>
+
+          </div>
+
           <!-- Everyday -->
 
           <div class="desktop-accordion-item">
@@ -2047,6 +2080,39 @@
 
         </div>
 
+        <!-- Education -->
+
+        <div class="mobile-category">
+
+          <button
+            class="mobile-category-button"
+            type="button"
+          >
+
+            Education
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+
+          </button>
+
+          <div class="mobile-category-panel">
+
+            <a class="mobile-tool-link"
+               href="/calculators/gpa-calculator">
+              GPA Calculator
+            </a>
+
+          </div>
+
+        </div>
+
         <!-- Everyday -->
 
         <div class="mobile-category">
@@ -2145,7 +2211,7 @@
 
         <p class="hero-description">
           Fast, accurate online calculators for finance,
-          health, math and everyday needs.
+          health, education, math and everyday needs.
         </p>
 
       </div>
@@ -2231,6 +2297,14 @@
             type="button"
           >
             Math
+          </button>
+
+          <button
+            class="filter-button"
+            data-category="Education"
+            type="button"
+          >
+            Education
           </button>
 
           <button
@@ -2456,7 +2530,7 @@
 
         <p>
           Free online calculators for finance,
-          health, math and everyday needs.
+          health, education, math and everyday needs.
         </p>
 
       </div>
@@ -2593,12 +2667,14 @@ const desktopCalculatorsButton =
 
     calculator: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01"/></svg>`,
 
+    graduationCap: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/><path d="M22 10v6"/></svg>`,
+
     arrow: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>`
   };
 
 
   /* =====================================================
-     ACTUAL 15 CALCULATORS
+     ACTUAL 16 CALCULATORS
   ===================================================== */
 
   const tools = [
@@ -2628,6 +2704,15 @@ const desktopCalculatorsButton =
       url: "/calculators/percentage-calculator",
       icon: "percent",
       keywords: "percentage percent increase decrease math"
+    },
+
+    {
+      name: "GPA Calculator",
+      category: "Education",
+      description: "Calculate semester and cumulative GPA using grades and credit hours.",
+      url: "/calculators/gpa-calculator",
+      icon: "graduationCap",
+      keywords: "gpa grade point average semester cumulative college high school education credits grades"
     },
 
     {
