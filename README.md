@@ -1,6 +1,6 @@
 # ZammioHub
 
-**Free Online Calculators for Finance, Health, Math & Everyday Needs**
+**Free Online Calculators for Finance, Health, Education, Math & Everyday Needs**
 
 ZammioHub provides fast, simple, and easy-to-use online calculators designed to help with everyday calculations.
 
@@ -25,6 +25,9 @@ ZammioHub provides fast, simple, and easy-to-use online calculators designed to 
 
 ### Math
 - Percentage Calculator
+
+### Education
+- GPA Calculator
 
 ### Everyday
 - Age Calculator
