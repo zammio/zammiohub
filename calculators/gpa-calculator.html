@@ -165,6 +165,15 @@ footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#6975
   .result-item{padding:14px}
   .result-label{font-size:13px;line-height:1.35}
   .result-value{font-size:18px;line-height:1.3}
+  .result-breakdown{margin-top:20px}
+  .result-breakdown-title{font-size:17px}
+  .result-table{font-size:14px}
+  .result-table th,.result-table td{padding:8px 9px}
+  .calculation-summary{padding:14px}
+  .calculation-summary-text{font-size:15px}
+  .cumulative-summary-grid{grid-template-columns:1fr 1fr}
+  .cumulative-summary-item{padding:12px}
+  .cumulative-summary-value{font-size:16px}
   .formula-box{padding:16px 17px;margin:15px 0 23px}
   .formula-title{font-size:15px;line-height:1.45;margin-bottom:8px}
   .formula{font-size:16.5px;line-height:1.6;overflow-wrap:anywhere}
@@ -187,6 +196,80 @@ footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#6975
   .calculate-btn{font-size:14px;padding-left:10px;padding-right:10px}
   .clear-btn{min-width:78px}
 }
+
+/* ===== RESPONSIVE COURSE REPORT: TABLE ON DESKTOP, CARDS ON MOBILE ===== */
+.result-breakdown{margin-top:24px}
+.result-breakdown-title{
+  font-size:19px;line-height:1.35;font-weight:700;color:#263d49;margin:0 0 12px;
+}
+.result-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px}
+.result-table{
+  width:100%;border-collapse:collapse;background:#fff;border:2px solid #263d49;font-size:15px;
+}
+.result-table th,.result-table td{
+  border:1px solid #b8c3ca;padding:10px 12px;text-align:left;vertical-align:middle;
+}
+.result-table th{background:#263d49;color:#fff;font-weight:700;white-space:nowrap}
+.result-table tbody tr:nth-child(even){background:#f7f9fa}
+.result-table tfoot td{background:#e9eef1;font-weight:700;border-top:2px solid #7d8991}
+.mobile-course-report{display:none}
+
+.calculation-summary{
+  margin-top:18px;background:var(--soft);border:1px solid var(--border);
+  border-radius:8px;padding:16px 18px;
+}
+.calculation-summary-title{color:#17608a;font-size:16px;font-weight:700;margin-bottom:6px}
+.calculation-summary-text{color:#27313a;font-size:17px;font-weight:700;line-height:1.55}
+.cumulative-summary{display:none;margin-top:18px}
+.cumulative-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cumulative-summary-item{
+  background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:14px;
+}
+.cumulative-summary-label{font-size:13px;font-weight:700;color:var(--muted);line-height:1.35}
+.cumulative-summary-value{font-size:18px;font-weight:700;color:#27313a;margin-top:4px}
+
+@media(max-width:600px){
+  .result-breakdown{margin-top:20px}
+  .result-breakdown-title{font-size:17px;margin-bottom:10px}
+  .result-table-wrap{display:none}
+  .mobile-course-report{display:block}
+
+  .mobile-report-card{
+    background:#fff;border:1px solid #cbd5db;border-radius:9px;
+    overflow:hidden;margin-bottom:10px;
+  }
+  .mobile-report-course{
+    background:#263d49;color:#fff;font-size:15px;font-weight:700;
+    padding:9px 12px;
+  }
+  .mobile-report-body{padding:11px 12px}
+  .mobile-report-meta{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    color:#39444d;font-size:14px;margin-bottom:6px;
+  }
+  .mobile-report-meta strong{color:#27313a}
+  .mobile-report-dot{color:#9aa4ab}
+  .mobile-report-points{
+    color:#17608a;font-size:15px;font-weight:700;line-height:1.4;
+  }
+  .mobile-report-total{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    background:#e9eef1;border:1px solid #cbd5db;border-radius:9px;
+    padding:12px;margin-top:12px;
+  }
+  .mobile-total-label{
+    display:block;color:#66727d;font-size:12px;font-weight:700;
+    line-height:1.3;margin-bottom:3px;
+  }
+  .mobile-total-value{color:#27313a;font-size:17px;font-weight:700}
+
+  .calculation-summary{padding:14px;margin-top:14px}
+  .calculation-summary-text{font-size:15px}
+  .cumulative-summary-grid{grid-template-columns:1fr 1fr}
+  .cumulative-summary-item{padding:12px}
+  .cumulative-summary-value{font-size:16px}
+}
+
 </style>
 
 <script type="application/ld+json">
@@ -269,6 +352,48 @@ footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#6975
           <div class="result-label" id="pointsLabel">Semester Grade Points</div>
           <div class="result-value" id="pointsResult"></div>
         </div>
+      </div>
+      <div class="result-breakdown">
+        <div class="result-breakdown-title">Course-by-Course GPA Report</div>
+        <div class="result-table-wrap">
+          <table class="result-table">
+            <thead>
+              <tr><th>Course</th><th>Credits</th><th>Grade</th><th>Grade Points</th></tr>
+            </thead>
+            <tbody id="resultTableBody"></tbody>
+            <tfoot>
+              <tr><td>Total</td><td id="tableTotalCredits"></td><td>—</td><td id="tableTotalPoints"></td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="mobile-course-report" id="mobileCourseReport"></div>
+      </div>
+
+      <div class="cumulative-summary" id="cumulativeSummary">
+        <div class="result-breakdown-title">Cumulative GPA Breakdown</div>
+        <div class="cumulative-summary-grid">
+          <div class="cumulative-summary-item">
+            <div class="cumulative-summary-label">Previous GPA</div>
+            <div class="cumulative-summary-value" id="oldGpaResult"></div>
+          </div>
+          <div class="cumulative-summary-item">
+            <div class="cumulative-summary-label">Previous Credits</div>
+            <div class="cumulative-summary-value" id="oldCreditsResult"></div>
+          </div>
+          <div class="cumulative-summary-item">
+            <div class="cumulative-summary-label">Current Semester GPA</div>
+            <div class="cumulative-summary-value" id="semesterGpaResult"></div>
+          </div>
+          <div class="cumulative-summary-item">
+            <div class="cumulative-summary-label">Current Semester Credits</div>
+            <div class="cumulative-summary-value" id="semesterCreditsResult"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calculation-summary">
+        <div class="calculation-summary-title">GPA Calculation</div>
+        <div class="calculation-summary-text" id="calculationSummary"></div>
       </div>
     </div>
   </section>
@@ -428,6 +553,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let totalCredits = 0;
     let totalGradePoints = 0;
     let completed = 0;
+    const courseDetails = [];
     const courseRows = rows.querySelectorAll(".course-row");
 
     for(const row of courseRows){
@@ -449,9 +575,17 @@ document.addEventListener("DOMContentLoaded", function(){
         return;
       }
 
+      const coursePoints = gradePoints[grade] * credits;
       totalCredits += credits;
-      totalGradePoints += gradePoints[grade] * credits;
+      totalGradePoints += coursePoints;
       completed++;
+      courseDetails.push({
+        name: nameText || "Course " + completed,
+        grade: grade,
+        credits: credits,
+        gradeValue: gradePoints[grade],
+        points: coursePoints
+      });
     }
 
     if(completed === 0 || totalCredits <= 0){
@@ -462,6 +596,94 @@ document.addEventListener("DOMContentLoaded", function(){
     let gpa = totalGradePoints / totalCredits;
     let shownCredits = totalCredits;
     let shownPoints = totalGradePoints;
+    const semesterGpa = totalGradePoints / totalCredits;
+
+    const resultTableBody = document.getElementById("resultTableBody");
+    resultTableBody.innerHTML = "";
+    courseDetails.forEach(function(course){
+      const tr = document.createElement("tr");
+      const nameTd = document.createElement("td");
+      const creditsTd = document.createElement("td");
+      const gradeTd = document.createElement("td");
+      const pointsTd = document.createElement("td");
+
+      nameTd.textContent = course.name;
+      creditsTd.textContent = course.credits.toLocaleString(undefined,{maximumFractionDigits:2});
+      gradeTd.textContent = course.grade;
+      pointsTd.textContent =
+        course.credits.toLocaleString(undefined,{maximumFractionDigits:2}) +
+        " × " + course.gradeValue.toFixed(1) +
+        " = " + course.points.toFixed(2);
+
+      tr.append(nameTd, creditsTd, gradeTd, pointsTd);
+      resultTableBody.appendChild(tr);
+    });
+
+    document.getElementById("tableTotalCredits").textContent =
+      totalCredits.toLocaleString(undefined,{maximumFractionDigits:2});
+    document.getElementById("tableTotalPoints").textContent =
+      totalGradePoints.toFixed(2);
+
+    const mobileCourseReport = document.getElementById("mobileCourseReport");
+    mobileCourseReport.innerHTML = "";
+
+    courseDetails.forEach(function(course){
+      const card = document.createElement("div");
+      card.className = "mobile-report-card";
+
+      const courseHeader = document.createElement("div");
+      courseHeader.className = "mobile-report-course";
+      courseHeader.textContent = course.name;
+
+      const body = document.createElement("div");
+      body.className = "mobile-report-body";
+
+      const meta = document.createElement("div");
+      meta.className = "mobile-report-meta";
+
+      const gradeText = document.createElement("span");
+      gradeText.innerHTML = "<strong>Grade:</strong> " + course.grade;
+
+      const dot = document.createElement("span");
+      dot.className = "mobile-report-dot";
+      dot.textContent = "•";
+
+      const creditsText = document.createElement("span");
+      creditsText.innerHTML = "<strong>Credits:</strong> " +
+        course.credits.toLocaleString(undefined,{maximumFractionDigits:2});
+
+      const points = document.createElement("div");
+      points.className = "mobile-report-points";
+      points.textContent =
+        course.credits.toLocaleString(undefined,{maximumFractionDigits:2}) +
+        " × " + course.gradeValue.toFixed(1) +
+        " = " + course.points.toFixed(2) + " grade points";
+
+      meta.append(gradeText, dot, creditsText);
+      body.append(meta, points);
+      card.append(courseHeader, body);
+      mobileCourseReport.appendChild(card);
+    });
+
+    const totalBox = document.createElement("div");
+    totalBox.className = "mobile-report-total";
+
+    const totalCreditsBox = document.createElement("div");
+    totalCreditsBox.innerHTML =
+      '<span class="mobile-total-label">Total Credits</span>' +
+      '<span class="mobile-total-value">' +
+      totalCredits.toLocaleString(undefined,{maximumFractionDigits:2}) +
+      '</span>';
+
+    const totalPointsBox = document.createElement("div");
+    totalPointsBox.innerHTML =
+      '<span class="mobile-total-label">Total Grade Points</span>' +
+      '<span class="mobile-total-value">' + totalGradePoints.toFixed(2) + '</span>';
+
+    totalBox.append(totalCreditsBox, totalPointsBox);
+    mobileCourseReport.appendChild(totalBox);
+
+    const cumulativeSummary = document.getElementById("cumulativeSummary");
 
     if(gpaType.value === "cumulative"){
       const oldGpa = Number(previousGpa.value);
@@ -484,10 +706,31 @@ document.addEventListener("DOMContentLoaded", function(){
       document.getElementById("mainResult").textContent = "Your Cumulative GPA: " + gpa.toFixed(2) + " / 4.00";
       document.getElementById("creditsLabel").textContent = "Total Credits";
       document.getElementById("pointsLabel").textContent = "Total Grade Points";
+
+      cumulativeSummary.style.display = "block";
+      document.getElementById("oldGpaResult").textContent = oldGpa.toFixed(2) + " / 4.00";
+      document.getElementById("oldCreditsResult").textContent =
+        oldCredits.toLocaleString(undefined,{maximumFractionDigits:2});
+      document.getElementById("semesterGpaResult").textContent = semesterGpa.toFixed(2) + " / 4.00";
+      document.getElementById("semesterCreditsResult").textContent =
+        totalCredits.toLocaleString(undefined,{maximumFractionDigits:2});
+
+      document.getElementById("calculationSummary").textContent =
+        "(" + previousPoints.toFixed(2) + " previous grade points + " +
+        totalGradePoints.toFixed(2) + " current grade points) ÷ (" +
+        oldCredits.toLocaleString(undefined,{maximumFractionDigits:2}) +
+        " previous credits + " +
+        totalCredits.toLocaleString(undefined,{maximumFractionDigits:2}) +
+        " current credits) = " + gpa.toFixed(2);
     } else {
       document.getElementById("mainResult").textContent = "Your Semester GPA: " + gpa.toFixed(2) + " / 4.00";
       document.getElementById("creditsLabel").textContent = "Semester Credits";
       document.getElementById("pointsLabel").textContent = "Semester Grade Points";
+      cumulativeSummary.style.display = "none";
+      document.getElementById("calculationSummary").textContent =
+        totalGradePoints.toFixed(2) + " total grade points ÷ " +
+        totalCredits.toLocaleString(undefined,{maximumFractionDigits:2}) +
+        " total credits = " + gpa.toFixed(2);
     }
 
     document.getElementById("creditsResult").textContent =
