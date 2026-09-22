@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grade Calculator – Percentage & Weighted Grade | ZammioHub</title>
+<meta name="description" content="Calculate percentage, letter grade, GPA equivalent, weighted grades, and the score needed to reach a target grade. Free Grade Calculator from ZammioHub.">
+<link rel="canonical" href="https://zammiohub.com/calculators/grade-calculator">
+
+<style>
+:root{
+  --primary:#17608a;
+  --accent:#4b8f2b;
+  --text:#27313a;
+  --muted:#66727d;
+  --border:#d9e1e6;
+  --soft:#f5f8fa;
+  --danger:#b42318;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#fff;color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.65;
+}
+.container{max-width:920px;margin:auto;padding:30px 24px 70px}
+.breadcrumb{font-size:16px;color:var(--primary);margin-bottom:28px}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.breadcrumb span{margin:0 7px;color:#7c8790}
+h1{color:#12577d;font-size:42px;line-height:1.15;margin:0 0 14px}
+.intro{font-size:19px;margin:0 0 28px;color:#39444d}
+h2{font-size:30px;line-height:1.25;margin:34px 0 10px;color:#263d49}
+h3{font-size:21px;line-height:1.35;margin:26px 0 8px;color:#27313a}
+p{font-size:18px;margin:0 0 18px}
+
+.calculator-card{
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  background:var(--soft);box-shadow:0 8px 20px rgba(26,52,67,.06);margin-top:20px;
+}
+.card-title{background:#1d6b94;color:#fff;padding:18px 24px;font-size:20px;font-weight:700}
+.card-body{padding:28px}
+.mode-field{margin-bottom:22px}
+label{display:block;font-size:17px;font-weight:700;margin-bottom:7px;color:#263d49}
+input,select{
+  width:100%;min-height:50px;padding:12px 14px;font-size:17px;
+  border:1px solid #cbd5db;border-radius:7px;background:#fff;color:#202930;outline:none;
+}
+input:focus,select:focus{border-color:#17608a;box-shadow:0 0 0 2px rgba(23,96,138,.1)}
+.mode-select{max-width:360px}
+.mode-panel[hidden]{display:none}
+
+.simple-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:18px}
+.help-text{font-size:14px;color:var(--muted);margin-top:7px}
+
+.weighted-head,.weighted-row{
+  display:grid;grid-template-columns:minmax(150px,1.5fr) 1fr 1fr 1fr 44px;gap:10px;align-items:end;
+}
+.weighted-head{align-items:center;margin-bottom:8px;color:#52606d;font-size:13px;font-weight:700}
+.weighted-row{margin-bottom:12px}
+.weighted-row label{display:none}
+.remove-btn{
+  min-height:48px;width:44px;padding:0;border:1px solid #e0e5e9;
+  border-radius:7px;background:#fff;color:var(--danger);font-size:23px;font-weight:700;cursor:pointer;
+}
+.remove-btn:disabled{opacity:.4;cursor:not-allowed}
+.add-btn{
+  margin-top:5px;border:1px solid #b9cbd6;border-radius:7px;padding:11px 16px;
+  background:#fff;color:var(--primary);font-size:15px;font-weight:700;cursor:pointer;
+}
+.weight-summary{margin:12px 0 0;color:var(--muted);font-size:15px}
+.weight-summary strong{color:var(--text)}
+
+.buttons{display:flex;gap:12px;margin-top:22px}
+button{border:0;border-radius:7px;padding:13px 22px;font-size:16px;font-weight:700;cursor:pointer}
+.calculate-btn{background:var(--accent);color:#fff}
+.clear-btn{background:#e2e7eb;color:#27313a}
+
+.message{
+  display:none;margin-top:16px;padding:12px 14px;border-radius:8px;
+  background:#fff2f0;border:1px solid #f1b8b2;color:#8f1d14;font-size:15px;
+}
+.result-card{
+  display:none;border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  margin-top:24px;background:#fff;
+}
+.result-title{background:var(--accent);color:#fff;padding:18px 24px;font-size:20px;font-weight:700}
+.result-body{padding:28px 24px}
+.main-result{text-align:center;color:#114e78;font-size:34px;font-weight:700;margin:0 0 22px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.result-item{background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:18px;text-align:center}
+.result-label{color:var(--muted);font-size:14px;font-weight:700;margin-bottom:4px}
+.result-value{color:#27313a;font-size:20px;font-weight:700}
+
+.formula-box{
+  background:var(--soft);border:1px solid var(--border);border-radius:8px;
+  padding:20px 22px;margin:18px 0 26px;
+}
+.formula-title{color:#17608a;font-size:17px;font-weight:700;margin-bottom:10px}
+.formula{font-family:Georgia,"Times New Roman",serif;font-size:21px;font-weight:700;line-height:1.55;color:#27313a}
+.table-wrap{overflow-x:auto;margin:16px 0 28px}
+.grade-table{width:100%;border-collapse:collapse;font-size:16px}
+.grade-table th,.grade-table td{border:1px solid var(--border);padding:10px 12px;text-align:left}
+.grade-table th{background:var(--soft);color:#263d49}
+
+footer{border-top:1px solid #dde4e8;margin-top:42px;padding-top:20px;color:#69757e}
+.footer-name{font-size:17px;font-weight:700;margin-bottom:2px}
+.footer-text{font-size:16px;margin:0}
+
+@media(max-width:600px){
+  body{line-height:1.58}
+  .container{padding:22px 18px 48px}
+  .breadcrumb{font-size:14px;line-height:1.5;margin-bottom:22px}
+  .breadcrumb span{margin:0 5px}
+  h1{font-size:30px;line-height:1.18;margin-bottom:13px}
+  .intro{font-size:16px;line-height:1.55;margin-bottom:23px}
+  h2{font-size:22px;line-height:1.3;margin-top:28px;margin-bottom:9px}
+  h3{font-size:18px;line-height:1.4;margin-top:22px;margin-bottom:7px}
+  p{font-size:16px;line-height:1.6;margin-bottom:15px}
+  .calculator-card{margin-top:16px;border-radius:10px}
+  .card-title{font-size:18px;line-height:1.4;padding:15px 18px}
+  .card-body{padding:21px 18px 23px}
+  label{font-size:16px}
+  input,select{font-size:16px;min-height:48px}
+  .mode-select{max-width:none}
+  .simple-grid{grid-template-columns:1fr}
+  .weighted-head{display:none}
+  .weighted-row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px;
+    gap:9px;padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid var(--border);
+  }
+  .weighted-row .name-field{grid-column:1 / -1}
+  .weighted-row .score-field{grid-column:1}
+  .weighted-row .possible-field{grid-column:2}
+  .weighted-row .weight-field{grid-column:1 / 3}
+  .weighted-row .remove-btn{grid-column:3;grid-row:2}
+  .weighted-row label{display:block;font-size:13px;margin-bottom:4px;color:var(--muted)}
+  .add-btn{width:100%;min-height:48px}
+  .buttons{flex-wrap:nowrap;gap:10px;margin-top:18px}
+  button{min-height:48px;padding:11px 14px;font-size:15px}
+  .calculate-btn{flex:1;min-width:0}
+  .clear-btn{min-width:88px;flex:0 0 auto}
+  .result-card{border-radius:10px;margin-top:22px}
+  .result-title{font-size:18px;padding:15px 18px}
+  .result-body{padding:22px 18px}
+  .main-result{font-size:27px;line-height:1.25;margin-bottom:20px}
+  .result-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .result-item{padding:14px}
+  .result-item:last-child{grid-column:1 / -1}
+  .result-label{font-size:13px;line-height:1.35}
+  .result-value{font-size:18px;line-height:1.3}
+  .formula-box{padding:16px 17px;margin:15px 0 23px}
+  .formula-title{font-size:15px;line-height:1.45;margin-bottom:8px}
+  .formula{font-size:16.5px;line-height:1.6;overflow-wrap:anywhere}
+  .grade-table{font-size:15px}
+  .grade-table th,.grade-table td{padding:9px 10px}
+  footer{margin-top:34px;padding-top:18px}
+  .footer-name{font-size:16px}
+  .footer-text{font-size:14px;line-height:1.5}
+}
+@media(max-width:360px){
+  h1{font-size:28px} h2{font-size:21px} h3{font-size:17px}
+  p,.intro{font-size:15.5px}.formula{font-size:16px}
+  .result-grid{grid-template-columns:1fr}
+  .result-item:last-child{grid-column:auto}
+  .calculate-btn{font-size:14px;padding-left:10px;padding-right:10px}
+  .clear-btn{min-width:78px}
+}
+
+/* Grade Calculator V2 */
+.assignment-head,.assignment-row{display:grid;grid-template-columns:minmax(160px,1.5fr) 1fr 1fr 44px;gap:10px;align-items:end}
+.assignment-head{align-items:center;margin-bottom:8px;color:#52606d;font-size:13px;font-weight:700}
+.assignment-row{margin-bottom:12px}.assignment-row label{display:none}
+.target-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tab-note{font-size:15px;color:var(--muted);margin:-4px 0 18px}
+.result-grid{grid-template-columns:repeat(4,1fr)}
+.progress-wrap{margin-top:22px}.progress-label{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.progress-track{height:13px;background:#e7edf1;border-radius:999px;overflow:hidden}.progress-bar{height:100%;width:0;background:var(--accent);border-radius:999px}
+.insight-card{margin-top:16px;padding:14px 16px;border:1px solid #cfe0ea;background:#f5fbff;border-radius:8px;color:#284858;font-size:15px}
+@media(max-width:600px){
+ .target-grid{grid-template-columns:1fr}.assignment-head{display:none}
+ .assignment-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px;gap:9px;padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid var(--border)}
+ .assignment-row .name-field{grid-column:1/-1}.assignment-row .score-field{grid-column:1}.assignment-row .possible-field{grid-column:2}
+ .assignment-row .remove-btn{grid-column:3;grid-row:2}.assignment-row label{display:block;font-size:13px;margin-bottom:4px;color:var(--muted)}
+ .result-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:360px){.result-grid{grid-template-columns:1fr}}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Grade Calculator",
+  "url":"https://zammiohub.com/calculators/grade-calculator",
+  "applicationCategory":"EducationalApplication",
+  "operatingSystem":"Any",
+  "description":"Free grade calculator for percentage grades, letter grades, GPA equivalents, weighted grades and target grades.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+</head>
+
+<body>
+<main class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span>›</span>
+    <a href="/calculators/">All Calculators</a><span>›</span>
+    Grade Calculator
+  </nav>
+
+  <h1>Grade Calculator</h1>
+  <p class="intro">Calculate your percentage, letter grade, or weighted course grade quickly.</p>
+
+  <section class="calculator-card">
+    <div class="card-title">Enter Your Grades</div>
+    <div class="card-body">
+
+      <div class="mode-field">
+        <label for="gradeType">Calculation Type</label>
+        <select class="mode-select" id="gradeType">
+          <option value="simple">Simple Grade</option>
+          <option value="weighted">Weighted Grade</option>
+          <option value="target">Target Grade</option>
+        </select>
+      </div>
+
+      <div id="simplePanel" class="mode-panel">
+        <p class="tab-note">Add one or more assignments, quizzes, tests, or subjects.</p>
+        <div class="assignment-head"><div>Assignment / Subject</div><div>Earned</div><div>Possible</div><div></div></div>
+        <div id="assignmentRows"></div>
+        <button class="add-btn" id="addAssignmentBtn" type="button">+ Add Assignment</button>
+      </div>
+
+      <div id="weightedPanel" class="mode-panel" hidden>
+        <p class="tab-note">Use this when assignments or categories have different percentage weights.</p>
+        <div class="weighted-head"><div>Item / Category</div><div>Earned</div><div>Possible</div><div>Weight %</div><div></div></div>
+        <div id="weightedRows"></div>
+        <button class="add-btn" id="addRowBtn" type="button">+ Add Item</button>
+        <div class="weight-summary">Total weight: <strong id="totalWeight">0%</strong></div>
+      </div>
+
+      <div id="targetPanel" class="mode-panel" hidden>
+        <p class="tab-note">Find the score needed on a final exam or remaining assessment.</p>
+        <div class="target-grid">
+          <div class="field"><label for="currentGrade">Current Grade (%)</label><input id="currentGrade" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 82"></div>
+          <div class="field"><label for="finalWeight">Final Exam Weight (%)</label><input id="finalWeight" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="e.g. 30"></div>
+          <div class="field"><label for="desiredGrade">Desired Course Grade (%)</label><input id="desiredGrade" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 90"></div>
+        </div>
+        <div class="help-text">Current grade is treated as the grade for the completed portion of the course.</div>
+      </div>
+
+      <div id="message" class="message" role="alert"></div>
+
+      <div class="buttons">
+        <button class="calculate-btn" id="calculateBtn" type="button">Calculate Grade</button>
+        <button class="clear-btn" id="clearBtn" type="button">Clear</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="result-card" id="resultCard" aria-live="polite">
+    <div class="result-title">Result</div>
+    <div class="result-body">
+      <div class="main-result" id="mainResult"></div>
+      <div class="result-grid">
+        <div class="result-item"><div class="result-label" id="percentageLabel">Percentage</div><div class="result-value" id="percentageResult">—</div></div>
+        <div class="result-item"><div class="result-label">Letter Grade</div><div class="result-value" id="letterResult">—</div></div>
+        <div class="result-item"><div class="result-label">GPA Equivalent</div><div class="result-value" id="gpaResult">—</div></div>
+        <div class="result-item"><div class="result-label" id="detailLabel">Points</div><div class="result-value" id="detailResult">—</div></div>
+      </div>
+      <div class="progress-wrap"><div class="progress-label"><span>Grade progress</span><span id="progressText">0%</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+      <div class="insight-card" id="insightCard"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How Does This Grade Calculator Work?</h2>
+    <p>Choose Simple Grade to combine points from one or more assignments, Weighted Grade to combine categories with different weights, or Target Grade to find the score needed on a final exam or remaining assessment.</p>
+
+    <h2>How to Calculate a Grade</h2>
+    <p>Divide the points you earned by the total possible points, then multiply by 100. The result is your percentage grade.</p>
+
+    <div class="formula-box">
+      <div class="formula-title">Grade Percentage Formula</div>
+      <div class="formula">Grade Percentage = (Points Earned ÷ Total Possible Points) × 100</div>
+    </div>
+
+    <h2>Grade Calculation Example</h2>
+    <p>If you earn 87 points out of 100 possible points, your percentage grade is 87%. Using the default scale on this calculator, 87% is a B+.</p>
+
+    <h2>Letter Grade Scale</h2>
+    <p>This calculator uses the default grading scale shown below. Schools and colleges may use different cutoffs, so check your institution's official grading policy when an exact letter grade is required.</p>
+
+    <div class="table-wrap">
+      <table class="grade-table">
+        <thead><tr><th>Percentage</th><th>Letter Grade</th></tr></thead>
+        <tbody>
+          <tr><td>97–100%</td><td>A+</td></tr>
+          <tr><td>93–96.99%</td><td>A</td></tr>
+          <tr><td>90–92.99%</td><td>A−</td></tr>
+          <tr><td>87–89.99%</td><td>B+</td></tr>
+          <tr><td>83–86.99%</td><td>B</td></tr>
+          <tr><td>80–82.99%</td><td>B−</td></tr>
+          <tr><td>77–79.99%</td><td>C+</td></tr>
+          <tr><td>73–76.99%</td><td>C</td></tr>
+          <tr><td>70–72.99%</td><td>C−</td></tr>
+          <tr><td>67–69.99%</td><td>D+</td></tr>
+          <tr><td>63–66.99%</td><td>D</td></tr>
+          <tr><td>60–62.99%</td><td>D−</td></tr>
+          <tr><td>Below 60%</td><td>F</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>How to Calculate a Weighted Grade</h2>
+    <p>For each item or category, first calculate its score percentage. Multiply that percentage by its weight, then add the weighted contributions. If the entered weights total less than 100%, this calculator normalizes the result across the weights entered.</p>
+
+    <div class="formula-box">
+      <div class="formula-title">Weighted Grade Formula</div>
+      <div class="formula">Weighted Grade = Σ (Score Percentage × Weight) ÷ Σ Weights</div>
+    </div>
+
+
+    <h2>How to Calculate a Target Grade</h2>
+    <p>Enter your current grade, the weight of the final exam or remaining assessment, and your desired overall course grade. The calculator estimates the score you need on that remaining assessment.</p>
+    <div class="formula-box"><div class="formula-title">Target Grade Formula</div><div class="formula">Required Score = [Desired Grade − Current Grade × (1 − Final Weight)] ÷ Final Weight</div></div>
+
+    <h2>GPA Equivalent</h2>
+    <p>The result includes a GPA equivalent based on the displayed default 4.0 scale. It is an estimate for convenience, not an official GPA conversion. Institutions may use different percentage cutoffs or GPA rules.</p>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What is a grade percentage?</h3>
+    <p>A grade percentage shows how many points you earned compared with the total points available, expressed as a percentage.</p>
+
+    <h3>What is a weighted grade?</h3>
+    <p>A weighted grade gives different assignments or categories different importance. For example, exams may count more toward a final grade than homework.</p>
+
+    <h3>Do the weights need to add up to 100%?</h3>
+    <p>For a complete course-grade calculation, weights normally total 100%. If the weights you enter total less than 100%, this calculator shows the normalized grade across the items entered.</p>
+
+    <h3>Can I enter decimal scores?</h3>
+    <p>Yes. You can enter decimal values for earned points, possible points, and weights.</p>
+
+    <h3>Can my score be higher than 100%?</h3>
+    <p>Yes. Some classes award extra credit, so the calculator allows earned points to exceed possible points. Your institution may handle extra credit differently.</p>
+
+    <h3>Why might my school's letter grade be different?</h3>
+    <p>Grading scales vary by school, college, course, and instructor. Use your institution's official cutoffs if they differ from the default scale shown here.</p>
+  </section>
+
+  <footer>
+    <div class="footer-name">ZammioHub</div>
+    <p class="footer-text">Clear, accurate and mobile-friendly online calculators.</p>
+  </footer>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const $=id=>document.getElementById(id), type=$("gradeType"), simple=$("simplePanel"), weighted=$("weightedPanel"), target=$("targetPanel");
+ const aRows=$("assignmentRows"), wRows=$("weightedRows"), msg=$("message"), card=$("resultCard");
+ const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+ function info(p){if(p>=97)return["A+",4];if(p>=93)return["A",4];if(p>=90)return["A−",3.7];if(p>=87)return["B+",3.3];if(p>=83)return["B",3];if(p>=80)return["B−",2.7];if(p>=77)return["C+",2.3];if(p>=73)return["C",2];if(p>=70)return["C−",1.7];if(p>=67)return["D+",1.3];if(p>=63)return["D",1];if(p>=60)return["D−",.7];return["F",0]}
+ function next(p){const x=[[60,"D−"],[63,"D"],[67,"D+"],[70,"C−"],[73,"C"],[77,"C+"],[80,"B−"],[83,"B"],[87,"B+"],[90,"A−"],[93,"A"],[97,"A+"]].find(x=>p<x[0]);return x?`You are ${fmt(x[0]-p)} percentage points away from ${x[1]} (${x[0]}%).`:"You are already in the highest letter-grade band on the displayed scale."}
+ function error(t){msg.textContent=t;msg.style.display="block";card.style.display="none"} function clean(){msg.style.display="none";msg.textContent=""}
+ function show(p,label,value){const i=info(p);clean();$("percentageLabel").textContent="Percentage";$("mainResult").textContent=p.toFixed(2)+"% — "+i[0];$("percentageResult").textContent=p.toFixed(2)+"%";$("letterResult").textContent=i[0];$("gpaResult").textContent=i[1].toFixed(1)+" / 4.0";$("detailLabel").textContent=label;$("detailResult").textContent=value;$("progressBar").style.width=Math.max(0,Math.min(100,p))+"%";$("progressText").textContent=p.toFixed(2)+"%";$("insightCard").textContent=next(p);card.style.display="block"}
+ function removeState(box){const r=box.querySelectorAll(".remove-btn");r.forEach(b=>b.disabled=r.length===1)}
+ function addAssignment(){if(aRows.children.length>=20)return error("You can add up to 20 assignments.");const r=document.createElement("div");r.className="assignment-row";r.innerHTML=`<div class="name-field"><label>Assignment / Subject</label><input class="name-input" type="text" maxlength="60" placeholder="e.g. Quiz 1"></div><div class="score-field"><label>Earned</label><input class="earned-input" type="number" min="0" step="any" placeholder="e.g. 18"></div><div class="possible-field"><label>Possible</label><input class="possible-input" type="number" min="0" step="any" placeholder="e.g. 20"></div><button class="remove-btn" type="button" aria-label="Remove assignment">×</button>`;r.querySelector(".remove-btn").onclick=()=>{r.remove();removeState(aRows);card.style.display="none"};aRows.appendChild(r);removeState(aRows)}
+ function weightTotal(){let n=0;wRows.querySelectorAll(".weight-input").forEach(i=>{let v=parseFloat(i.value);if(Number.isFinite(v)&&v>=0)n+=v});$("totalWeight").textContent=fmt(n)+"%"}
+ function addWeighted(){if(wRows.children.length>=20)return error("You can add up to 20 weighted items.");const r=document.createElement("div");r.className="weighted-row";r.innerHTML=`<div class="name-field"><label>Item / Category</label><input class="name-input" type="text" maxlength="60" placeholder="e.g. Exams"></div><div class="score-field"><label>Earned</label><input class="earned-input" type="number" min="0" step="any" placeholder="e.g. 85"></div><div class="possible-field"><label>Possible</label><input class="possible-input" type="number" min="0" step="any" placeholder="e.g. 100"></div><div class="weight-field"><label>Weight %</label><input class="weight-input" type="number" min="0" step="any" placeholder="e.g. 40"></div><button class="remove-btn" type="button" aria-label="Remove item">×</button>`;r.querySelector(".remove-btn").onclick=()=>{r.remove();removeState(wRows);weightTotal();card.style.display="none"};r.querySelector(".weight-input").oninput=weightTotal;wRows.appendChild(r);removeState(wRows);weightTotal()}
+ function resetA(){aRows.innerHTML="";addAssignment();addAssignment();addAssignment()} function resetW(){wRows.innerHTML="";addWeighted();addWeighted();addWeighted()}
+ function switchMode(){clean();card.style.display="none";simple.hidden=type.value!=="simple";weighted.hidden=type.value!=="weighted";target.hidden=type.value!=="target"}
+ function calcSimple(){let e=0,p=0,n=0;for(const r of aRows.querySelectorAll(".assignment-row")){let es=r.querySelector(".earned-input").value.trim(),ps=r.querySelector(".possible-input").value.trim();if(!es&&!ps)continue;let a=parseFloat(es),b=parseFloat(ps);if(!Number.isFinite(a)||!Number.isFinite(b))return error("Complete earned and possible points for every assignment you use.");if(a<0||b<=0)return error("Earned points cannot be negative, and possible points must be greater than zero.");e+=a;p+=b;n++}if(!n)return error("Please enter at least one assignment.");show(e/p*100,"Total Points",fmt(e)+" / "+fmt(p))}
+ function calcWeighted(){let sum=0,w=0,n=0;for(const r of wRows.querySelectorAll(".weighted-row")){let es=r.querySelector(".earned-input").value.trim(),ps=r.querySelector(".possible-input").value.trim(),ws=r.querySelector(".weight-input").value.trim();if(!es&&!ps&&!ws)continue;let a=parseFloat(es),b=parseFloat(ps),c=parseFloat(ws);if(!Number.isFinite(a)||!Number.isFinite(b)||!Number.isFinite(c))return error("Complete earned points, possible points, and weight for every item you use.");if(a<0||b<=0||c<=0)return error("Possible points and weights must be greater than zero.");sum+=(a/b*100)*c;w+=c;n++}if(!n)return error("Please enter at least one complete weighted item.");if(w>100.000001)return error("Total weight cannot be more than 100%.");show(sum/w,"Weight Entered",fmt(w)+"%")}
+ function calcTarget(){let c=parseFloat($("currentGrade").value),w=parseFloat($("finalWeight").value),d=parseFloat($("desiredGrade").value);if(![c,w,d].every(Number.isFinite))return error("Please enter your current grade, final exam weight, and desired course grade.");if(c<0||d<0||w<=0||w>100)return error("Grades cannot be negative, and final exam weight must be between 0% and 100%.");let req=(d-c*(1-w/100))/(w/100),i=info(d);clean();$("percentageLabel").textContent="Required Score";$("mainResult").textContent=req.toFixed(2)+"% needed";$("percentageResult").textContent=req.toFixed(2)+"%";$("letterResult").textContent=i[0];$("gpaResult").textContent=i[1].toFixed(1)+" / 4.0";$("detailLabel").textContent="Final Weight";$("detailResult").textContent=fmt(w)+"%";$("progressBar").style.width=Math.max(0,Math.min(100,req))+"%";$("progressText").textContent=req.toFixed(2)+"%";$("insightCard").textContent=req<=0?"Your desired grade is already secured mathematically from the values entered.":req<=100?`You need at least ${req.toFixed(2)}% on the remaining assessment to reach ${d.toFixed(2)}% overall.`:`You would need ${req.toFixed(2)}%, which is above 100%. Without extra credit or a grading adjustment, this target is not reachable.`;card.style.display="block"}
+ $("calculateBtn").onclick=()=>type.value==="simple"?calcSimple():type.value==="weighted"?calcWeighted():calcTarget();
+ $("clearBtn").onclick=()=>{clean();card.style.display="none";if(type.value==="simple")resetA();else if(type.value==="weighted")resetW();else["currentGrade","finalWeight","desiredGrade"].forEach(id=>$(id).value="")};
+ $("addAssignmentBtn").onclick=()=>{clean();addAssignment()};$("addRowBtn").onclick=()=>{clean();addWeighted()};type.onchange=switchMode;
+ resetA();resetW();switchMode();
+});
+</script>
+</body>
+</html>
