@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scientific Calculator Online – Free Advanced Math Tool | ZammioHub</title>
+<meta name="description" content="Perform trigonometric, logarithmic, power, and algebraic calculations online. Features DEG/RAD modes, calculation history, and keyboard shortcuts.">
+<link rel="canonical" href="https://zammiohub.com/calculators/scientific-calculator">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Scientific Calculator","url":"https://zammiohub.com/calculators/scientific-calculator","applicationCategory":"EducationalApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+:root{--b:#247da5;--n:#155f7e;--g:#349b24;--t:#263945;--m:#687984;--bd:#d5e0e6;--s:#f2f7fa}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--t);line-height:1.55}.wrap{width:min(1000px,92%);margin:auto}.crumb{margin:24px 0 12px;color:#75838c;font-size:14px}.crumb a{color:#167398;text-decoration:none}h1{margin:0;color:var(--n);font-size:clamp(34px,6vw,48px)}.intro{font-size:18px;color:#5d6b75;margin:6px 0 24px}.calc{border:1px solid var(--bd);border-radius:16px;overflow:hidden;background:var(--s);box-shadow:0 8px 25px #173f5810}.bar{background:var(--b);color:white;padding:18px 22px;font-size:22px;font-weight:800}.body{padding:20px}.display{background:white;border:1px solid var(--bd);border-radius:13px;padding:14px}.dtop{display:flex;justify-content:space-between;align-items:center}.badge{background:#e7f3f9;color:#176b8d;padding:5px 10px;border-radius:999px;font-size:13px;font-weight:800}.histbtn,.mode{min-height:44px;border:1px solid var(--bd);border-radius:9px;background:white;font-weight:700;padding:8px 13px}.expr{text-align:right;color:var(--m);min-height:29px;overflow-wrap:anywhere}.res{text-align:right;font-size:clamp(30px,7vw,43px);font-weight:800;min-height:52px;overflow-wrap:anywhere}.err{color:#b62920;font-size:26px}.modes{display:flex;gap:8px;margin:15px 0 10px}.mode.on{background:var(--b);color:white;border-color:var(--b)}.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.k{min-height:52px;border:1px solid #cbd8df;border-radius:10px;background:white;font-weight:700;font-size:16px;cursor:pointer}.fn{background:#e9f3f8;color:#155f7e}.op{background:#e8f0f6;color:#124a73;font-size:20px}.bad{background:#fff0ee;color:#b62920}.eq{grid-column:1/-1;background:var(--g);border-color:var(--g);color:white;font-size:20px}.history{display:none;background:white;border:1px solid var(--bd);border-radius:11px;margin-top:12px;padding:12px}.history.open{display:block}.hh{display:flex;justify-content:space-between;font-weight:800}.clearh{border:0;background:none;color:#b62920;font-weight:700}.hl{max-height:180px;overflow:auto}.hi{display:block;width:100%;border:0;border-bottom:1px solid #edf1f3;background:none;text-align:right;padding:8px}.hi small{display:block;color:var(--m)}.note{font-size:13px;color:var(--m)}.content{padding:15px 0 40px}.content h2{color:var(--n);font-size:28px;margin:28px 0 8px}.content h3{color:var(--n);font-size:20px;margin:22px 0 6px}.box{background:var(--s);border:1px solid var(--bd);border-radius:11px;padding:15px;margin:15px 0}.box strong{display:block;color:#176d92}@media(max-width:600px){.body{padding:13px}.keys{gap:6px}.k{min-height:48px;font-size:14px}.content h2{font-size:25px}}
+</style>
+</head>
+<body><main class="wrap">
+<nav class="crumb"><a href="/">Home</a> › <a href="/calculators/">All Calculators</a> › Scientific Calculator</nav>
+<h1>Scientific Calculator</h1>
+<p class="intro">Perform basic and advanced math calculations with trigonometric, logarithmic, power, and other scientific functions.</p>
+<section class="calc"><div class="bar">Scientific Calculator</div><div class="body">
+<div class="display"><div class="dtop"><span class="badge" id="badge">DEG Mode</span><button class="histbtn" id="ht" type="button">History</button></div><div class="expr" id="expr">Ready</div><div class="res" id="res">0</div></div>
+<div class="history" id="hp"><div class="hh">Calculation History <button class="clearh" id="ch" type="button">Clear History</button></div><div class="hl" id="hl"></div></div>
+<div class="modes"><button class="mode on" data-mode="DEG">DEG</button><button class="mode" data-mode="RAD">RAD</button></div>
+<div class="keys" id="keys">
+<button class="k fn" data-a="func" data-v="sin">sin</button><button class="k fn" data-a="func" data-v="cos">cos</button><button class="k fn" data-a="func" data-v="tan">tan</button><button class="k fn" data-a="func" data-v="log">log</button><button class="k fn" data-a="func" data-v="ln">ln</button>
+<button class="k fn" data-a="wrap" data-v="sqrt">√x</button><button class="k fn" data-a="square">x²</button><button class="k fn" data-a="power">xʸ</button><button class="k fn" data-a="wrap" data-v="recip">1/x</button><button class="k fn" data-a="wrap" data-v="abs">|x|</button>
+<button class="k fn" data-a="add" data-v="π">π</button><button class="k fn" data-a="add" data-v="e">e</button><button class="k fn" data-a="fact">x!</button><button class="k fn" data-a="ans">Ans</button><button class="k bad" data-a="clear">C</button>
+<button class="k" data-a="add" data-v="(">(</button><button class="k" data-a="add" data-v=")">)</button><button class="k" data-a="percent">%</button><button class="k" data-a="sign">±</button><button class="k bad" data-a="back">⌫</button>
+<button class="k" data-a="add" data-v="7">7</button><button class="k" data-a="add" data-v="8">8</button><button class="k" data-a="add" data-v="9">9</button><button class="k op" data-a="add" data-v="÷">÷</button><button class="k op" data-a="add" data-v="×">×</button>
+<button class="k" data-a="add" data-v="4">4</button><button class="k" data-a="add" data-v="5">5</button><button class="k" data-a="add" data-v="6">6</button><button class="k op" data-a="add" data-v="-">−</button><button class="k op" data-a="add" data-v="+">+</button>
+<button class="k" data-a="add" data-v="1">1</button><button class="k" data-a="add" data-v="2">2</button><button class="k" data-a="add" data-v="3">3</button><button class="k" data-a="add" data-v="0">0</button><button class="k" data-a="add" data-v=".">.</button>
+<button class="k eq" data-a="calc">= Calculate</button></div>
+<p class="note">Keyboard: numbers, +, −, *, /, parentheses and decimal • Enter = calculate • Backspace = delete • Esc or C = clear.</p>
+</div></section>
+<section class="content">
+<h2>How Does This Scientific Calculator Work?</h2><p>Enter a mathematical expression using the number pad and scientific function buttons. Choose DEG or RAD for trigonometric calculations, then select Calculate to get the result.</p>
+<h2>Scientific Calculator Functions</h2><p>This calculator supports basic arithmetic, parentheses, percentages, powers, square roots, reciprocals, absolute values, factorials, constants, logarithms, and trigonometric functions.</p>
+<div class="box"><strong>Angle Conversion</strong>Radians = Degrees × π ÷ 180</div>
+<h2>DEG vs RAD Mode</h2><p>DEG mode treats angle inputs as degrees, while RAD mode treats them as radians. For example, sin(30°) equals 0.5 in DEG mode, while sin(π ÷ 6) equals 0.5 in RAD mode.</p>
+<h2>Frequently Asked Questions</h2>
+<h3>How do I calculate sin, cos, and tan in degrees?</h3><p>Select DEG mode, choose sin, cos, or tan, enter the angle, close the parenthesis, and calculate.</p>
+<h3>What is the difference between log and ln?</h3><p>Log uses base 10, while ln uses the natural logarithm with base e. Both require a positive input.</p>
+<h3>How do I calculate a factorial online?</h3><p>Enter a non-negative whole number and select x!. This calculator supports factorials up to 170!.</p>
+<h3>Does this calculator support implied multiplication?</h3><p>Yes. Expressions such as 2π, 3(4+5), and 2√9 are interpreted as multiplication automatically.</p>
+<h3>Why do some decimal answers need rounding?</h3><p>The calculator keeps normal JavaScript numerical precision and formats displayed results to remove unnecessary floating-point noise.</p>
+<h3>Can I use my computer keyboard?</h3><p>Yes. Type numbers and common operators, use Enter to calculate, Backspace to delete, and Escape or C to clear.</p>
+</section></main>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+const E=document.getElementById("expr"),R=document.getElementById("res"),B=document.getElementById("badge"),HP=document.getElementById("hp"),HL=document.getElementById("hl");
+let x="",mode="DEG",ans=0,done=false,hist=[];try{hist=JSON.parse(localStorage.getItem("z-sc-h")||"[]");if(!Array.isArray(hist))hist=[]}catch(e){hist=[]}
+const digit=c=>/^[0-9]$/.test(c||""),end=c=>digit(c)||c==="."||c===")"||c==="π"||c==="e"||c==="!"||c==="%";
+function show(){E.textContent=x||"Ready";if(!done&&!R.classList.contains("err"))R.textContent=x?"…":"0"}
+function add(v){if(done&&/^[0-9.(πe]$/.test(v))x="";done=false;if(x&&end(x.slice(-1))&&(/^[0-9.(πe]$/.test(v)))x+="×";x+=v;R.classList.remove("err");show()}
+function func(v){if(done){x=raw(ans);done=false}if(x&&end(x.slice(-1)))x+="×";x+=v+"(";show()}
+function wrap(v){x=x?v+"("+x+")":v+"(";done=false;show()}
+function raw(n){return String(clean(n))}
+function clean(n){if(!Number.isFinite(n))throw Error("Invalid");if(Object.is(n,-0)||Math.abs(n)<1e-14)return 0;return Number(n.toPrecision(12))}
+function fmt(n){n=clean(n);let a=Math.abs(n);return a&& (a>=1e12||a<1e-9)?n.toExponential(10).replace(/\.?0+e/,"e"):n.toLocaleString("en-US",{useGrouping:false,maximumSignificantDigits:12})}
+function fact(n){if(n<0||!Number.isInteger(n)||n>170)throw Error("Invalid");let r=1;for(let i=2;i<=n;i++)r*=i;return r}
+function trig(f,n){let z=mode==="DEG"?n*Math.PI/180:n;if(f==="tan"&&Math.abs(Math.cos(z))<1e-12)throw Error("Undefined");let r=f==="sin"?Math.sin(z):f==="cos"?Math.cos(z):Math.tan(z);return Math.abs(r)<1e-14?0:r}
+function tok(s){let a=[],i=0;while(i<s.length){let c=s[i];if(/\s/.test(c)){i++;continue}if(digit(c)||c==="."){let q="",d=0;while(i<s.length&&(digit(s[i])||s[i]===".")){if(s[i]==="."&&++d>1)throw Error("Invalid");q+=s[i++]}if(q===".")throw Error("Invalid");a.push({t:"n",v:+q});continue}if(/[A-Za-z]/.test(c)){let q="";while(i<s.length&&/[A-Za-z]/.test(s[i]))q+=s[i++];if(!["sin","cos","tan","log","ln","sqrt","abs","recip"].includes(q))throw Error("Invalid");a.push({t:"f",v:q});continue}if(c==="π"||c==="e"){a.push({t:"c",v:c});i++;continue}if("+-×÷^!%()".includes(c)){a.push({t:c==="("||c===")"?"p":"o",v:c});i++;continue}throw Error("Invalid")}
+let o=[];const ce=t=>t&&(t.t==="n"||t.t==="c"||(t.t==="p"&&t.v===")")||(t.t==="o"&&(t.v==="!"||t.v==="%"))),cs=t=>t&&(t.t==="n"||t.t==="c"||t.t==="f"||(t.t==="p"&&t.v==="("));for(let t of a){if(ce(o[o.length-1])&&cs(t))o.push({t:"o",v:"×"});o.push(t)}return o}
+function Parser(t){this.t=t;this.i=0}Parser.prototype.pk=function(){return this.t[this.i]};Parser.prototype.go=function(){return this.t[this.i++]};
+Parser.prototype.parse=function(){let v=this.add();if(this.i!==this.t.length)throw Error("Invalid");return v};
+Parser.prototype.add=function(){let v=this.mul();while(this.pk()&&this.pk().t==="o"&&["+", "-"].includes(this.pk().v)){let o=this.go().v,q=this.mul();v=o==="+"?v+q:v-q}return v};
+Parser.prototype.mul=function(){let v=this.un();while(this.pk()&&this.pk().t==="o"&&["×","÷"].includes(this.pk().v)){let o=this.go().v,q=this.un();if(o==="÷"&&q===0)throw Error("Invalid");v=o==="×"?v*q:v/q}return v};
+Parser.prototype.un=function(){if(this.pk()&&this.pk().t==="o"&&["+", "-"].includes(this.pk().v)){let o=this.go().v,q=this.un();return o==="-"?-q:q}return this.pow()};
+Parser.prototype.pow=function(){let v=this.post();if(this.pk()&&this.pk().v==="^"){this.go();v=Math.pow(v,this.un());if(!Number.isFinite(v))throw Error("Invalid")}return v};
+Parser.prototype.post=function(){let v=this.pri();while(this.pk()&&this.pk().t==="o"&&["!","%"].includes(this.pk().v)){let o=this.go().v;v=o==="!"?fact(v):v/100}return v};
+Parser.prototype.pri=function(){let z=this.go();if(!z)throw Error("Invalid");if(z.t==="n")return z.v;if(z.t==="c")return z.v==="π"?Math.PI:Math.E;if(z.t==="p"&&z.v==="("){let v=this.add(),q=this.go();if(!q||q.v!==")")throw Error("Invalid");return v}if(z.t==="f"){let q=this.go();if(!q||q.v!=="(")throw Error("Invalid");let v=this.add(),cl=this.go();if(!cl||cl.v!==")")throw Error("Invalid");if(["sin","cos","tan"].includes(z.v))return trig(z.v,v);if(z.v==="log"){if(v<=0)throw Error("Invalid");return Math.log10(v)}if(z.v==="ln"){if(v<=0)throw Error("Invalid");return Math.log(v)}if(z.v==="sqrt"){if(v<0)throw Error("Invalid");return Math.sqrt(v)}if(z.v==="abs")return Math.abs(v);if(z.v==="recip"){if(v===0)throw Error("Invalid");return 1/v}}throw Error("Invalid")};
+function render(){HL.innerHTML="";if(!hist.length){HL.textContent="No calculations yet.";return}hist.forEach(h=>{let b=document.createElement("button");b.className="hi";b.type="button";b.textContent=h.x+" = "+h.r;let s=document.createElement("small");s.textContent=h.m+" mode";b.appendChild(s);b.onclick=()=>{x=h.x;setMode(h.m);done=false;R.classList.remove("err");R.textContent=h.r;show()};HL.appendChild(b)})}
+function save(){try{localStorage.setItem("z-sc-h",JSON.stringify(hist))}catch(e){}}
+function calc(){if(!x)return;try{let v=clean(new Parser(tok(x)).parse());ans=v;R.classList.remove("err");R.textContent=fmt(v);E.textContent=x+" =";done=true;hist.unshift({x:x,r:fmt(v),m:mode});hist=hist.slice(0,20);save();render()}catch(e){R.classList.add("err");R.textContent=e.message==="Undefined"?"Undefined":"Invalid Input";done=false}}
+function setMode(m){mode=m;B.textContent=m+" Mode";document.querySelectorAll(".mode").forEach(b=>b.classList.toggle("on",b.dataset.mode===m))}
+document.getElementById("keys").onclick=e=>{let b=e.target.closest("[data-a]");if(!b)return;let a=b.dataset.a,v=b.dataset.v;if(a==="add")add(v);else if(a==="func")func(v);else if(a==="wrap")wrap(v);else if(a==="square"&&x){x="("+x+")^2";done=false;show()}else if(a==="power"&&x){x+="^";done=false;show()}else if(a==="fact"&&x&&end(x.slice(-1))){x+="!";show()}else if(a==="percent"&&x){x+="%";show()}else if(a==="sign"){x=x?"-("+x+")":"-";done=false;show()}else if(a==="ans"){add(ans<0?"("+raw(ans)+")":raw(ans))}else if(a==="back"){x=x.slice(0,-1);done=false;show()}else if(a==="clear"){x="";done=false;R.classList.remove("err");R.textContent="0";show()}else if(a==="calc")calc()};
+document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));document.getElementById("ht").onclick=()=>HP.classList.toggle("open");document.getElementById("ch").onclick=()=>{hist=[];save();render()};
+document.addEventListener("keydown",e=>{if(e.ctrlKey||e.metaKey||e.altKey)return;let k=e.key;if(/^[0-9.]$/.test(k)||["+", "-", "^", "(", ")"].includes(k)){e.preventDefault();add(k)}else if(k==="*"){e.preventDefault();add("×")}else if(k==="/"){e.preventDefault();add("÷")}else if(k==="%"){e.preventDefault();x+="%";show()}else if(k==="Enter"||k==="="){e.preventDefault();calc()}else if(k==="Backspace"){e.preventDefault();x=x.slice(0,-1);done=false;show()}else if(k==="Escape"||k.toLowerCase()==="c"){e.preventDefault();x="";done=false;R.classList.remove("err");R.textContent="0";show()}});
+render();setMode("DEG");show();
+});
+</script></body></html>
