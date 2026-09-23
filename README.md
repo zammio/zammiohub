@@ -29,6 +29,7 @@ ZammioHub provides fast, simple, and easy-to-use online calculators designed to 
 ### Education
 - GPA Calculator
 - Grade Calculator
+- CGPA Calculator
 
 ### Everyday
 - Age Calculator
