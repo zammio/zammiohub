@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CGPA Calculator – Cumulative GPA Calculator | ZammioHub</title>
+  <meta name="description" content="Calculate your cumulative GPA (CGPA) from semester GPA and credit hours. Free weighted CGPA calculator for college and university students.">
+  <link rel="canonical" href="https://zammiohub.com/calculators/cgpa-calculator">
+  <meta name="robots" content="index,follow">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"CGPA Calculator",
+    "url":"https://zammiohub.com/calculators/cgpa-calculator",
+    "applicationCategory":"EducationalApplication",
+    "operatingSystem":"Any",
+    "description":"Calculate cumulative GPA from semester GPAs and credit hours using a weighted CGPA formula.",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+  <style>
+    :root{--blue:#12658a;--blue2:#1f759d;--green:#3f9228;--text:#263943;--muted:#66747d;--line:#d6dfe4;--soft:#f3f7f9;--danger:#b42318}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;line-height:1.65}
+    a{color:var(--blue);text-decoration:none}
+    .wrap{width:min(1120px,92%);margin:auto;padding:30px 0 60px}
+    .crumbs{font-size:14px;margin-bottom:14px;color:#6a7780}
+    h1{font-size:40px;line-height:1.15;margin:0 0 10px;color:#116386}
+    .intro{margin:0 0 28px;color:#45525a;font-size:18px}
+    .panel,.result{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(20,45,60,.05);margin-bottom:28px}
+    .panel-head,.result-head{background:var(--blue2);color:#fff;padding:18px 28px;font-size:22px;font-weight:700}
+    .result-head{background:var(--green)}
+    .panel-body,.result-body{padding:28px;background:var(--soft)}
+    label{display:block;font-weight:700;margin-bottom:7px}
+    select,input{width:100%;padding:13px 14px;border:1px solid #cbd6dc;border-radius:8px;background:#fff;font:inherit;color:#263238}
+    .scale-row{max-width:320px;margin-bottom:20px}
+    .hint{color:var(--muted);font-size:14px;margin:8px 0 20px}
+    .row-head,.semester-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 48px;gap:12px;align-items:end}
+    .row-head{font-size:13px;font-weight:700;color:#586873;margin-bottom:7px}
+    .semester-row{padding:0 0 14px;margin-bottom:14px;border-bottom:1px solid #dce4e8}
+    .remove{height:49px;border:1px solid #d8e0e4;background:#fff;border-radius:8px;color:#bd241a;font-size:22px;font-weight:700;cursor:pointer}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    button{font:inherit;font-weight:700;cursor:pointer}
+    .add{padding:10px 16px;border:1px solid #b9c9d1;border-radius:7px;background:#fff;color:var(--blue)}
+    .calc{padding:12px 22px;border:0;border-radius:7px;background:var(--green);color:#fff}
+    .clear{padding:12px 22px;border:0;border-radius:7px;background:#e1e7ea;color:#24343d}
+    .error{display:none;margin:16px 0 0;padding:11px 14px;border:1px solid #efc0bb;background:#fff0ee;color:#9c251c;border-radius:8px}
+    input.invalid{border-color:#d92d20;box-shadow:0 0 0 3px rgba(217,45,32,.10);background:#fff8f7}
+    .result{display:none;background:#fff}
+    .result-body{background:#fff}
+    .big{text-align:center;font-size:42px;font-weight:800;color:#0f5e83;margin:8px 0 22px}
+    .result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .result-item{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:18px;text-align:center}
+    .result-item span{display:block;color:#68757e;font-size:13px;font-weight:700;margin-bottom:5px}
+    .result-item strong{font-size:20px}
+    .note{margin-top:18px;padding:14px 16px;border:1px solid #cfe0e7;border-radius:8px;background:#f4fafc;color:#315464}
+    article{font-size:17px}
+    article h2{font-size:29px;line-height:1.25;margin:34px 0 10px}
+    article h3{font-size:21px;margin:24px 0 7px}
+    .formula{padding:20px;border:1px solid var(--line);border-radius:9px;background:var(--soft);margin:18px 0;font-family:Georgia,serif;font-size:21px;font-weight:700;overflow-wrap:anywhere}
+    .formula b{display:block;font-family:Arial,sans-serif;font-size:14px;color:var(--blue);margin-bottom:8px}
+    footer{border-top:1px solid #dfe5e8;margin-top:40px;padding-top:22px;color:#71808a}
+    footer strong{display:block;color:#5b6a73}
+    @media(max-width:700px){
+      .wrap{width:91%;padding-top:20px}
+      h1{font-size:34px}
+      .intro{font-size:17px}
+      .panel-body,.result-body{padding:20px}
+      .row-head{display:none}
+      .semester-row{grid-template-columns:1fr 1fr 54px}
+      .semester-row .name{grid-column:1/-1}
+      .semester-row .name:before{content:"Semester";display:block;font-size:13px;font-weight:700;color:#65727b;margin-bottom:5px}
+      .semester-row .gpa:before{content:"Semester GPA";display:block;font-size:13px;font-weight:700;color:#65727b;margin-bottom:5px}
+      .semester-row .credits:before{content:"Credit Hours";display:block;font-size:13px;font-weight:700;color:#65727b;margin-bottom:5px}
+      .result-grid{grid-template-columns:1fr 1fr}
+      .big{font-size:36px}
+      article h2{font-size:27px}
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav class="crumbs"><a href="/">Home</a> › <a href="/calculators/">All Calculators</a> › CGPA Calculator</nav>
+  <h1>CGPA Calculator</h1>
+  <p class="intro">Calculate your cumulative GPA from semester GPAs and credit hours using a weighted CGPA formula.</p>
+
+  <section class="panel">
+    <div class="panel-head">Enter Your Semester Details</div>
+    <div class="panel-body">
+      <div class="scale-row">
+        <label for="scale">GPA Scale</label>
+        <select id="scale">
+          <option value="4">4.0 Scale</option>
+          <option value="5">5.0 Scale</option>
+        </select>
+      </div>
+      <p class="hint">Enter each semester GPA and the credit hours completed in that semester.</p>
+
+      <div class="row-head"><div>Semester</div><div>Semester GPA</div><div>Credit Hours</div><div></div></div>
+      <div id="rows"></div>
+
+      <button class="add" id="add" type="button">+ Add Semester</button>
+      <div class="error" id="error"></div>
+      <div class="btns">
+        <button class="calc" id="calculate" type="button">Calculate CGPA</button>
+        <button class="clear" id="clear" type="button">Clear</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="result" id="result" aria-live="polite">
+    <div class="result-head">Result</div>
+    <div class="result-body">
+      <div class="big" id="bigCgpa">0.00 CGPA</div>
+      <div class="result-grid">
+        <div class="result-item"><span>Cumulative CGPA</span><strong id="cgpa">0.00</strong></div>
+        <div class="result-item"><span>Total Quality Points</span><strong id="qp">0.00</strong></div>
+        <div class="result-item"><span>Total Credit Hours</span><strong id="credits">0</strong></div>
+        <div class="result-item"><span>Semesters Counted</span><strong id="count">0</strong></div>
+      </div>
+      <div class="note" id="resultNote"></div>
+    </div>
+  </section>
+
+  <article>
+    <h2>How Does This CGPA Calculator Work?</h2>
+    <p>This cumulative GPA calculator combines semester GPAs according to their credit hours. A semester with more credit hours has a larger effect on the final CGPA than a semester with fewer credit hours.</p>
+
+    <h2>How to Calculate CGPA</h2>
+    <p>Multiply each semester GPA by that semester's credit hours to get its quality points. Add all quality points and divide the total by the total credit hours.</p>
+    <div class="formula"><b>CGPA Formula with Credit Hours</b>CGPA = Σ (Semester GPA × Semester Credit Hours) ÷ Σ Credit Hours</div>
+
+    <h3>CGPA Calculation Example</h3>
+    <p>Suppose Semester 1 has a GPA of 3.50 with 15 credit hours and Semester 2 has a GPA of 3.80 with 18 credit hours. The weighted CGPA is (3.50 × 15 + 3.80 × 18) ÷ 33 = 3.66.</p>
+
+    <h2>GPA vs CGPA: What Is the Difference?</h2>
+    <p>GPA commonly describes academic performance for a particular semester or period, while CGPA describes cumulative performance across multiple semesters. Exact terminology and calculation policies can vary by institution.</p>
+
+    <h2>Why Do Credit Hours Affect CGPA?</h2>
+    <p>Credit hours represent the weight of academic work included in the calculation. Because CGPA is weighted, semesters with more credit hours contribute more to the cumulative result.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <h3>Can I calculate CGPA from semester GPA?</h3>
+    <p>Yes. Enter each semester GPA together with its credit hours. The calculator weights every semester by its credit hours before calculating the cumulative GPA.</p>
+
+    <h3>Can I simply average my semester GPAs?</h3>
+    <p>Only when every semester has the same credit-hour weight would a simple average give the same result. When credit hours differ, a weighted calculation is needed.</p>
+
+    <h3>What are quality points?</h3>
+    <p>In this calculator, semester quality points are the semester GPA multiplied by its credit hours. The total quality points are used with total credit hours to calculate CGPA.</p>
+
+    <h3>Does this calculator support a 5.0 GPA scale?</h3>
+    <p>Yes. Select the 5.0 scale before entering your semester GPAs. Always use the scale and academic rules specified by your institution.</p>
+
+    <h3>Can I convert CGPA to percentage?</h3>
+    <p>This calculator does not apply a fixed CGPA-to-percentage conversion because conversion rules can differ by institution and grading system. Use your institution's official conversion method when one is required.</p>
+
+    <h3>How do I calculate CGPA for 8 semesters?</h3>
+    <p>Click “+ Add Semester” until you have 8 rows, enter the GPA and credit hours for each semester, and select “Calculate CGPA” to get the weighted cumulative result.</p>
+
+    <h3>Are repeated or transferred courses handled automatically?</h3>
+    <p>No. Universities may have different rules for repeated, transferred, excluded, or pass/fail courses. Enter semester GPA and credit-hour figures that follow your institution's official academic policy.</p>
+  </article>
+
+  <footer><strong>ZammioHub</strong>Clear, simple and mobile-friendly online calculators.</footer>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const rows = document.getElementById("rows");
+  const scale = document.getElementById("scale");
+  const error = document.getElementById("error");
+  const result = document.getElementById("result");
+  const KEY = "zammiohub-cgpa-v2";
+  let counter = 0;
+
+  function currentMax() {
+    return Number(scale.value);
+  }
+
+  function updateGpaLimits() {
+    const max = currentMax();
+    rows.querySelectorAll(".semester-gpa").forEach(input => {
+      input.max = String(max);
+      input.setAttribute("aria-label", `Semester GPA, maximum ${max.toFixed(1)}`);
+    });
+  }
+
+  function clearInvalid() {
+    rows.querySelectorAll("input.invalid").forEach(input => input.classList.remove("invalid"));
+  }
+
+  function markInvalid(input) {
+    input.classList.add("invalid");
+    if (!document.activeElement || document.activeElement === document.body) input.focus();
+  }
+
+  function row(data = {}) {
+    if (rows.children.length >= 20) return;
+    counter++;
+    const defaultName = `Semester ${counter}`;
+    const div = document.createElement("div");
+    div.className = "semester-row";
+
+    const name = document.createElement("div");
+    name.className = "name";
+    const nameInput = document.createElement("input");
+    nameInput.className = "semester-name";
+    nameInput.type = "text";
+    nameInput.maxLength = 40;
+    nameInput.placeholder = defaultName;
+    nameInput.value = data.name || defaultName;
+    name.appendChild(nameInput);
+
+    const gpa = document.createElement("div");
+    gpa.className = "gpa";
+    const gpaInput = document.createElement("input");
+    gpaInput.className = "semester-gpa";
+    gpaInput.type = "number";
+    gpaInput.min = "0";
+    gpaInput.max = String(currentMax());
+    gpaInput.step = "0.01";
+    gpaInput.inputMode = "decimal";
+    gpaInput.placeholder = "e.g. 3.50";
+    gpaInput.value = data.gpa ?? "";
+    gpa.appendChild(gpaInput);
+
+    const credits = document.createElement("div");
+    credits.className = "credits";
+    const creditsInput = document.createElement("input");
+    creditsInput.className = "semester-credits";
+    creditsInput.type = "number";
+    creditsInput.min = "0.01";
+    creditsInput.step = "0.01";
+    creditsInput.inputMode = "decimal";
+    creditsInput.placeholder = "e.g. 15";
+    creditsInput.value = data.credits ?? "";
+    credits.appendChild(creditsInput);
+
+    const remove = document.createElement("button");
+    remove.className = "remove";
+    remove.type = "button";
+    remove.setAttribute("aria-label", `Remove ${nameInput.value || defaultName}`);
+    remove.textContent = "×";
+
+    div.append(name, gpa, credits, remove);
+
+    remove.addEventListener("click", () => {
+      div.remove();
+      if (!rows.children.length) row();
+      save();
+    });
+
+    [nameInput, gpaInput, creditsInput].forEach(input => {
+      input.addEventListener("input", () => {
+        input.classList.remove("invalid");
+        save();
+      });
+    });
+
+    rows.appendChild(div);
+    updateGpaLimits();
+  }
+
+  function data() {
+    return [...rows.querySelectorAll(".semester-row")].map(r => ({
+      name: r.querySelector(".semester-name").value,
+      gpa: r.querySelector(".semester-gpa").value,
+      credits: r.querySelector(".semester-credits").value
+    }));
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify({scale: scale.value, rows: data()}));
+    } catch (e) {}
+  }
+
+  function load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY));
+      if (saved && Array.isArray(saved.rows) && saved.rows.length) {
+        scale.value = saved.scale === "5" ? "5" : "4";
+        saved.rows.slice(0, 20).forEach(row);
+        updateGpaLimits();
+        return;
+      }
+    } catch (e) {}
+    row();
+    row();
+  }
+
+  function showError(msg, input) {
+    error.textContent = msg;
+    error.style.display = "block";
+    result.style.display = "none";
+    if (input) {
+      markInvalid(input);
+      input.focus();
+    }
+  }
+
+  document.getElementById("add").addEventListener("click", () => {
+    row();
+    save();
+  });
+
+  scale.addEventListener("change", () => {
+    clearInvalid();
+    error.style.display = "none";
+    updateGpaLimits();
+    save();
+  });
+
+  document.getElementById("calculate").addEventListener("click", () => {
+    clearInvalid();
+    error.style.display = "none";
+
+    const max = currentMax();
+    let qp = 0;
+    let credits = 0;
+    let count = 0;
+
+    for (const r of rows.querySelectorAll(".semester-row")) {
+      const gInput = r.querySelector(".semester-gpa");
+      const cInput = r.querySelector(".semester-credits");
+      const gRaw = gInput.value.trim();
+      const cRaw = cInput.value.trim();
+
+      if (!gRaw && !cRaw) continue;
+
+      if (!gRaw) return showError("Please enter the GPA for this semester.", gInput);
+      if (!cRaw) return showError("Please enter the credit hours for this semester.", cInput);
+
+      const g = Number(gRaw);
+      const c = Number(cRaw);
+
+      if (!Number.isFinite(g) || g < 0 || g > max) {
+        return showError(`Semester GPA must be between 0.00 and ${max.toFixed(2)}.`, gInput);
+      }
+
+      if (!Number.isFinite(c) || c <= 0) {
+        return showError("Credit hours must be greater than zero.", cInput);
+      }
+
+      qp += g * c;
+      credits += c;
+      count++;
+    }
+
+    if (!count) {
+      const firstGpa = rows.querySelector(".semester-gpa");
+      return showError("Please enter at least one semester GPA and its credit hours.", firstGpa);
+    }
+
+    const cgpa = qp / credits;
+    document.getElementById("bigCgpa").textContent = `${cgpa.toFixed(2)} CGPA`;
+    document.getElementById("cgpa").textContent = `${cgpa.toFixed(2)} / ${max.toFixed(1)}`;
+    document.getElementById("qp").textContent = qp.toFixed(2);
+    document.getElementById("credits").textContent = Number.isInteger(credits) ? credits : credits.toFixed(2);
+    document.getElementById("count").textContent = count;
+    document.getElementById("resultNote").textContent =
+      `Calculated using ${count} semester${count === 1 ? "" : "s"} and ${Number.isInteger(credits) ? credits : credits.toFixed(2)} total credit hours on the ${max.toFixed(1)} GPA scale.`;
+
+    result.style.display = "block";
+    save();
+    result.scrollIntoView({behavior: "smooth", block: "start"});
+  });
+
+  document.getElementById("clear").addEventListener("click", () => {
+    try {
+      localStorage.removeItem(KEY);
+      localStorage.removeItem("zammiohub-cgpa-v1");
+    } catch (e) {}
+
+    rows.innerHTML = "";
+    counter = 0;
+    scale.value = "4";
+    row();
+    row();
+    clearInvalid();
+    error.style.display = "none";
+    result.style.display = "none";
+  });
+
+  load();
+});
+</script>
+</body>
+</html>
