@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#124c70">
+<title>Fraction Calculator - Add, Subtract, Multiply & Divide Fractions | ZammioHub</title>
+<meta name="description" content="Free fraction calculator for adding, subtracting, multiplying and dividing fractions. Calculate mixed numbers, simplify fractions, convert fractions to decimals and percentages, compare fractions, and view step-by-step solutions.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://zammiohub.com/fraction-calculator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fraction Calculator - ZammioHub">
+<meta property="og:description" content="Calculate, simplify, compare and convert fractions with step-by-step solutions.">
+<meta property="og:url" content="https://zammiohub.com/fraction-calculator">
+<meta property="og:site_name" content="ZammioHub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fraction Calculator - ZammioHub">
+<meta name="twitter:description" content="Free online fraction calculator with mixed numbers, conversions and step-by-step solutions.">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Fraction Calculator",
+  "url":"https://zammiohub.com/fraction-calculator",
+  "applicationCategory":"EducationalApplication",
+  "operatingSystem":"Any",
+  "browserRequirements":"Requires JavaScript",
+  "description":"Free online fraction calculator for adding, subtracting, multiplying, dividing, simplifying, comparing and converting fractions.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://zammiohub.com/"},
+    {"@type":"ListItem","position":2,"name":"All Calculators","item":"https://zammiohub.com/"},
+    {"@type":"ListItem","position":3,"name":"Fraction Calculator","item":"https://zammiohub.com/fraction-calculator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How do you add fractions?","acceptedAnswer":{"@type":"Answer","text":"To add fractions, find a common denominator, convert each fraction to an equivalent fraction, add the numerators, and simplify the result."}},
+    {"@type":"Question","name":"How do you subtract fractions?","acceptedAnswer":{"@type":"Answer","text":"To subtract fractions, use a common denominator, subtract the numerators, and reduce the resulting fraction to simplest form."}},
+    {"@type":"Question","name":"How do you multiply fractions?","acceptedAnswer":{"@type":"Answer","text":"Multiply the numerators together and the denominators together, then simplify the result."}},
+    {"@type":"Question","name":"How do you divide fractions?","acceptedAnswer":{"@type":"Answer","text":"To divide by a fraction, multiply the first fraction by the reciprocal of the second fraction, then simplify."}},
+    {"@type":"Question","name":"Can this fraction calculator handle mixed numbers?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can enter whole numbers with numerators and denominators, and the calculator converts them to improper fractions for exact calculation."}},
+    {"@type":"Question","name":"Can I calculate more than two fractions?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add more fraction rows and apply the selected operation across all entered fractions."}},
+    {"@type":"Question","name":"Can a fraction be converted to a decimal and percentage?","acceptedAnswer":{"@type":"Answer","text":"Yes. The result can be displayed as a decimal and percentage in addition to its simplified fractional form."}},
+    {"@type":"Question","name":"What happens if a denominator is zero?","acceptedAnswer":{"@type":"Answer","text":"A denominator cannot be zero. The calculator displays an error and will not perform an invalid calculation."}}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --primary:#17608a;--primary-dark:#124c70;--accent:#2f7d32;--accent-dark:#256428;
+  --text:#26343d;--muted:#66737d;--border:#d9e1e6;--soft:#f5f8fa;
+  --soft-blue:#eef6fa;--danger:#a12626;--danger-bg:#fff3f3;--white:#fff;
+  --shadow:0 8px 28px rgba(18,76,112,.09);--radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto;padding:24px 0 70px}
+.breadcrumb{font-size:14px;color:var(--muted);margin:4px 0 25px}
+.breadcrumb a{color:var(--primary)}
+.breadcrumb span{margin:0 8px;color:#8b969d}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.12;color:var(--primary-dark);margin:0 0 13px;letter-spacing:-.6px}
+.intro{font-size:18px;max-width:850px;color:#3d4a53;margin:0 0 28px}
+.card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.card-head{background:var(--primary);color:#fff;padding:18px 24px;font-size:21px;font-weight:700}
+.calculator{padding:25px;background:var(--soft)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.toolbar label{font-weight:700;font-size:15px}
+select,.text-input,.num-input{width:100%;border:1px solid #b8c5cc;border-radius:9px;background:#fff;color:var(--text);padding:12px 13px;min-height:48px;outline:none}
+select:focus,.text-input:focus,.num-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(23,96,138,.12)}
+.mode-select{max-width:280px}
+.fraction-list{display:grid;gap:12px}
+.fraction-row{display:grid;grid-template-columns:minmax(180px,1fr) 48px minmax(180px,1fr) auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px}
+.row-label{font-size:13px;font-weight:700;color:var(--muted);grid-column:1/-1;margin-bottom:-2px}
+.fraction-part{display:grid;grid-template-columns:1fr;gap:6px}
+.fraction-part small{color:var(--muted);font-weight:700}
+.fraction-slash{text-align:center;font-size:28px;font-weight:700;color:var(--primary-dark);padding-top:17px}
+.whole-wrap{display:grid;grid-template-columns:95px 1fr;gap:8px}
+.remove-btn,.swap-btn,.add-btn,.example-btn,.copy-btn,.share-btn,.clear-btn,.calculate-btn{
+  border:0;border-radius:9px;padding:11px 15px;font-weight:700;min-height:44px
+}
+.remove-btn{background:#f1f3f4;color:#5a646b}
+.remove-btn:hover{background:#e6e9eb}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.calculate-btn{background:var(--accent);color:#fff;padding:13px 21px}
+.calculate-btn:hover{background:var(--accent-dark)}
+.clear-btn{background:#e4e8eb;color:#26343d}
+.add-btn,.swap-btn{background:var(--soft-blue);color:var(--primary-dark)}
+.example-btn{background:#fff;border:1px solid var(--border);color:var(--primary-dark)}
+.examples{margin-top:18px}
+.examples-title{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.example-list{display:flex;gap:7px;flex-wrap:wrap}
+.error{display:none;margin-top:14px;padding:11px 13px;border:1px solid #efb9b9;border-radius:8px;background:var(--danger-bg);color:var(--danger);font-weight:700}
+.result{display:none;margin-top:22px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff}
+.result-head{background:var(--accent);color:#fff;padding:17px 23px;font-size:21px;font-weight:700}
+.result-body{padding:25px}
+.main-answer{text-align:center}
+.answer-label{font-size:14px;color:var(--muted);font-weight:700}
+.answer{font-size:clamp(34px,6vw,50px);font-weight:800;color:var(--primary-dark);line-height:1.25;overflow-wrap:anywhere}
+.answer-mixed{font-size:24px;font-weight:700;color:#374955;margin-top:2px}
+.answer-decimal{font-size:18px;color:var(--muted);margin-top:4px}
+.result-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
+.copy-btn,.share-btn{background:var(--soft-blue);color:var(--primary-dark)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.metric{background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:14px}
+.metric b{display:block;font-size:13px;color:var(--muted);margin-bottom:3px}
+.metric span{font-size:18px;font-weight:700;overflow-wrap:anywhere}
+.steps{margin-top:24px;border-top:1px solid var(--border);padding-top:20px}
+.steps h3{margin:0 0 12px;color:var(--primary-dark)}
+.step{padding:12px 14px;background:var(--soft);border-left:4px solid var(--primary);margin:8px 0;border-radius:0 8px 8px 0}
+.step strong{color:var(--primary-dark)}
+.frac-inline{font-weight:700;white-space:nowrap}
+.frac{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.05;min-width:24px;margin:0 2px}
+.frac .top{border-bottom:1.5px solid currentColor;padding:0 4px}
+.frac .bottom{padding:0 4px}
+.content{margin-top:46px}
+.content h2{font-size:clamp(25px,4vw,32px);line-height:1.25;color:var(--primary-dark);margin:38px 0 11px}
+.content h3{font-size:21px;line-height:1.3;color:#314650;margin:26px 0 7px}
+.content p,.content li{font-size:17px}
+.content ul,.content ol{padding-left:25px}
+.info-box{border:1px solid #cfe1eb;background:var(--soft-blue);border-radius:12px;padding:18px 19px;margin:20px 0}
+.formula-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.formula{background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;font-size:18px}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:580px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:left}
+th{background:var(--soft);color:var(--primary-dark)}
+tr:last-child td{border-bottom:0}
+.faq details{border:1px solid var(--border);border-radius:9px;margin:9px 0;padding:0 15px;background:#fff}
+.faq summary{cursor:pointer;font-weight:700;padding:14px 2px;color:#304651}
+.faq details p{padding:0 2px 13px;margin:0}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related a{display:block;border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--soft);font-weight:700}
+.note{font-size:14px!important;color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:800px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .related{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .wrap{width:min(100% - 24px,1080px);padding-top:18px}
+  .intro{font-size:16px}
+  .calculator{padding:16px}
+  .fraction-row{grid-template-columns:1fr 34px 1fr auto}
+  .fraction-slash{font-size:22px}
+  .whole-wrap{grid-template-columns:1fr}
+  .metrics,.formula-grid,.related{grid-template-columns:1fr}
+  .result-body{padding:18px}
+  .card-head{padding:16px 18px}
+  .actions button{flex:1 1 130px}
+}
+@media(max-width:420px){
+  .fraction-row{grid-template-columns:1fr;gap:7px}
+  .fraction-slash{display:none}
+  .remove-btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+
+<body>
+<main class="wrap">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="https://zammiohub.com/">Home</a><span>›</span>
+  <a href="https://zammiohub.com/">All Calculators</a><span>›</span>
+  <span>Fraction Calculator</span>
+</nav>
+
+<h1>Fraction Calculator</h1>
+<p class="intro">Add, subtract, multiply, divide, simplify, compare, and convert fractions with exact results and clear step-by-step calculations. Use proper fractions, improper fractions, mixed numbers, whole numbers, negative fractions, and multiple fraction rows.</p>
+
+<section class="card" aria-labelledby="calculator-heading">
+  <div class="card-head" id="calculator-heading">Fraction Calculator</div>
+  <div class="calculator">
+    <div class="toolbar">
+      <label for="operation">Operation</label>
+      <select id="operation" class="mode-select" aria-label="Fraction operation">
+        <option value="add">Add (+)</option>
+        <option value="subtract">Subtract (−)</option>
+        <option value="multiply">Multiply (×)</option>
+        <option value="divide">Divide (÷)</option>
+      </select>
+      <button type="button" class="swap-btn" id="swapBtn">Swap Fractions</button>
+      <button type="button" class="add-btn" id="addBtn">+ Add Fraction</button>
+    </div>
+
+    <div id="fractionList" class="fraction-list"></div>
+
+    <div class="actions">
+      <button type="button" class="calculate-btn" id="calculateBtn">Calculate</button>
+      <button type="button" class="clear-btn" id="clearBtn">Clear</button>
+    </div>
+
+    <div class="examples">
+      <div class="examples-title">Try an example</div>
+      <div class="example-list">
+        <button type="button" class="example-btn" data-example="1">1/2 + 1/3</button>
+        <button type="button" class="example-btn" data-example="2">2 3/4 − 1 1/2</button>
+        <button type="button" class="example-btn" data-example="3">3/5 × 10/9</button>
+        <button type="button" class="example-btn" data-example="4">7/8 ÷ 14/15</button>
+        <button type="button" class="example-btn" data-example="5">1/2 + 1/3 + 2/5</button>
+      </div>
+    </div>
+    <div id="error" class="error" role="alert" aria-live="assertive"></div>
+  </div>
+</section>
+
+<section id="result" class="result" aria-live="polite">
+  <div class="result-head">Your Result</div>
+  <div class="result-body">
+    <div class="main-answer">
+      <div class="answer-label">Simplified Fraction</div>
+      <div id="answer" class="answer">—</div>
+      <div id="mixedAnswer" class="answer-mixed"></div>
+      <div id="decimalAnswer" class="answer-decimal"></div>
+    </div>
+
+    <div class="result-actions">
+      <button type="button" class="copy-btn" id="copyBtn">Copy Result</button>
+      <button type="button" class="share-btn" id="shareBtn">Share Result</button>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><b>Decimal</b><span id="metricDecimal">—</span></div>
+      <div class="metric"><b>Percentage</b><span id="metricPercent">—</span></div>
+      <div class="metric"><b>GCF / GCD</b><span id="metricGcf">—</span></div>
+      <div class="metric"><b>LCD</b><span id="metricLcd">—</span></div>
+    </div>
+
+    <div class="steps">
+      <h3>Step-by-Step Solution</h3>
+      <div id="steps"></div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <h2>What Is a Fraction Calculator?</h2>
+  <p>A fraction calculator is an online math tool that performs exact calculations with fractions. This calculator can add, subtract, multiply, and divide fractions and can also simplify the result, convert it to a mixed number, decimal, and percentage, and explain the calculation step by step.</p>
+
+  <div class="info-box">
+    <strong>Tip:</strong> You can enter proper fractions such as 3/4, improper fractions such as 7/4, whole numbers such as 5, negative values, or mixed numbers such as 2 3/4.
+  </div>
+
+  <h2>How to Use the Fraction Calculator</h2>
+  <ol>
+    <li>Enter the numerator and denominator for the first fraction.</li>
+    <li>Enter a whole number if you are using a mixed number.</li>
+    <li>Select addition, subtraction, multiplication, or division.</li>
+    <li>Add more fraction rows if you need to calculate multiple fractions.</li>
+    <li>Select <strong>Calculate</strong> to see the exact answer and the working steps.</li>
+  </ol>
+
+  <h2>How to Add Fractions</h2>
+  <p>When two fractions have the same denominator, add their numerators and keep the denominator. When the denominators are different, first find a common denominator, convert the fractions, add the numerators, and simplify.</p>
+  <div class="formula-grid">
+    <div class="formula"><span class="frac"><span class="top">a</span><span class="bottom">b</span></span> + <span class="frac"><span class="top">c</span><span class="bottom">d</span></span> = <span class="frac"><span class="top">ad + bc</span><span class="bottom">bd</span></span></div>
+    <div class="formula"><span class="frac"><span class="top">1</span><span class="bottom">3</span></span> + <span class="frac"><span class="top">1</span><span class="bottom">4</span></span> = <span class="frac"><span class="top">7</span><span class="bottom">12</span></span></div>
+  </div>
+
+  <h2>How to Subtract Fractions</h2>
+  <p>To subtract fractions, use a common denominator, subtract the numerators, and reduce the result to its simplest form.</p>
+  <div class="formula"><span class="frac"><span class="top">a</span><span class="bottom">b</span></span> − <span class="frac"><span class="top">c</span><span class="bottom">d</span></span> = <span class="frac"><span class="top">ad − bc</span><span class="bottom">bd</span></span></div>
+
+  <h2>How to Multiply Fractions</h2>
+  <p>Multiply the numerators together and multiply the denominators together. The resulting fraction is then reduced to simplest form.</p>
+  <div class="formula"><span class="frac"><span class="top">a</span><span class="bottom">b</span></span> × <span class="frac"><span class="top">c</span><span class="bottom">d</span></span> = <span class="frac"><span class="top">ac</span><span class="bottom">bd</span></span></div>
+
+  <h2>How to Divide Fractions</h2>
+  <p>To divide one fraction by another, multiply the first fraction by the reciprocal of the second fraction, then simplify.</p>
+  <div class="formula"><span class="frac"><span class="top">a</span><span class="bottom">b</span></span> ÷ <span class="frac"><span class="top">c</span><span class="bottom">d</span></span> = <span class="frac"><span class="top">a</span><span class="bottom">b</span></span> × <span class="frac"><span class="top">d</span><span class="bottom">c</span></span> = <span class="frac"><span class="top">ad</span><span class="bottom">bc</span></span></div>
+
+  <h2>Mixed Numbers and Improper Fractions</h2>
+  <p>A mixed number contains a whole number and a fraction, such as 2 3/4. To convert a mixed number to an improper fraction, multiply the whole number by the denominator, add the numerator, and place the result over the original denominator.</p>
+  <p><strong>Example:</strong> 2 3/4 = (2 × 4 + 3)/4 = 11/4.</p>
+
+  <h2>Fraction to Decimal and Percentage</h2>
+  <p>A fraction can be converted to a decimal by dividing the numerator by the denominator. To convert a fraction to a percentage, multiply its decimal value by 100.</p>
+  <p><strong>Example:</strong> 3/4 = 0.75 = 75%.</p>
+
+  <h2>Proper, Improper, and Equivalent Fractions</h2>
+  <p>A proper fraction has a numerator smaller than its denominator, such as 3/5. An improper fraction has a numerator equal to or greater than its denominator, such as 7/5. Equivalent fractions have the same value even though their numerators and denominators are different, such as 1/2 and 2/4.</p>
+
+  <h2>Worked Examples</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Calculation</th><th>Result</th><th>Decimal</th></tr></thead>
+      <tbody>
+        <tr><td>1/2 + 1/3</td><td>5/6</td><td>0.833333...</td></tr>
+        <tr><td>3/4 − 1/4</td><td>1/2</td><td>0.5</td></tr>
+        <tr><td>2/3 × 3/4</td><td>1/2</td><td>0.5</td></tr>
+        <tr><td>3/5 ÷ 1/2</td><td>6/5 = 1 1/5</td><td>1.2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Fraction Calculation Formulas</h2>
+  <p>The main formulas used by the calculator are shown below. The calculator performs the arithmetic exactly and reduces the final fraction.</p>
+  <div class="formula-grid">
+    <div class="formula">Addition: (a/b) + (c/d) = (ad + bc)/bd</div>
+    <div class="formula">Subtraction: (a/b) − (c/d) = (ad − bc)/bd</div>
+    <div class="formula">Multiplication: (a/b) × (c/d) = ac/bd</div>
+    <div class="formula">Division: (a/b) ÷ (c/d) = ad/bc</div>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq">
+    <details><summary>How do you add fractions?</summary><p>Find a common denominator, convert the fractions to equivalent fractions, add the numerators, and simplify the result.</p></details>
+    <details><summary>How do you subtract fractions?</summary><p>Use a common denominator, subtract the numerators, and reduce the resulting fraction to simplest form.</p></details>
+    <details><summary>How do you multiply fractions?</summary><p>Multiply the numerators together and the denominators together, then simplify the resulting fraction.</p></details>
+    <details><summary>How do you divide fractions?</summary><p>Multiply the first fraction by the reciprocal of the second fraction, then simplify.</p></details>
+    <details><summary>Can this calculator handle mixed numbers?</summary><p>Yes. Enter the whole number, numerator, and denominator. The calculator converts the mixed number to an exact improper fraction before calculating.</p></details>
+    <details><summary>Can I calculate more than two fractions?</summary><p>Yes. Use the Add Fraction button to add more rows and calculate a sequence of fractions using the selected operation.</p></details>
+    <details><summary>Can I convert a fraction to a decimal or percentage?</summary><p>Yes. The result section displays the decimal and percentage values alongside the simplified fraction.</p></details>
+    <details><summary>What happens if a denominator is zero?</summary><p>A denominator cannot be zero. The calculator will display an error instead of performing an invalid calculation.</p></details>
+    <details><summary>What is the difference between a proper and improper fraction?</summary><p>A proper fraction has a numerator smaller than its denominator. An improper fraction has a numerator equal to or larger than its denominator.</p></details>
+    <details><summary>What is a mixed number?</summary><p>A mixed number combines a whole number with a proper fraction, such as 2 3/4.</p></details>
+  </div>
+
+  <h2>Related Calculators</h2>
+  <div class="related">
+    <a href="/percentage-calculator.html">Percentage Calculator</a>
+    <a href="/scientific-calculator.html">Scientific Calculator</a>
+    <a href="/gpa-calculator.html">GPA Calculator</a>
+    <a href="/grade-calculator.html">Grade Calculator</a>
+    <a href="/age-calculator.html">Age Calculator</a>
+    <a href="/discount-calculator.html">Discount Calculator</a>
+  </div>
+
+  <p class="note">This calculator is provided for educational and general mathematical use. Results are calculated in your browser and no calculator input is required to be submitted to a server.</p>
+</section>
+</main>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+const list = $("fractionList");
+const errorBox = $("error");
+const resultBox = $("result");
+const operation = $("operation");
+
+let rowCount = 0;
+let lastResultText = "";
+
+function gcdBig(a,b){
+  a = a < 0n ? -a : a; b = b < 0n ? -b : b;
+  while(b !== 0n){ const t = a % b; a = b; b = t; }
+  return a;
+}
+function lcmBig(a,b){
+  a = a < 0n ? -a : a; b = b < 0n ? -b : b;
+  if(a === 0n || b === 0n) return 0n;
+  return (a / gcdBig(a,b)) * b;
+}
+function normalize(n,d){
+  if(d === 0n) throw new Error("A denominator cannot be zero.");
+  if(d < 0n){n=-n;d=-d;}
+  const g = gcdBig(n,d);
+  return {n:n/g,d:d/g};
+}
+function parseInteger(value){
+  const v = String(value ?? "").trim();
+  if(!/^[+-]?\\d+$/.test(v)) throw new Error("Please enter whole numbers only in fraction fields.");
+  return BigInt(v);
+}
+function mixedToFraction(whole,num,den){
+  const w=parseInteger(whole || "0"), n=parseInteger(num || "0"), d=parseInteger(den);
+  if(d===0n) throw new Error("A denominator cannot be zero.");
+  if(n<0n) return normalize(w*d+n,d);
+  if(w<0n) return normalize(w*d-n,d);
+  return normalize(w*d+n,d);
+}
+function fractionToMixed(f){
+  const sign=f.n<0n?-1n:1n, absN=f.n<0n?-f.n:f.n;
+  const whole=absN/f.d, rem=absN%f.d;
+  if(rem===0n) return (sign<0n?"-":"")+whole.toString();
+  return (sign<0n?"-":"")+whole.toString()+" "+rem.toString()+"/"+f.d.toString();
+}
+function decimalString(n,d,places=12){
+  const sign=n<0n?"-":"", a=n<0n?-n:n;
+  const whole=a/d, rem=a%d;
+  if(rem===0n) return sign+whole.toString();
+  let digits="";
+  let r=rem;
+  for(let i=0;i<places && r!==0n;i++){
+    r*=10n; digits += (r/d).toString(); r%=d;
+  }
+  return sign+whole.toString()+"."+digits;
+}
+function percentString(n,d){
+  return decimalString(n*100n,d,10)+"%";
+}
+function htmlFrac(f){
+  return '<span class="frac"><span class="top">'+f.n+'</span><span class="bottom">'+f.d+'</span></span>';
+}
+function inputValue(row){
+  const whole=row.querySelector(".whole").value.trim();
+  const num=row.querySelector(".numerator").value.trim();
+  const den=row.querySelector(".denominator").value.trim();
+  if(!num && !den && !whole) throw new Error("Please complete all fraction fields.");
+  if(!den) throw new Error("Please enter a denominator.");
+  return mixedToFraction(whole,num,den);
+}
+function addRow(values={}){
+  rowCount++;
+  const row=document.createElement("div");
+  row.className="fraction-row";
+  row.dataset.row=rowCount;
+  row.innerHTML=`
+    <div class="row-label">Fraction ${rowCount}</div>
+    <div class="fraction-part">
+      <small>Whole number (optional)</small>
+      <input class="num-input whole" inputmode="numeric" aria-label="Fraction ${rowCount} whole number" placeholder="e.g. 2" value="${values.whole ?? ""}">
+    </div>
+    <div class="fraction-part">
+      <small>Numerator</small>
+      <input class="num-input numerator" inputmode="numeric" aria-label="Fraction ${rowCount} numerator" placeholder="e.g. 3" value="${values.num ?? ""}">
+    </div>
+    <div class="fraction-part">
+      <small>Denominator</small>
+      <input class="num-input denominator" inputmode="numeric" aria-label="Fraction ${rowCount} denominator" placeholder="e.g. 4" value="${values.den ?? ""}">
+    </div>
+    <button type="button" class="remove-btn" aria-label="Remove fraction ${rowCount}">Remove</button>
+  `;
+  row.querySelector(".remove-btn").addEventListener("click",()=>{
+    if(list.children.length<=2){showError("At least two fractions are required.");return;}
+    row.remove(); renumberRows();
+  });
+  list.appendChild(row);
+}
+function renumberRows(){
+  [...list.children].forEach((row,i)=>{
+    row.querySelector(".row-label").textContent="Fraction "+(i+1);
+    row.querySelector(".whole").setAttribute("aria-label","Fraction "+(i+1)+" whole number");
+    row.querySelector(".numerator").setAttribute("aria-label","Fraction "+(i+1)+" numerator");
+    row.querySelector(".denominator").setAttribute("aria-label","Fraction "+(i+1)+" denominator");
+    row.querySelector(".remove-btn").setAttribute("aria-label","Remove fraction "+(i+1));
+  });
+}
+function showError(message){
+  errorBox.textContent=message; errorBox.style.display="block";
+}
+function clearError(){errorBox.textContent="";errorBox.style.display="none";}
+function calculate(){
+  clearError();
+  try{
+    const rows=[...list.children].map(inputValue);
+    let result=rows[0];
+    const steps=[];
+    steps.push(`<div class="step"><strong>Step 1:</strong> First fraction = ${htmlFrac(result)}</div>`);
+    const lcd=rows.reduce((acc,f)=>lcmBig(acc,f.d),1n);
+
+    for(let i=1;i<rows.length;i++){
+      const b=rows[i];
+      let next;
+      const op=operation.value;
+      if(op==="add") next=normalize(result.n*b.d + b.n*result.d,result.d*b.d);
+      if(op==="subtract") next=normalize(result.n*b.d - b.n*result.d,result.d*b.d);
+      if(op==="multiply") next=normalize(result.n*b.n,result.d*b.d);
+      if(op==="divide"){
+        if(b.n===0n) throw new Error("Division by zero is not allowed.");
+        next=normalize(result.n*b.d,result.d*b.n);
+      }
+      if(op==="add" || op==="subtract"){
+        const common=lcmBig(result.d,b.d);
+        const leftN=result.n*(common/result.d);
+        const rightN=b.n*(common/b.d);
+        const symbol=op==="add"?"+":"−";
+        steps.push(`<div class="step"><strong>Step ${steps.length+1}:</strong> LCD = ${common}. Convert: ${leftN}/${common} ${symbol} ${rightN}/${common}.</div>`);
+      }else if(op==="multiply"){
+        steps.push(`<div class="step"><strong>Step ${steps.length+1}:</strong> Multiply numerators and denominators: ${result.n} × ${b.n} / (${result.d} × ${b.d}).</div>`);
+      }else{
+        steps.push(`<div class="step"><strong>Step ${steps.length+1}:</strong> Take the reciprocal of ${htmlFrac(b)}, then multiply.</div>`);
+      }
+      const symbol={add:"+",subtract:"−",multiply:"×",divide:"÷"}[op];
+      steps.push(`<div class="step"><strong>Next result:</strong> ${htmlFrac(result)} ${symbol} ${htmlFrac(b)} = ${htmlFrac(next)}</div>`);
+      result=next;
+    }
+
+    const g=gcdBig(result.n,result.d);
+    const mixed=fractionToMixed(result);
+    const dec=decimalString(result.n,result.d,12);
+    const pct=percentString(result.n,result.d);
+
+    $("answer").innerHTML=htmlFrac(result);
+    $("mixedAnswer").textContent="Mixed number: "+mixed;
+    $("decimalAnswer").textContent="Decimal: "+dec;
+    $("metricDecimal").textContent=dec;
+    $("metricPercent").textContent=pct;
+    $("metricGcf").textContent=g.toString();
+    $("metricLcd").textContent=lcd.toString();
+    $("steps").innerHTML=steps.join("")+
+      `<div class="step"><strong>Final step:</strong> The result is already reduced to simplest form: ${htmlFrac(result)}.</div>`;
+    resultBox.style.display="block";
+    lastResultText=`Fraction Calculator Result: ${result.n}/${result.d} | Mixed: ${mixed} | Decimal: ${dec} | Percentage: ${pct}`;
+    resultBox.scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(e){showError(e.message || "Please check your inputs.");}
+}
+function reset(){
+  rowCount=0; list.innerHTML="";
+  addRow(); addRow(); operation.value="add";
+  resultBox.style.display="none"; clearError(); lastResultText="";
+}
+function setExample(id){
+  reset();
+  if(id==="1"){list.children[0].querySelector(".numerator").value="1";list.children[0].querySelector(".denominator").value="2";list.children[1].querySelector(".numerator").value="1";list.children[1].querySelector(".denominator").value="3";operation.value="add";}
+  if(id==="2"){list.children[0].querySelector(".whole").value="2";list.children[0].querySelector(".numerator").value="3";list.children[0].querySelector(".denominator").value="4";list.children[1].querySelector(".whole").value="1";list.children[1].querySelector(".numerator").value="1";list.children[1].querySelector(".denominator").value="2";operation.value="subtract";}
+  if(id==="3"){list.children[0].querySelector(".numerator").value="3";list.children[0].querySelector(".denominator").value="5";list.children[1].querySelector(".numerator").value="10";list.children[1].querySelector(".denominator").value="9";operation.value="multiply";}
+  if(id==="4"){list.children[0].querySelector(".numerator").value="7";list.children[0].querySelector(".denominator").value="8";list.children[1].querySelector(".numerator").value="14";list.children[1].querySelector(".denominator").value="15";operation.value="divide";}
+  if(id==="5"){list.children[0].querySelector(".numerator").value="1";list.children[0].querySelector(".denominator").value="2";list.children[1].querySelector(".numerator").value="1";list.children[1].querySelector(".denominator").value="3";addRow({num:"2",den:"5"});operation.value="add";}
+  calculate();
+}
+$("calculateBtn").addEventListener("click",calculate);
+$("clearBtn").addEventListener("click",reset);
+$("addBtn").addEventListener("click",()=>addRow());
+$("swapBtn").addEventListener("click",()=>{
+  if(list.children.length!==2){showError("Swap Fractions is available when exactly two fractions are entered.");return;}
+  const a=list.children[0],b=list.children[1];
+  ["whole","numerator","denominator"].forEach(cls=>{
+    const av=a.querySelector("."+cls).value,bv=b.querySelector("."+cls).value;
+    a.querySelector("."+cls).value=bv;b.querySelector("."+cls).value=av;
+  });
+  clearError();
+});
+$("copyBtn").addEventListener("click",async()=>{
+  if(!lastResultText)return;
+  try{await navigator.clipboard.writeText(lastResultText);$("copyBtn").textContent="Copied!";setTimeout(()=>$("copyBtn").textContent="Copy Result",1500);}
+  catch(e){showError("Copy is not available in this browser.");}
+});
+$("shareBtn").addEventListener("click",async()=>{
+  if(!lastResultText)return;
+  if(navigator.share){try{await navigator.share({title:"Fraction Calculator Result",text:lastResultText,url:location.href});}catch(e){}}
+  else{try{await navigator.clipboard.writeText(location.href);$("shareBtn").textContent="Link Copied!";setTimeout(()=>$("shareBtn").textContent="Share Result",1500);}catch(e){showError("Sharing is not available in this browser.");}}
+});
+document.querySelectorAll(".example-btn").forEach(btn=>btn.addEventListener("click",()=>setExample(btn.dataset.example)));
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && e.target.tagName==="INPUT"){e.preventDefault();calculate();}
+  if(e.key==="Escape")reset();
+});
+addRow();addRow();
+</script>
+</body>
+</html>
