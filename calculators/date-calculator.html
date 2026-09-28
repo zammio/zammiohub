@@ -344,13 +344,17 @@ button:hover{
   font-weight:700
 }
 
+/* Fixed calendar grid */
+
 .cal-grid{
   display:grid;
-  grid-template-columns:repeat(7,1fr)
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  width:100%
 }
 
-/* Calendar cells fixed for clear date visibility */
 .cal-grid div{
+  min-width:0;
+  min-height:38px;
   padding:8px 3px;
   text-align:center;
   border-right:1px solid #eef1f3;
@@ -368,10 +372,15 @@ button:hover{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:38px;
-  color:var(--t);
   background:#fff;
+  color:var(--t);
   font-weight:600
+}
+
+.cal-grid .day span{
+  display:block;
+  width:100%;
+  text-align:center
 }
 
 .cal-grid .day.range{
@@ -382,8 +391,8 @@ button:hover{
 .cal-grid .day.start,
 .cal-grid .day.end{
   background:#cfe5c3;
-  font-weight:800;
-  color:#245414
+  color:#245414;
+  font-weight:800
 }
 
 .cal-grid .day.empty{
@@ -608,10 +617,20 @@ button:hover{
   .cal-grid div{
     padding:7px 2px;
     font-size:12px;
+    min-width:0;
   }
 
   .cal-grid .day{
     min-height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .cal-grid .day span{
+    display:block;
+    width:100%;
+    text-align:center;
   }
 
   .content{
@@ -1133,7 +1152,6 @@ How Does This Date Calculator Work?
 Use this Date Calculator to find the number of days between two dates, calculate business days, or add and subtract days, weeks, months, and years from a starting date.
 </p>
 
-
 <h2>
 Calculate Days Between Two Dates
 </h2>
@@ -1141,7 +1159,6 @@ Calculate Days Between Two Dates
 <p>
 Enter a start date and an end date. The calculator shows the exact calendar-day difference, a weeks-and-days breakdown, and equivalent time units. You can include the end date when needed.
 </p>
-
 
 <h2>
 Add or Subtract Days, Weeks, Months, or Years
@@ -1151,7 +1168,6 @@ Add or Subtract Days, Weeks, Months, or Years
 Choose a starting date, enter an amount, select Days, Weeks, Months, or Years, and choose Add or Subtract. The calculator returns the resulting date and weekday. Month-end dates are handled safely.
 </p>
 
-
 <h2>
 Business Days Calculator — Exclude Weekends &amp; Holidays
 </h2>
@@ -1159,7 +1175,6 @@ Business Days Calculator — Exclude Weekends &amp; Holidays
 <p>
 Business days normally mean Monday through Friday. Saturdays and Sundays are excluded, and you can also exclude public holidays using a preset or your own holiday dates.
 </p>
-
 
 <h2>
 Frequently Asked Questions
@@ -1176,7 +1191,6 @@ Enter the start and end dates to calculate their calendar-day difference. You ca
 
 </details>
 
-
 <details>
 <summary>
 How do I calculate a date 30 days from today?
@@ -1187,7 +1201,6 @@ Use Add / Subtract mode, enter today's date as the starting date, choose 30 Days
 </p>
 
 </details>
-
 
 <details>
 <summary>
@@ -1200,7 +1213,6 @@ Use Business Days mode. Saturdays and Sundays are excluded, and you can enter ad
 
 </details>
 
-
 <details>
 <summary>
 Does the calculator include public holidays?
@@ -1212,7 +1224,6 @@ You can choose a holiday preset or enter custom holiday dates. Public holidays v
 
 </details>
 
-
 <details>
 <summary>
 Can I add or subtract months and years?
@@ -1223,7 +1234,6 @@ Yes. Add / Subtract mode supports days, weeks, months, and years, with end-of-mo
 </p>
 
 </details>
-
 
 <h2>
 Related Calculators
@@ -1557,7 +1567,7 @@ function calculateAddSubtract(){
 
   }
 
-  /* FIX: Empty amount validation */
+  /* Empty amount validation */
 
   if($("amount").value.trim()===""){
 
@@ -1889,11 +1899,7 @@ function calculateBusiness(){
   }
 
 
-  /*
-    FIX:
-    Count only holidays that actually
-    fall inside the selected date range.
-  */
+  /* Count only holidays inside selected range */
 
   const holidayCount=
     [...holidays].filter(h=>{
@@ -1954,19 +1960,30 @@ function calculateBusiness(){
 }
 
 
+/*
+  FIXED CALENDAR RENDERING
+  Creates every date individually.
+*/
+
 function renderCalendar(start,end){
 
-  const month=
+  const year=
+    start.getFullYear();
+
+  const monthIndex=
+    start.getMonth();
+
+  const firstDay=
     new Date(
-      start.getFullYear(),
-      start.getMonth(),
+      year,
+      monthIndex,
       1
     );
 
-  const last=
+  const lastDay=
     new Date(
-      month.getFullYear(),
-      month.getMonth()+1,
+      year,
+      monthIndex+1,
       0
     );
 
@@ -1974,7 +1991,7 @@ function renderCalendar(start,end){
   let html=
     '<div class="cal-head">'+
     '<span>'+
-    month.toLocaleDateString(
+    firstDay.toLocaleDateString(
       "en-US",
       {
         month:"long",
@@ -1982,11 +1999,14 @@ function renderCalendar(start,end){
       }
     )+
     '</span>'+
-    '</div>'+
+    '</div>';
+
+
+  html+=
     '<div class="cal-grid">';
 
 
-  [
+  const weekdays=[
     "Sun",
     "Mon",
     "Tue",
@@ -1994,63 +2014,116 @@ function renderCalendar(start,end){
     "Thu",
     "Fri",
     "Sat"
-  ].forEach(x=>{
+  ];
+
+
+  weekdays.forEach(function(dayName){
 
     html+=
       '<div class="dow">'+
-      x+
-      "</div>";
+      dayName+
+      '</div>';
 
   });
 
 
+  /* Empty cells before first date */
+
   for(
     let i=0;
-    i<month.getDay();
+    i<firstDay.getDay();
     i++
   ){
 
     html+=
-      '<div class="day empty"></div>';
+      '<div class="day empty">&nbsp;</div>';
 
   }
 
 
+  /* Create every date */
+
   for(
     let day=1;
-    day<=last.getDate();
+    day<=lastDay.getDate();
     day++
   ){
 
-    const cur=
+    const currentDate=
       new Date(
-        month.getFullYear(),
-        month.getMonth(),
+        year,
+        monthIndex,
         day
       );
 
 
-    const inRange=
-      cur>=start&&
-      cur<=end;
+    const currentISO=
+      isoDate(currentDate);
 
-    const isStart=
-      isoDate(cur)===
+    const startISO=
       isoDate(start);
 
-    const isEnd=
-      isoDate(cur)===
+    const endISO=
       isoDate(end);
 
 
+    const isInRange=
+      currentDate>=start&&
+      currentDate<=end;
+
+    const isStart=
+      currentISO===startISO;
+
+    const isEnd=
+      currentISO===endISO;
+
+
+    let classes="day";
+
+
+    if(isInRange){
+      classes+=" range";
+    }
+
+    if(isStart){
+      classes+=" start";
+    }
+
+    if(isEnd){
+      classes+=" end";
+    }
+
+
     html+=
-      '<div class="day '+
-      (inRange?"range ":"")+
-      (isStart?"start ":"")+
-      (isEnd?"end":"")+
+      '<div class="'+
+      classes+
       '">'+
+      '<span>'+
       day+
-      "</div>";
+      '</span>'+
+      '</div>';
+
+  }
+
+
+  /* Complete final week */
+
+  const totalCells=
+    firstDay.getDay()+
+    lastDay.getDate();
+
+  const remaining=
+    (7-(totalCells%7))%7;
+
+
+  for(
+    let i=0;
+    i<remaining;
+    i++
+  ){
+
+    html+=
+      '<div class="day empty">&nbsp;</div>';
 
   }
 
