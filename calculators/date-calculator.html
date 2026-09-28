@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Date Calculator - Days Between Dates | ZammioHub</title>
+<meta name="description" content="Use this free Date Calculator to find days between two dates or add and subtract days from a date. Get accurate days, weeks, months, and years results.">
+<link rel="canonical" href="https://zammiohub.com/date-calculator">
+<style>
+:root{--p:#17608a;--a:#4b8f2b;--t:#27313a;--m:#66727d;--b:#d9e1e6}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--t);line-height:1.65;background:#fff}
+.wrap{max-width:920px;margin:auto;padding:30px 24px 70px}
+.crumb{color:var(--p);font-size:16px;margin-bottom:28px}
+.crumb a{color:var(--p);text-decoration:none}
+.crumb span{margin:0 7px;color:#7b8790}
+h1{font-size:46px;line-height:1.15;color:#124c70;margin:0 0 14px}
+.intro{font-size:19px;color:#37424b;margin:0 0 26px}
+.card{border:1px solid var(--b);border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(23,54,72,.08)}
+.head{background:var(--p);color:white;padding:18px 24px;font-size:20px;font-weight:700}
+.tabs{display:flex;border-bottom:1px solid var(--b);background:#fff}
+.tab{flex:1;border:0;border-radius:0;background:#fff;color:#27313a;padding:15px 12px;font-size:16px;font-weight:700;cursor:pointer}
+.tab.active{color:var(--p);box-shadow:inset 0 -3px 0 var(--p)}
+.form{padding:28px;background:#f7f9fa}
+.field{margin-bottom:18px}
+label{display:block;font-size:18px;font-weight:700;margin-bottom:7px;color:#263b48}
+input,select,textarea{width:100%;padding:14px;border:1px solid #b9c5cc;border-radius:7px;font-size:17px;background:#fff}
+.help{font-size:14px;color:var(--m);margin-top:5px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.mode{display:none}.mode.active{display:block}.check{display:flex;align-items:center;gap:9px;margin:4px 0 18px;font-size:16px;color:#37424b}
+.check input{width:auto;padding:0}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+button{border:0;border-radius:7px;padding:13px 22px;font-size:16px;font-weight:700;cursor:pointer}
+.calc{background:var(--a);color:white}
+.clear{background:#e4e8eb;color:#27313a}
+.err{color:#a12626;font-weight:700;margin-top:10px}
+.result{display:none;margin-top:24px;border:1px solid var(--b);border-radius:10px;overflow:hidden}
+.rhead{background:var(--a);color:white;padding:17px 22px;font-size:21px;font-weight:700}
+.rbody{padding:24px}
+.big{text-align:center;color:#123f67;font-size:38px;font-weight:800}
+.sub{text-align:center;color:var(--m);margin:5px 0 20px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric{background:#f7f9fa;border:1px solid var(--b);border-radius:8px;padding:15px}
+.metric b{display:block;color:var(--m);font-size:14px}
+.metric span{font-size:20px;font-weight:700}
+.content{margin-top:42px}
+.content h2{font-size:30px;color:#263b48;margin:34px 0 10px}
+.content h3{font-size:22px;margin:27px 0 7px}
+.content p{font-size:18px;margin:0 0 12px}
+.note{font-size:15px!important;color:var(--m)}
+.mode{display:none}
+.mode.active{display:block}
+@media(max-width:600px){
+.wrap{padding:22px 16px 55px}
+h1{font-size:38px}
+.two,.three,.metrics{grid-template-columns:1fr}
+.tab{font-size:14px;padding:13px 8px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="crumb">
+<a href="/">Home</a><span>›</span><a href="/calculators/">All Calculators</a><span>›</span>Date Calculator
+</div>
+
+<h1>Date Calculator</h1>
+<p class="intro">Calculate calendar days and business days between dates, or add and subtract days, weeks, months, and years from a specific date.</p>
+
+<section class="card">
+<div class="head">Date Calculator</div>
+
+<div class="tabs" role="tablist" aria-label="Date calculator modes">
+<button class="tab active" id="betweenTab" type="button" role="tab" aria-selected="true" onclick="showMode('between')">Days Between Dates</button>
+<button class="tab" id="addTab" type="button" role="tab" aria-selected="false" onclick="showMode('add')">Add / Subtract Days</button><button class="tab" id="businessTab" type="button" role="tab" aria-selected="false" onclick="showMode('business')">Business Days</button>
+</div>
+
+<div class="form">
+
+<div id="betweenMode" class="mode active">
+<div class="two">
+<div class="field">
+<label for="start">Start Date</label>
+<input id="start" type="date">
+</div>
+<div class="field">
+<label for="end">End Date</label>
+<input id="end" type="date">
+</div>
+</div>
+
+<label class="check">
+<input id="includeEnd" type="checkbox">
+<span>Include end date in the result</span>
+</label>
+
+<div class="actions">
+<button class="calc" type="button" onclick="calculateBetween()">Calculate</button>
+<button class="clear" type="button" onclick="clearCalculator()">Clear</button>
+</div>
+</div>
+
+<div id="addMode" class="mode">
+<div class="field"><label for="baseDate">Starting Date</label><input id="baseDate" type="date"></div>
+<div class="three"><div class="field"><label for="amount">Amount</label><input id="amount" type="number" min="0" step="1" placeholder="e.g. 30"></div><div class="field"><label for="unit">Unit</label><select id="unit"><option value="days">Days</option><option value="weeks">Weeks</option><option value="months">Months</option><option value="years">Years</option></select></div><div class="field"><label for="direction">Operation</label><select id="direction"><option value="add">Add</option><option value="subtract">Subtract</option></select></div></div>
+
+<div class="actions">
+<button class="calc" type="button" onclick="calculateAddSubtract()">Calculate</button>
+<button class="clear" type="button" onclick="clearCalculator()">Clear</button>
+</div>
+</div>
+
+<div id="businessMode" class="mode">
+<div class="two"><div class="field"><label for="workStart">Start Date</label><input id="workStart" type="date"></div><div class="field"><label for="workEnd">End Date</label><input id="workEnd" type="date"></div></div>
+<label class="check"><input id="workIncludeEnd" type="checkbox"><span>Include end date if it is a working day</span></label>
+<div class="field"><label for="holidays">Public Holidays (optional)</label><textarea id="holidays" placeholder="2026-12-25, 2027-01-01"></textarea><div class="help">Saturday and Sunday are excluded. Enter your own holiday dates because public holidays vary by country and year.</div></div>
+<div class="actions"><button class="calc" type="button" onclick="calculateBusiness()">Calculate</button><button class="clear" type="button" onclick="clearCalculator()">Clear</button></div>
+</div>
+
+<div id="err" class="err" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="result" class="result" aria-live="polite">
+<div class="rhead">Your Result</div>
+<div class="rbody">
+<div id="answer" class="big"></div>
+<div id="sub" class="sub"></div>
+<div id="metrics" class="metrics"></div>
+</div>
+</section>
+
+<section class="content">
+<h2>How Does This Date Calculator Work?</h2>
+<p>Use the Date Calculator to find the number of days between two dates, or add and subtract a specific number of days from a starting date.</p>
+
+<h2>Calculate Days Between Two Dates</h2>
+<p>Enter a start date and an end date. The calculator shows the total number of calendar days, along with equivalent weeks, months, and years.</p>
+
+<h2>Add or Subtract Days, Weeks, Months, or Years</h2>
+<p>Choose a starting date, enter an amount, select Days, Weeks, Months, or Years, and choose Add or Subtract. The calculator gives you the resulting date and weekday.</p>
+
+<h2>Frequently Asked Questions About Date Calculations</h2>
+
+<h3>How many days are between two dates?</h3>
+<p>Enter the start and end dates to calculate their calendar-day difference. You can also choose to include the end date in the result.</p>
+
+<h3>Can I calculate weeks between dates?</h3>
+<p>Yes. The result includes the equivalent number of weeks based on the calculated number of calendar days.</p>
+
+<h3>What is the difference between calendar days and business days?</h3>
+<p>Calendar days include every day between two dates, including weekends. Business days usually exclude weekends, and holidays may also be excluded depending on the calculation.</p>
+
+<h3>Can I add days to a date?</h3>
+<p>Yes. Use the Add / Subtract Days mode, enter a starting date and the number of days, and choose Add Days.</p>
+
+<h3>Can I subtract days from a date?</h3>
+<p>Yes. Select Subtract Days and enter the number of days you want to subtract from the starting date.</p>
+<h2>Calculate Business Days</h2><p>Business days normally mean Monday through Friday. Saturdays and Sundays are excluded, and you can enter custom public holidays to exclude them too.</p>
+<h2>Frequently Asked Questions About Date Calculations</h2><h3>How many days are between two dates?</h3><p>Enter the start and end dates to calculate the calendar-day difference. You can optionally include the end date.</p><h3>How do I calculate a date 30 days from today?</h3><p>Use Add / Subtract, enter today as the starting date, choose 30 Days, and select Add.</p><h3>How many business days are between two dates?</h3><p>Use Business Days mode. Saturdays and Sundays are excluded, and you can enter additional holiday dates.</p><h3>Does the calculator include public holidays?</h3><p>Public holidays vary by country and year, so they are not assumed automatically. Enter the dates that apply to you.</p></section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+
+function formatDate(date){
+return date.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+}
+
+function parseDate(value){
+return new Date(value+"T00:00:00");
+}
+
+function showMode(mode){["between","add","business"].forEach(x=>{$(x+"Mode").classList.toggle("active",x===mode);$(x+"Tab").classList.toggle("active",x===mode);$(x+"Tab").setAttribute("aria-selected",x===mode)});$("err").textContent="";$("result").style.display="none";}
+
+function calculateBetween(){
+$("err").textContent="";
+if(!$("start").value||!$("end").value){
+$("err").textContent="Please select both dates.";
+return;
+}
+
+const a=parseDate($("start").value);
+const b=parseDate($("end").value);
+
+if(Number.isNaN(a.getTime())||Number.isNaN(b.getTime())){
+$("err").textContent="Please enter valid dates.";
+return;
+}
+
+let days=Math.round((b-a)/86400000);
+
+if(days<0){
+$("err").textContent="End date must be on or after the start date.";
+return;
+}
+
+if($("includeEnd").checked) days+=1;
+
+const weeks=days/7;
+const years=days/365.2425;
+
+$("answer").textContent=days.toLocaleString()+" "+(days===1?"day":"days");
+$("sub").textContent=$("includeEnd").checked?"Calendar days, including the end date":"Calendar days between the selected dates";
+$("metrics").innerHTML=
+`<div class="metric"><b>Weeks</b><span>${weeks.toFixed(2)}</span></div>
+<div class="metric"><b>Approx. Months</b><span>${(days/30.436875).toFixed(2)}</span></div>
+<div class="metric"><b>Approx. Years</b><span>${years.toFixed(2)}</span></div>`;
+$("result").style.display="block";
+}
+
+function calculateAddSubtract(){$("err").textContent="";if(!$("baseDate").value){$("err").textContent="Please select a starting date.";return}const amount=Number($("amount").value);if(!Number.isInteger(amount)||amount<0){$("err").textContent="Please enter a whole number of 0 or greater.";return}const d=parseDate($("baseDate").value),sign=$("direction").value==="add"?1:-1,unit=$("unit").value,original=d.getDate();if(unit==="days")d.setDate(d.getDate()+sign*amount);else if(unit==="weeks")d.setDate(d.getDate()+sign*amount*7);else{d.setDate(1);if(unit==="months")d.setMonth(d.getMonth()+sign*amount);else d.setFullYear(d.getFullYear()+sign*amount);const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(original,last));}answer.textContent=formatDate(d);sub.textContent=amount+" "+unit+(amount===1?"":"s")+" "+($("direction").value==="add"?"added to":"subtracted from")+" the starting date";metrics.innerHTML=`<div class="metric"><b>Result Date</b><span>${d.toLocaleDateString("en-US")}</span></div><div class="metric"><b>Weekday</b><span>${d.toLocaleDateString("en-US",{weekday:"long"})}</span></div><div class="metric"><b>ISO Date</b><span>${isoDate(d)}</span></div>`;result.style.display="block";}
+
+
+function calculateBusiness(){$("err").textContent="";if(!$("workStart").value||!$("workEnd").value){$("err").textContent="Please select both dates.";return}const a=parseDate($("workStart").value),b=parseDate($("workEnd").value);if(b<a){$("err").textContent="End date must be on or after the start date.";return}const holidays=new Set($("holidays").value.split(/[\s,]+/).map(x=>x.trim()).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x)));let business=0,d=new Date(a),calendar=Math.round((b-a)/86400000)+1;while(d<=b){const wd=d.getDay()!==0&&d.getDay()!==6&&!holidays.has(isoDate(d));if(wd)business++;d.setDate(d.getDate()+1);}if(!$("workIncludeEnd").checked&&isWorkday(b,holidays))business--;if(business<0)business=0;answer.textContent=business+" "+(business===1?"business day":"business days");sub.textContent="Monday–Friday, excluding weekends and entered holidays";metrics.innerHTML=`<div class="metric"><b>Calendar Days</b><span>${calendar}</span></div><div class="metric"><b>Business Days</b><span>${business}</span></div><div class="metric"><b>Holiday Dates</b><span>${holidays.size}</span></div>`;result.style.display="block";}
+function isWorkday(d,holidays){return d.getDay()!==0&&d.getDay()!==6&&!holidays.has(isoDate(d));}
+function clearCalculator(){
+$("start").value="";$("end").value="";$("includeEnd").checked=false;$("baseDate").value="";$("amount").value="";$("workStart").value="";$("workEnd").value="";$("holidays").value="";$("workIncludeEnd").checked=false;
+$("direction").value="add";$("unit").value="days";
+$("err").textContent="";
+$("result").style.display="none";
+}
+</script>
+</body>
+</html>
