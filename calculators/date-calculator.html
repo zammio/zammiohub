@@ -3,79 +3,470 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Date Calculator - Days Between Dates, Business Days & Date Add/Subtract | ZammioHub</title>
+
 <meta name="description" content="Use ZammioHub's free Date Calculator to calculate days between dates, business days, or add and subtract days, weeks, months, and years. Includes holidays, quick presets, sharing, and a mini calendar.">
+
 <meta name="robots" content="index,follow">
+
 <link rel="canonical" href="https://zammiohub.com/calculators/date-calculator">
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="Date Calculator - Days Between Dates & Business Days | ZammioHub">
 <meta property="og:description" content="Calculate days between dates, business days, or add and subtract days, weeks, months, and years with ZammioHub's free Date Calculator.">
 <meta property="og:url" content="https://zammiohub.com/calculators/date-calculator">
 <meta property="og:site_name" content="ZammioHub">
+
 <style>
-:root{--p:#17608a;--p2:#124c70;--a:#4b8f2b;--t:#27313a;--m:#66727d;--b:#d9e1e6;--soft:#f7f9fa;--danger:#a12626}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--t);line-height:1.65;background:#fff}
-.wrap{max-width:920px;margin:auto;padding:30px 24px 30px}
-.crumb{color:var(--p);font-size:16px;margin-bottom:28px}
-.crumb a{color:var(--p);text-decoration:none}.crumb a:hover{text-decoration:underline}.crumb span{margin:0 7px;color:#7b8790}
-h1{font-size:46px;line-height:1.15;color:var(--p2);margin:0 0 14px}
-.intro{font-size:19px;color:#37424b;margin:0 0 26px}
-.card{border:1px solid var(--b);border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(23,54,72,.08)}
-.head{background:var(--p);color:#fff;padding:18px 24px;font-size:20px;font-weight:700}
-.tabs{display:flex;border-bottom:1px solid var(--b);background:#fff}
-.tab{flex:1;border:0;border-radius:0;background:#fff;color:#27313a;padding:15px 10px;font-size:16px;font-weight:700;cursor:pointer}
-.tab.active{color:var(--p);box-shadow:inset 0 -3px 0 var(--p)}
-.form{padding:28px;background:var(--soft)}
-.field{margin-bottom:18px}
-label{display:block;font-size:18px;font-weight:700;margin-bottom:7px;color:#263b48}
-input,select,textarea{width:100%;padding:14px;border:1px solid #b9c5cc;border-radius:7px;font-size:17px;background:#fff}
-input:focus,select:focus,textarea:focus{outline:2px solid rgba(23,96,138,.18);border-color:var(--p)}
-.help{font-size:14px;color:var(--m);margin-top:5px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.mode{display:none}.mode.active{display:block}
-.check{display:flex;align-items:center;gap:9px;margin:4px 0 18px;font-size:16px;color:#37424b}
-.check input{width:auto;padding:0}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-button{border:0;border-radius:7px;padding:13px 22px;font-size:16px;font-weight:700;cursor:pointer}
-.calc{background:var(--a);color:#fff}.clear{background:#e4e8eb;color:#27313a}
-.secondary{background:#eaf1f5;color:var(--p2)}
-button:hover{filter:brightness(.97)}
-.err{color:var(--danger);font-weight:700;margin-top:10px;min-height:24px}
-.presets{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 20px}
-.preset{background:#fff;border:1px solid #c6d1d7;color:var(--p2);padding:9px 13px;font-size:14px}
-.result{display:none;margin-top:24px;border:1px solid var(--b);border-radius:10px;overflow:hidden}
-.rhead{background:var(--a);color:#fff;padding:17px 22px;font-size:21px;font-weight:700}
-.rbody{padding:24px}
-.big{text-align:center;color:#123f67;font-size:38px;font-weight:800}
-.sub{text-align:center;color:var(--m);margin:5px 0 20px}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.metric{background:var(--soft);border:1px solid var(--b);border-radius:8px;padding:15px}
-.metric b{display:block;color:var(--m);font-size:14px}.metric span{font-size:20px;font-weight:700;word-break:break-word}
-.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;justify-content:center}
-.mini-title{font-size:19px;font-weight:700;color:var(--p2);margin:28px 0 10px}
-.calendar{border:1px solid var(--b);border-radius:10px;overflow:hidden;background:#fff}
-.cal-head{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:var(--soft);font-weight:700}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
-.cal-grid div{padding:8px 3px;text-align:center;border-right:1px solid #eef1f3;border-bottom:1px solid #eef1f3;font-size:14px}
-.cal-grid .dow{font-weight:700;color:var(--m);background:#fafbfc}
-.cal-grid .day.range{background:#eaf4e4}.cal-grid .day.start,.cal-grid .day.end{background:#cfe5c3;font-weight:800;color:#245414}
-.cal-grid .day.empty{background:#fff}
-.content{margin-top:42px}
-.content h2{font-size:30px;color:#263b48;margin:34px 0 10px}
-.content h3{font-size:21px;margin:0}
-.content p{font-size:18px;margin:0 0 14px}
-.content details{border-bottom:1px solid var(--b);padding:15px 0}
-.content summary{cursor:pointer;font-size:19px;font-weight:700;color:#263b48}
-.related{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
-.related a{display:block;border:1px solid var(--b);border-radius:8px;padding:13px 15px;color:var(--p2);text-decoration:none;font-weight:700;background:var(--soft)}
-.related a:hover{border-color:var(--p);background:#fff}
-.site-footer{border-top:1px solid var(--b);margin-top:48px;padding:28px 0 5px;color:#7a858d}
-.site-footer strong{display:block;font-size:18px;color:#66727d;margin-bottom:4px}
-.site-footer p{margin:0;font-size:15px}
+
+:root{
+  --p:#17608a;
+  --p2:#124c70;
+  --a:#4b8f2b;
+  --t:#27313a;
+  --m:#66727d;
+  --b:#d9e1e6;
+  --soft:#f7f9fa;
+  --danger:#a12626
+}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--t);
+  line-height:1.65;
+  background:#fff
+}
+
+.wrap{
+  max-width:920px;
+  margin:auto;
+  padding:30px 24px 30px
+}
+
+.crumb{
+  color:var(--p);
+  font-size:16px;
+  margin-bottom:28px
+}
+
+.crumb a{
+  color:var(--p);
+  text-decoration:none
+}
+
+.crumb a:hover{
+  text-decoration:underline
+}
+
+.crumb span{
+  margin:0 7px;
+  color:#7b8790
+}
+
+h1{
+  font-size:46px;
+  line-height:1.15;
+  color:var(--p2);
+  margin:0 0 14px
+}
+
+.intro{
+  font-size:19px;
+  color:#37424b;
+  margin:0 0 26px
+}
+
+.card{
+  border:1px solid var(--b);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(23,54,72,.08)
+}
+
+.head{
+  background:var(--p);
+  color:#fff;
+  padding:18px 24px;
+  font-size:20px;
+  font-weight:700
+}
+
+.tabs{
+  display:flex;
+  border-bottom:1px solid var(--b);
+  background:#fff
+}
+
+.tab{
+  flex:1;
+  border:0;
+  border-radius:0;
+  background:#fff;
+  color:#27313a;
+  padding:15px 10px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer
+}
+
+.tab.active{
+  color:var(--p);
+  box-shadow:inset 0 -3px 0 var(--p)
+}
+
+.form{
+  padding:28px;
+  background:var(--soft)
+}
+
+.field{
+  margin-bottom:18px
+}
+
+label{
+  display:block;
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:7px;
+  color:#263b48
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid #b9c5cc;
+  border-radius:7px;
+  font-size:17px;
+  background:#fff
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:2px solid rgba(23,96,138,.18);
+  border-color:var(--p)
+}
+
+.help{
+  font-size:14px;
+  color:var(--m);
+  margin-top:5px
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px
+}
+
+.three{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:16px
+}
+
+.mode{
+  display:none
+}
+
+.mode.active{
+  display:block
+}
+
+.check{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:4px 0 18px;
+  font-size:16px;
+  color:#37424b
+}
+
+.check input{
+  width:auto;
+  padding:0
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap
+}
+
+button{
+  border:0;
+  border-radius:7px;
+  padding:13px 22px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer
+}
+
+.calc{
+  background:var(--a);
+  color:#fff
+}
+
+.clear{
+  background:#e4e8eb;
+  color:#27313a
+}
+
+.secondary{
+  background:#eaf1f5;
+  color:var(--p2)
+}
+
+button:hover{
+  filter:brightness(.97)
+}
+
+.err{
+  color:var(--danger);
+  font-weight:700;
+  margin-top:10px;
+  min-height:24px
+}
+
+.presets{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:4px 0 20px
+}
+
+.preset{
+  background:#fff;
+  border:1px solid #c6d1d7;
+  color:var(--p2);
+  padding:9px 13px;
+  font-size:14px
+}
+
+.result{
+  display:none;
+  margin-top:24px;
+  border:1px solid var(--b);
+  border-radius:10px;
+  overflow:hidden
+}
+
+.rhead{
+  background:var(--a);
+  color:#fff;
+  padding:17px 22px;
+  font-size:21px;
+  font-weight:700
+}
+
+.rbody{
+  padding:24px
+}
+
+.big{
+  text-align:center;
+  color:#123f67;
+  font-size:38px;
+  font-weight:800
+}
+
+.sub{
+  text-align:center;
+  color:var(--m);
+  margin:5px 0 20px
+}
+
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
+
+.metric{
+  background:var(--soft);
+  border:1px solid var(--b);
+  border-radius:8px;
+  padding:15px
+}
+
+.metric b{
+  display:block;
+  color:var(--m);
+  font-size:14px
+}
+
+.metric span{
+  font-size:20px;
+  font-weight:700;
+  word-break:break-word
+}
+
+.result-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+  justify-content:center
+}
+
+.mini-title{
+  font-size:19px;
+  font-weight:700;
+  color:var(--p2);
+  margin:28px 0 10px
+}
+
+.calendar{
+  border:1px solid var(--b);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff
+}
+
+.cal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 15px;
+  background:var(--soft);
+  font-weight:700
+}
+
+.cal-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr)
+}
+
+/* Calendar cells fixed for clear date visibility */
+.cal-grid div{
+  padding:8px 3px;
+  text-align:center;
+  border-right:1px solid #eef1f3;
+  border-bottom:1px solid #eef1f3;
+  font-size:14px
+}
+
+.cal-grid .dow{
+  font-weight:700;
+  color:var(--m);
+  background:#fafbfc
+}
+
+.cal-grid .day{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  color:var(--t);
+  background:#fff;
+  font-weight:600
+}
+
+.cal-grid .day.range{
+  background:#eaf4e4;
+  color:var(--t)
+}
+
+.cal-grid .day.start,
+.cal-grid .day.end{
+  background:#cfe5c3;
+  font-weight:800;
+  color:#245414
+}
+
+.cal-grid .day.empty{
+  background:#fff;
+  color:transparent
+}
+
+.content{
+  margin-top:42px
+}
+
+.content h2{
+  font-size:30px;
+  color:#263b48;
+  margin:34px 0 10px
+}
+
+.content h3{
+  font-size:21px;
+  margin:0
+}
+
+.content p{
+  font-size:18px;
+  margin:0 0 14px
+}
+
+.content details{
+  border-bottom:1px solid var(--b);
+  padding:15px 0
+}
+
+.content summary{
+  cursor:pointer;
+  font-size:19px;
+  font-weight:700;
+  color:#263b48
+}
+
+.related{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:12px
+}
+
+.related a{
+  display:block;
+  border:1px solid var(--b);
+  border-radius:8px;
+  padding:13px 15px;
+  color:var(--p2);
+  text-decoration:none;
+  font-weight:700;
+  background:var(--soft)
+}
+
+.related a:hover{
+  border-color:var(--p);
+  background:#fff
+}
+
+.site-footer{
+  border-top:1px solid var(--b);
+  margin-top:48px;
+  padding:28px 0 5px;
+  color:#7a858d
+}
+
+.site-footer strong{
+  display:block;
+  font-size:18px;
+  color:#66727d;
+  margin-bottom:4px
+}
+
+.site-footer p{
+  margin:0;
+  font-size:15px
+}
+
 @media(max-width:700px){
+
   .wrap{
     padding:20px 16px 26px;
   }
@@ -219,6 +610,10 @@ button:hover{filter:brightness(.97)}
     font-size:12px;
   }
 
+  .cal-grid .day{
+    min-height:34px;
+  }
+
   .content{
     margin-top:30px;
   }
@@ -273,322 +668,1674 @@ button:hover{filter:brightness(.97)}
     font-size:14px;
     line-height:1.5;
   }
+
 }
+
 </style>
+
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"FAQPage",
- "mainEntity":[
-  {"@type":"Question","name":"How many days are between two dates?","acceptedAnswer":{"@type":"Answer","text":"Enter the start and end dates to calculate the calendar-day difference. You can optionally include the end date."}},
-  {"@type":"Question","name":"How do I calculate a date 30 days from today?","acceptedAnswer":{"@type":"Answer","text":"Use Add / Subtract mode, enter today's date as the starting date, choose 30 Days, and select Add."}},
-  {"@type":"Question","name":"How many business days are between two dates?","acceptedAnswer":{"@type":"Answer","text":"Use Business Days mode. Saturdays and Sundays are excluded, and you can enter additional holiday dates to exclude."}},
-  {"@type":"Question","name":"Does the calculator include public holidays?","acceptedAnswer":{"@type":"Answer","text":"You can choose a holiday preset or enter custom holiday dates. Public holidays can vary by country, region, and year."}},
-  {"@type":"Question","name":"Can I add or subtract months and years?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add / Subtract mode supports days, weeks, months, and years, with end-of-month dates handled safely."}}
- ]
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"How many days are between two dates?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Enter the start and end dates to calculate the calendar-day difference. You can optionally include the end date."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How do I calculate a date 30 days from today?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Use Add / Subtract mode, enter today's date as the starting date, choose 30 Days, and select Add."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How many business days are between two dates?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Use Business Days mode. Saturdays and Sundays are excluded, and you can enter additional holiday dates to exclude."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Does the calculator include public holidays?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"You can choose a holiday preset or enter custom holiday dates. Public holidays can vary by country, region, and year."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I add or subtract months and years?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. Add / Subtract mode supports days, weeks, months, and years, with end-of-month dates handled safely."
+      }
+    }
+  ]
 }
 </script>
+
 </head>
+
 <body>
+
 <main class="wrap">
-<div class="crumb"><a href="/">Home</a><span>›</span><a href="/calculators/">All Calculators</a><span>›</span>Date Calculator</div>
+
+<div class="crumb">
+  <a href="/">Home</a>
+  <span>›</span>
+  <a href="/calculators/">All Calculators</a>
+  <span>›</span>
+  Date Calculator
+</div>
 
 <h1>Date Calculator — Days Between Dates &amp; Business Days</h1>
-<p class="intro">Calculate calendar days and business days between dates, or add and subtract days, weeks, months, and years from a specific date.</p>
+
+<p class="intro">
+  Calculate calendar days and business days between dates, or add and subtract days, weeks, months, and years from a specific date.
+</p>
 
 <section class="card">
-<div class="head">Date Calculator</div>
+
+<div class="head">
+  Date Calculator
+</div>
+
 <div class="tabs" role="tablist" aria-label="Date calculator modes">
-<button class="tab active" id="betweenTab" type="button" role="tab" aria-selected="true" onclick="showMode('between')">Days Between Dates</button>
-<button class="tab" id="addTab" type="button" role="tab" aria-selected="false" onclick="showMode('add')">Add / Subtract</button>
-<button class="tab" id="businessTab" type="button" role="tab" aria-selected="false" onclick="showMode('business')">Business Days</button>
+
+<button
+  class="tab active"
+  id="betweenTab"
+  type="button"
+  role="tab"
+  aria-selected="true"
+  onclick="showMode('between')">
+  Days Between Dates
+</button>
+
+<button
+  class="tab"
+  id="addTab"
+  type="button"
+  role="tab"
+  aria-selected="false"
+  onclick="showMode('add')">
+  Add / Subtract
+</button>
+
+<button
+  class="tab"
+  id="businessTab"
+  type="button"
+  role="tab"
+  aria-selected="false"
+  onclick="showMode('business')">
+  Business Days
+</button>
+
 </div>
 
 <div class="form">
+
+<!-- DAYS BETWEEN -->
+
 <div id="betweenMode" class="mode active">
+
 <div class="two">
-<div class="field"><label for="start">Start Date</label><input id="start" type="date"></div>
-<div class="field"><label for="end">End Date</label><input id="end" type="date"></div>
+
+<div class="field">
+<label for="start">Start Date</label>
+<input id="start" type="date">
 </div>
-<label class="check"><input id="includeEnd" type="checkbox"><span>Include end date in the result</span></label>
-<div class="actions"><button class="calc" type="button" onclick="calculateBetween()">Calculate</button><button class="clear" type="button" onclick="clearCalculator()">Clear</button></div>
+
+<div class="field">
+<label for="end">End Date</label>
+<input id="end" type="date">
 </div>
+
+</div>
+
+<label class="check">
+<input id="includeEnd" type="checkbox">
+<span>Include end date in the result</span>
+</label>
+
+<div class="actions">
+
+<button
+  class="calc"
+  type="button"
+  onclick="calculateBetween()">
+  Calculate
+</button>
+
+<button
+  class="clear"
+  type="button"
+  onclick="clearCalculator()">
+  Clear
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ADD / SUBTRACT -->
 
 <div id="addMode" class="mode">
-<div class="field"><label for="baseDate">Starting Date</label><input id="baseDate" type="date"></div>
+
+<div class="field">
+<label for="baseDate">Starting Date</label>
+<input id="baseDate" type="date">
+</div>
+
 <div class="three">
-<div class="field"><label for="amount">Amount</label><input id="amount" type="number" min="0" step="1" placeholder="e.g. 30"></div>
-<div class="field"><label for="unit">Unit</label><select id="unit"><option value="days">Days</option><option value="weeks">Weeks</option><option value="months">Months</option><option value="years">Years</option></select></div>
-<div class="field"><label for="direction">Operation</label><select id="direction"><option value="add">Add</option><option value="subtract">Subtract</option></select></div>
+
+<div class="field">
+<label for="amount">Amount</label>
+<input
+  id="amount"
+  type="number"
+  min="0"
+  step="1"
+  placeholder="e.g. 30">
 </div>
+
+<div class="field">
+<label for="unit">Unit</label>
+
+<select id="unit">
+<option value="days">Days</option>
+<option value="weeks">Weeks</option>
+<option value="months">Months</option>
+<option value="years">Years</option>
+</select>
+
+</div>
+
+<div class="field">
+
+<label for="direction">Operation</label>
+
+<select id="direction">
+<option value="add">Add</option>
+<option value="subtract">Subtract</option>
+</select>
+
+</div>
+
+</div>
+
 <div class="presets" aria-label="Quick date presets">
-<button class="preset" type="button" onclick="setAddPreset('today')">Today</button>
-<button class="preset" type="button" onclick="setAddPreset(30)">+30 Days</button>
-<button class="preset" type="button" onclick="setAddPreset(60)">+60 Days</button>
-<button class="preset" type="button" onclick="setAddPreset(90)">+90 Days</button>
-<button class="preset" type="button" onclick="setAddPreset('eom')">End of Month</button>
-<button class="preset" type="button" onclick="setAddPreset('eoy')">End of Year</button>
+
+<button
+  class="preset"
+  type="button"
+  onclick="setAddPreset('today')">
+  Today
+</button>
+
+<button
+  class="preset"
+  type="button"
+  onclick="setAddPreset(30)">
+  +30 Days
+</button>
+
+<button
+  class="preset"
+  type="button"
+  onclick="setAddPreset(60)">
+  +60 Days
+</button>
+
+<button
+  class="preset"
+  type="button"
+  onclick="setAddPreset(90)">
+  +90 Days
+</button>
+
+<button
+  class="preset"
+  type="button"
+  onclick="setAddPreset('eom')">
+  End of Month
+</button>
+
+<button
+  class="preset"
+  type="button"
+  onclick="setAddPreset('eoy')">
+  End of Year
+</button>
+
 </div>
-<div class="actions"><button class="calc" type="button" onclick="calculateAddSubtract()">Calculate</button><button class="clear" type="button" onclick="clearCalculator()">Clear</button></div>
+
+<div class="actions">
+
+<button
+  class="calc"
+  type="button"
+  onclick="calculateAddSubtract()">
+  Calculate
+</button>
+
+<button
+  class="clear"
+  type="button"
+  onclick="clearCalculator()">
+  Clear
+</button>
+
 </div>
+
+</div>
+
+
+<!-- BUSINESS DAYS -->
 
 <div id="businessMode" class="mode">
+
 <div class="two">
-<div class="field"><label for="workStart">Start Date</label><input id="workStart" type="date"></div>
-<div class="field"><label for="workEnd">End Date</label><input id="workEnd" type="date"></div>
-</div>
-<label class="check"><input id="workIncludeEnd" type="checkbox"><span>Include end date if it is a working day</span></label>
+
 <div class="field">
-<label for="holidayCountry">Holiday Preset</label>
-<select id="holidayCountry" onchange="applyHolidayPreset()">
-<option value="">None / Custom</option>
-<option value="PK">Pakistan — common fixed-date holidays</option>
-<option value="US">United States — common fixed-date holidays</option>
-<option value="UK">United Kingdom — common fixed-date holidays</option>
-<option value="CA">Canada — common fixed-date holidays</option>
-<option value="IN">India — common fixed-date holidays</option>
+<label for="workStart">Start Date</label>
+<input id="workStart" type="date">
+</div>
+
+<div class="field">
+<label for="workEnd">End Date</label>
+<input id="workEnd" type="date">
+</div>
+
+</div>
+
+<label class="check">
+<input id="workIncludeEnd" type="checkbox">
+<span>Include end date if it is a working day</span>
+</label>
+
+<div class="field">
+
+<label for="holidayCountry">
+Holiday Preset
+</label>
+
+<select
+  id="holidayCountry"
+  onchange="applyHolidayPreset()">
+
+<option value="">
+None / Custom
+</option>
+
+<option value="PK">
+Pakistan — common fixed-date holidays
+</option>
+
+<option value="US">
+United States — common fixed-date holidays
+</option>
+
+<option value="UK">
+United Kingdom — common fixed-date holidays
+</option>
+
+<option value="CA">
+Canada — common fixed-date holidays
+</option>
+
+<option value="IN">
+India — common fixed-date holidays
+</option>
+
 </select>
-<div class="help">Presets contain common fixed-date holidays. Add regional or variable holidays manually below when needed.</div>
+
+<div class="help">
+Presets contain common fixed-date holidays. Add regional or variable holidays manually below when needed.
 </div>
+
+</div>
+
 <div class="field">
-<label for="holidays">Public Holidays (optional)</label>
-<textarea id="holidays" rows="3" placeholder="2026-12-25, 2027-01-01"></textarea>
-<div class="help">Enter dates in YYYY-MM-DD format, separated by commas or spaces. Saturdays and Sundays are always excluded.</div>
-</div>
-<div class="actions"><button class="calc" type="button" onclick="calculateBusiness()">Calculate</button><button class="clear" type="button" onclick="clearCalculator()">Clear</button></div>
+
+<label for="holidays">
+Public Holidays (optional)
+</label>
+
+<textarea
+  id="holidays"
+  rows="3"
+  placeholder="2026-12-25, 2027-01-01">
+</textarea>
+
+<div class="help">
+Enter dates in YYYY-MM-DD format, separated by commas or spaces. Saturdays and Sundays are always excluded.
 </div>
 
-<div id="err" class="err" aria-live="polite"></div>
 </div>
+
+<div class="actions">
+
+<button
+  class="calc"
+  type="button"
+  onclick="calculateBusiness()">
+  Calculate
+</button>
+
+<button
+  class="clear"
+  type="button"
+  onclick="clearCalculator()">
+  Clear
+</button>
+
+</div>
+
+</div>
+
+<div
+  id="err"
+  class="err"
+  aria-live="polite">
+</div>
+
+</div>
+
 </section>
 
-<section id="result" class="result" aria-live="polite">
-<div class="rhead">Your Result</div>
+
+<!-- RESULT -->
+
+<section
+  id="result"
+  class="result"
+  aria-live="polite">
+
+<div class="rhead">
+  Your Result
+</div>
+
 <div class="rbody">
+
 <div id="answer" class="big"></div>
+
 <div id="sub" class="sub"></div>
+
 <div id="metrics" class="metrics"></div>
-<div id="resultActions" class="result-actions">
-<button class="secondary" type="button" onclick="copyResult()">Copy Result</button>
-<button class="secondary" type="button" onclick="copyResultLink()">Copy Result Link</button>
-<button class="secondary" type="button" onclick="shareResult()">Share Result</button>
+
+<div
+  id="resultActions"
+  class="result-actions">
+
+<button
+  class="secondary"
+  type="button"
+  onclick="copyResult()">
+  Copy Result
+</button>
+
+<button
+  class="secondary"
+  type="button"
+  onclick="copyResultLink()">
+  Copy Result Link
+</button>
+
+<button
+  class="secondary"
+  type="button"
+  onclick="shareResult()">
+  Share Result
+</button>
+
 </div>
-<div id="calendarWrap" style="display:none">
-<div class="mini-title">Date Range Calendar</div>
-<div id="calendar" class="calendar"></div>
+
+<div
+  id="calendarWrap"
+  style="display:none">
+
+<div class="mini-title">
+  Date Range Calendar
 </div>
+
+<div
+  id="calendar"
+  class="calendar">
 </div>
+
+</div>
+
+</div>
+
 </section>
+
+
+<!-- CONTENT -->
 
 <section class="content">
-<h2>How Does This Date Calculator Work?</h2>
-<p>Use this Date Calculator to find the number of days between two dates, calculate business days, or add and subtract days, weeks, months, and years from a starting date.</p>
 
-<h2>Calculate Days Between Two Dates</h2>
-<p>Enter a start date and an end date. The calculator shows the exact calendar-day difference, a weeks-and-days breakdown, and equivalent time units. You can include the end date when needed.</p>
+<h2>
+How Does This Date Calculator Work?
+</h2>
 
-<h2>Add or Subtract Days, Weeks, Months, or Years</h2>
-<p>Choose a starting date, enter an amount, select Days, Weeks, Months, or Years, and choose Add or Subtract. The calculator returns the resulting date and weekday. Month-end dates are handled safely.</p>
+<p>
+Use this Date Calculator to find the number of days between two dates, calculate business days, or add and subtract days, weeks, months, and years from a starting date.
+</p>
 
-<h2>Business Days Calculator — Exclude Weekends &amp; Holidays</h2>
-<p>Business days normally mean Monday through Friday. Saturdays and Sundays are excluded, and you can also exclude public holidays using a preset or your own holiday dates.</p>
 
-<h2>Frequently Asked Questions</h2>
-<details><summary>How many days are between two dates?</summary><p>Enter the start and end dates to calculate their calendar-day difference. You can optionally include the end date.</p></details>
-<details><summary>How do I calculate a date 30 days from today?</summary><p>Use Add / Subtract mode, enter today's date as the starting date, choose 30 Days, and select Add.</p></details>
-<details><summary>How many business days are between two dates?</summary><p>Use Business Days mode. Saturdays and Sundays are excluded, and you can enter additional holiday dates to exclude.</p></details>
-<details><summary>Does the calculator include public holidays?</summary><p>You can choose a holiday preset or enter custom holiday dates. Public holidays vary by country, region, and year.</p></details>
-<details><summary>Can I add or subtract months and years?</summary><p>Yes. Add / Subtract mode supports days, weeks, months, and years, with end-of-month dates handled safely.</p></details>
+<h2>
+Calculate Days Between Two Dates
+</h2>
 
-<h2>Related Calculators</h2>
+<p>
+Enter a start date and an end date. The calculator shows the exact calendar-day difference, a weeks-and-days breakdown, and equivalent time units. You can include the end date when needed.
+</p>
+
+
+<h2>
+Add or Subtract Days, Weeks, Months, or Years
+</h2>
+
+<p>
+Choose a starting date, enter an amount, select Days, Weeks, Months, or Years, and choose Add or Subtract. The calculator returns the resulting date and weekday. Month-end dates are handled safely.
+</p>
+
+
+<h2>
+Business Days Calculator — Exclude Weekends &amp; Holidays
+</h2>
+
+<p>
+Business days normally mean Monday through Friday. Saturdays and Sundays are excluded, and you can also exclude public holidays using a preset or your own holiday dates.
+</p>
+
+
+<h2>
+Frequently Asked Questions
+</h2>
+
+<details>
+<summary>
+How many days are between two dates?
+</summary>
+
+<p>
+Enter the start and end dates to calculate their calendar-day difference. You can optionally include the end date.
+</p>
+
+</details>
+
+
+<details>
+<summary>
+How do I calculate a date 30 days from today?
+</summary>
+
+<p>
+Use Add / Subtract mode, enter today's date as the starting date, choose 30 Days, and select Add.
+</p>
+
+</details>
+
+
+<details>
+<summary>
+How many business days are between two dates?
+</summary>
+
+<p>
+Use Business Days mode. Saturdays and Sundays are excluded, and you can enter additional holiday dates to exclude.
+</p>
+
+</details>
+
+
+<details>
+<summary>
+Does the calculator include public holidays?
+</summary>
+
+<p>
+You can choose a holiday preset or enter custom holiday dates. Public holidays vary by country, region, and year.
+</p>
+
+</details>
+
+
+<details>
+<summary>
+Can I add or subtract months and years?
+</summary>
+
+<p>
+Yes. Add / Subtract mode supports days, weeks, months, and years, with end-of-month dates handled safely.
+</p>
+
+</details>
+
+
+<h2>
+Related Calculators
+</h2>
+
 <div class="related">
-<a href="/calculators/age-calculator">Age Calculator</a>
-<a href="/calculators/pregnancy-calculator">Pregnancy Calculator</a>
-<a href="/calculators/retirement-calculator">Retirement Calculator</a>
-<a href="/calculators/discount-calculator">Discount Calculator</a>
+
+<a href="/calculators/age-calculator">
+Age Calculator
+</a>
+
+<a href="/calculators/pregnancy-calculator">
+Pregnancy Calculator
+</a>
+
+<a href="/calculators/retirement-calculator">
+Retirement Calculator
+</a>
+
+<a href="/calculators/discount-calculator">
+Discount Calculator
+</a>
+
 </div>
+
 </section>
 
+
 <footer class="site-footer">
-<strong>ZammioHub</strong>
-<p>Clear, accurate and mobile-friendly online calculators.</p>
+
+<strong>
+ZammioHub
+</strong>
+
+<p>
+Clear, accurate and mobile-friendly online calculators.
+</p>
+
 </footer>
+
 </main>
 
+
 <script>
+
 const $=id=>document.getElementById(id);
+
 let lastResultText="";
+
 let currentCalendarStart=null;
 let currentCalendarEnd=null;
 
+
 function formatDate(date){
- return date.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+
+  return date.toLocaleDateString(
+    "en-US",
+    {
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    }
+  );
+
 }
+
+
 function isoDate(d){
- const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");
- return y+"-"+m+"-"+day;
+
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,"0");
+  const day=String(d.getDate()).padStart(2,"0");
+
+  return y+"-"+m+"-"+day;
+
 }
-function parseDate(value){return new Date(value+"T00:00:00");}
+
+
+function parseDate(value){
+
+  return new Date(value+"T00:00:00");
+
+}
+
+
 function showMode(mode){
- ["between","add","business"].forEach(x=>{
-  $(x+"Mode").classList.toggle("active",x===mode);
-  $(x+"Tab").classList.toggle("active",x===mode);
-  $(x+"Tab").setAttribute("aria-selected",x===mode);
- });
- $("err").textContent="";
- $("result").style.display="none";
+
+  ["between","add","business"].forEach(x=>{
+
+    $(x+"Mode").classList.toggle(
+      "active",
+      x===mode
+    );
+
+    $(x+"Tab").classList.toggle(
+      "active",
+      x===mode
+    );
+
+    $(x+"Tab").setAttribute(
+      "aria-selected",
+      x===mode
+    );
+
+  });
+
+  $("err").textContent="";
+  $("result").style.display="none";
+
 }
+
+
 function showResult(answer,sub,metrics){
- $("answer").textContent=answer;
- $("sub").textContent=sub;
- $("metrics").innerHTML=metrics;
- $("result").style.display="block";
- setTimeout(()=>{$("result").scrollIntoView({behavior:"smooth",block:"start"});},60);
+
+  $("answer").textContent=answer;
+
+  $("sub").textContent=sub;
+
+  $("metrics").innerHTML=metrics;
+
+  $("result").style.display="block";
+
+  setTimeout(()=>{
+
+    $("result").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  },60);
+
 }
+
+
 function breakdownDays(days){
- const weeks=Math.floor(days/7),rem=days%7;
- return weeks?weeks+" week"+(weeks===1?"":"s")+" + "+rem+" day"+(rem===1?"":"s"):days+" day"+(days===1?"":"s");
+
+  const weeks=Math.floor(days/7);
+  const rem=days%7;
+
+  return weeks
+    ? weeks+" week"+(weeks===1?"":"s")+" + "+rem+" day"+(rem===1?"":"s")
+    : days+" day"+(days===1?"":"s");
+
 }
+
+
 function calculateBetween(){
- $("err").textContent="";
- if(!$("start").value||!$("end").value){$("err").textContent="Please select both dates.";return;}
- const a=parseDate($("start").value),b=parseDate($("end").value);
- if(Number.isNaN(a.getTime())||Number.isNaN(b.getTime())){$("err").textContent="Please enter valid dates.";return;}
- let days=Math.round((b-a)/86400000);
- if(days<0){$("err").textContent="End date must be on or after the start date.";return;}
- if($("includeEnd").checked)days++;
- const weeks=days/7, months=days/30.436875, years=days/365.2425;
- currentCalendarStart=new Date(a);currentCalendarEnd=new Date(b);
- const extra=$("includeEnd").checked?"Calendar days including the end date":"Calendar days between the selected dates";
- showResult(days.toLocaleString()+" "+(days===1?"Day":"Days"),extra,
- `<div class="metric"><b>Breakdown</b><span>${breakdownDays(days)}</span></div>
-  <div class="metric"><b>Weeks</b><span>${weeks.toFixed(2)}</span></div>
-  <div class="metric"><b>Approx. Months</b><span>${months.toFixed(2)}</span></div>
-  <div class="metric"><b>Approx. Years</b><span>${years.toFixed(2)}</span></div>
-  <div class="metric"><b>Hours</b><span>${(days*24).toLocaleString()}</span></div>
-  <div class="metric"><b>Minutes</b><span>${(days*1440).toLocaleString()}</span></div>`);
- $("calendarWrap").style.display="block";renderCalendar(a,b);
- lastResultText="Date Calculator: "+days+" days between "+$("start").value+" and "+$("end").value+"."+($("includeEnd").checked?" End date included.":"");
+
+  $("err").textContent="";
+
+  if(!$("start").value||!$("end").value){
+
+    $("err").textContent=
+      "Please select both dates.";
+
+    return;
+
+  }
+
+  const a=parseDate($("start").value);
+  const b=parseDate($("end").value);
+
+  if(
+    Number.isNaN(a.getTime())||
+    Number.isNaN(b.getTime())
+  ){
+
+    $("err").textContent=
+      "Please enter valid dates.";
+
+    return;
+
+  }
+
+  let days=Math.round(
+    (b-a)/86400000
+  );
+
+  if(days<0){
+
+    $("err").textContent=
+      "End date must be on or after the start date.";
+
+    return;
+
+  }
+
+  if($("includeEnd").checked){
+    days++;
+  }
+
+  const weeks=days/7;
+  const months=days/30.436875;
+  const years=days/365.2425;
+
+  currentCalendarStart=new Date(a);
+  currentCalendarEnd=new Date(b);
+
+  const extra=
+    $("includeEnd").checked
+      ? "Calendar days including the end date"
+      : "Calendar days between the selected dates";
+
+  showResult(
+    days.toLocaleString()+" "+
+    (days===1?"Day":"Days"),
+    extra,
+
+    `<div class="metric">
+      <b>Breakdown</b>
+      <span>${breakdownDays(days)}</span>
+    </div>
+
+    <div class="metric">
+      <b>Weeks</b>
+      <span>${weeks.toFixed(2)}</span>
+    </div>
+
+    <div class="metric">
+      <b>Approx. Months</b>
+      <span>${months.toFixed(2)}</span>
+    </div>
+
+    <div class="metric">
+      <b>Approx. Years</b>
+      <span>${years.toFixed(2)}</span>
+    </div>
+
+    <div class="metric">
+      <b>Hours</b>
+      <span>${(days*24).toLocaleString()}</span>
+    </div>
+
+    <div class="metric">
+      <b>Minutes</b>
+      <span>${(days*1440).toLocaleString()}</span>
+    </div>`
+  );
+
+  $("calendarWrap").style.display="block";
+
+  renderCalendar(a,b);
+
+  lastResultText=
+    "Date Calculator: "+
+    days+
+    " days between "+
+    $("start").value+
+    " and "+
+    $("end").value+
+    "."+
+    (
+      $("includeEnd").checked
+        ? " End date included."
+        : ""
+    );
+
 }
+
+
 function setAddPreset(value){
- const today=new Date();
- $("baseDate").value=isoDate(today);
- $("direction").value="add";
- $("unit").value="days";
- if(value==="today"){ $("amount").value=0; }
- else if(value==="eom"){
-  $("amount").value=Math.round((new Date(today.getFullYear(),today.getMonth()+1,0)-today)/86400000);
- } else if(value==="eoy"){
-  $("amount").value=Math.round((new Date(today.getFullYear(),11,31)-today)/86400000);
- } else {$("amount").value=value;}
- calculateAddSubtract();
+
+  const today=new Date();
+
+  $("baseDate").value=
+    isoDate(today);
+
+  $("direction").value="add";
+
+  $("unit").value="days";
+
+  if(value==="today"){
+
+    $("amount").value=0;
+
+  }
+
+  else if(value==="eom"){
+
+    $("amount").value=
+      Math.round(
+        (
+          new Date(
+            today.getFullYear(),
+            today.getMonth()+1,
+            0
+          )-
+          today
+        )/86400000
+      );
+
+  }
+
+  else if(value==="eoy"){
+
+    $("amount").value=
+      Math.round(
+        (
+          new Date(
+            today.getFullYear(),
+            11,
+            31
+          )-
+          today
+        )/86400000
+      );
+
+  }
+
+  else{
+
+    $("amount").value=value;
+
+  }
+
+  calculateAddSubtract();
+
 }
+
+
 function calculateAddSubtract(){
- $("err").textContent="";
- if(!$("baseDate").value){$("err").textContent="Please select a starting date.";return;}
- const amount=Number($("amount").value);
- if(!Number.isInteger(amount)||amount<0){$("err").textContent="Please enter a whole number of 0 or greater.";return;}
- const d=parseDate($("baseDate").value),sign=$("direction").value==="add"?1:-1,unit=$("unit").value,original=d.getDate();
- if(unit==="days")d.setDate(d.getDate()+sign*amount);
- else if(unit==="weeks")d.setDate(d.getDate()+sign*amount*7);
- else{
-  d.setDate(1);
-  if(unit==="months")d.setMonth(d.getMonth()+sign*amount);
-  else d.setFullYear(d.getFullYear()+sign*amount);
-  const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
-  d.setDate(Math.min(original,last));
- }
- const op=$("direction").value==="add"?"added to":"subtracted from";
- showResult(formatDate(d),amount+" "+unit+(amount===1?"":"s")+" "+op+" the starting date",
- `<div class="metric"><b>Result Date</b><span>${d.toLocaleDateString("en-US")}</span></div>
-  <div class="metric"><b>Weekday</b><span>${d.toLocaleDateString("en-US",{weekday:"long"})}</span></div>
-  <div class="metric"><b>ISO Date</b><span>${isoDate(d)}</span></div>`);
- currentCalendarStart=parseDate($("baseDate").value);currentCalendarEnd=d;
- $("calendarWrap").style.display="block";renderCalendar(currentCalendarStart,currentCalendarEnd);
- lastResultText="Date Calculator: "+$("baseDate").value+" "+op+" "+amount+" "+unit+" = "+isoDate(d)+" ("+formatDate(d)+").";
+
+  $("err").textContent="";
+
+  if(!$("baseDate").value){
+
+    $("err").textContent=
+      "Please select a starting date.";
+
+    return;
+
+  }
+
+  /* FIX: Empty amount validation */
+
+  if($("amount").value.trim()===""){
+
+    $("err").textContent=
+      "Please enter an amount.";
+
+    return;
+
+  }
+
+  const amount=
+    Number($("amount").value);
+
+  if(
+    !Number.isInteger(amount)||
+    amount<0
+  ){
+
+    $("err").textContent=
+      "Please enter a whole number of 0 or greater.";
+
+    return;
+
+  }
+
+  const d=
+    parseDate($("baseDate").value);
+
+  const sign=
+    $("direction").value==="add"
+      ? 1
+      : -1;
+
+  const unit=$("unit").value;
+
+  const original=d.getDate();
+
+
+  if(unit==="days"){
+
+    d.setDate(
+      d.getDate()+sign*amount
+    );
+
+  }
+
+  else if(unit==="weeks"){
+
+    d.setDate(
+      d.getDate()+sign*amount*7
+    );
+
+  }
+
+  else{
+
+    d.setDate(1);
+
+    if(unit==="months"){
+
+      d.setMonth(
+        d.getMonth()+sign*amount
+      );
+
+    }
+
+    else{
+
+      d.setFullYear(
+        d.getFullYear()+sign*amount
+      );
+
+    }
+
+    const last=
+      new Date(
+        d.getFullYear(),
+        d.getMonth()+1,
+        0
+      ).getDate();
+
+    d.setDate(
+      Math.min(original,last)
+    );
+
+  }
+
+
+  const op=
+    $("direction").value==="add"
+      ? "added to"
+      : "subtracted from";
+
+
+  showResult(
+
+    formatDate(d),
+
+    amount+
+    " "+
+    unit+
+    (amount===1?"":"s")+
+    " "+
+    op+
+    " the starting date",
+
+    `<div class="metric">
+      <b>Result Date</b>
+      <span>${d.toLocaleDateString("en-US")}</span>
+    </div>
+
+    <div class="metric">
+      <b>Weekday</b>
+      <span>${d.toLocaleDateString("en-US",{weekday:"long"})}</span>
+    </div>
+
+    <div class="metric">
+      <b>ISO Date</b>
+      <span>${isoDate(d)}</span>
+    </div>`
+
+  );
+
+
+  currentCalendarStart=
+    parseDate($("baseDate").value);
+
+  currentCalendarEnd=d;
+
+  $("calendarWrap").style.display="block";
+
+  renderCalendar(
+    currentCalendarStart,
+    currentCalendarEnd
+  );
+
+
+  lastResultText=
+    "Date Calculator: "+
+    $("baseDate").value+
+    " "+
+    op+
+    " "+
+    amount+
+    " "+
+    unit+
+    " = "+
+    isoDate(d)+
+    " ("+
+    formatDate(d)+
+    ").";
+
 }
+
+
 const holidayPresets={
- PK:["01-01","03-23","05-01","08-14","09-06","11-09","12-25"],
- US:["01-01","06-19","07-04","11-11","12-25"],
- UK:["01-01","12-25","12-26"],
- CA:["01-01","07-01","11-11","12-25","12-26"],
- IN:["01-26","05-01","08-15","10-02","12-25"]
+
+  PK:[
+    "01-01",
+    "03-23",
+    "05-01",
+    "08-14",
+    "09-06",
+    "11-09",
+    "12-25"
+  ],
+
+  US:[
+    "01-01",
+    "06-19",
+    "07-04",
+    "11-11",
+    "12-25"
+  ],
+
+  UK:[
+    "01-01",
+    "12-25",
+    "12-26"
+  ],
+
+  CA:[
+    "01-01",
+    "07-01",
+    "11-11",
+    "12-25",
+    "12-26"
+  ],
+
+  IN:[
+    "01-26",
+    "05-01",
+    "08-15",
+    "10-02",
+    "12-25"
+  ]
+
 };
+
+
 function applyHolidayPreset(){
- const country=$("holidayCountry").value;
- if(!country){$("holidays").value="";return;}
- const year=($("workStart").value||$("workEnd").value||new Date().toISOString().slice(0,10)).slice(0,4);
- $("holidays").value=(holidayPresets[country]||[]).map(x=>year+"-"+x).join(", ");
+
+  const country=
+    $("holidayCountry").value;
+
+  if(!country){
+
+    $("holidays").value="";
+
+    return;
+
+  }
+
+  const year=
+    (
+      $("workStart").value||
+      $("workEnd").value||
+      new Date().toISOString().slice(0,10)
+    ).slice(0,4);
+
+  $("holidays").value=
+    (holidayPresets[country]||[])
+      .map(
+        x=>year+"-"+x
+      )
+      .join(", ");
+
 }
-function isWorkday(d,holidays){return d.getDay()!==0&&d.getDay()!==6&&!holidays.has(isoDate(d));}
+
+
+function isWorkday(d,holidays){
+
+  return (
+    d.getDay()!==0&&
+    d.getDay()!==6&&
+    !holidays.has(isoDate(d))
+  );
+
+}
+
+
 function calculateBusiness(){
- $("err").textContent="";
- if(!$("workStart").value||!$("workEnd").value){$("err").textContent="Please select both dates.";return;}
- const a=parseDate($("workStart").value),b=parseDate($("workEnd").value);
- if(b<a){$("err").textContent="End date must be on or after the start date.";return;}
- const holidays=new Set($("holidays").value.split(/[\s,]+/).map(x=>x.trim()).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x)));
- let business=0,d=new Date(a),calendar=Math.round((b-a)/86400000)+1;
- while(d<=b){if(isWorkday(d,holidays))business++;d.setDate(d.getDate()+1);}
- if(!$("workIncludeEnd").checked&&isWorkday(b,holidays))business--;
- if(business<0)business=0;
- showResult(business+" "+(business===1?"Business Day":"Business Days"),"Monday–Friday, excluding weekends and entered holidays",
- `<div class="metric"><b>Calendar Days</b><span>${calendar}</span></div>
-  <div class="metric"><b>Business Days</b><span>${business}</span></div>
-  <div class="metric"><b>Holiday Dates</b><span>${holidays.size}</span></div>`);
- currentCalendarStart=a;currentCalendarEnd=b;
- $("calendarWrap").style.display="block";renderCalendar(a,b);
- lastResultText="Date Calculator: "+business+" business days between "+$("workStart").value+" and "+$("workEnd").value+".";
+
+  $("err").textContent="";
+
+  if(
+    !$("workStart").value||
+    !$("workEnd").value
+  ){
+
+    $("err").textContent=
+      "Please select both dates.";
+
+    return;
+
+  }
+
+  const a=
+    parseDate($("workStart").value);
+
+  const b=
+    parseDate($("workEnd").value);
+
+
+  if(b<a){
+
+    $("err").textContent=
+      "End date must be on or after the start date.";
+
+    return;
+
+  }
+
+
+  const holidays=
+    new Set(
+      $("holidays")
+        .value
+        .split(/[\s,]+/)
+        .map(x=>x.trim())
+        .filter(
+          x=>/^\d{4}-\d{2}-\d{2}$/.test(x)
+        )
+    );
+
+
+  let business=0;
+
+  let d=new Date(a);
+
+  const calendar=
+    Math.round(
+      (b-a)/86400000
+    )+1;
+
+
+  while(d<=b){
+
+    if(
+      isWorkday(
+        d,
+        holidays
+      )
+    ){
+
+      business++;
+
+    }
+
+    d.setDate(
+      d.getDate()+1
+    );
+
+  }
+
+
+  if(
+    !$("workIncludeEnd").checked&&
+    isWorkday(b,holidays)
+  ){
+
+    business--;
+
+  }
+
+
+  if(business<0){
+    business=0;
+  }
+
+
+  /*
+    FIX:
+    Count only holidays that actually
+    fall inside the selected date range.
+  */
+
+  const holidayCount=
+    [...holidays].filter(h=>{
+
+      const hd=parseDate(h);
+
+      return hd>=a&&hd<=b;
+
+    }).length;
+
+
+  showResult(
+
+    business+
+    " "+
+    (
+      business===1
+        ? "Business Day"
+        : "Business Days"
+    ),
+
+    "Monday–Friday, excluding weekends and entered holidays",
+
+    `<div class="metric">
+      <b>Calendar Days</b>
+      <span>${calendar}</span>
+    </div>
+
+    <div class="metric">
+      <b>Business Days</b>
+      <span>${business}</span>
+    </div>
+
+    <div class="metric">
+      <b>Holiday Dates</b>
+      <span>${holidayCount}</span>
+    </div>`
+
+  );
+
+
+  currentCalendarStart=a;
+  currentCalendarEnd=b;
+
+  $("calendarWrap").style.display="block";
+
+  renderCalendar(a,b);
+
+
+  lastResultText=
+    "Date Calculator: "+
+    business+
+    " business days between "+
+    $("workStart").value+
+    " and "+
+    $("workEnd").value+".";
+
 }
+
+
 function renderCalendar(start,end){
- const month=new Date(start.getFullYear(),start.getMonth(),1);
- const last=new Date(month.getFullYear(),month.getMonth()+1,0);
- let html='<div class="cal-head"><span>'+month.toLocaleDateString("en-US",{month:"long",year:"numeric"})+'</span></div><div class="cal-grid">';
- ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(x=>html+='<div class="dow">'+x+"</div>");
- for(let i=0;i<month.getDay();i++)html+='<div class="day empty"></div>';
- for(let day=1;day<=last.getDate();day++){
-  const cur=new Date(month.getFullYear(),month.getMonth(),day);
-  const inRange=cur>=start&&cur<=end, isStart=isoDate(cur)===isoDate(start), isEnd=isoDate(cur)===isoDate(end);
-  html+='<div class="day '+(inRange?"range ":"")+(isStart?"start ":"")+(isEnd?"end":"")+'>'+day+"</div>";
- }
- html+="</div>";
- $("calendar").innerHTML=html;
+
+  const month=
+    new Date(
+      start.getFullYear(),
+      start.getMonth(),
+      1
+    );
+
+  const last=
+    new Date(
+      month.getFullYear(),
+      month.getMonth()+1,
+      0
+    );
+
+
+  let html=
+    '<div class="cal-head">'+
+    '<span>'+
+    month.toLocaleDateString(
+      "en-US",
+      {
+        month:"long",
+        year:"numeric"
+      }
+    )+
+    '</span>'+
+    '</div>'+
+    '<div class="cal-grid">';
+
+
+  [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ].forEach(x=>{
+
+    html+=
+      '<div class="dow">'+
+      x+
+      "</div>";
+
+  });
+
+
+  for(
+    let i=0;
+    i<month.getDay();
+    i++
+  ){
+
+    html+=
+      '<div class="day empty"></div>';
+
+  }
+
+
+  for(
+    let day=1;
+    day<=last.getDate();
+    day++
+  ){
+
+    const cur=
+      new Date(
+        month.getFullYear(),
+        month.getMonth(),
+        day
+      );
+
+
+    const inRange=
+      cur>=start&&
+      cur<=end;
+
+    const isStart=
+      isoDate(cur)===
+      isoDate(start);
+
+    const isEnd=
+      isoDate(cur)===
+      isoDate(end);
+
+
+    html+=
+      '<div class="day '+
+      (inRange?"range ":"")+
+      (isStart?"start ":"")+
+      (isEnd?"end":"")+
+      '">'+
+      day+
+      "</div>";
+
+  }
+
+
+  html+="</div>";
+
+  $("calendar").innerHTML=html;
+
 }
+
+
 function copyResult(){
- if(!lastResultText)return;
- navigator.clipboard.writeText(lastResultText).then(()=>alert("Result copied."));
+
+  if(!lastResultText)return;
+
+  navigator.clipboard
+    .writeText(lastResultText)
+    .then(
+      ()=>alert("Result copied.")
+    );
+
 }
+
+
 function copyResultLink(){
- const params=new URLSearchParams();
- params.set("mode",$("betweenMode").classList.contains("active")?"between":$("addMode").classList.contains("active")?"add":"business");
- if(params.get("mode")==="between"){params.set("start",$("start").value);params.set("end",$("end").value);params.set("includeEnd",$("includeEnd").checked?"1":"0");}
- if(params.get("mode")==="add"){params.set("base",$("baseDate").value);params.set("amount",$("amount").value);params.set("unit",$("unit").value);params.set("direction",$("direction").value);}
- if(params.get("mode")==="business"){params.set("start",$("workStart").value);params.set("end",$("workEnd").value);params.set("includeEnd",$("workIncludeEnd").checked?"1":"0");params.set("holidays",$("holidays").value);}
- const url=location.origin+location.pathname+"?"+params.toString();
- navigator.clipboard.writeText(url).then(()=>alert("Result link copied."));
+
+  const params=
+    new URLSearchParams();
+
+
+  params.set(
+    "mode",
+    $("betweenMode").classList.contains("active")
+      ? "between"
+      : $("addMode").classList.contains("active")
+        ? "add"
+        : "business"
+  );
+
+
+  if(
+    params.get("mode")==="between"
+  ){
+
+    params.set(
+      "start",
+      $("start").value
+    );
+
+    params.set(
+      "end",
+      $("end").value
+    );
+
+    params.set(
+      "includeEnd",
+      $("includeEnd").checked
+        ? "1"
+        : "0"
+    );
+
+  }
+
+
+  if(
+    params.get("mode")==="add"
+  ){
+
+    params.set(
+      "base",
+      $("baseDate").value
+    );
+
+    params.set(
+      "amount",
+      $("amount").value
+    );
+
+    params.set(
+      "unit",
+      $("unit").value
+    );
+
+    params.set(
+      "direction",
+      $("direction").value
+    );
+
+  }
+
+
+  if(
+    params.get("mode")==="business"
+  ){
+
+    params.set(
+      "start",
+      $("workStart").value
+    );
+
+    params.set(
+      "end",
+      $("workEnd").value
+    );
+
+    params.set(
+      "includeEnd",
+      $("workIncludeEnd").checked
+        ? "1"
+        : "0"
+    );
+
+    params.set(
+      "holidays",
+      $("holidays").value
+    );
+
+  }
+
+
+  const url=
+    location.origin+
+    location.pathname+
+    "?"+
+    params.toString();
+
+
+  navigator.clipboard
+    .writeText(url)
+    .then(
+      ()=>alert("Result link copied.")
+    );
+
 }
+
+
 function shareResult(){
- if(navigator.share){navigator.share({title:"ZammioHub Date Calculator Result",text:lastResultText,url:location.href}).catch(()=>{});}
- else copyResultLink();
+
+  if(navigator.share){
+
+    navigator.share({
+
+      title:
+        "ZammioHub Date Calculator Result",
+
+      text:
+        lastResultText,
+
+      url:
+        location.href
+
+    }).catch(()=>{});
+
+  }
+
+  else{
+
+    copyResultLink();
+
+  }
+
 }
+
+
 function loadFromURL(){
- const p=new URLSearchParams(location.search),mode=p.get("mode");
- if(!mode)return;
- showMode(mode);
- if(mode==="between"&&p.get("start")&&p.get("end")){
-  $("start").value=p.get("start");$("end").value=p.get("end");$("includeEnd").checked=p.get("includeEnd")==="1";calculateBetween();
- }else if(mode==="add"&&p.get("base")){
-  $("baseDate").value=p.get("base");$("amount").value=p.get("amount")||0;$("unit").value=p.get("unit")||"days";$("direction").value=p.get("direction")||"add";calculateAddSubtract();
- }else if(mode==="business"&&p.get("start")&&p.get("end")){
-  $("workStart").value=p.get("start");$("workEnd").value=p.get("end");$("workIncludeEnd").checked=p.get("includeEnd")==="1";$("holidays").value=p.get("holidays")||"";calculateBusiness();
- }
+
+  const p=
+    new URLSearchParams(
+      location.search
+    );
+
+  const mode=p.get("mode");
+
+  if(!mode)return;
+
+
+  showMode(mode);
+
+
+  if(
+    mode==="between"&&
+    p.get("start")&&
+    p.get("end")
+  ){
+
+    $("start").value=
+      p.get("start");
+
+    $("end").value=
+      p.get("end");
+
+    $("includeEnd").checked=
+      p.get("includeEnd")==="1";
+
+    calculateBetween();
+
+  }
+
+
+  else if(
+    mode==="add"&&
+    p.get("base")
+  ){
+
+    $("baseDate").value=
+      p.get("base");
+
+    $("amount").value=
+      p.get("amount")||0;
+
+    $("unit").value=
+      p.get("unit")||"days";
+
+    $("direction").value=
+      p.get("direction")||"add";
+
+    calculateAddSubtract();
+
+  }
+
+
+  else if(
+    mode==="business"&&
+    p.get("start")&&
+    p.get("end")
+  ){
+
+    $("workStart").value=
+      p.get("start");
+
+    $("workEnd").value=
+      p.get("end");
+
+    $("workIncludeEnd").checked=
+      p.get("includeEnd")==="1";
+
+    $("holidays").value=
+      p.get("holidays")||"";
+
+    calculateBusiness();
+
+  }
+
 }
+
+
 function clearCalculator(){
- ["start","end","baseDate","amount","workStart","workEnd","holidays"].forEach(id=>$(id).value="");
- $("includeEnd").checked=false;$("workIncludeEnd").checked=false;$("holidayCountry").value="";
- $("direction").value="add";$("unit").value="days";$("err").textContent="";$("result").style.display="none";
- $("calendarWrap").style.display="none";lastResultText="";
+
+  [
+    "start",
+    "end",
+    "baseDate",
+    "amount",
+    "workStart",
+    "workEnd",
+    "holidays"
+  ].forEach(
+    id=>$(id).value=""
+  );
+
+
+  $("includeEnd").checked=false;
+
+  $("workIncludeEnd").checked=false;
+
+  $("holidayCountry").value="";
+
+  $("direction").value="add";
+
+  $("unit").value="days";
+
+  $("err").textContent="";
+
+  $("result").style.display="none";
+
+  $("calendarWrap").style.display="none";
+
+  lastResultText="";
+
 }
+
+
 loadFromURL();
+
 </script>
+
 </body>
-</html>qq
+</html>
