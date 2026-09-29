@@ -650,7 +650,7 @@ function calculateOperations(){
 
   const finalStep=lastReductionGcd>1n ? `<div class="step"><strong>Step ${stepNumber++}:</strong> Reduce by the GCD of ${lastReductionGcd}: ${htmlFrac(result)}.</div>` : `<div class="step"><strong>Step ${stepNumber++}:</strong> The result is already in simplest form: ${htmlFrac(result)}.</div>`;
   const completeSteps=steps.join("")+finalStep;
-  showResult(result,{gcf:lastReductionGcd,lcd:lcd,steps:completeSteps});
+  showResult(result,{gcf:result.g,lcd:lcd,steps:completeSteps});
 }
 function calculateSimplify(){
   const raw=getRawFraction(list.children[0]);
