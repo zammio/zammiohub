@@ -119,7 +119,7 @@ select:focus,.text-input:focus,.num-input:focus{border-color:var(--primary);box-
 .result-body{padding:25px}
 .main-answer{text-align:center}
 .answer-label{font-size:14px;color:var(--muted);font-weight:700}
-.answer{font-size:clamp(34px,6vw,50px);font-weight:800;color:var(--primary-dark);line-height:1.25;overflow-wrap:anywhere}.comparison-symbol{display:inline-block;margin:0 8px;font-weight:800}
+.answer{font-size:clamp(34px,6vw,50px);font-weight:800;color:var(--primary-dark);line-height:1.25;overflow-wrap:anywhere}
 .answer-mixed{font-size:24px;font-weight:700;color:#374955;margin-top:2px}
 .answer-decimal{font-size:18px;color:var(--muted);margin-top:4px}
 .result-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
@@ -273,7 +273,7 @@ tr:last-child td{border-bottom:0}
   <div class="result-head">Your Result</div>
   <div class="result-body">
     <div class="main-answer">
-      <div class="answer-label">Simplified Fraction</div>
+      <div class="answer-label" id="answerLabel">Simplified Fraction</div>
       <div id="answer" class="answer">—</div>
       <div id="mixedAnswer" class="answer-mixed"></div>
       <div id="decimalAnswer" class="answer-decimal"></div>
@@ -284,7 +284,7 @@ tr:last-child td{border-bottom:0}
       <button type="button" class="share-btn" id="shareBtn">Share Result</button>
     </div>
 
-    <div class="metrics" id="metrics">
+    <div class="metrics">
       <div class="metric"><b>Decimal</b><span id="metricDecimal">—</span></div>
       <div class="metric"><b>Percentage</b><span id="metricPercent">—</span></div>
       <div class="metric"><b>GCF / GCD</b><span id="metricGcf">—</span></div>
@@ -567,10 +567,13 @@ function showResult(result, meta={}){
   const f=normalize(result.n,result.d);
   const mixed=fractionToMixed(f);
   const dec=decimalString(f.n,f.d,4);
+  const absN=f.n<0n?-f.n:f.n;
+  const mixedLabel=absN===0n ? "Whole number" : (absN < f.d ? "Proper fraction" : (absN % f.d === 0n ? "Whole number" : "Mixed number"));
   const pct=percentString(f.n,f.d);
 
+  $("answerLabel").textContent="Simplified Fraction";
   $("answer").innerHTML=htmlFrac(f);
-  $("mixedAnswer").textContent="Mixed number: "+mixed;
+  $("mixedAnswer").textContent=mixedLabel+": "+mixed;
   $("decimalAnswer").textContent="Decimal: "+dec;
   $("metricDecimal").textContent=dec;
   $("metricPercent").textContent=pct;
@@ -593,38 +596,41 @@ function calculateOperations(){
   const op=operation.value;
   const symbol={add:"+",subtract:"−",multiply:"×",divide:"÷"}[op];
   let lcd=(op==="add"||op==="subtract") ? values.reduce((acc,f)=>lcmBig(acc,f.d),1n) : null;
+  let stepNumber=1;
+  let lastReductionGcd=1n;
 
-  steps.push(`<div class="step"><strong>Step 1:</strong> Start with the first fraction: ${htmlFrac(result)}.</div>`);
+  steps.push(`<div class="step"><strong>Step ${stepNumber++}:</strong> Start with the first fraction: ${htmlFrac(result)}.</div>`);
 
   for(let i=1;i<values.length;i++){
     const b=values[i];
-    let next;
-    if(op==="add") next=normalize(result.n*b.d + b.n*result.d,result.d*b.d);
-    if(op==="subtract") next=normalize(result.n*b.d - b.n*result.d,result.d*b.d);
-    if(op==="multiply") next=normalize(result.n*b.n,result.d*b.d);
+    let rawN, rawD, next;
+    if(op==="add"){ rawN=result.n*b.d + b.n*result.d; rawD=result.d*b.d; }
+    if(op==="subtract"){ rawN=result.n*b.d - b.n*result.d; rawD=result.d*b.d; }
+    if(op==="multiply"){ rawN=result.n*b.n; rawD=result.d*b.d; }
     if(op==="divide"){
       if(b.n===0n) throw new Error("Division by zero is not allowed.");
-      next=normalize(result.n*b.d,result.d*b.n);
+      rawN=result.n*b.d; rawD=result.d*b.n;
     }
+    lastReductionGcd=gcdBig(rawN,rawD);
+    next=normalize(rawN,rawD);
 
     if(op==="add" || op==="subtract"){
       const common=lcmBig(result.d,b.d);
       const leftN=result.n*(common/result.d);
       const rightN=b.n*(common/b.d);
-      steps.push(`<div class="step"><strong>Step ${steps.length+1}:</strong> LCD = ${common}. Convert ${htmlFrac(result)} and ${htmlFrac(b)} to ${leftN}/${common} ${symbol} ${rightN}/${common}.</div>`);
-      steps.push(`<div class="step"><strong>Next result:</strong> ${leftN}/${common} ${symbol} ${rightN}/${common} = ${htmlFrac(next)}.</div>`);
+      steps.push(`<div class="step"><strong>Step ${stepNumber++}:</strong> LCD = ${common}. Convert ${htmlFrac(result)} and ${htmlFrac(b)} to ${leftN}/${common} ${symbol} ${rightN}/${common}.</div>`);
+      steps.push(`<div class="step"><strong>Step ${stepNumber++}:</strong> ${leftN}/${common} ${symbol} ${rightN}/${common} = ${htmlFrac(next)}.</div>`);
     }else if(op==="multiply"){
-      steps.push(`<div class="step"><strong>Step ${steps.length+1}:</strong> Multiply numerators and denominators: (${result.n} × ${b.n})/(${result.d} × ${b.d}) = ${htmlFrac(next)}.</div>`);
+      steps.push(`<div class="step"><strong>Step ${stepNumber++}:</strong> Multiply numerators and denominators: (${result.n} × ${b.n})/(${result.d} × ${b.d}) = ${htmlFrac(next)}.</div>`);
     }else{
-      steps.push(`<div class="step"><strong>Step ${steps.length+1}:</strong> Reciprocal of ${htmlFrac(b)} is ${htmlFrac({n:b.d,d:b.n})}. Then multiply: ${htmlFrac(result)} × ${htmlFrac({n:b.d,d:b.n})} = ${htmlFrac(next)}.</div>`);
+      steps.push(`<div class="step"><strong>Step ${stepNumber++}:</strong> Reciprocal of ${htmlFrac(b)} is ${htmlFrac({n:b.d,d:b.n})}. Then multiply: ${htmlFrac(result)} × ${htmlFrac({n:b.d,d:b.n})} = ${htmlFrac(next)}.</div>`);
     }
     result=next;
   }
 
-  const rawGcf=raw.length===2 ? raw[0].rawGcd : gcdBig(result.n,result.d);
-  const finalStep=`<div class="step"><strong>Final step:</strong> Reduce the result to simplest form: ${htmlFrac(result)}.</div>`;
+  const finalStep=lastReductionGcd>1n ? `<div class="step"><strong>Step ${stepNumber++}:</strong> Reduce by the GCD of ${lastReductionGcd}: ${htmlFrac(result)}.</div>` : `<div class="step"><strong>Step ${stepNumber++}:</strong> The result is already in simplest form: ${htmlFrac(result)}.</div>`;
   const completeSteps=steps.join("")+finalStep;
-  showResult(result,{gcf:rawGcf,lcd:lcd,steps:completeSteps});
+  showResult(result,{gcf:lastReductionGcd,lcd:lcd,steps:completeSteps});
 }
 function calculateSimplify(){
   const raw=getRawFraction(list.children[0]);
@@ -654,6 +660,7 @@ function calculateCompare(){
     <div class="step"><strong>Step 3:</strong> Compare the numerators: ${leftN} ${relation} ${rightN}.</div>
     <div class="step"><strong>Conclusion:</strong> ${htmlFrac(a)} ${relation} ${htmlFrac(b)}. ${conclusion}</div>`;
 
+  $("answerLabel").textContent="Comparison Result";
   $("answer").innerHTML=`${htmlFrac(a)} <span class="comparison-symbol">${relation}</span> ${htmlFrac(b)}`;
   $("mixedAnswer").textContent=conclusion;
   $("decimalAnswer").textContent="Comparison uses exact fraction values; no decimal conversion is required.";
