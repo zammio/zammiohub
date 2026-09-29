@@ -11,13 +11,64 @@
     content="width=device-width, initial-scale=1.0"
   >
 
+  <!-- =======================================================
+       SEO META TAGS
+  ======================================================== -->
+
   <meta
     name="description"
-    content="Free online calculators for finance, health, education, math and everyday needs. Fast, accurate and easy-to-use tools from ZammioHub."
+    content="Free online calculators and useful tools for Math, Finance, Health, Education, Everyday needs and more. Fast, accurate and easy to use."
   >
 
-  <title>Free Online Calculators for Finance, Health, Education & Math | ZammioHub</title>
-<link rel="canonical" href="https://zammiohub.com/">
+  <title>Free Online Calculators &amp; Useful Tools | ZammioHub</title>
+
+  <link
+    rel="canonical"
+    href="https://zammiohub.com/"
+  >
+
+  <!-- =======================================================
+       OPEN GRAPH — FACEBOOK / WHATSAPP / SOCIAL SHARING
+  ======================================================== -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://zammiohub.com/"
+  >
+
+  <meta
+    property="og:title"
+    content="Free Online Calculators &amp; Useful Tools | ZammioHub"
+  >
+
+  <meta
+    property="og:description"
+    content="Free online calculators and useful tools for Math, Finance, Health, Education, Everyday needs and more. Fast, accurate and easy to use."
+  >
+
+  <!-- =======================================================
+       TWITTER / X SHARING
+  ======================================================== -->
+
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Free Online Calculators &amp; Useful Tools | ZammioHub"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Free online calculators and useful tools for Math, Finance, Health, Education, Everyday needs and more. Fast, accurate and easy to use."
+  >
   <style>
     /* =====================================================
        RESET
@@ -307,7 +358,8 @@
     }
 
     .desktop-category-panel.open {
-      max-height: 500px;
+      max-height: 60vh;
+      overflow-y: auto;
     }
 
     .desktop-tool-link {
@@ -453,7 +505,8 @@
     }
 
     .mobile-calculators-panel.open {
-      max-height: 1000px;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .mobile-category {
@@ -483,7 +536,8 @@
     }
 
     .mobile-category-panel.open {
-      max-height: 600px;
+      max-height: 60vh;
+      overflow-y: auto;
     }
 
     .mobile-tool-link {
@@ -1356,23 +1410,40 @@
         font-size: 15px;
       }
 
+      /*
+       * Mobile category navigation
+       * Keep categories on one horizontal, swipeable row so the
+       * layout stays clean even when many new categories are added.
+       */
       .filters {
-        display: grid;
-        grid-template-columns:
-          repeat(6,minmax(0,1fr));
-
-        gap: 6px;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 8px;
 
         margin-top: 11px;
+        padding: 2px 1px 6px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .filters::-webkit-scrollbar {
+        display: none;
       }
 
       .filter-button {
-        width: 100%;
-        min-height: 39px;
+        flex: 0 0 auto;
+        width: auto;
+        min-height: 40px;
 
-        padding: 0 3px;
+        padding: 0 16px;
 
-        font-size: 10.5px;
+        font-size: 11.5px;
+        white-space: nowrap;
       }
 
       .calculators-section {
@@ -1538,7 +1609,9 @@
       }
 
       .filter-button {
-        font-size: 10.5px;
+        min-height: 39px;
+        padding: 0 14px;
+        font-size: 11px;
       }
 
       .tool-card {
@@ -1622,235 +1695,7 @@
             <span>All Calculators</span><span aria-hidden="true">→</span>
           </a>
 
-          <!-- Finance -->
-
-          <div class="desktop-accordion-item">
-
-            <button
-              class="desktop-category-button"
-              type="button"
-            >
-
-              Finance
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-
-            </button>
-
-            <div class="desktop-category-panel">
-
-              <a class="desktop-tool-link"
-                 href="/calculators/auto-loan-calculator">
-                Auto Loan Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/compound-interest-calculator">
-                Compound Interest Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/emi-calculator">
-                EMI Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/loan-payment-calculator">
-                Loan Payment Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/mortgage-calculator">
-                Mortgage Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/retirement-calculator">
-                Retirement Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/salary-calculator">
-                Salary Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/tax-calculator">
-                Tax Calculator
-              </a>
-
-            </div>
-
-          </div>
-
-          <!-- Health -->
-
-          <div class="desktop-accordion-item">
-
-            <button
-              class="desktop-category-button"
-              type="button"
-            >
-
-              Health
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-
-            </button>
-
-            <div class="desktop-category-panel">
-
-              <a class="desktop-tool-link"
-                 href="/calculators/bmi-calculator">
-                BMI Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/calorie-calculator">
-                Calorie Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/pregnancy-calculator">
-                Pregnancy Calculator
-              </a>
-
-            </div>
-
-          </div>
-
-          <!-- Math -->
-
-          <div class="desktop-accordion-item">
-
-            <button
-              class="desktop-category-button"
-              type="button"
-            >
-
-              Math
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-
-            </button>
-
-            <div class="desktop-category-panel">
-
-              <a class="desktop-tool-link"
-                 href="/calculators/percentage-calculator">
-                Percentage Calculator
-              </a>
-
-            </div>
-
-          </div>
-
-          <!-- Education -->
-
-          <div class="desktop-accordion-item">
-
-            <button
-              class="desktop-category-button"
-              type="button"
-            >
-
-              Education
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-
-            </button>
-
-            <div class="desktop-category-panel">
-
-              <a class="desktop-tool-link"
-                 href="/calculators/gpa-calculator">
-                GPA Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/grade-calculator">
-                Grade Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/cgpa-calculator">
-                CGPA Calculator
-              </a>
-
-            </div>
-
-          </div>
-
-          <!-- Everyday -->
-
-          <div class="desktop-accordion-item">
-
-            <button
-              class="desktop-category-button"
-              type="button"
-            >
-
-              Everyday
-
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-
-            </button>
-
-            <div class="desktop-category-panel">
-
-              <a class="desktop-tool-link"
-                 href="/calculators/age-calculator">
-                Age Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/discount-calculator">
-                Discount Calculator
-              </a>
-
-              <a class="desktop-tool-link"
-                 href="/calculators/tip-calculator">
-                Tip Calculator
-              </a>
-
-            </div>
-
-          </div>
+          <div id="desktopCategoryNav"></div>
 
         </div>
 
@@ -1946,235 +1791,7 @@
           <span>All Calculators</span><span aria-hidden="true">→</span>
         </a>
 
-        <!-- Finance -->
-
-        <div class="mobile-category">
-
-          <button
-            class="mobile-category-button"
-            type="button"
-          >
-
-            Finance
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-
-          </button>
-
-          <div class="mobile-category-panel">
-
-            <a class="mobile-tool-link"
-               href="/calculators/auto-loan-calculator">
-              Auto Loan Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/compound-interest-calculator">
-              Compound Interest Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/emi-calculator">
-              EMI Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/loan-payment-calculator">
-              Loan Payment Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/mortgage-calculator">
-              Mortgage Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/retirement-calculator">
-              Retirement Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/salary-calculator">
-              Salary Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/tax-calculator">
-              Tax Calculator
-            </a>
-
-          </div>
-
-        </div>
-
-        <!-- Health -->
-
-        <div class="mobile-category">
-
-          <button
-            class="mobile-category-button"
-            type="button"
-          >
-
-            Health
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-
-          </button>
-
-          <div class="mobile-category-panel">
-
-            <a class="mobile-tool-link"
-               href="/calculators/bmi-calculator">
-              BMI Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/calorie-calculator">
-              Calorie Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/pregnancy-calculator">
-              Pregnancy Calculator
-            </a>
-
-          </div>
-
-        </div>
-
-        <!-- Math -->
-
-        <div class="mobile-category">
-
-          <button
-            class="mobile-category-button"
-            type="button"
-          >
-
-            Math
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-
-          </button>
-
-          <div class="mobile-category-panel">
-
-            <a class="mobile-tool-link"
-               href="/calculators/percentage-calculator">
-              Percentage Calculator
-            </a>
-
-          </div>
-
-        </div>
-
-        <!-- Education -->
-
-        <div class="mobile-category">
-
-          <button
-            class="mobile-category-button"
-            type="button"
-          >
-
-            Education
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-
-          </button>
-
-          <div class="mobile-category-panel">
-
-            <a class="mobile-tool-link"
-               href="/calculators/gpa-calculator">
-              GPA Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/grade-calculator">
-              Grade Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/cgpa-calculator">
-              CGPA Calculator
-            </a>
-
-          </div>
-
-        </div>
-
-        <!-- Everyday -->
-
-        <div class="mobile-category">
-
-          <button
-            class="mobile-category-button"
-            type="button"
-          >
-
-            Everyday
-
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-
-          </button>
-
-          <div class="mobile-category-panel">
-
-            <a class="mobile-tool-link"
-               href="/calculators/age-calculator">
-              Age Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/discount-calculator">
-              Discount Calculator
-            </a>
-
-            <a class="mobile-tool-link"
-               href="/calculators/tip-calculator">
-              Tip Calculator
-            </a>
-
-          </div>
-
-        </div>
+        <div id="mobileCategoryNav"></div>
 
       </div>
 
@@ -2230,8 +1847,8 @@
         </h1>
 
         <p class="hero-description">
-          Fast, accurate online calculators for finance,
-          health, education, math and everyday needs.
+          Fast, accurate online calculators and useful tools
+          for Math, Finance, Health, Education, Everyday needs and more.
         </p>
 
       </div>
@@ -2285,57 +1902,11 @@
 
         <!-- Filters -->
 
-        <div class="filters">
-
-          <button
-            class="filter-button active"
-            data-category="All"
-            type="button"
-          >
-            All
-          </button>
-
-          <button
-            class="filter-button"
-            data-category="Finance"
-            type="button"
-          >
-            Finance
-          </button>
-
-          <button
-            class="filter-button"
-            data-category="Health"
-            type="button"
-          >
-            Health
-          </button>
-
-          <button
-            class="filter-button"
-            data-category="Math"
-            type="button"
-          >
-            Math
-          </button>
-
-          <button
-            class="filter-button"
-            data-category="Education"
-            type="button"
-          >
-            Education
-          </button>
-
-          <button
-            class="filter-button"
-            data-category="Everyday"
-            type="button"
-          >
-            Everyday
-          </button>
-
-        </div>
+        <div
+          class="filters"
+          id="categoryFilters"
+          aria-label="Calculator categories"
+        ></div>
 
       </div>
 
@@ -2616,8 +2187,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const clearSearch =
     document.getElementById("clearSearch");
 
-  const filterButtons =
-    document.querySelectorAll(".filter-button");
+  let filterButtons = [];
+
+  const categoryFilters =
+    document.getElementById("categoryFilters");
+
+  const desktopCategoryNav =
+    document.getElementById("desktopCategoryNav");
+
+  const mobileCategoryNav =
+    document.getElementById("mobileCategoryNav");
 
   const viewAllWrap =
     document.getElementById("viewAllWrap");
@@ -2715,6 +2294,15 @@ const desktopCalculatorsButton =
       url: "/calculators/age-calculator",
       icon: "calendar",
       keywords: "age birthday date years months days"
+    },
+
+    {
+      name: "Date Calculator",
+      category: "Time & Date",
+      description: "Calculate date differences and find the time between two dates.",
+      url: "/calculators/date-calculator",
+      icon: "calendar",
+      keywords: "date calculator date difference days between dates time date calendar"
     },
 
     {
@@ -2887,6 +2475,141 @@ const desktopCalculatorsButton =
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+
+  /* =====================================================
+     CATEGORY HELPERS
+  ===================================================== */
+
+  const preferredCategoryOrder = [
+    "Finance",
+    "Health",
+    "Math",
+    "Education",
+    "Everyday",
+    "Time & Date"
+  ];
+
+
+  function getCategories() {
+
+    const categorySet = new Set(
+      tools.map(function (tool) {
+        return tool.category;
+      })
+    );
+
+    return Array.from(categorySet).sort(function (a, b) {
+
+      const aIndex = preferredCategoryOrder.indexOf(a);
+      const bIndex = preferredCategoryOrder.indexOf(b);
+
+      if (aIndex !== -1 && bIndex !== -1) {
+        return aIndex - bIndex;
+      }
+
+      if (aIndex !== -1) return -1;
+      if (bIndex !== -1) return 1;
+
+      return a.localeCompare(b);
+    });
+  }
+
+
+  function renderCategoryFilters() {
+
+    const categories = getCategories();
+
+    categoryFilters.innerHTML = ["All"].concat(categories).map(function (category) {
+
+      return `
+        <button
+          class="filter-button${category === "All" ? " active" : ""}"
+          data-category="${escapeHTML(category)}"
+          type="button"
+        >
+          ${escapeHTML(category)}
+        </button>
+      `;
+
+    }).join("");
+
+    filterButtons =
+      categoryFilters.querySelectorAll(".filter-button");
+  }
+
+
+  function renderCalculatorMenus() {
+
+    const categories = getCategories();
+
+    function categoryHTML(category, type) {
+
+      const categoryTools = tools.filter(function (tool) {
+        return tool.category === category;
+      });
+
+      const isDesktop = type === "desktop";
+      const itemClass = isDesktop
+        ? "desktop-accordion-item"
+        : "mobile-category";
+      const buttonClass = isDesktop
+        ? "desktop-category-button"
+        : "mobile-category-button";
+      const panelClass = isDesktop
+        ? "desktop-category-panel"
+        : "mobile-category-panel";
+      const linkClass = isDesktop
+        ? "desktop-tool-link"
+        : "mobile-tool-link";
+
+      return `
+        <div class="${itemClass}">
+
+          <button
+            class="${buttonClass}"
+            type="button"
+            aria-expanded="false"
+          >
+            ${escapeHTML(category)}
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+
+          <div class="${panelClass}">
+            ${categoryTools.map(function (tool) {
+              return `
+                <a
+                  class="${linkClass}"
+                  href="${escapeHTML(tool.url)}"
+                >
+                  ${escapeHTML(tool.name)}
+                </a>
+              `;
+            }).join("")}
+          </div>
+
+        </div>
+      `;
+    }
+
+    desktopCategoryNav.innerHTML =
+      categories.map(function (category) {
+        return categoryHTML(category, "desktop");
+      }).join("");
+
+    mobileCategoryNav.innerHTML =
+      categories.map(function (category) {
+        return categoryHTML(category, "mobile");
+      }).join("");
   }
 
 
@@ -3200,50 +2923,38 @@ const desktopCalculatorsButton =
   );
 
 
-  document
-    .querySelectorAll(".desktop-category-button")
-    .forEach(function (button) {
+  desktopCategoryNav.addEventListener(
+    "click",
+    function (event) {
 
-      button.addEventListener(
-        "click",
-        function () {
+      const button =
+        event.target.closest(".desktop-category-button");
 
-          const panel =
-            button.nextElementSibling;
+      if (!button) return;
 
-          const isOpen =
-            panel.classList.contains("open");
+      const panel = button.nextElementSibling;
+      const isOpen = panel.classList.contains("open");
 
+      desktopCategoryNav
+        .querySelectorAll(".desktop-category-panel")
+        .forEach(function (otherPanel) {
+          otherPanel.classList.remove("open");
+        });
 
-          document
-            .querySelectorAll(".desktop-category-panel")
-            .forEach(function (otherPanel) {
+      desktopCategoryNav
+        .querySelectorAll(".desktop-category-button")
+        .forEach(function (otherButton) {
+          otherButton.classList.remove("open");
+          otherButton.setAttribute("aria-expanded", "false");
+        });
 
-              otherPanel.classList.remove("open");
-
-            });
-
-
-          document
-            .querySelectorAll(".desktop-category-button")
-            .forEach(function (otherButton) {
-
-              otherButton.classList.remove("open");
-
-            });
-
-
-          if (!isOpen) {
-
-            panel.classList.add("open");
-            button.classList.add("open");
-
-          }
-
-        }
-      );
-
-    });
+      if (!isOpen) {
+        panel.classList.add("open");
+        button.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
+      }
+    }
+  );
 
 
   /* =====================================================
@@ -3337,72 +3048,55 @@ const desktopCalculatorsButton =
      MOBILE CATEGORY ACCORDIONS
   ===================================================== */
 
-  document
-    .querySelectorAll(".mobile-category-button")
-    .forEach(function (button) {
+  mobileCategoryNav.addEventListener(
+    "click",
+    function (event) {
 
-      button.addEventListener(
-        "click",
-        function () {
+      const button =
+        event.target.closest(".mobile-category-button");
 
-          const panel =
-            button.nextElementSibling;
+      if (!button) return;
 
-          const isOpen =
-            panel.classList.contains("open");
+      const panel = button.nextElementSibling;
+      const isOpen = panel.classList.contains("open");
 
+      mobileCategoryNav
+        .querySelectorAll(".mobile-category-panel")
+        .forEach(function (otherPanel) {
+          otherPanel.classList.remove("open");
+        });
 
-          document
-            .querySelectorAll(".mobile-category-panel")
-            .forEach(function (otherPanel) {
+      mobileCategoryNav
+        .querySelectorAll(".mobile-category-button")
+        .forEach(function (otherButton) {
+          otherButton.classList.remove("open");
+          otherButton.setAttribute("aria-expanded", "false");
+        });
 
-              otherPanel.classList.remove("open");
-
-            });
-
-
-          document
-            .querySelectorAll(".mobile-category-button")
-            .forEach(function (otherButton) {
-
-              otherButton.classList.remove("open");
-
-            });
-
-
-          if (!isOpen) {
-
-            panel.classList.add("open");
-            button.classList.add("open");
-
-          }
-
-        }
-      );
-
-    });
+      if (!isOpen) {
+        panel.classList.add("open");
+        button.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
+      }
+    }
+  );
 
 
   /* =====================================================
      CLOSE MOBILE MENU WHEN LINK CLICKED
   ===================================================== */
 
-  document
-    .querySelectorAll(
-      ".mobile-nav a"
-    )
-    .forEach(function (link) {
+  mobileNav.addEventListener(
+    "click",
+    function (event) {
 
-      link.addEventListener(
-        "click",
-        function () {
+      const link = event.target.closest("a");
 
-          closeMobileMenu();
-
-        }
-      );
-
-    });
+      if (link) {
+        closeMobileMenu();
+      }
+    }
+  );
 
 
   /* =====================================================
@@ -3475,6 +3169,8 @@ const desktopCalculatorsButton =
      INITIAL RENDER
   ===================================================== */
 
+  renderCategoryFilters();
+  renderCalculatorMenus();
   renderTools();
 
 });
