@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#124c70">
-<title>Fraction Calculator - Add, Subtract, Multiply & Divide | ZammioHub</title>
+<title>Fraction Calculator - Add, Subtract, Multiply & Divide Fractions | ZammioHub</title>
 <meta name="description" content="Free fraction calculator to add, subtract, multiply, divide, simplify and compare fractions. Convert mixed numbers, decimals and percentages with step-by-step results.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://zammiohub.com/calculators/fraction-calculator">
@@ -284,7 +284,7 @@ tr:last-child td{border-bottom:0}
       <button type="button" class="share-btn" id="shareBtn">Share Result</button>
     </div>
 
-    <div class="metrics">
+    <div class="metrics" id="metrics">
       <div class="metric"><b>Decimal</b><span id="metricDecimal">—</span></div>
       <div class="metric"><b>Percentage</b><span id="metricPercent">—</span></div>
       <div class="metric"><b>GCF / GCD</b><span id="metricGcf">—</span></div>
@@ -498,25 +498,37 @@ function percentString(n,d){
 function htmlFrac(f){
   return '<span class="frac"><span class="top">'+f.n+'</span><span class="bottom">'+f.d+'</span></span>';
 }
-function inputValue(row){
+function readFractionFields(row){
   const whole=row.querySelector(".whole").value.trim();
   const num=row.querySelector(".numerator").value.trim();
   const den=row.querySelector(".denominator").value.trim();
-  if(!num && !den && !whole) throw new Error("Please complete all fraction fields.");
+  if(!whole && !num && !den) throw new Error("Please complete the fraction fields.");
+
+  // A whole-number-only entry such as 5 is accepted as 5/1.
+  if(whole && !num && !den){
+    const w=parseInteger(whole);
+    return {f:{n:w,d:1n,g:1n}, rawN:w, rawD:1n, rawGcd:1n};
+  }
+
   if(!den) throw new Error("Please enter a denominator.");
-  return mixedToFraction(whole,num,den);
+  if(!num) throw new Error("Please enter a numerator.");
+
+  const w=parseInteger(whole || "0");
+  const n=parseInteger(num);
+  const d=parseInteger(den);
+  if(d===0n) throw new Error("A denominator cannot be zero.");
+
+  const rawN=(w<0n && n>=0n) ? w*d-n : w*d+n;
+  const rawD=d;
+  const f=normalize(rawN,rawD);
+  return {f,rawN,rawD,rawGcd:gcdBig(rawN,rawD)};
+}
+function inputValue(row){
+  return readFractionFields(row).f;
 }
 function getRawFraction(row){
-  const whole=row.querySelector(".whole").value.trim();
-  const num=row.querySelector(".numerator").value.trim();
-  const den=row.querySelector(".denominator").value.trim();
-  if(!num && !den && !whole) throw new Error("Please complete all fraction fields.");
-  if(!den) throw new Error("Please enter a denominator.");
-  const f=mixedToFraction(whole || "0",num || "0",den);
-  const rawN=parseInteger(whole || "0")*parseInteger(den)+parseInteger(num || "0");
-  const rawD=parseInteger(den);
-  const signedRawN=(parseInteger(whole || "0")<0n && parseInteger(num || "0")>=0n) ? parseInteger(whole || "0")*rawD-parseInteger(num || "0") : rawN;
-  return {n:f.n,d:f.d,rawGcd:gcdBig(signedRawN,rawD)};
+  const r=readFractionFields(row);
+  return {n:r.f.n,d:r.f.d,rawGcd:r.rawGcd,rawN:r.rawN,rawD:r.rawD};
 }
 function addRow(values={}){
   rowCount++;
@@ -563,17 +575,25 @@ function clearError(){
   errorBox.textContent="";
   errorBox.style.display="none";
 }
+// Proper fractions (for example 5/6) are never labelled as mixed numbers.
 function showResult(result, meta={}){
   const f=normalize(result.n,result.d);
   const mixed=fractionToMixed(f);
   const dec=decimalString(f.n,f.d,4);
   const absN=f.n<0n?-f.n:f.n;
-  const mixedLabel=absN===0n ? "Whole number" : (absN < f.d ? "Proper fraction" : (absN % f.d === 0n ? "Whole number" : "Mixed number"));
+  const mixedLabel=absN===0n
+    ? "Whole number"
+    : (absN < f.d
+      ? "Proper fraction"
+      : (absN % f.d === 0n ? "Whole number" : "Mixed number"));
+  const mixedDisplay=absN===0n
+    ? (f.n<0n ? "0" : "0")
+    : (absN < f.d ? htmlFrac(f) : mixed);
   const pct=percentString(f.n,f.d);
 
   $("answerLabel").textContent="Simplified Fraction";
   $("answer").innerHTML=htmlFrac(f);
-  $("mixedAnswer").textContent=mixedLabel+": "+mixed;
+  $("mixedAnswer").innerHTML=mixedLabel+": "+mixedDisplay;
   $("decimalAnswer").textContent="Decimal: "+dec;
   $("metricDecimal").textContent=dec;
   $("metricPercent").textContent=pct;
@@ -636,13 +656,14 @@ function calculateSimplify(){
   const raw=getRawFraction(list.children[0]);
   const result=normalize(raw.n,raw.d);
   const gcf=raw.rawGcd;
+  const original=`${raw.rawN}/${raw.rawD}`;
   const steps = gcf === 1n ? `
-    <div class="step"><strong>Step 1:</strong> Original fraction = ${raw.n}/${raw.d}.</div>
+    <div class="step"><strong>Step 1:</strong> Original fraction = ${original}.</div>
     <div class="step"><strong>Step 2:</strong> Greatest common factor (GCF) = 1.</div>
     <div class="step"><strong>Step 3:</strong> The fraction is already in simplest form: ${htmlFrac(result)}.</div>` : `
-    <div class="step"><strong>Step 1:</strong> Original fraction = ${raw.n}/${raw.d}.</div>
+    <div class="step"><strong>Step 1:</strong> Original fraction = ${original}.</div>
     <div class="step"><strong>Step 2:</strong> Greatest common factor (GCF) = ${gcf}.</div>
-    <div class="step"><strong>Step 3:</strong> Divide numerator and denominator by ${gcf}: ${raw.n} ÷ ${gcf} / (${raw.d} ÷ ${gcf}) = ${htmlFrac(result)}.</div>`;
+    <div class="step"><strong>Step 3:</strong> Divide numerator and denominator by ${gcf}: ${raw.rawN} ÷ ${gcf} / (${raw.rawD} ÷ ${gcf}) = ${htmlFrac(result)}.</div>`;
   showResult(result,{gcf,lcd:"—",steps});
 }
 function calculateCompare(){
