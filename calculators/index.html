@@ -198,8 +198,8 @@
 
     .drawer-category-toggle {
       width: 100%;
-      min-height: 54px;
-      padding: 14px 10px;
+      min-height: 50px;
+      padding: 12px 10px;
       border: 0;
       background: #ffffff;
       color: #7b8796;
@@ -207,9 +207,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.7px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
       text-align: left;
       cursor: pointer;
@@ -262,10 +262,28 @@
       background: #ffffff;
     }
 
+    .drawer-search-box {
+      position: relative;
+    }
+
+    .drawer-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%);
+      fill: none;
+      stroke: #8995a5;
+      stroke-width: 2;
+      stroke-linecap: round;
+      pointer-events: none;
+    }
+
     .drawer-search {
       width: 100%;
       height: 48px;
-      padding: 0 14px;
+      padding: 0 14px 0 42px;
       border: 1px solid var(--border);
       border-radius: 13px;
       outline: none;
@@ -276,6 +294,10 @@
 
     .drawer-search::placeholder {
       color: #8995a5;
+    }
+
+    .drawer-search-box:focus-within .drawer-search-icon {
+      stroke: var(--blue);
     }
 
     .drawer-search:focus {
@@ -689,13 +711,19 @@
 
       <div class="drawer-search-wrap">
         <label class="sr-only" for="drawerCalculatorSearch">Search calculators</label>
-        <input
-          class="drawer-search"
-          id="drawerCalculatorSearch"
-          type="search"
-          placeholder="Search calculators..."
-          autocomplete="off"
-          aria-label="Search calculators in menu">
+        <div class="drawer-search-box">
+          <svg class="drawer-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="M16 16l4.2 4.2"></path>
+          </svg>
+          <input
+            class="drawer-search"
+            id="drawerCalculatorSearch"
+            type="search"
+            placeholder="Search calculators..."
+            autocomplete="off"
+            aria-label="Search calculators in menu">
+        </div>
       </div>
 
       <a href="/">Home</a>
@@ -1352,6 +1380,7 @@
 
         drawerCategories.forEach(function (category) {
           const links = category.querySelectorAll(".drawer-category-links a");
+          const toggle = category.querySelector(".drawer-category-toggle");
           let categoryMatches = 0;
 
           links.forEach(function (link) {
@@ -1368,14 +1397,15 @@
             category.style.display = categoryMatches ? "block" : "none";
             if (categoryMatches) {
               category.classList.add("open");
-              category.querySelector(".drawer-category-toggle")
-                .setAttribute("aria-expanded", "true");
+              toggle.setAttribute("aria-expanded", "true");
             }
           } else {
             category.style.display = "block";
             category.classList.remove("open");
-            category.querySelector(".drawer-category-toggle")
-              .setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-expanded", "false");
+            links.forEach(function (link) {
+              link.style.display = "flex";
+            });
           }
         });
 
@@ -1399,6 +1429,8 @@
 
       const filterButtons =
         document.querySelectorAll(".filter-btn");
+
+      const filterRow = document.querySelector(".filters");
 
       const calculatorCards =
         document.querySelectorAll(".calculator-card");
@@ -1495,6 +1527,11 @@
 
 
       updateCalculators();
+
+      /* Keep the category filter row at the first item on initial load. */
+      if (filterRow) {
+        filterRow.scrollLeft = 0;
+      }
 
     });
   </script>
