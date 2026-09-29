@@ -119,7 +119,7 @@ select:focus,.text-input:focus,.num-input:focus{border-color:var(--primary);box-
 .result-body{padding:25px}
 .main-answer{text-align:center}
 .answer-label{font-size:14px;color:var(--muted);font-weight:700}
-.answer{font-size:clamp(34px,6vw,50px);font-weight:800;color:var(--primary-dark);line-height:1.25;overflow-wrap:anywhere}
+.answer{font-size:clamp(34px,6vw,50px);font-weight:800;color:var(--primary-dark);line-height:1.25;overflow-wrap:anywhere}.comparison-symbol{display:inline-block;margin:0 8px;font-weight:800}
 .answer-mixed{font-size:24px;font-weight:700;color:#374955;margin-top:2px}
 .answer-decimal{font-size:18px;color:var(--muted);margin-top:4px}
 .result-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
@@ -472,23 +472,28 @@ function fractionToMixed(f){
   const sign=f.n<0n?-1n:1n, absN=f.n<0n?-f.n:f.n;
   const whole=absN/f.d, rem=absN%f.d;
   if(rem===0n) return (sign<0n?"-":"")+whole.toString();
-  return (sign<0n?"-":"")+whole.toString()+" "+rem.toString()+"/"+f.d.toString();
+  // Do not display a redundant zero whole number (e.g. 3/4, not 0 3/4).
+  const prefix=whole===0n?"":whole.toString()+" ";
+  return (sign<0n?"-":"")+prefix+rem.toString()+"/"+f.d.toString();
 }
 function decimalString(n,d,places=12){
   const sign=n<0n?"-":"";
   const a=n<0n?-n:n;
   const whole=a/d, rem=a%d;
   if(rem===0n) return sign+whole.toString();
-  let digits="", r=rem;
-  for(let i=0;i<places && r!==0n;i++){
-    r*=10n;
-    digits+=(r/d).toString();
-    r%=d;
-  }
-  return sign+whole.toString()+"."+digits;
+  const scale=10n**BigInt(places);
+  let scaled=(rem*scale)/d;
+  const remainder=(rem*scale)%d;
+  // Round instead of simply truncating the displayed decimal.
+  if(remainder*2n>=d) scaled+=1n;
+  let digits=scaled.toString().padStart(places,"0");
+  let roundedWhole=whole;
+  if(scaled>=scale){ roundedWhole+=1n; digits="0".repeat(places); }
+  digits=digits.replace(/0+$/," ").trim();
+  return sign+roundedWhole.toString()+(digits?"."+digits:"");
 }
 function percentString(n,d){
-  return decimalString(n*100n,d,10)+"%";
+  return decimalString(n*100n,d,2)+"%";
 }
 function htmlFrac(f){
   return '<span class="frac"><span class="top">'+f.n+'</span><span class="bottom">'+f.d+'</span></span>';
@@ -561,7 +566,7 @@ function clearError(){
 function showResult(result, meta={}){
   const f=normalize(result.n,result.d);
   const mixed=fractionToMixed(f);
-  const dec=decimalString(f.n,f.d,12);
+  const dec=decimalString(f.n,f.d,4);
   const pct=percentString(f.n,f.d);
 
   $("answer").innerHTML=htmlFrac(f);
@@ -572,6 +577,8 @@ function showResult(result, meta={}){
   $("metricGcf").textContent=(meta.gcf ?? f.g).toString();
   $("metricLcd").textContent=(meta.lcd ?? "—").toString();
   $("steps").innerHTML=meta.steps || `<div class="step"><strong>Final answer:</strong> ${htmlFrac(f)}.</div>`;
+  $("metrics").style.display=meta.showMetrics===false?"none":"grid";
+  [$("metricDecimal"),$("metricPercent"),$("metricGcf"),$("metricLcd")].forEach(el=>el.parentElement.style.display="block");
   resultBox.style.display="block";
   lastResultText=`Fraction Calculator Result: ${f.n}/${f.d} | Mixed: ${mixed} | Decimal: ${dec} | Percentage: ${pct}`;
   resultBox.scrollIntoView({behavior:"smooth",block:"start"});
@@ -640,22 +647,28 @@ function calculateCompare(){
   const relation=left===right?"=":(left>right?">":"<");
   const common=lcmBig(a.d,b.d);
   const leftN=a.n*(common/a.d), rightN=b.n*(common/b.d);
+  const conclusion=relation==="="?"The fractions are equal.":relation===">"?"The first fraction is greater than the second.":"The first fraction is less than the second.";
   const steps=`
     <div class="step"><strong>Step 1:</strong> Use a common denominator of ${common}.</div>
     <div class="step"><strong>Step 2:</strong> ${htmlFrac(a)} = ${leftN}/${common}; ${htmlFrac(b)} = ${rightN}/${common}.</div>
-    <div class="step"><strong>Step 3:</strong> ${leftN}/${common} ${relation} ${rightN}/${common}.</div>
-    <div class="step"><strong>Conclusion:</strong> ${htmlFrac(a)} ${relation} ${htmlFrac(b)}.</div>`;
+    <div class="step"><strong>Step 3:</strong> Compare the numerators: ${leftN} ${relation} ${rightN}.</div>
+    <div class="step"><strong>Conclusion:</strong> ${htmlFrac(a)} ${relation} ${htmlFrac(b)}. ${conclusion}</div>`;
 
-  $("answer").textContent=`${a.n}/${a.d} ${relation} ${b.n}/${b.d}`;
-  $("mixedAnswer").textContent="Comparison completed using a common denominator of "+common+".";
-  $("decimalAnswer").textContent="This mode compares exact fraction values; no decimal conversion is required.";
+  $("answer").innerHTML=`${htmlFrac(a)} <span class="comparison-symbol">${relation}</span> ${htmlFrac(b)}`;
+  $("mixedAnswer").textContent=conclusion;
+  $("decimalAnswer").textContent="Comparison uses exact fraction values; no decimal conversion is required.";
   $("metricDecimal").textContent="—";
   $("metricPercent").textContent="—";
-  $("metricGcf").textContent=gcdBig(a.n,a.d).toString();
+  $("metricGcf").textContent="—";
   $("metricLcd").textContent=common.toString();
   $("steps").innerHTML=steps;
+  $("metrics").style.display="grid";
+  $("metricDecimal").parentElement.style.display="none";
+  $("metricPercent").parentElement.style.display="none";
+  $("metricGcf").parentElement.style.display="none";
+  $("metricLcd").parentElement.style.display="block";
   resultBox.style.display="block";
-  lastResultText=`Fraction comparison: ${a.n}/${a.d} ${relation} ${b.n}/${b.d}`;
+  lastResultText=`Fraction comparison: ${a.n}/${a.d} ${relation} ${b.n}/${b.d} — ${conclusion}`;
   resultBox.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function calculateConversion(){
@@ -664,32 +677,32 @@ function calculateConversion(){
   if(mode==="fraction-decimal"){
     f=inputValue(list.children[0]);
     title="Fraction to Decimal";
-    steps=`<div class="step"><strong>Conversion:</strong> ${htmlFrac(f)} = ${decimalString(f.n,f.d,15)}.</div>`;
-    showResult(f,{gcf:f.g,lcd:"—",steps});
+    steps=`<div class="step"><strong>Conversion:</strong> ${htmlFrac(f)} = ${decimalString(f.n,f.d,4)}.</div>`;
+    showResult(f,{gcf:f.g,lcd:"—",steps,showMetrics:false});
   }else if(mode==="decimal-fraction"){
     f=parseDecimalToFraction($("decimalInput").value);
     steps=`<div class="step"><strong>Step 1:</strong> Convert the decimal to an exact fraction.</div><div class="step"><strong>Step 2:</strong> Simplify to ${htmlFrac(f)}.</div>`;
-    showResult(f,{gcf:f.g,lcd:"—",steps});
+    showResult(f,{gcf:f.g,lcd:"—",steps,showMetrics:false});
   }else if(mode==="fraction-percent"){
     f=inputValue(list.children[0]);
     steps=`<div class="step"><strong>Step 1:</strong> Divide numerator by denominator.</div><div class="step"><strong>Step 2:</strong> Multiply the decimal value by 100.</div><div class="step"><strong>Result:</strong> ${htmlFrac(f)} = ${percentString(f.n,f.d)}.</div>`;
-    showResult(f,{gcf:f.g,lcd:"—",steps});
+    showResult(f,{gcf:f.g,lcd:"—",steps,showMetrics:false});
   }else if(mode==="percent-fraction"){
     const v=String($("percentInput").value).trim();
     if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(v)) throw new Error("Please enter a valid percentage.");
     f=parseDecimalToFraction(v);
     f=normalize(f.n,f.d*100n);
     steps=`<div class="step"><strong>Step 1:</strong> Write the percentage over 100.</div><div class="step"><strong>Step 2:</strong> ${v}/100 = ${htmlFrac(f)} after simplification.</div>`;
-    showResult(f,{gcf:f.g,lcd:"—",steps});
+    showResult(f,{gcf:f.g,lcd:"—",steps,showMetrics:false});
   }else if(mode==="mixed-improper"){
     f=inputValue(list.children[0]);
     steps=`<div class="step"><strong>Conversion:</strong> The mixed number is converted to the exact improper fraction ${htmlFrac(f)}.</div>`;
-    showResult(f,{gcf:f.g,lcd:"—",steps});
+    showResult(f,{gcf:f.g,lcd:"—",steps,showMetrics:false});
   }else if(mode==="improper-mixed"){
     f=inputValue(list.children[0]);
     const mixed=fractionToMixed(f);
     steps=`<div class="step"><strong>Conversion:</strong> ${htmlFrac(f)} = <strong>${mixed}</strong>.</div>`;
-    showResult(f,{gcf:f.g,lcd:"—",steps});
+    showResult(f,{gcf:f.g,lcd:"—",steps,showMetrics:false});
     $("mixedAnswer").textContent="Mixed number: "+mixed;
   }
 }
