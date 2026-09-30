@@ -703,7 +703,7 @@ function calculateConversion(){
     const rawN=percent.n;
     const rawD=percent.d*100n;
     f=normalize(rawN,rawD);
-    steps=`<div class="step"><strong>Step 1:</strong> Write the percentage over 100: ${v}/100.</div><div class="step"><strong>Step 2:</strong> Simplify ${rawN}/${rawD} to ${htmlFrac(f)}.</div>`;
+    steps=`<div class="step"><strong>Step 1:</strong> Write the percentage over 100: ${v}/100.</div><div class="step"><strong>Step 2:</strong> ${rawN===f.n && rawD===f.d ? `${htmlFrac(f)} is already in simplest form.` : `Simplify ${rawN}/${rawD} to ${htmlFrac(f)}.`}</div>`;
     showResult(f,{gcf:gcdBig(rawN,rawD),lcd:"—",steps,showMetrics:false});
   }else if(mode==="mixed-improper"){
     f=inputValue(list.children[0]);
