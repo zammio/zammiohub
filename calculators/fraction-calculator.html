@@ -36,7 +36,7 @@
   "@type":"BreadcrumbList",
   "itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://zammiohub.com/"},
-    {"@type":"ListItem","position":2,"name":"All Calculators","item":"https://zammiohub.com/"},
+    {"@type":"ListItem","position":2,"name":"All Calculators","item":"https://zammiohub.com/calculators/"},
     {"@type":"ListItem","position":3,"name":"Fraction Calculator","item":"https://zammiohub.com/calculators/fraction-calculator"}
   ]
 }
@@ -734,7 +734,7 @@ function setModeUI(){
   const operations=mode==="operations";
   const compare=mode==="compare";
   operationArea.hidden=!operations && !compare;
-  $("operationToolbar").style.display=operations?"flex":"none";
+  $("operationToolbar").style.display=(operations||compare)?"flex":"none";
   $("swapBtn").style.display=(operations||compare)?"inline-block":"none";
   $("addBtn").style.display=operations?"inline-block":"none";
   list.style.display=(mode==="decimal-fraction"||mode==="percent-fraction")?"none":"grid";
