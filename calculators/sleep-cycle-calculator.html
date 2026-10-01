@@ -169,8 +169,8 @@ input:focus,select:focus{
 .faq details{border:1px solid var(--border);border-radius:10px;background:#fff;margin:10px 0;overflow:hidden}
 .faq summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:700;color:var(--primary-dark);display:flex;align-items:center;justify-content:space-between;gap:14px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:24px;line-height:1;color:var(--primary);flex:0 0 auto}
-.faq details[open] summary::after{content:"−"}
+.faq summary::after{content:"⌄";font-size:21px;line-height:1;color:var(--primary);flex:0 0 auto;transition:transform .18s ease}
+.faq details[open] summary::after{content:"⌄";transform:rotate(180deg)}
 .faq .answer{padding:0 18px 17px;color:var(--muted)}
 .result-summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;border:1px solid #c8dccb;border-radius:12px;background:#f6fbf6}
 .summary-note{color:var(--muted);font-size:14px;text-align:right}
@@ -185,7 +185,7 @@ input:focus,select:focus{
 .top-presets button{font-weight:700}
 @media(max-width:600px){
   .top-presets{margin-bottom:18px}
-  .top-presets button{font-size:12.5px;padding:7px 11px}
+  .top-presets button{font-size:12px;padding:7px 10px}
 }
 @media(max-width:800px){.cycle-options{grid-template-columns:1fr}.result-summary{align-items:flex-start;flex-direction:column}.summary-note{text-align:left}}
 .quick-latency{
@@ -422,6 +422,7 @@ input:focus,select:focus{
   padding:2px 1px 4px;
 }
 .quick-links::-webkit-scrollbar{display:none}
+.quick-links{padding-right:12px}
 .quick-links button{
   flex:0 0 auto;
   white-space:nowrap;
@@ -460,10 +461,12 @@ input:focus,select:focus{
   font-weight:700;
   font-size:15px;
 }
+.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border:1px solid var(--border);border-radius:8px}
 .info-table{
   width:100%;
+  min-width:700px;
   border-collapse:collapse;
-  margin:14px 0;
+  margin:0;
 }
 .info-table th,.info-table td{
   border:1px solid var(--border);
@@ -471,7 +474,7 @@ input:focus,select:focus{
   text-align:left;
   vertical-align:top;
 }
-.info-table th{background:var(--soft);color:var(--primary-dark)}
+.info-table th{background:var(--soft);color:var(--primary-dark);white-space:normal}
 .nap-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -560,8 +563,8 @@ input:focus,select:focus{
 .compact-details details{border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden}
 .compact-details summary{list-style:none;cursor:pointer;padding:16px 18px;font-size:22px;font-weight:800;color:var(--primary-dark);display:flex;align-items:center;justify-content:space-between;gap:14px}
 .compact-details summary::-webkit-details-marker{display:none}
-.compact-details summary::after{content:"+";font-size:25px;line-height:1;color:var(--primary)}
-.compact-details details[open] summary::after{content:"−"}
+.compact-details summary::after{content:"⌄";font-size:21px;line-height:1;color:var(--primary);transition:transform .18s ease}
+.compact-details details[open] summary::after{content:"⌄";transform:rotate(180deg)}
 .details-content{padding:0 18px 18px}
 .details-content h3{margin-top:18px}
 
@@ -591,7 +594,12 @@ footer{
   .time-row{grid-template-columns:1fr 100px}
   .mode-btn{font-size:13px;padding:10px 7px}
   .nap-grid{grid-template-columns:1fr}
-  .section h2{font-size:24px}
+  .section{margin:24px 0}
+  .section h2{font-size:22px;line-height:1.25;margin-bottom:9px}
+  .section h3{font-size:19px;margin:18px 0 7px}
+  .section p{margin:7px 0}
+  .section ol,.section ul{padding-left:20px}
+  .table-scroll{margin-top:12px;margin-bottom:12px}
   .info-table{font-size:14px}
 }
 @media(max-width:600px){
@@ -964,14 +972,16 @@ footer{
   <section class="section">
     <h2>How Many Hours of Sleep Do You Need?</h2>
     <p>Sleep needs vary by age and individual circumstances. For many healthy adults, commonly cited guidance is around <strong>7–9 hours per night</strong>. The calculator therefore presents multiple cycle options rather than claiming that one cycle count is universally best.</p>
-    <table class="info-table">
-      <thead><tr><th>Planning option</th><th>At a 90-minute cycle estimate</th><th>Example use</th></tr></thead>
-      <tbody>
-        <tr><td>4 cycles</td><td>6 hours</td><td>Short planning option; not a general recommendation for regular adult sleep.</td></tr>
-        <tr><td>5 cycles</td><td>7 hours 30 minutes</td><td>Common cycle-based planning option.</td></tr>
-        <tr><td>6 cycles</td><td>9 hours</td><td>Longer planning option.</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll" role="region" aria-label="Sleep cycle planning options" tabindex="0">
+      <table class="info-table">
+        <thead><tr><th>Planning option</th><th>At a 90-minute cycle estimate</th><th>Example use</th></tr></thead>
+        <tbody>
+          <tr><td>4 cycles</td><td>6 hours</td><td>Short planning option; not a general recommendation for regular adult sleep.</td></tr>
+          <tr><td>5 cycles</td><td>7 hours 30 minutes</td><td>Common cycle-based planning option.</td></tr>
+          <tr><td>6 cycles</td><td>9 hours</td><td>Longer planning option.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="section compact-details">
