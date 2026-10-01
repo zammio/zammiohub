@@ -656,7 +656,8 @@ footer{
  ]
 }
 </script>
-<!-- ZammioHub Sleep Cycle Calculator Final v8: visible 12/24-hour time input fix -->\n</head>
+<!-- ZammioHub Sleep Cycle Calculator Final v9: default result and time parsing fix -->
+</head>
 
 <body>
 <main class="wrap">
@@ -1139,7 +1140,7 @@ footer{
     if(!v) throw new Error(timeFormat==="12" ? "Please enter a time like 7:00 AM." : "Please enter a time like 07:00.");
 
     if(timeFormat === "12"){
-      const match = v.match(/^(\\d{1,2}):(\\d{2})\\s*(AM|PM)$/);
+      const match = v.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/);
       if(!match) throw new Error("Please enter a valid 12-hour time, for example 7:00 AM.");
       let h=Number(match[1]), m=Number(match[2]);
       if(h<1 || h>12 || m<0 || m>59) throw new Error("Please enter a valid 12-hour time, for example 7:00 AM.");
@@ -1151,7 +1152,7 @@ footer{
       return h*60+m;
     }
 
-    const match = v.match(/^(\\d{1,2}):(\\d{2})$/);
+    const match = v.match(/^(\d{1,2}):(\d{2})$/);
     if(!match) throw new Error("Please enter a valid 24-hour time, for example 07:00.");
     const h=Number(match[1]), m=Number(match[2]);
     if(h<0 || h>23 || m<0 || m>59) throw new Error("Please enter a valid 24-hour time, for example 07:00.");
@@ -1263,7 +1264,7 @@ footer{
       '</div>';
   }
 
-  function calculate(){
+  function calculate(shouldScroll=true){
     hideError();
     try{
       const cycle=getCycle();
@@ -1348,7 +1349,7 @@ footer{
 
       $("options").innerHTML=cards;
       $("result").style.display="block";
-      $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+      if(shouldScroll) $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
     }catch(err){
       showError(err.message || "Please check your entries and try again.");
     }
@@ -1443,9 +1444,9 @@ footer{
   const now = new Date();
   $("napStart").value = fmt(now.getHours()*60+now.getMinutes());
 
-  // Initial visible time format and calculation.
+  // Initial visible time format and calculation. Show the default result without moving the page.
   syncTimeInputsToFormat();
-  calculate();
+  calculate(false);
 })();
 </script>
 </body>
