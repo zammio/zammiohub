@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Cycle Calculator – Find Your Bedtime & Wake-Up Time | ZammioHub</title>
+<meta name="description" content="Use ZammioHub's free Sleep Cycle Calculator to estimate bedtimes and wake-up times using sleep cycles, sleep duration, and time to fall asleep. Includes nap planning and customizable settings.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://zammiohub.com/calculators/sleep-cycle-calculator">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sleep Cycle Calculator – Bedtime & Wake-Up Time | ZammioHub">
+<meta property="og:description" content="Estimate sleep times using sleep-cycle planning, sleep latency, duration and nap options.">
+<meta property="og:url" content="https://zammiohub.com/calculators/sleep-cycle-calculator">
+<meta property="og:site_name" content="ZammioHub">
+
+<style>
+:root{
+  --primary:#17608a;
+  --primary-dark:#124c70;
+  --accent:#2f7d32;
+  --accent-dark:#256428;
+  --text:#26343d;
+  --muted:#66737d;
+  --border:#d9e1e6;
+  --soft:#f5f8fa;
+  --soft-blue:#eef6fa;
+  --danger:#a12626;
+  --danger-bg:#fff3f3;
+  --white:#fff;
+  --shadow:0 8px 28px rgba(18,76,112,.09);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:#fff;
+  line-height:1.65;
+}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto}
+.breadcrumb{
+  padding:22px 0 8px;
+  font-size:14px;
+  color:var(--muted);
+}
+.breadcrumb span{margin:0 6px;color:#9aa5ad}
+h1{
+  margin:10px 0 10px;
+  color:var(--primary-dark);
+  font-size:clamp(34px,5vw,52px);
+  line-height:1.1;
+  letter-spacing:-.8px;
+}
+.intro{
+  max-width:900px;
+  margin:0 0 24px;
+  font-size:18px;
+  color:#4c5a63;
+}
+.card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin:22px 0;
+}
+.card-head{
+  padding:16px 20px;
+  background:var(--primary);
+  color:#fff;
+  font-size:21px;
+  font-weight:700;
+}
+.card-body{padding:24px}
+.calculator{
+  background:var(--soft);
+  padding:25px;
+  border-top:1px solid var(--border);
+}
+.mode-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:22px;
+}
+.mode-btn{
+  border:1px solid #cbd7de;
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:10px;
+  padding:12px 10px;
+  min-height:50px;
+  font-weight:700;
+  transition:.18s ease;
+}
+.mode-btn:hover{border-color:var(--primary);background:var(--soft-blue)}
+.mode-btn.active{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+  box-shadow:0 4px 12px rgba(23,96,138,.18);
+}
+.field-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.field{margin-bottom:2px}
+.field.full{grid-column:1/-1}
+label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+  color:#33434d;
+}
+input,select{
+  width:100%;
+  min-height:48px;
+  padding:10px 12px;
+  border:1px solid #cbd6dc;
+  border-radius:9px;
+  background:#fff;
+  color:var(--text);
+  outline:none;
+}
+input:focus,select:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(23,96,138,.12);
+}
+.help{
+  display:block;
+  margin-top:5px;
+  font-size:13px;
+  color:var(--muted);
+}
+.time-row{
+  display:grid;
+  grid-template-columns:1fr 115px;
+  gap:10px;
+}
+.segment{
+  display:flex;
+  border:1px solid #cbd6dc;
+  border-radius:9px;
+  background:#fff;
+  overflow:hidden;
+  min-height:48px;
+}
+.segment button{
+  flex:1;
+  border:0;
+  background:#fff;
+  color:var(--muted);
+  font-weight:700;
+}
+.segment button+button{border-left:1px solid #d8e0e5}
+.segment button.active{
+  background:var(--primary);
+  color:#fff;
+}
+.advanced{
+  margin-top:18px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+}
+.advanced summary{
+  padding:13px 15px;
+  color:var(--primary-dark);
+  font-weight:700;
+  cursor:pointer;
+}
+.advanced-body{padding:16px;border-top:1px solid var(--border)}
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:22px;
+}
+.btn{
+  border:0;
+  border-radius:9px;
+  min-height:48px;
+  padding:10px 18px;
+  font-weight:700;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-secondary{
+  background:#fff;
+  color:var(--primary-dark);
+  border:1px solid #cbd6dc;
+}
+.btn-secondary:hover{background:var(--soft-blue)}
+.error{
+  display:none;
+  margin-top:15px;
+  padding:11px 13px;
+  border:1px solid #edcaca;
+  border-radius:9px;
+  background:var(--danger-bg);
+  color:var(--danger);
+  font-weight:600;
+}
+.result{
+  display:none;
+  margin-top:22px;
+  border:1px solid #cfe1d0;
+  border-radius:12px;
+  background:#fff;
+  overflow:hidden;
+}
+.result-head{
+  padding:14px 18px;
+  background:var(--accent);
+  color:#fff;
+  font-size:19px;
+  font-weight:700;
+}
+.result-main{padding:20px}.result-main>.primary-result{margin-top:2px}.result-head + .result-main{padding-top:20px}
+.primary-result{
+  border:2px solid #75a878;
+  border-left:6px solid var(--accent);
+  border-radius:11px;
+  background:#f6fbf6;
+  padding:17px;
+  position:relative;
+}
+.badge{
+  display:inline-block;
+  font-size:12px;
+  line-height:1.3;
+  font-weight:700;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#4b8628;
+  color:#fff;
+  margin-bottom:7px;
+}
+.big-time{
+  color:var(--primary-dark);
+  font-size:clamp(29px,5vw,42px);
+  font-weight:800;
+  line-height:1.15;
+}
+.subresult{color:var(--muted);margin-top:3px}
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+.metric{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  background:#fff;
+}
+.metric strong{display:block;color:var(--primary-dark);font-size:17px}
+.metric span{font-size:13px;color:var(--muted)}
+.options{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+.option{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px;
+  background:#fff;
+}
+.option.primary-option{
+  border-color:#75a878;
+  border-left:5px solid var(--accent);
+  background:#f8fcf8;
+}
+.option-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  color:var(--primary-dark);
+  font-weight:800;
+}
+.option .tag{
+  font-size:11px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#e4f1e4;
+  color:var(--accent-dark);
+  white-space:nowrap;
+}
+.option-time{
+  font-size:23px;
+  font-weight:800;
+  margin:6px 0 1px;
+  color:var(--text);
+}
+.option-note{font-size:13px;color:var(--muted)}
+.note{
+  margin-top:15px;
+  padding:12px 14px;
+  background:var(--soft-blue);
+  border:1px solid #d7e7ef;
+  border-radius:9px;
+  color:#4d5e68;
+  font-size:14px;
+}
+.result-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+}
+.result-actions button{
+  border:1px solid #cbd6dc;
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:8px;
+  padding:8px 12px;
+  font-weight:700;
+}
+.result-actions button:hover{background:var(--soft-blue)}
+.quick-links{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:16px 0 0;
+}
+.quick-links button{
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--primary-dark);
+  border-radius:999px;
+  padding:7px 12px;
+  font-size:13px;
+  font-weight:700;
+}
+.section{margin:30px 0}
+.section h2{
+  color:var(--primary-dark);
+  font-size:28px;
+  line-height:1.2;
+  margin:0 0 12px;
+}
+.section h3{
+  color:var(--primary-dark);
+  font-size:21px;
+  margin:22px 0 8px;
+}
+.section p{margin:9px 0}
+.section ul{padding-left:21px}
+.formula{
+  margin:15px 0;
+  padding:17px;
+  border:1px solid #d5e4ec;
+  border-radius:10px;
+  background:var(--soft-blue);
+  overflow-x:auto;
+}
+.formula code{
+  color:var(--primary-dark);
+  font-weight:700;
+  font-size:15px;
+}
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0;
+}
+.info-table th,.info-table td{
+  border:1px solid var(--border);
+  padding:11px 12px;
+  text-align:left;
+  vertical-align:top;
+}
+.info-table th{background:var(--soft);color:var(--primary-dark)}
+.nap-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.nap-card{
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:15px;
+  background:#fff;
+}
+.nap-card .pill{
+  display:inline-block;
+  border-radius:999px;
+  background:var(--soft-blue);
+  color:var(--primary-dark);
+  padding:4px 8px;
+  font-size:11px;
+  font-weight:700;
+}
+.nap-card h3{margin:9px 0 4px;font-size:18px}
+.nap-card p{font-size:14px;color:var(--muted);margin:0}
+.faq details{
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin:10px 0;
+  background:#fff;
+}
+.faq summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-weight:700;
+  color:var(--primary-dark);
+}
+.faq .answer{padding:0 16px 15px;color:#4e5b64}
+.related{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.related a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px;
+  color:var(--primary-dark);
+  font-weight:700;
+  background:#fff;
+  transition:.18s ease;
+}
+.related a:hover{
+  text-decoration:none;
+  border-color:var(--primary);
+  background:var(--soft-blue);
+  transform:translateY(-1px);
+}
+.related a span{color:var(--primary);font-size:19px}
+.disclaimer{
+  margin:25px 0 35px;
+  padding:15px 16px;
+  border:1px solid #e4d7b8;
+  border-radius:10px;
+  background:#fffaf0;
+  color:#65583d;
+  font-size:13px;
+}
+.hidden{display:none!important}
+footer{
+  border-top:1px solid var(--border);
+  margin-top:40px;
+  padding:25px 0 40px;
+  color:var(--muted);
+  font-size:14px;
+}
+@media(max-width:800px){
+  .mode-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .options{grid-template-columns:1fr}
+  .nap-grid{grid-template-columns:repeat(2,1fr)}
+  .related{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .wrap{width:min(100% - 22px,1080px)}
+  .breadcrumb{padding-top:16px}
+  h1{font-size:32px}
+  .intro{font-size:16px}
+  .card-body,.calculator{padding:16px}
+  .field-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .time-row{grid-template-columns:1fr 100px}
+  .mode-btn{font-size:13px;padding:10px 7px}
+  .nap-grid{grid-template-columns:1fr}
+  .section h2{font-size:24px}
+  .info-table{font-size:14px}
+}
+@media(max-width:420px){
+  .mode-grid{gap:7px}
+  .mode-btn{min-height:46px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .actions .btn{width:100%}
+}
+@media print{
+  .calculator,.result-actions,.quick-links,footer{display:none!important}
+  .card{box-shadow:none}
+}
+</style>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebApplication",
+ "name":"ZammioHub Sleep Cycle Calculator",
+ "url":"https://zammiohub.com/calculators/sleep-cycle-calculator",
+ "applicationCategory":"UtilitiesApplication",
+ "operatingSystem":"All",
+ "description":"A free sleep cycle calculator for estimating bedtimes, wake-up times, sleep duration and nap timing.",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BreadcrumbList",
+ "itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://zammiohub.com/"},
+  {"@type":"ListItem","position":2,"name":"All Calculators","item":"https://zammiohub.com/calculators/"},
+  {"@type":"ListItem","position":3,"name":"Sleep Cycle Calculator","item":"https://zammiohub.com/calculators/sleep-cycle-calculator"}
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {"@type":"Question","name":"What is a sleep cycle calculator?","acceptedAnswer":{"@type":"Answer","text":"A sleep cycle calculator estimates sleep and wake times using an assumed cycle length, usually around 90 minutes, plus the time it may take to fall asleep."}},
+  {"@type":"Question","name":"How long is a sleep cycle?","acceptedAnswer":{"@type":"Answer","text":"Sleep cycles vary. A commonly used planning estimate is about 90 minutes, but real cycles can vary substantially within and between nights."}},
+  {"@type":"Question","name":"How many sleep cycles should I plan for?","acceptedAnswer":{"@type":"Answer","text":"The calculator shows 4, 5 and 6 cycle planning options. These correspond to 6, 7.5 and 9 hours when a 90-minute cycle is used; they are planning estimates, not guarantees."}},
+  {"@type":"Question","name":"Does the calculator account for time to fall asleep?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can adjust sleep latency, including custom values, so the estimated get-into-bed time can be separated from the estimated time you fall asleep."}},
+  {"@type":"Question","name":"Is a 90-minute sleep cycle exact?","acceptedAnswer":{"@type":"Answer","text":"No. Sleep cycles are not fixed at exactly 90 minutes. The calculator uses a configurable estimate for planning convenience."}},
+  {"@type":"Question","name":"Can I use this calculator for naps?","acceptedAnswer":{"@type":"Answer","text":"Yes. The nap planner provides short, recovery and full-cycle planning options, but individual responses to naps vary."}}
+ ]
+}
+</script>
+</head>
+
+<body>
+<main class="wrap">
+  <div class="breadcrumb">
+    <a href="https://zammiohub.com/">Home</a><span>›</span>
+    <a href="https://zammiohub.com/calculators/">All Calculators</a><span>›</span>
+    Sleep Cycle Calculator
+  </div>
+
+  <h1>Sleep Cycle Calculator</h1>
+  <p class="intro">Estimate when to go to bed or wake up using sleep-cycle planning, time to fall asleep, sleep duration and flexible cycle-length settings. Free, fast and designed for mobile and desktop.</p>
+
+  <section class="card" id="calculator">
+    <div class="card-head">Sleep Cycle Calculator</div>
+    <div class="calculator">
+
+      <div class="mode-grid" role="tablist" aria-label="Sleep calculator mode">
+        <button class="mode-btn active" data-mode="wake" type="button">Wake Up At</button>
+        <button class="mode-btn" data-mode="bed" type="button">Go To Bed At</button>
+        <button class="mode-btn" data-mode="duration" type="button">Sleep Duration</button>
+        <button class="mode-btn" data-mode="now" type="button">Sleep Now</button>
+      </div>
+
+      <div id="wakeFields" class="field-grid mode-fields">
+        <div class="field">
+          <label for="wakeTime">Wake-up time</label>
+          <div class="time-row">
+            <input id="wakeTime" type="time" value="07:00" aria-describedby="wakeHelp">
+            <div class="segment" aria-label="Time format">
+              <button type="button" data-format="12" class="format-btn active">12-hour</button>
+              <button type="button" data-format="24" class="format-btn">24-hour</button>
+            </div>
+          </div>
+          <small id="wakeHelp" class="help">Choose the time you need to wake up.</small>
+        </div>
+        <div class="field">
+          <label for="ageWake">Age group</label>
+          <select id="ageWake">
+            <option value="adult" selected>18–25</option>
+            <option value="adult">26–35</option>
+            <option value="adult">36–45</option>
+            <option value="adult">46–55</option>
+            <option value="adult">56–64</option>
+            <option value="adult">65+</option>
+            <option value="teen">14–17</option>
+            <option value="child">6–13</option>
+            <option value="child">3–5</option>
+            <option value="child">1–2</option>
+            <option value="infant">4–11 months</option>
+            <option value="infant">0–3 months</option>
+          </select>
+          <small class="help">Used for general sleep-duration context.</small>
+        </div>
+      </div>
+
+      <div id="bedFields" class="field-grid mode-fields hidden">
+        <div class="field">
+          <label for="bedTime">Bedtime</label>
+          <div class="time-row">
+            <input id="bedTime" type="time" value="22:30">
+            <div class="segment">
+              <button type="button" data-format="12" class="format-btn active">12-hour</button>
+              <button type="button" data-format="24" class="format-btn">24-hour</button>
+            </div>
+          </div>
+          <small class="help">Choose the time you plan to get into bed.</small>
+        </div>
+        <div class="field">
+          <label for="ageBed">Age group</label>
+          <select id="ageBed">
+            <option value="adult" selected>18–25</option>
+            <option value="adult">26–35</option>
+            <option value="adult">36–45</option>
+            <option value="adult">46–55</option>
+            <option value="adult">56–64</option>
+            <option value="adult">65+</option>
+            <option value="teen">14–17</option>
+            <option value="child">6–13</option>
+            <option value="child">3–5</option>
+            <option value="child">1–2</option>
+            <option value="infant">4–11 months</option>
+            <option value="infant">0–3 months</option>
+          </select>
+          <small class="help">Used for general sleep-duration context.</small>
+        </div>
+      </div>
+
+      <div id="durationFields" class="field-grid mode-fields hidden">
+        <div class="field">
+          <label for="durationDirection">I know my...</label>
+          <select id="durationDirection">
+            <option value="wake" selected>Wake-up time</option>
+            <option value="bed">Bedtime</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="durationTime">Time</label>
+          <input id="durationTime" type="time" value="07:00">
+        </div>
+        <div class="field">
+          <label for="targetDuration">Target sleep duration</label>
+          <select id="targetDuration">
+            <option value="360">6 hours</option>
+            <option value="390">6.5 hours</option>
+            <option value="420">7 hours</option>
+            <option value="450">7.5 hours</option>
+            <option value="480" selected>8 hours</option>
+            <option value="510">8.5 hours</option>
+            <option value="540">9 hours</option>
+          </select>
+          <small class="help">Choose a planning duration; your actual sleep need may differ.</small>
+        </div>
+        <div class="field">
+          <label for="ageDuration">Age group</label>
+          <select id="ageDuration">
+            <option value="adult" selected>18–25</option>
+            <option value="adult">26–35</option>
+            <option value="adult">36–45</option>
+            <option value="adult">46–55</option>
+            <option value="adult">56–64</option>
+            <option value="adult">65+</option>
+            <option value="teen">14–17</option>
+            <option value="child">6–13</option>
+            <option value="child">3–5</option>
+            <option value="child">1–2</option>
+            <option value="infant">4–11 months</option>
+            <option value="infant">0–3 months</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="nowFields" class="field-grid mode-fields hidden">
+        <div class="field">
+          <label for="nowCycles">Plan to sleep for</label>
+          <select id="nowCycles">
+            <option value="4">4 cycles</option>
+            <option value="5" selected>5 cycles</option>
+            <option value="6">6 cycles</option>
+          </select>
+          <small class="help">Sleep Now uses your device's current local time.</small>
+        </div>
+        <div class="field">
+          <label for="ageNow">Age group</label>
+          <select id="ageNow">
+            <option value="adult" selected>18–25</option>
+            <option value="adult">26–35</option>
+            <option value="adult">36–45</option>
+            <option value="adult">46–55</option>
+            <option value="adult">56–64</option>
+            <option value="adult">65+</option>
+            <option value="teen">14–17</option>
+            <option value="child">6–13</option>
+            <option value="child">3–5</option>
+            <option value="child">1–2</option>
+            <option value="infant">4–11 months</option>
+            <option value="infant">0–3 months</option>
+          </select>
+        </div>
+      </div>
+
+      <details class="advanced">
+        <summary>+ Advanced settings</summary>
+        <div class="advanced-body">
+          <div class="field-grid">
+            <div class="field">
+              <label for="cycleLength">Estimated cycle length</label>
+              <select id="cycleLength">
+                <option value="80">80 minutes</option>
+                <option value="85">85 minutes</option>
+                <option value="90" selected>90 minutes</option>
+                <option value="95">95 minutes</option>
+                <option value="100">100 minutes</option>
+                <option value="custom">Custom</option>
+              </select>
+              <small class="help">A planning estimate. Real sleep cycles vary.</small>
+            </div>
+            <div class="field hidden" id="customCycleWrap">
+              <label for="customCycle">Custom cycle length (70–120 min)</label>
+              <input id="customCycle" type="number" min="70" max="120" step="1" value="90">
+            </div>
+            <div class="field">
+              <label for="latency">Time to fall asleep</label>
+              <select id="latency">
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+                <option value="15" selected>15 minutes</option>
+                <option value="20">20 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="custom">Custom</option>
+              </select>
+              <small class="help">Added before estimated sleep begins.</small>
+            </div>
+            <div class="field hidden" id="customLatencyWrap">
+              <label for="customLatency">Custom sleep latency (0–120 min)</label>
+              <input id="customLatency" type="number" min="0" max="120" step="1" value="15">
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="calculateBtn" type="button">Calculate Sleep Times</button>
+        <button class="btn btn-secondary" id="clearBtn" type="button">Clear</button>
+      </div>
+      <div class="error" id="errorBox" role="alert"></div>
+
+      <div class="result" id="result" aria-live="polite">
+        <div class="result-head" id="resultTitle">Your Sleep Plan</div>
+        <div class="result-main">
+          <div class="primary-result">
+            <span class="badge" id="primaryBadge">Recommended planning option</span>
+            <div class="big-time" id="primaryTime">7:00 AM</div>
+            <div class="subresult" id="primaryLabel">Estimated wake-up time</div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric"><strong id="metricCycles">5</strong><span>sleep cycles</span></div>
+            <div class="metric"><strong id="metricSleep">7h 30m</strong><span>estimated sleep</span></div>
+            <div class="metric"><strong id="metricBed">10:15 PM</strong><span>get into bed</span></div>
+            <div class="metric"><strong id="metricAsleep">10:30 PM</strong><span>estimated asleep</span></div>
+          </div>
+
+          <div class="options" id="options"></div>
+
+          <div class="note" id="resultNote">
+            Sleep cycles are estimates. Actual cycle timing varies from night to night, so use these times as planning guidance rather than an exact biological schedule.
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="copyBtn">Copy result</button>
+            <button type="button" id="shareBtn">Share</button>
+            <button type="button" onclick="window.print()">Print</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-links">
+        <button type="button" data-quick="wake">Example: Wake at 7:00 AM</button>
+        <button type="button" data-quick="bed">Example: Bed at 10:30 PM</button>
+        <button type="button" data-quick="now">Sleep now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">Quick Nap Calculator</div>
+    <div class="card-body">
+      <p>Choose a simple nap duration and the calculator will estimate when to wake up from the time you start your nap.</p>
+      <div class="field-grid">
+        <div class="field">
+          <label for="napStart">Nap start time</label>
+          <input id="napStart" type="text" inputmode="text" placeholder="9:49 PM" value="" aria-describedby="napStartHelp">
+          <small id="napStartHelp" class="help">Use 12-hour format, for example 9:49 PM.</small>
+        </div>
+        <div class="field">
+          <label for="napDuration">Nap duration</label>
+          <select id="napDuration">
+            <option value="20">20 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="60">60 minutes</option>
+            <option value="90" selected>90 minutes</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="napBtn" type="button">Calculate Nap Wake Time</button>
+      </div>
+      <div class="result" id="napResult" aria-live="polite">
+        <div class="result-head">Nap Result</div>
+        <div class="result-main">
+          <div class="primary-result">
+            <span class="badge" id="napBadge">Full Cycle</span>
+            <div class="big-time" id="napTime">—</div>
+            <div class="subresult">Estimated wake-up time</div>
+          </div>
+          <div class="note" id="napNote">Nap timing is a planning estimate. Individual sleepiness and recovery needs vary.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What Is a Sleep Cycle Calculator?</h2>
+    <p>A sleep cycle calculator is a planning tool that estimates sleep and wake times from an assumed sleep-cycle length. ZammioHub lets you work backward from a wake-up time, forward from a bedtime, calculate a target duration, or calculate wake-up times from the current time.</p>
+    <p>The calculator also accounts for <strong>sleep latency</strong> — the approximate time you may need to fall asleep after getting into bed.</p>
+  </section>
+
+  <section class="section">
+    <h2>How to Use the Sleep Cycle Calculator</h2>
+    <ol>
+      <li>Select the mode that matches what you know: wake-up time, bedtime, sleep duration, or Sleep Now.</li>
+      <li>Enter your time and, when useful, select an age group for general sleep-duration context.</li>
+      <li>Open <strong>Advanced settings</strong> if you want to change the estimated cycle length or sleep latency.</li>
+      <li>Choose 12-hour or 24-hour time display and select <strong>Calculate Sleep Times</strong>.</li>
+      <li>Compare the 4-, 5- and 6-cycle planning options instead of treating one time as an exact biological target.</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>How Does the Sleep Cycle Calculation Work?</h2>
+    <p>The basic planning calculation is simple:</p>
+    <div class="formula"><code>Estimated sleep time = number of cycles × estimated cycle length</code></div>
+    <p>For example, using a 90-minute planning estimate:</p>
+    <div class="formula"><code>5 cycles × 90 minutes = 450 minutes = 7 hours 30 minutes</code></div>
+    <p>If sleep latency is set to 15 minutes, you would generally get into bed about 15 minutes before the estimated sleep start.</p>
+  </section>
+
+  <section class="section">
+    <h2>How Long Is a Sleep Cycle?</h2>
+    <p>Sleep cycles are not fixed blocks of exactly 90 minutes. A commonly used planning estimate is around 90 minutes, while real cycles can vary considerably during a night and between people.</p>
+    <p>That is why ZammioHub allows cycle-length settings from 80 to 100 minutes, plus a custom range from 70 to 120 minutes. Changing the setting does not measure your personal cycle; it simply changes the planning assumption used by the calculator.</p>
+  </section>
+
+  <section class="section">
+    <h2>How Many Hours of Sleep Do You Need?</h2>
+    <p>Sleep needs vary by age and individual circumstances. For many healthy adults, commonly cited guidance is around <strong>7–9 hours per night</strong>. The calculator therefore presents multiple cycle options rather than claiming that one cycle count is universally best.</p>
+    <table class="info-table">
+      <thead><tr><th>Planning option</th><th>At a 90-minute cycle estimate</th><th>Example use</th></tr></thead>
+      <tbody>
+        <tr><td>4 cycles</td><td>6 hours</td><td>Short planning option; not a general recommendation for regular adult sleep.</td></tr>
+        <tr><td>5 cycles</td><td>7 hours 30 minutes</td><td>Common cycle-based planning option.</td></tr>
+        <tr><td>6 cycles</td><td>9 hours</td><td>Longer planning option.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>Sleep Cycle vs. Bedtime Calculator</h2>
+    <p>A bedtime calculator usually starts with a desired wake-up time and works backward. A sleep cycle calculator adds another layer by showing several cycle-based possibilities and allowing you to account for time to fall asleep.</p>
+    <p>ZammioHub combines both approaches so you do not need a separate tool for bedtime and wake-up calculations.</p>
+  </section>
+
+  <section class="section">
+    <h2>Sleep Cycle Calculator Examples</h2>
+    <h3>Example 1: Wake up at 7:00 AM</h3>
+    <p>With a 90-minute estimated cycle and 15 minutes of sleep latency, the calculator can show planning options such as 6 hours, 7 hours 30 minutes and 9 hours of estimated sleep. It then works backward to show the approximate get-into-bed times.</p>
+    <h3>Example 2: Go to bed at 10:30 PM</h3>
+    <p>The calculator can work forward from the estimated sleep start and display 4-, 5- and 6-cycle wake-up times.</p>
+    <h3>Example 3: Sleep now</h3>
+    <p>The Sleep Now mode uses the local time on your device and calculates future wake-up times without requiring an external API.</p>
+  </section>
+
+  <section class="section">
+    <h2>Quick Nap Planning</h2>
+    <div class="nap-grid">
+      <div class="nap-card"><span class="pill">Short</span><h3>20 minutes</h3><p>A brief nap option for a quick rest.</p></div>
+      <div class="nap-card"><span class="pill">Short+</span><h3>30 minutes</h3><p>A slightly longer brief nap option.</p></div>
+      <div class="nap-card"><span class="pill">Recovery</span><h3>60 minutes</h3><p>A longer nap that may include deeper sleep.</p></div>
+      <div class="nap-card"><span class="pill">Full Cycle</span><h3>90 minutes</h3><p>A full-cycle planning option; individual responses vary.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Tips for a Consistent Sleep Schedule</h2>
+    <ul>
+      <li>Keep your sleep and wake times reasonably consistent from day to day.</li>
+      <li>Give yourself enough time in bed for your age and individual sleep needs.</li>
+      <li>Allow extra time for falling asleep if you commonly need it.</li>
+      <li>Use the calculator as a planning aid rather than a precise measurement of sleep stages.</li>
+      <li>If sleep problems persist or significantly affect daily life, consider discussing them with a qualified healthcare professional.</li>
+    </ul>
+  </section>
+
+  <section class="section faq">
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>What is a sleep cycle calculator?</summary><div class="answer">It estimates bedtimes and wake-up times using an assumed sleep-cycle length and, optionally, the time it takes to fall asleep.</div></details>
+    <details><summary>Is a 90-minute sleep cycle exact?</summary><div class="answer">No. Ninety minutes is a convenient planning estimate. Real sleep cycles vary and do not repeat at exactly the same length all night.</div></details>
+    <details><summary>How many sleep cycles should I plan for?</summary><div class="answer">ZammioHub shows 4, 5 and 6 cycle options. At 90 minutes each, these equal 6, 7.5 and 9 hours of estimated sleep. They are planning options, not universal recommendations.</div></details>
+    <details><summary>Does the calculator include time to fall asleep?</summary><div class="answer">Yes. The default sleep-latency setting is 15 minutes, and you can choose another preset or enter a custom value.</div></details>
+    <details><summary>Can I use a custom sleep-cycle length?</summary><div class="answer">Yes. Advanced settings allow a custom cycle length from 70 to 120 minutes.</div></details>
+    <details><summary>Does Sleep Now use my location?</summary><div class="answer">No external location service is required. Sleep Now uses the local date and time available from your device's browser.</div></details>
+    <details><summary>Can this calculator tell me my exact sleep stages?</summary><div class="answer">No. A browser calculator cannot measure your actual REM, deep or light sleep stages. The results are estimates based on the assumptions you select.</div></details>
+  </section>
+
+  <section class="section">
+    <h2>Related ZammioHub Calculators</h2>
+    <div class="related">
+      <a href="https://zammiohub.com/calculators/age-calculator">Age Calculator <span>→</span></a>
+      <a href="https://zammiohub.com/calculators/bmi-calculator">BMI Calculator <span>→</span></a>
+      <a href="https://zammiohub.com/calculators/calorie-calculator">Calorie Calculator <span>→</span></a>
+      <a href="https://zammiohub.com/calculators/scientific-calculator">Scientific Calculator <span>→</span></a>
+      <a href="https://zammiohub.com/calculators/percentage-calculator">Percentage Calculator <span>→</span></a>
+      <a href="https://zammiohub.com/calculators/discount-calculator">Discount Calculator <span>→</span></a>
+    </div>
+  </section>
+
+  <div class="disclaimer"><strong>Important:</strong> This calculator provides general sleep-planning estimates and is not medical advice. Sleep-cycle length varies between people and across nights. If you have persistent sleep difficulties, excessive daytime sleepiness, breathing problems during sleep, or another health concern, seek advice from a qualified healthcare professional.</div>
+</main>
+
+<footer>
+  <div class="wrap">© ZammioHub. Free online calculators and tools.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const $ = id => document.getElementById(id);
+  let currentMode = "wake";
+  let timeFormat = "12";
+
+  const modeButtons = document.querySelectorAll(".mode-btn");
+  const modeSections = {
+    wake: $("wakeFields"),
+    bed: $("bedFields"),
+    duration: $("durationFields"),
+    now: $("nowFields")
+  };
+
+  function showMode(mode){
+    currentMode = mode;
+    modeButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+    Object.entries(modeSections).forEach(([key,el]) => el.classList.toggle("hidden", key !== mode));
+    $("result").style.display = "none";
+    hideError();
+    if(mode === "now") $("nowCycles").focus();
+  }
+
+  modeButtons.forEach(btn => btn.addEventListener("click", () => showMode(btn.dataset.mode)));
+
+  document.querySelectorAll(".format-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      timeFormat = btn.dataset.format;
+      document.querySelectorAll(".format-btn").forEach(b => b.classList.toggle("active", b.dataset.format === timeFormat));
+      if($("result").style.display === "block") calculate();
+    });
+  });
+
+  $("cycleLength").addEventListener("change", () => {
+    $("customCycleWrap").classList.toggle("hidden", $("cycleLength").value !== "custom");
+  });
+  $("latency").addEventListener("change", () => {
+    $("customLatencyWrap").classList.toggle("hidden", $("latency").value !== "custom");
+  });
+
+  function showError(msg){
+    $("errorBox").textContent = msg;
+    $("errorBox").style.display = "block";
+  }
+  function hideError(){
+    $("errorBox").style.display = "none";
+    $("errorBox").textContent = "";
+  }
+
+  function getCycle(){
+    const v = $("cycleLength").value === "custom" ? Number($("customCycle").value) : Number($("cycleLength").value);
+    if(!Number.isFinite(v) || v < 70 || v > 120) throw new Error("Cycle length must be between 70 and 120 minutes.");
+    return Math.round(v);
+  }
+  function getLatency(){
+    const v = $("latency").value === "custom" ? Number($("customLatency").value) : Number($("latency").value);
+    if(!Number.isFinite(v) || v < 0 || v > 120) throw new Error("Sleep latency must be between 0 and 120 minutes.");
+    return Math.round(v);
+  }
+  function parseTime(value){
+    if(!value) throw new Error("Please enter a valid time.");
+    const [h,m] = value.split(":").map(Number);
+    if(!Number.isInteger(h) || !Number.isInteger(m) || h < 0 || h > 23 || m < 0 || m > 59) throw new Error("Please enter a valid time.");
+    return h*60+m;
+  }
+  function parseNapTime(value){
+    const v = String(value || "").trim().toUpperCase().replace(/\s+/g," ");
+    const match = v.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/);
+    if(!match) throw new Error("Please enter nap time like 9:49 PM.");
+    let h = Number(match[1]), m = Number(match[2]);
+    if(h < 1 || h > 12 || m < 0 || m > 59) throw new Error("Please enter a valid 12-hour nap time.");
+    if(match[3] === "AM") {
+      if(h === 12) h = 0;
+    } else {
+      if(h !== 12) h += 12;
+    }
+    return h*60+m;
+  }
+  function addMinutes(base, delta){
+    let n = (base + delta) % 1440;
+    if(n < 0) n += 1440;
+    return n;
+  }
+  function fmt(mins){
+    mins = ((Math.round(mins) % 1440) + 1440) % 1440;
+    let h = Math.floor(mins/60), m = mins%60;
+    if(timeFormat === "24") return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0");
+    const suffix = h >= 12 ? "PM" : "AM";
+    let hh = h % 12; if(hh===0) hh=12;
+    return hh+":"+String(m).padStart(2,"0")+" "+suffix;
+  }
+  function durationText(mins){
+    const h = Math.floor(mins/60), m = mins%60;
+    return h ? (m ? h+"h "+m+"m" : h+"h") : m+"m";
+  }
+  function nextDayLabel(start, end, direction){
+    if(direction === "forward") return end < start ? "next day" : "";
+    if(direction === "backward") return end > start ? "previous day" : "";
+    return "";
+  }
+  function ageText(selectId){
+    const el = $(selectId);
+    return el ? el.options[el.selectedIndex].text : "adult";
+  }
+  function ageGuidance(selectId){
+    const label = ageText(selectId);
+    if(label === "0–3 months") return "Infants 0–3 months generally need substantially more total sleep than adults.";
+    if(label === "4–11 months") return "Infants 4–11 months generally need substantially more total sleep than adults.";
+    if(label === "1–2") return "Toddlers generally need more total sleep than adults.";
+    if(label === "3–5") return "Preschool-aged children generally need more total sleep than adults.";
+    if(label === "6–13") return "School-aged children generally need more total sleep than adults.";
+    if(label === "14–17") return "Teenagers generally need more total sleep than adults.";
+    return "For many healthy adults, commonly cited guidance is around 7–9 hours per night.";
+  }
+
+  function optionCard(cycles, sleepMins, primary, time, note){
+    return '<div class="option '+(primary?'primary-option':'')+'">'+
+      '<div class="option-title"><span>'+cycles+' cycles</span>'+(primary?'<span class="tag">Planning option</span>':'')+'</div>'+
+      '<div class="option-time">'+fmt(time)+'</div>'+
+      '<div class="option-note">'+durationText(sleepMins)+' estimated sleep'+(note?' · '+note:'')+'</div>'+
+      '</div>';
+  }
+
+  function calculate(){
+    hideError();
+    try{
+      const cycle = getCycle();
+      const latency = getLatency();
+      let primaryTime = 0, primaryLabel = "", bed = 0, asleep = 0, sleepMins = cycle*5, primaryCycles = 5;
+      let cards = "";
+
+      if(currentMode === "wake"){
+        const wake = parseTime($("wakeTime").value);
+        $("resultTitle").textContent = "Estimated Bedtimes for "+fmt(wake);
+        [4,5,6].forEach(c => {
+          const sm = c*cycle;
+          const asleepTime = addMinutes(wake,-sm);
+          const bedTime = addMinutes(asleepTime,-latency);
+          const day = nextDayLabel(wake,bedTime,"backward");
+          cards += '<div class="option '+(c===5?'primary-option':'')+'">'+
+            '<div class="option-title"><span>'+c+' cycles</span>'+(c===5?'<span class="tag">Planning option</span>':'')+'</div>'+
+            '<div class="option-time">'+fmt(bedTime)+'</div>'+
+            '<div class="option-note">'+durationText(sm)+' sleep · estimated asleep '+fmt(asleepTime)+(day?' · '+day:'')+'</div></div>';
+          if(c===5){primaryTime=bedTime;bed=bedTime;asleep=asleepTime;sleepMins=sm;}
+        });
+        primaryLabel = "Estimated get-into-bed time";
+        $("metricCycles").textContent = "5";
+        $("metricSleep").textContent = durationText(sleepMins);
+        $("metricBed").textContent = fmt(bed);
+        $("metricAsleep").textContent = fmt(asleep);
+        $("primaryBadge").textContent = "5-cycle planning option";
+        $("resultNote").textContent = ageGuidance("ageWake")+" Sleep-cycle timing is an estimate; actual cycles vary.";
+      }
+
+      if(currentMode === "bed"){
+        const bedTime = parseTime($("bedTime").value);
+        const asleepTime = addMinutes(bedTime,latency);
+        $("resultTitle").textContent = "Estimated Wake-Up Times from "+fmt(bedTime);
+        [4,5,6].forEach(c => {
+          const sm = c*cycle;
+          const wake = addMinutes(asleepTime,sm);
+          const day = nextDayLabel(bedTime,wake,"forward");
+          cards += '<div class="option '+(c===5?'primary-option':'')+'">'+
+            '<div class="option-title"><span>'+c+' cycles</span>'+(c===5?'<span class="tag">Planning option</span>':'')+'</div>'+
+            '<div class="option-time">'+fmt(wake)+'</div>'+
+            '<div class="option-note">'+durationText(sm)+' sleep'+(day?' · '+day:'')+'</div></div>';
+          if(c===5){primaryTime=wake;bed=bedTime;asleep=asleepTime;sleepMins=sm;}
+        });
+        primaryLabel = "Estimated wake-up time";
+        $("metricCycles").textContent = "5";
+        $("metricSleep").textContent = durationText(sleepMins);
+        $("metricBed").textContent = fmt(bed);
+        $("metricAsleep").textContent = fmt(asleep);
+        $("primaryBadge").textContent = "5-cycle planning option";
+        $("resultNote").textContent = ageGuidance("ageBed")+" The wake-up times are calculated from an estimated sleep start after your selected latency.";
+      }
+
+      if(currentMode === "duration"){
+        const base = parseTime($("durationTime").value);
+        const target = Number($("targetDuration").value);
+        const direction = $("durationDirection").value;
+        sleepMins = target;
+        if(direction === "wake"){
+          const asleepTime = addMinutes(base,-target);
+          bed = addMinutes(asleepTime,-latency);
+          asleep = asleepTime;
+          primaryTime = bed;
+          primaryLabel = "Estimated get-into-bed time";
+          $("resultTitle").textContent = "Sleep Duration Plan";
+          cards = '<div class="option primary-option"><div class="option-title"><span>Target duration</span><span class="tag">Selected</span></div><div class="option-time">'+fmt(bed)+'</div><div class="option-note">'+durationText(target)+' sleep · estimated asleep '+fmt(asleep)+'</div></div>';
+        } else {
+          bed = base;
+          asleep = addMinutes(bed,latency);
+          primaryTime = addMinutes(asleep,target);
+          primaryLabel = "Estimated wake-up time";
+          $("resultTitle").textContent = "Sleep Duration Plan";
+          cards = '<div class="option primary-option"><div class="option-title"><span>Target duration</span><span class="tag">Selected</span></div><div class="option-time">'+fmt(primaryTime)+'</div><div class="option-note">'+durationText(target)+' sleep · bedtime '+fmt(bed)+'</div></div>';
+        }
+        primaryCycles = Math.round(target/cycle);
+        $("metricCycles").textContent = primaryCycles+" approx.";
+        $("metricSleep").textContent = durationText(target);
+        $("metricBed").textContent = fmt(bed);
+        $("metricAsleep").textContent = fmt(asleep);
+        $("primaryBadge").textContent = "Selected duration";
+        $("resultNote").textContent = ageGuidance("ageDuration")+" Duration mode uses your selected sleep duration directly rather than assuming a whole number of cycles.";
+      }
+
+      if(currentMode === "now"){
+        const now = new Date();
+        const current = now.getHours()*60+now.getMinutes();
+        const c = Number($("nowCycles").value);
+        const asleepTime = current + latency;
+        const wake = addMinutes(asleepTime,c*cycle);
+        primaryTime = wake;
+        primaryLabel = "Estimated wake-up time";
+        bed = current;
+        asleep = asleepTime;
+        sleepMins = c*cycle;
+        $("resultTitle").textContent = "Sleep Now Plan";
+        [4,5,6].forEach(x => {
+          const sm=x*cycle;
+          const wakeX=addMinutes(asleepTime,sm);
+          cards += '<div class="option '+(x===c?'primary-option':'')+'">'+
+            '<div class="option-title"><span>'+x+' cycles</span>'+(x===c?'<span class="tag">Selected</span>':'')+'</div>'+
+            '<div class="option-time">'+fmt(wakeX)+'</div>'+
+            '<div class="option-note">'+durationText(sm)+' sleep</div></div>';
+        });
+        primaryCycles=c;
+        $("metricCycles").textContent = c;
+        $("metricSleep").textContent = durationText(sleepMins);
+        $("metricBed").textContent = fmt(current);
+        $("metricAsleep").textContent = fmt(asleep);
+        $("primaryBadge").textContent = c+"-cycle planning option";
+        $("resultNote").textContent = ageGuidance("ageNow")+" Sleep Now uses your device's current local time and does not access an external clock service.";
+      }
+
+      $("primaryTime").textContent = fmt(primaryTime);
+      $("primaryLabel").textContent = primaryLabel;
+      $("options").innerHTML = cards;
+      $("result").style.display = "block";
+      $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+    }catch(err){
+      showError(err.message || "Please check your entries and try again.");
+    }
+  }
+
+  $("calculateBtn").addEventListener("click", calculate);
+
+  $("clearBtn").addEventListener("click", () => {
+    $("wakeTime").value="07:00";
+    $("bedTime").value="22:30";
+    $("durationTime").value="07:00";
+    $("targetDuration").value="480";
+    $("durationDirection").value="wake";
+    $("nowCycles").value="5";
+    $("cycleLength").value="90";
+    $("latency").value="15";
+    $("customCycle").value="90";
+    $("customLatency").value="15";
+    $("customCycleWrap").classList.add("hidden");
+    $("customLatencyWrap").classList.add("hidden");
+    showMode("wake");
+  });
+
+  document.querySelectorAll("[data-quick]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const q=btn.dataset.quick;
+      showMode(q);
+      if(q==="wake") $("wakeTime").value="07:00";
+      if(q==="bed") $("bedTime").value="22:30";
+      calculate();
+    });
+  });
+
+  $("copyBtn").addEventListener("click",async()=>{
+    const text = $("resultTitle").textContent+" — "+$("primaryLabel").textContent+": "+$("primaryTime").textContent+". "+$("metricSleep").textContent+" estimated sleep, "+$("metricCycles").textContent+" cycles.";
+    try{
+      await navigator.clipboard.writeText(text);
+      $("copyBtn").textContent="Copied!";
+      setTimeout(()=>$("copyBtn").textContent="Copy result",1400);
+    }catch(e){ showError("Copy is not available in this browser."); }
+  });
+
+  $("shareBtn").addEventListener("click",async()=>{
+    const data={title:"ZammioHub Sleep Cycle Calculator",text:$("resultTitle").textContent+" — "+$("primaryTime").textContent, url:location.href};
+    if(navigator.share){
+      try{await navigator.share(data);}catch(e){}
+    }else{
+      try{
+        await navigator.clipboard.writeText(location.href);
+        $("shareBtn").textContent="Link copied!";
+        setTimeout(()=>$("shareBtn").textContent="Share",1400);
+      }catch(e){ showError("Sharing is not available in this browser."); }
+    }
+  });
+
+  $("napBtn").addEventListener("click",()=>{
+    const start = $("napStart").value || fmt(new Date().getHours()*60+new Date().getMinutes());
+    try{
+      const startMin=parseNapTime(start), dur=Number($("napDuration").value);
+      $("napTime").textContent=fmt(addMinutes(startMin,dur));
+      $("napBadge").textContent=dur===90?"Full Cycle":dur<=30?"Short":"Recovery";
+      $("napNote").textContent="Starting at "+fmt(startMin)+", a "+durationText(dur)+" nap ends around "+fmt(addMinutes(startMin,dur))+". This is a planning estimate; individual responses to naps vary.";
+      $("napResult").style.display="block";
+    }catch(e){showError(e.message);}
+  });
+
+  // Set a convenient default nap start time from the device clock.
+  const now = new Date();
+  $("napStart").value = fmt(now.getHours()*60+now.getMinutes());
+
+  // Initial calculation.
+  calculate();
+})();
+</script>
+</body>
+</html>
