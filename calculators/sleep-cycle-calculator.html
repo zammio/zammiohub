@@ -166,6 +166,41 @@ input:focus,select:focus{
   background:var(--primary);
   color:#fff;
 }
+.quick-latency{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:16px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+}
+.quick-label{font-weight:700;color:var(--text)}
+.latency-pills{display:flex;gap:7px;flex-wrap:wrap}
+.latency-pill{
+  min-height:38px;
+  padding:7px 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#fff;
+  color:var(--primary);
+  font-weight:700;
+  cursor:pointer;
+}
+.latency-pill:hover{background:var(--soft-blue)}
+.latency-pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-secondary{background:#fff;color:var(--primary);border:1px solid var(--border)}
+.btn-secondary:hover{background:var(--soft-blue)}
+.whatsapp-btn{color:#176b2a!important;border-color:#b9d7bf!important;background:#fff}
+.whatsapp-btn:hover{background:#eff8f1!important}
+@media(max-width:600px){
+  .quick-latency{align-items:flex-start;flex-direction:column}
+  .latency-pills{width:100%}
+  .latency-pill{flex:1}
+}
 .advanced{
   margin-top:18px;
   border:1px solid var(--border);
@@ -692,7 +727,16 @@ footer{
         </div>
       </div>
 
-      <details class="advanced">
+      <div class="quick-latency" aria-label="Quick sleep latency">
+  <span class="quick-label">Time to fall asleep:</span>
+  <div class="latency-pills" role="group" aria-label="Quick sleep latency options">
+    <button type="button" class="latency-pill" data-latency="10">10 min</button>
+    <button type="button" class="latency-pill active" data-latency="15">15 min</button>
+    <button type="button" class="latency-pill" data-latency="20">20 min</button>
+  </div>
+</div>
+
+<details class="advanced">
         <summary>+ Advanced settings</summary>
         <div class="advanced-body">
           <div class="field-grid">
@@ -762,7 +806,7 @@ footer{
 
           <div class="result-actions">
             <button type="button" id="copyBtn">Copy result</button>
-            <button type="button" id="shareBtn">Share</button>
+            <button type="button" id="shareBtn">Share</button><button type="button" id="whatsappBtn" class="whatsapp-btn">WhatsApp</button>
             <button type="button" onclick="window.print()">Print</button>
           </div>
         </div>
@@ -1066,10 +1110,12 @@ footer{
           const asleepTime = addMinutes(wake,-sm);
           const bedTime = addMinutes(asleepTime,-latency);
           const day = nextDayLabel(wake,bedTime,"backward");
-          cards += '<div class="option '+(c===5?'primary-option':'')+'">'+
-            '<div class="option-title"><span>'+c+' cycles</span>'+(c===5?'<span class="tag">Planning option</span>':'')+'</div>'+
-            '<div class="option-time">'+fmt(bedTime)+'</div>'+
-            '<div class="option-note">'+durationText(sm)+' sleep · estimated asleep '+fmt(asleepTime)+(day?' · '+day:'')+'</div></div>';
+          if(c !== 5){
+            cards += '<div class="option">'+
+              '<div class="option-title"><span>'+c+' cycles</span></div>'+
+              '<div class="option-time">'+fmt(bedTime)+'</div>'+
+              '<div class="option-note">'+durationText(sm)+' sleep · estimated asleep '+fmt(asleepTime)+(day?' · '+day:'')+'</div></div>';
+          }
           if(c===5){primaryTime=bedTime;bed=bedTime;asleep=asleepTime;sleepMins=sm;}
         });
         primaryLabel = "Estimated get-into-bed time";
@@ -1089,10 +1135,12 @@ footer{
           const sm = c*cycle;
           const wake = addMinutes(asleepTime,sm);
           const day = nextDayLabel(bedTime,wake,"forward");
-          cards += '<div class="option '+(c===5?'primary-option':'')+'">'+
-            '<div class="option-title"><span>'+c+' cycles</span>'+(c===5?'<span class="tag">Planning option</span>':'')+'</div>'+
-            '<div class="option-time">'+fmt(wake)+'</div>'+
-            '<div class="option-note">'+durationText(sm)+' sleep'+(day?' · '+day:'')+'</div></div>';
+          if(c !== 5){
+            cards += '<div class="option">'+
+              '<div class="option-title"><span>'+c+' cycles</span></div>'+
+              '<div class="option-time">'+fmt(wake)+'</div>'+
+              '<div class="option-note">'+durationText(sm)+' sleep'+(day?' · '+day:'')+'</div></div>';
+          }
           if(c===5){primaryTime=wake;bed=bedTime;asleep=asleepTime;sleepMins=sm;}
         });
         primaryLabel = "Estimated wake-up time";
@@ -1149,10 +1197,12 @@ footer{
         [4,5,6].forEach(x => {
           const sm=x*cycle;
           const wakeX=addMinutes(asleepTime,sm);
-          cards += '<div class="option '+(x===c?'primary-option':'')+'">'+
-            '<div class="option-title"><span>'+x+' cycles</span>'+(x===c?'<span class="tag">Selected</span>':'')+'</div>'+
-            '<div class="option-time">'+fmt(wakeX)+'</div>'+
-            '<div class="option-note">'+durationText(sm)+' sleep</div></div>';
+          if(x !== c){
+            cards += '<div class="option">'+
+              '<div class="option-title"><span>'+x+' cycles</span></div>'+
+              '<div class="option-time">'+fmt(wakeX)+'</div>'+
+              '<div class="option-note">'+durationText(sm)+' sleep</div></div>';
+          }
         });
         primaryCycles=c;
         $("metricCycles").textContent = c;
@@ -1188,6 +1238,7 @@ footer{
     $("customLatency").value="15";
     $("customCycleWrap").classList.add("hidden");
     $("customLatencyWrap").classList.add("hidden");
+    document.querySelectorAll(".latency-pill").forEach(b=>b.classList.toggle("active",b.dataset.latency==="15"));
     showMode("wake");
   });
 
@@ -1221,6 +1272,26 @@ footer{
         setTimeout(()=>$("shareBtn").textContent="Share",1400);
       }catch(e){ showError("Sharing is not available in this browser."); }
     }
+  });
+
+  document.querySelectorAll(".latency-pill").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      $("latency").value=btn.dataset.latency;
+      $("customLatencyWrap").classList.add("hidden");
+      document.querySelectorAll(".latency-pill").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  $("latency").addEventListener("change",()=>{
+    const value=$("latency").value;
+    document.querySelectorAll(".latency-pill").forEach(b=>b.classList.toggle("active",b.dataset.latency===value));
+  });
+
+  $("whatsappBtn").addEventListener("click",()=>{
+    const text = $("resultTitle").textContent+" — "+$("primaryLabel").textContent+": "+$("primaryTime").textContent+". "+$("metricSleep").textContent+" estimated sleep, "+$("metricCycles").textContent+" cycles. "+location.href;
+    const url="https://wa.me/?text="+encodeURIComponent(text);
+    window.open(url,"_blank","noopener,noreferrer");
   });
 
   $("napBtn").addEventListener("click",()=>{
