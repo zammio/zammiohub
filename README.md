@@ -25,6 +25,7 @@ ZammioHub provides fast, simple, and easy-to-use online calculators designed to 
 
 ### Math
 - Percentage Calculator
+- Fraction Calculator
 
 ### Education
 - GPA Calculator
