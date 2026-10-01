@@ -166,6 +166,24 @@ input:focus,select:focus{
   background:var(--primary);
   color:#fff;
 }
+.faq details{border:1px solid var(--border);border-radius:10px;background:#fff;margin:10px 0;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:700;color:var(--primary-dark);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;line-height:1;color:var(--primary);flex:0 0 auto}
+.faq details[open] summary::after{content:"−"}
+.faq .answer{padding:0 18px 17px;color:var(--muted)}
+.result-summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;border:1px solid #c8dccb;border-radius:12px;background:#f6fbf6}
+.summary-note{color:var(--muted);font-size:14px;text-align:right}
+.cycle-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.cycle-option{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff}
+.cycle-option.selected{border-color:#75a97c;box-shadow:0 0 0 2px rgba(47,125,50,.10);background:#fbfefb}
+.cycle-label{font-weight:800;color:var(--primary-dark);font-size:16px}
+.cycle-time{font-size:28px;font-weight:800;color:var(--primary-dark);margin-top:8px}
+.cycle-meta{color:var(--muted);font-size:14px;line-height:1.55;margin-top:5px}
+.time-context{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+.top-presets{margin-top:16px}
+.top-presets button{font-weight:700}
+@media(max-width:800px){.cycle-options{grid-template-columns:1fr}.result-summary{align-items:flex-start;flex-direction:column}.summary-note{text-align:left}}
 .quick-latency{
   display:flex;
   align-items:center;
@@ -594,7 +612,7 @@ footer{
         <div class="field">
           <label for="wakeTime">Wake-up time</label>
           <div class="time-row">
-            <input id="wakeTime" type="time" value="07:00" aria-describedby="wakeHelp">
+            <input id="wakeTime" type="time" value="07:00" aria-describedby="wakeHelp"><span class="time-context" id="wakeTimeContext" aria-live="polite"></span>
             <div class="segment" aria-label="Time format">
               <button type="button" data-format="12" class="format-btn active">12-hour</button>
               <button type="button" data-format="24" class="format-btn">24-hour</button>
@@ -626,7 +644,7 @@ footer{
         <div class="field">
           <label for="bedTime">Bedtime</label>
           <div class="time-row">
-            <input id="bedTime" type="time" value="22:30">
+            <input id="bedTime" type="time" value="22:30"><span class="time-context" id="bedTimeContext" aria-live="polite"></span>
             <div class="segment">
               <button type="button" data-format="12" class="format-btn active">12-hour</button>
               <button type="button" data-format="24" class="format-btn">24-hour</button>
@@ -664,7 +682,7 @@ footer{
         </div>
         <div class="field">
           <label for="durationTime">Time</label>
-          <input id="durationTime" type="time" value="07:00">
+          <input id="durationTime" type="time" value="07:00"><span class="time-context" id="durationTimeContext" aria-live="polite"></span>
         </div>
         <div class="field">
           <label for="targetDuration">Target sleep duration</label>
@@ -776,6 +794,12 @@ footer{
         </div>
       </details>
 
+      <div class="quick-links top-presets" aria-label="Quick examples">
+        <button type="button" data-quick="wake">Wake at 7:00 AM</button>
+        <button type="button" data-quick="bed">Bed at 10:30 PM</button>
+        <button type="button" data-quick="now">Sleep now</button>
+      </div>
+
       <div class="actions">
         <button class="btn btn-primary" id="calculateBtn" type="button">Calculate Sleep Times</button>
         <button class="btn btn-secondary" id="clearBtn" type="button">Clear</button>
@@ -785,20 +809,16 @@ footer{
       <div class="result" id="result" aria-live="polite">
         <div class="result-head" id="resultTitle">Your Sleep Plan</div>
         <div class="result-main">
-          <div class="primary-result">
-            <span class="badge" id="primaryBadge">Recommended planning option</span>
-            <div class="big-time" id="primaryTime">7:00 AM</div>
-            <div class="subresult" id="primaryLabel">Estimated wake-up time</div>
+          <div class="result-summary">
+            <div>
+              <span class="badge" id="primaryBadge">5-cycle planning option</span>
+              <div class="big-time" id="primaryTime">11:15 PM</div>
+              <div class="subresult" id="primaryLabel">Estimated get-into-bed time</div>
+            </div>
+            <div class="summary-note" id="summaryNote">Selected planning option</div>
           </div>
 
-          <div class="metrics">
-            <div class="metric"><strong id="metricCycles">5</strong><span>sleep cycles</span></div>
-            <div class="metric"><strong id="metricSleep">7h 30m</strong><span>estimated sleep</span></div>
-            <div class="metric"><strong id="metricBed">10:15 PM</strong><span>get into bed</span></div>
-            <div class="metric"><strong id="metricAsleep">10:30 PM</strong><span>estimated asleep</span></div>
-          </div>
-
-          <div class="options" id="options"></div>
+          <div class="cycle-options" id="options" aria-label="Sleep cycle planning options"></div>
 
           <div class="note" id="resultNote">
             Sleep cycles are estimates. Actual cycle timing varies from night to night, so use these times as planning guidance rather than an exact biological schedule.
@@ -812,11 +832,6 @@ footer{
         </div>
       </div>
 
-      <div class="quick-links">
-        <button type="button" data-quick="wake">Example: Wake at 7:00 AM</button>
-        <button type="button" data-quick="bed">Example: Bed at 10:30 PM</button>
-        <button type="button" data-quick="now">Sleep now</button>
-      </div>
     </div>
   </section>
 
@@ -1000,8 +1015,14 @@ footer{
     btn.addEventListener("click", () => {
       timeFormat = btn.dataset.format;
       document.querySelectorAll(".format-btn").forEach(b => b.classList.toggle("active", b.dataset.format === timeFormat));
+      updateInputTimeContexts();
       if($("result").style.display === "block") calculate();
     });
+  });
+
+  ["wakeTime","bedTime","durationTime"].forEach(id=>{
+    $(id).addEventListener("input",updateInputTimeContexts);
+    $(id).addEventListener("change",updateInputTimeContexts);
   });
 
   $("cycleLength").addEventListener("change", () => {
@@ -1035,6 +1056,23 @@ footer{
     const [h,m] = value.split(":").map(Number);
     if(!Number.isInteger(h) || !Number.isInteger(m) || h < 0 || h > 23 || m < 0 || m > 59) throw new Error("Please enter a valid time.");
     return h*60+m;
+  }
+
+  function inputTimeLabel(value){
+    if(!value) return "";
+    const parts=value.split(":").map(Number);
+    if(parts.length!==2 || !Number.isInteger(parts[0]) || !Number.isInteger(parts[1])) return "";
+    const mins=parts[0]*60+parts[1];
+    if(mins<0 || mins>1439) return "";
+    if(timeFormat==="24") return "24-hour input: "+value;
+    return "12-hour: "+fmt(mins);
+  }
+
+  function updateInputTimeContexts(){
+    ["wakeTime","bedTime","durationTime"].forEach(id=>{
+      const el=$(id), ctx=$(id+"Context");
+      if(el && ctx) ctx.textContent=inputTimeLabel(el.value);
+    });
   }
   function parseNapTime(value){
     const v = String(value || "").trim().toUpperCase().replace(/\s+/g," ");
@@ -1094,129 +1132,105 @@ footer{
       '</div>';
   }
 
+  function makeCycleCard(cycles,time,sleepMins,meta,selected=false){
+    return '<div class="cycle-option'+(selected?' selected':'')+'">'+
+      '<div class="cycle-label">'+cycles+' cycles'+(selected?' · selected':'')+'</div>'+
+      '<div class="cycle-time">'+fmt(time)+'</div>'+
+      '<div class="cycle-meta">'+durationText(sleepMins)+' estimated sleep'+(meta?' · '+meta:'')+'</div>'+
+      '</div>';
+  }
+
   function calculate(){
     hideError();
     try{
-      const cycle = getCycle();
-      const latency = getLatency();
-      let primaryTime = 0, primaryLabel = "", bed = 0, asleep = 0, sleepMins = cycle*5, primaryCycles = 5;
-      let cards = "";
+      const cycle=getCycle();
+      const latency=getLatency();
+      let primaryTime=0, primaryLabel="", selectedCycles=5, cards="";
+      let selectedSleep=cycle*5, selectedBed=0, selectedAsleep=0;
 
-      if(currentMode === "wake"){
-        const wake = parseTime($("wakeTime").value);
-        $("resultTitle").textContent = "Estimated Bedtimes for "+fmt(wake);
-        [4,5,6].forEach(c => {
-          const sm = c*cycle;
-          const asleepTime = addMinutes(wake,-sm);
-          const bedTime = addMinutes(asleepTime,-latency);
-          const day = nextDayLabel(wake,bedTime,"backward");
-          if(c !== 5){
-            cards += '<div class="option">'+
-              '<div class="option-title"><span>'+c+' cycles</span></div>'+
-              '<div class="option-time">'+fmt(bedTime)+'</div>'+
-              '<div class="option-note">'+durationText(sm)+' sleep · estimated asleep '+fmt(asleepTime)+(day?' · '+day:'')+'</div></div>';
-          }
-          if(c===5){primaryTime=bedTime;bed=bedTime;asleep=asleepTime;sleepMins=sm;}
+      if(currentMode==="wake"){
+        const wake=parseTime($("wakeTime").value);
+        $("resultTitle").textContent="Estimated Bedtimes for "+fmt(wake);
+        [4,5,6].forEach(c=>{
+          const sm=c*cycle;
+          const asleepTime=addMinutes(wake,-sm);
+          const bedTime=addMinutes(asleepTime,-latency);
+          const day=nextDayLabel(wake,bedTime,"backward");
+          cards+=makeCycleCard(c,bedTime,sm,"get into bed · estimated asleep "+fmt(asleepTime)+(day?" · "+day:""),c===5);
+          if(c===5){primaryTime=bedTime;selectedBed=bedTime;selectedAsleep=asleepTime;selectedSleep=sm;}
         });
-        primaryLabel = "Estimated get-into-bed time";
-        $("metricCycles").textContent = "5";
-        $("metricSleep").textContent = durationText(sleepMins);
-        $("metricBed").textContent = fmt(bed);
-        $("metricAsleep").textContent = fmt(asleep);
-        $("primaryBadge").textContent = "5-cycle planning option";
-        $("resultNote").textContent = ageGuidance("ageWake")+" Sleep-cycle timing is an estimate; actual cycles vary.";
+        primaryLabel="Estimated get-into-bed time";
+        $("primaryBadge").textContent="5-cycle planning option";
+        $("summaryNote").textContent="5 cycles selected; compare all three options below.";
+        $("resultNote").textContent=ageGuidance("ageWake")+" Sleep-cycle timing is an estimate; actual cycles vary.";
       }
 
-      if(currentMode === "bed"){
-        const bedTime = parseTime($("bedTime").value);
-        const asleepTime = addMinutes(bedTime,latency);
-        $("resultTitle").textContent = "Estimated Wake-Up Times from "+fmt(bedTime);
-        [4,5,6].forEach(c => {
-          const sm = c*cycle;
-          const wake = addMinutes(asleepTime,sm);
-          const day = nextDayLabel(bedTime,wake,"forward");
-          if(c !== 5){
-            cards += '<div class="option">'+
-              '<div class="option-title"><span>'+c+' cycles</span></div>'+
-              '<div class="option-time">'+fmt(wake)+'</div>'+
-              '<div class="option-note">'+durationText(sm)+' sleep'+(day?' · '+day:'')+'</div></div>';
-          }
-          if(c===5){primaryTime=wake;bed=bedTime;asleep=asleepTime;sleepMins=sm;}
+      if(currentMode==="bed"){
+        const bedTime=parseTime($("bedTime").value);
+        const asleepTime=addMinutes(bedTime,latency);
+        $("resultTitle").textContent="Estimated Wake-Up Times from "+fmt(bedTime);
+        [4,5,6].forEach(c=>{
+          const sm=c*cycle;
+          const wake=addMinutes(asleepTime,sm);
+          const day=nextDayLabel(bedTime,wake,"forward");
+          cards+=makeCycleCard(c,wake,sm,"estimated wake-up"+(day?" · "+day:""),c===5);
+          if(c===5){primaryTime=wake;selectedBed=bedTime;selectedAsleep=asleepTime;selectedSleep=sm;}
         });
-        primaryLabel = "Estimated wake-up time";
-        $("metricCycles").textContent = "5";
-        $("metricSleep").textContent = durationText(sleepMins);
-        $("metricBed").textContent = fmt(bed);
-        $("metricAsleep").textContent = fmt(asleep);
-        $("primaryBadge").textContent = "5-cycle planning option";
-        $("resultNote").textContent = ageGuidance("ageBed")+" The wake-up times are calculated from an estimated sleep start after your selected latency.";
+        primaryLabel="Estimated wake-up time";
+        $("primaryBadge").textContent="5-cycle planning option";
+        $("summaryNote").textContent="5 cycles selected; compare all three options below.";
+        $("resultNote").textContent=ageGuidance("ageBed")+" The wake-up times are calculated from an estimated sleep start after your selected latency.";
       }
 
-      if(currentMode === "duration"){
-        const base = parseTime($("durationTime").value);
-        const target = Number($("targetDuration").value);
-        const direction = $("durationDirection").value;
-        sleepMins = target;
-        if(direction === "wake"){
-          const asleepTime = addMinutes(base,-target);
-          bed = addMinutes(asleepTime,-latency);
-          asleep = asleepTime;
-          primaryTime = bed;
-          primaryLabel = "Estimated get-into-bed time";
-          $("resultTitle").textContent = "Sleep Duration Plan";
-          cards = '<div class="option primary-option"><div class="option-title"><span>Target duration</span><span class="tag">Selected</span></div><div class="option-time">'+fmt(bed)+'</div><div class="option-note">'+durationText(target)+' sleep · estimated asleep '+fmt(asleep)+'</div></div>';
-        } else {
-          bed = base;
-          asleep = addMinutes(bed,latency);
-          primaryTime = addMinutes(asleep,target);
-          primaryLabel = "Estimated wake-up time";
-          $("resultTitle").textContent = "Sleep Duration Plan";
-          cards = '<div class="option primary-option"><div class="option-title"><span>Target duration</span><span class="tag">Selected</span></div><div class="option-time">'+fmt(primaryTime)+'</div><div class="option-note">'+durationText(target)+' sleep · bedtime '+fmt(bed)+'</div></div>';
+      if(currentMode==="duration"){
+        const base=parseTime($("durationTime").value);
+        const target=Number($("targetDuration").value);
+        const direction=$("durationDirection").value;
+        selectedSleep=target;
+        $("resultTitle").textContent="Sleep Duration Plan";
+        if(direction==="wake"){
+          selectedAsleep=addMinutes(base,-target);
+          selectedBed=addMinutes(selectedAsleep,-latency);
+          primaryTime=selectedBed;
+          primaryLabel="Estimated get-into-bed time";
+          cards='<div class="cycle-option selected"><div class="cycle-label">Target duration · selected</div><div class="cycle-time">'+fmt(primaryTime)+'</div><div class="cycle-meta">'+durationText(target)+' estimated sleep · estimated asleep '+fmt(selectedAsleep)+'</div></div>';
+        }else{
+          selectedBed=base;
+          selectedAsleep=addMinutes(selectedBed,latency);
+          primaryTime=addMinutes(selectedAsleep,target);
+          primaryLabel="Estimated wake-up time";
+          cards='<div class="cycle-option selected"><div class="cycle-label">Target duration · selected</div><div class="cycle-time">'+fmt(primaryTime)+'</div><div class="cycle-meta">'+durationText(target)+' estimated sleep · bedtime '+fmt(selectedBed)+'</div></div>';
         }
-        primaryCycles = Math.round(target/cycle);
-        $("metricCycles").textContent = primaryCycles+" approx.";
-        $("metricSleep").textContent = durationText(target);
-        $("metricBed").textContent = fmt(bed);
-        $("metricAsleep").textContent = fmt(asleep);
-        $("primaryBadge").textContent = "Selected duration";
-        $("resultNote").textContent = ageGuidance("ageDuration")+" Duration mode uses your selected sleep duration directly rather than assuming a whole number of cycles.";
+        selectedCycles=Math.max(1,Math.round(target/cycle));
+        $("primaryBadge").textContent="Selected duration";
+        $("summaryNote").textContent="Duration mode uses your chosen sleep duration.";
+        $("resultNote").textContent=ageGuidance("ageDuration")+" Duration mode uses your selected sleep duration directly rather than assuming a whole number of cycles.";
       }
 
-      if(currentMode === "now"){
-        const now = new Date();
-        const current = now.getHours()*60+now.getMinutes();
-        const c = Number($("nowCycles").value);
-        const asleepTime = current + latency;
-        const wake = addMinutes(asleepTime,c*cycle);
-        primaryTime = wake;
-        primaryLabel = "Estimated wake-up time";
-        bed = current;
-        asleep = asleepTime;
-        sleepMins = c*cycle;
-        $("resultTitle").textContent = "Sleep Now Plan";
-        [4,5,6].forEach(x => {
-          const sm=x*cycle;
-          const wakeX=addMinutes(asleepTime,sm);
-          if(x !== c){
-            cards += '<div class="option">'+
-              '<div class="option-title"><span>'+x+' cycles</span></div>'+
-              '<div class="option-time">'+fmt(wakeX)+'</div>'+
-              '<div class="option-note">'+durationText(sm)+' sleep</div></div>';
-          }
+      if(currentMode==="now"){
+        const now=new Date();
+        const current=now.getHours()*60+now.getMinutes();
+        selectedCycles=Number($("nowCycles").value);
+        selectedAsleep=current+latency;
+        selectedBed=current;
+        selectedSleep=selectedCycles*cycle;
+        primaryTime=addMinutes(selectedAsleep,selectedSleep);
+        primaryLabel="Estimated wake-up time";
+        $("resultTitle").textContent="Sleep Now Plan";
+        [4,5,6].forEach(c=>{
+          const sm=c*cycle;
+          const wake=addMinutes(selectedAsleep,sm);
+          cards+=makeCycleCard(c,wake,sm,"estimated wake-up",c===selectedCycles);
         });
-        primaryCycles=c;
-        $("metricCycles").textContent = c;
-        $("metricSleep").textContent = durationText(sleepMins);
-        $("metricBed").textContent = fmt(current);
-        $("metricAsleep").textContent = fmt(asleep);
-        $("primaryBadge").textContent = c+"-cycle planning option";
-        $("resultNote").textContent = ageGuidance("ageNow")+" Sleep Now uses your device's current local time and does not access an external clock service.";
+        $("primaryBadge").textContent=selectedCycles+"-cycle planning option";
+        $("summaryNote").textContent=selectedCycles+" cycles selected; compare the other options below.";
+        $("resultNote").textContent=ageGuidance("ageNow")+" Sleep Now uses your device's current local time and does not access an external clock service.";
       }
 
-      $("primaryTime").textContent = fmt(primaryTime);
-      $("primaryLabel").textContent = primaryLabel;
-      $("options").innerHTML = cards;
-      $("result").style.display = "block";
+      $("primaryTime").textContent=fmt(primaryTime);
+      $("primaryLabel").textContent=primaryLabel;
+      $("options").innerHTML=cards;
+      $("result").style.display="block";
       $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
     }catch(err){
       showError(err.message || "Please check your entries and try again.");
@@ -1239,6 +1253,9 @@ footer{
     $("customCycleWrap").classList.add("hidden");
     $("customLatencyWrap").classList.add("hidden");
     document.querySelectorAll(".latency-pill").forEach(b=>b.classList.toggle("active",b.dataset.latency==="15"));
+    timeFormat="12";
+    document.querySelectorAll(".format-btn").forEach(b=>b.classList.toggle("active",b.dataset.format==="12"));
+    updateInputTimeContexts();
     showMode("wake");
   });
 
@@ -1253,7 +1270,7 @@ footer{
   });
 
   $("copyBtn").addEventListener("click",async()=>{
-    const text = $("resultTitle").textContent+" — "+$("primaryLabel").textContent+": "+$("primaryTime").textContent+". "+$("metricSleep").textContent+" estimated sleep, "+$("metricCycles").textContent+" cycles.";
+    const text = $("resultTitle").textContent+" — "+$("primaryLabel").textContent+": "+$("primaryTime").textContent+". "+$("summaryNote").textContent+".";
     try{
       await navigator.clipboard.writeText(text);
       $("copyBtn").textContent="Copied!";
@@ -1289,7 +1306,7 @@ footer{
   });
 
   $("whatsappBtn").addEventListener("click",()=>{
-    const text = $("resultTitle").textContent+" — "+$("primaryLabel").textContent+": "+$("primaryTime").textContent+". "+$("metricSleep").textContent+" estimated sleep, "+$("metricCycles").textContent+" cycles. "+location.href;
+    const text = $("resultTitle").textContent+" — "+$("primaryLabel").textContent+": "+$("primaryTime").textContent+". "+$("summaryNote").textContent+". "+location.href;
     const url="https://wa.me/?text="+encodeURIComponent(text);
     window.open(url,"_blank","noopener,noreferrer");
   });
