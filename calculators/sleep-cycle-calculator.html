@@ -187,6 +187,57 @@ input:focus,select:focus{
   .top-presets{margin-bottom:18px}
   .top-presets button{font-size:12px;padding:7px 10px}
 }
+
+@media(max-width:767px){
+  .table-scroll{
+    overflow:visible;
+    border:0;
+    margin:14px 0;
+  }
+  .info-table{
+    min-width:0;
+    width:100%;
+    display:block;
+    border:0;
+  }
+  .info-table thead{
+    display:none;
+  }
+  .info-table tbody,
+  .info-table tr,
+  .info-table td{
+    display:block;
+    width:100%;
+  }
+  .info-table tr{
+    margin:0 0 12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#fff;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(18,76,112,.04);
+  }
+  .info-table tr:last-child{
+    margin-bottom:0;
+  }
+  .info-table td{
+    border:0;
+    border-bottom:1px solid #e5ebee;
+    padding:11px 13px 11px 13px;
+    text-align:left;
+  }
+  .info-table td:last-child{
+    border-bottom:0;
+  }
+  .info-table td::before{
+    content:attr(data-label);
+    display:block;
+    margin-bottom:3px;
+    color:var(--primary-dark);
+    font-size:12px;
+    font-weight:700;
+  }
+}
 @media(max-width:800px){.cycle-options{grid-template-columns:1fr}.result-summary{align-items:flex-start;flex-direction:column}.summary-note{text-align:left}}
 .quick-latency{
   display:flex;
@@ -302,7 +353,7 @@ input:focus,select:focus{
 .result-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:15px}
 .result-actions button{min-height:42px;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #cbd6dc;background:#fff;color:var(--primary-dark);border-radius:8px;padding:8px 10px;font-weight:700}
 .result-actions button:hover{background:var(--soft-blue)}
-.result-actions svg{width:17px;height:17px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.result-actions svg{width:24px;height:24px;flex:0 0 24px;display:block;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .clear-action{
   align-self:auto;
   border:0!important;
@@ -523,7 +574,7 @@ input:focus,select:focus{
   color:var(--primary);
   transition:transform .18s ease;
 }
-.faq details[open] summary::after{transform:rotate(180deg)}
+.faq details[open] summary::after{transform:none}
 .faq .answer{padding:0 16px 15px;color:#4e5b64}
 .related{
   display:grid;
@@ -977,9 +1028,9 @@ footer{
       <table class="info-table">
         <thead><tr><th>Planning option</th><th>At a 90-minute cycle estimate</th><th>Example use</th></tr></thead>
         <tbody>
-          <tr><td>4 cycles</td><td>6 hours</td><td>Short planning option; not a general recommendation for regular adult sleep.</td></tr>
-          <tr><td>5 cycles</td><td>7 hours 30 minutes</td><td>Common cycle-based planning option.</td></tr>
-          <tr><td>6 cycles</td><td>9 hours</td><td>Longer planning option.</td></tr>
+          <tr><td data-label="Planning option">4 cycles</td><td data-label="At a 90-minute cycle estimate">6 hours</td><td data-label="Example use">Short planning option; not a general recommendation for regular adult sleep.</td></tr>
+          <tr><td data-label="Planning option">5 cycles</td><td data-label="At a 90-minute cycle estimate">7 hours 30 minutes</td><td data-label="Example use">Common cycle-based planning option.</td></tr>
+          <tr><td data-label="Planning option">6 cycles</td><td data-label="At a 90-minute cycle estimate">9 hours</td><td data-label="Example use">Longer planning option.</td></tr>
         </tbody>
       </table>
     </div>
