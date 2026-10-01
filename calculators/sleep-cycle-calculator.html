@@ -416,6 +416,7 @@ input:focus,select:focus{
   flex-wrap:nowrap;
   overflow-x:auto;
   overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
   margin:16px 0 0;
@@ -433,6 +434,7 @@ input:focus,select:focus{
   padding:7px 12px;
   font-size:13px;
   font-weight:700;
+  scroll-snap-align:start;
 }
 .section{margin:30px 0}
 .section h2{
@@ -568,6 +570,26 @@ input:focus,select:focus{
 .details-content{padding:0 18px 18px}
 .details-content h3{margin-top:18px}
 
+
+.duration-switch{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:4px;background:var(--soft);border:1px solid var(--border);border-radius:10px}
+.duration-switch button{flex:1;min-height:42px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--primary-dark);font-weight:700;padding:8px 12px}
+.duration-switch button.active{background:#fff;border-color:#cbd6dc;box-shadow:0 2px 7px rgba(18,76,112,.07)}
+.now-presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.now-preset{border:1px solid var(--border);background:#fff;color:var(--primary);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700}
+.now-preset.active,.now-preset:hover{background:var(--soft-blue);border-color:#a9c7d8}
+.range-note{margin-top:7px;font-size:13px;color:var(--muted)}
+.range-badge{display:inline-block;margin-top:9px;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.range-in{background:#e4f1e4;color:var(--accent-dark)}
+.range-out{background:#f2f4f5;color:#5e6a72}
+.result-summary{margin-bottom:12px}
+.source-list{padding-left:20px}
+.source-list li{margin:7px 0}
+@media(max-width:600px){
+  .duration-switch{flex-direction:column}
+  .duration-switch button{width:100%}
+  .now-presets{width:100%}
+  .now-preset{flex:1;text-align:center}
+}
 .hidden{display:none!important}
 footer{
   border-top:1px solid var(--border);
@@ -627,7 +649,7 @@ footer{
  "url":"https://zammiohub.com/calculators/sleep-cycle-calculator",
  "applicationCategory":"UtilitiesApplication",
  "operatingSystem":"All",
- "description":"A free sleep cycle calculator for estimating bedtimes, wake-up times, sleep duration and nap timing.",
+ "description":"A free sleep cycle calculator for estimating bedtimes, wake-up times, sleep duration, elapsed sleep time and nap timing with customizable cycle length and sleep latency.",
  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
 }
 </script>
@@ -667,17 +689,17 @@ footer{
   </div>
 
   <h1>Sleep Cycle Calculator</h1>
-  <p class="intro">Estimate when to go to bed or wake up using sleep-cycle planning, time to fall asleep, sleep duration and flexible cycle-length settings. Free, fast and designed for mobile and desktop.</p>
+  <p class="intro">Estimate bedtimes, wake-up times, target sleep duration, elapsed sleep duration and nap timing. Customize sleep latency and cycle length, compare age-based sleep guidance, and use quick “Sleep Now” offsets.</p>
 
   <section class="card" id="calculator">
     <div class="card-head">Sleep Cycle Calculator</div>
     <div class="calculator">
 
       <div class="mode-grid" role="tablist" aria-label="Sleep calculator mode">
-        <button class="mode-btn active" data-mode="wake" type="button">Wake Up At</button>
-        <button class="mode-btn" data-mode="bed" type="button">Go To Bed At</button>
-        <button class="mode-btn" data-mode="duration" type="button">Sleep Duration</button>
-        <button class="mode-btn" data-mode="now" type="button">Sleep Now</button>
+        <button class="mode-btn active" data-mode="wake" type="button" role="tab" aria-selected="true" aria-controls="wakeFields">Wake Up At</button>
+        <button class="mode-btn" data-mode="bed" type="button" role="tab" aria-selected="false" aria-controls="bedFields">Go To Bed At</button>
+        <button class="mode-btn" data-mode="duration" type="button" role="tab" aria-selected="false" aria-controls="durationFields">Sleep Duration</button>
+        <button class="mode-btn" data-mode="now" type="button" role="tab" aria-selected="false" aria-controls="nowFields">Sleep Now</button>
       </div>
 
       <div class="quick-links top-presets" aria-label="Quick sleep presets" role="group">
@@ -692,8 +714,8 @@ footer{
           <div class="time-row">
             <input id="wakeTime" type="time" value="07:00" aria-describedby="wakeHelp"><span class="time-context" id="wakeTimeContext" aria-live="polite"></span>
             <div class="segment" aria-label="Time format">
-              <button type="button" data-format="12" class="format-btn active">12-hour</button>
-              <button type="button" data-format="24" class="format-btn">24-hour</button>
+              <button type="button" data-format="12" class="format-btn active" aria-pressed="true">12-hour</button>
+              <button type="button" data-format="24" class="format-btn" aria-pressed="false">24-hour</button>
             </div>
           </div>
           <small id="wakeHelp" class="help">Choose the time you need to wake up.</small>
@@ -701,18 +723,19 @@ footer{
         <div class="field">
           <label for="ageWake">Age group</label>
           <select id="ageWake">
-            <option value="adult" selected>18–25</option>
-            <option value="adult">26–35</option>
-            <option value="adult">36–45</option>
-            <option value="adult">46–55</option>
-            <option value="adult">56–64</option>
-            <option value="adult">65+</option>
-            <option value="teen">14–17</option>
-            <option value="child">6–13</option>
-            <option value="child">3–5</option>
-            <option value="child">1–2</option>
-            <option value="infant">4–11 months</option>
-            <option value="infant">0–3 months</option>
+            <option value="18-25" selected>18–25</option>
+            <option value="26-35">26–35</option>
+            <option value="36-45">36–45</option>
+            <option value="46-55">46–55</option>
+            <option value="56-60">56–60</option>
+            <option value="61-64">61–64</option>
+            <option value="65+">65+</option>
+            <option value="13-17">13–17</option>
+            <option value="6-12">6–12</option>
+            <option value="3-5">3–5</option>
+            <option value="1-2">1–2</option>
+            <option value="4-12m">4–12 months</option>
+            <option value="0-3m">0–3 months</option>
           </select>
           <small class="help">Used for general sleep-duration context.</small>
         </div>
@@ -724,8 +747,8 @@ footer{
           <div class="time-row">
             <input id="bedTime" type="time" value="22:30"><span class="time-context" id="bedTimeContext" aria-live="polite"></span>
             <div class="segment">
-              <button type="button" data-format="12" class="format-btn active">12-hour</button>
-              <button type="button" data-format="24" class="format-btn">24-hour</button>
+              <button type="button" data-format="12" class="format-btn active" aria-pressed="true">12-hour</button>
+              <button type="button" data-format="24" class="format-btn" aria-pressed="false">24-hour</button>
             </div>
           </div>
           <small class="help">Choose the time you plan to get into bed.</small>
@@ -733,68 +756,125 @@ footer{
         <div class="field">
           <label for="ageBed">Age group</label>
           <select id="ageBed">
-            <option value="adult" selected>18–25</option>
-            <option value="adult">26–35</option>
-            <option value="adult">36–45</option>
-            <option value="adult">46–55</option>
-            <option value="adult">56–64</option>
-            <option value="adult">65+</option>
-            <option value="teen">14–17</option>
-            <option value="child">6–13</option>
-            <option value="child">3–5</option>
-            <option value="child">1–2</option>
-            <option value="infant">4–11 months</option>
-            <option value="infant">0–3 months</option>
+            <option value="18-25" selected>18–25</option>
+            <option value="26-35">26–35</option>
+            <option value="36-45">36–45</option>
+            <option value="46-55">46–55</option>
+            <option value="56-60">56–60</option>
+            <option value="61-64">61–64</option>
+            <option value="65+">65+</option>
+            <option value="13-17">13–17</option>
+            <option value="6-12">6–12</option>
+            <option value="3-5">3–5</option>
+            <option value="1-2">1–2</option>
+            <option value="4-12m">4–12 months</option>
+            <option value="0-3m">0–3 months</option>
           </select>
           <small class="help">Used for general sleep-duration context.</small>
         </div>
       </div>
 
-      <div id="durationFields" class="field-grid mode-fields hidden">
-        <div class="field">
-          <label for="durationDirection">I know my...</label>
-          <select id="durationDirection">
-            <option value="wake" selected>Wake-up time</option>
-            <option value="bed">Bedtime</option>
-          </select>
+      <div id="durationFields" class="mode-fields hidden" role="tabpanel" aria-labelledby="durationTab">
+        <div class="duration-switch" role="group" aria-label="Sleep duration mode">
+          <button type="button" class="duration-type active" data-duration-type="plan" aria-pressed="true">Plan a target sleep duration</button>
+          <button type="button" class="duration-type" data-duration-type="elapsed" aria-pressed="false">Calculate actual sleep duration</button>
         </div>
-        <div class="field">
-          <label for="durationTime">Time</label>
-          <input id="durationTime" type="time" value="07:00"><span class="time-context" id="durationTimeContext" aria-live="polite"></span>
+
+        <div id="planDurationFields" class="field-grid">
+          <div class="field">
+            <label for="durationDirection">I know my...</label>
+            <select id="durationDirection">
+              <option value="wake" selected>Wake-up time</option>
+              <option value="bed">Bedtime</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="durationTime">Time</label>
+            <input id="durationTime" type="time" value="07:00"><span class="time-context" id="durationTimeContext" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="targetDuration">Target sleep duration</label>
+            <select id="targetDuration">
+              <option value="360">6 hours</option>
+              <option value="390">6 hours 30 minutes</option>
+              <option value="420">7 hours</option>
+              <option value="450">7 hours 30 minutes</option>
+              <option value="480" selected>8 hours</option>
+              <option value="510">8 hours 30 minutes</option>
+              <option value="540">9 hours</option>
+              <option value="custom">Custom duration</option>
+            </select>
+            <small class="help">Use a preset or enter any duration from 1 minute to 24 hours.</small>
+          </div>
+          <div class="field hidden" id="customDurationWrap">
+            <label for="customHours">Custom duration</label>
+            <div class="field-grid" style="grid-template-columns:1fr 1fr;gap:10px">
+              <input id="customHours" type="number" min="0" max="24" step="1" value="8" placeholder="Hours" aria-label="Custom sleep duration hours">
+              <input id="customMinutes" type="number" min="0" max="59" step="1" value="0" placeholder="Minutes" aria-label="Custom sleep duration minutes">
+            </div>
+            <small class="help">Example: 7 hours 45 minutes.</small>
+          </div>
+          <div class="field">
+            <label for="ageDuration">Age group</label>
+            <select id="ageDuration"><option value="18-25" selected>18–25</option>
+            <option value="26-35">26–35</option>
+            <option value="36-45">36–45</option>
+            <option value="46-55">46–55</option>
+            <option value="56-60">56–60</option>
+            <option value="61-64">61–64</option>
+            <option value="65+">65+</option>
+            <option value="13-17">13–17</option>
+            <option value="6-12">6–12</option>
+            <option value="3-5">3–5</option>
+            <option value="1-2">1–2</option>
+            <option value="4-12m">4–12 months</option>
+            <option value="0-3m">0–3 months</option></select>
+            <small class="help">Used for general sleep-duration context.</small>
+          </div>
         </div>
-        <div class="field">
-          <label for="targetDuration">Target sleep duration</label>
-          <select id="targetDuration">
-            <option value="360">6 hours</option>
-            <option value="390">6.5 hours</option>
-            <option value="420">7 hours</option>
-            <option value="450">7.5 hours</option>
-            <option value="480" selected>8 hours</option>
-            <option value="510">8.5 hours</option>
-            <option value="540">9 hours</option>
-          </select>
-          <small class="help">Choose a planning duration; your actual sleep need may differ.</small>
-        </div>
-        <div class="field">
-          <label for="ageDuration">Age group</label>
-          <select id="ageDuration">
-            <option value="adult" selected>18–25</option>
-            <option value="adult">26–35</option>
-            <option value="adult">36–45</option>
-            <option value="adult">46–55</option>
-            <option value="adult">56–64</option>
-            <option value="adult">65+</option>
-            <option value="teen">14–17</option>
-            <option value="child">6–13</option>
-            <option value="child">3–5</option>
-            <option value="child">1–2</option>
-            <option value="infant">4–11 months</option>
-            <option value="infant">0–3 months</option>
-          </select>
+
+        <div id="elapsedDurationFields" class="field-grid hidden">
+          <div class="field">
+            <label for="elapsedBedTime">Bedtime</label>
+            <input id="elapsedBedTime" type="time" value="22:30"><span class="time-context" id="elapsedBedTimeContext" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="elapsedWakeTime">Wake-up time</label>
+            <input id="elapsedWakeTime" type="time" value="07:00"><span class="time-context" id="elapsedWakeTimeContext" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="elapsedAge">Age group</label>
+            <select id="elapsedAge"><option value="18-25" selected>18–25</option>
+            <option value="26-35">26–35</option>
+            <option value="36-45">36–45</option>
+            <option value="46-55">46–55</option>
+            <option value="56-60">56–60</option>
+            <option value="61-64">61–64</option>
+            <option value="65+">65+</option>
+            <option value="13-17">13–17</option>
+            <option value="6-12">6–12</option>
+            <option value="3-5">3–5</option>
+            <option value="1-2">1–2</option>
+            <option value="4-12m">4–12 months</option>
+            <option value="0-3m">0–3 months</option></select>
+            <small class="help">Used for general sleep-duration context.</small>
+          </div>
+          <div class="field">
+            <label for="elapsedLatency">Time to fall asleep</label>
+            <select id="elapsedLatency">
+              <option value="0">0 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="15" selected>15 minutes</option>
+              <option value="10">10 minutes</option>
+            <option value="20">20 minutes</option>
+              <option value="30">30 minutes</option>
+            </select>
+            <small class="help">Subtracted from time in bed to estimate sleep time.</small>
+          </div>
         </div>
       </div>
 
-      <div id="nowFields" class="field-grid mode-fields hidden">
+      <div id="nowFields" class="field-grid mode-fields hidden" role="tabpanel" aria-labelledby="nowTab">
         <div class="field">
           <label for="nowCycles">Plan to sleep for</label>
           <select id="nowCycles">
@@ -802,33 +882,38 @@ footer{
             <option value="5" selected>5 cycles</option>
             <option value="6">6 cycles</option>
           </select>
-          <small class="help">Sleep Now uses your device's current local time.</small>
+          <div class="now-presets" role="group" aria-label="Sleep now time presets">
+            <button type="button" class="now-preset active" data-now-offset="0">Now</button>
+            <button type="button" class="now-preset" data-now-offset="30">+30 min</button>
+            <button type="button" class="now-preset" data-now-offset="60">+1 hour</button>
+          </div>
+          <small class="help">Uses your device's current local time, with an optional start-time offset.</small>
         </div>
         <div class="field">
           <label for="ageNow">Age group</label>
-          <select id="ageNow">
-            <option value="adult" selected>18–25</option>
-            <option value="adult">26–35</option>
-            <option value="adult">36–45</option>
-            <option value="adult">46–55</option>
-            <option value="adult">56–64</option>
-            <option value="adult">65+</option>
-            <option value="teen">14–17</option>
-            <option value="child">6–13</option>
-            <option value="child">3–5</option>
-            <option value="child">1–2</option>
-            <option value="infant">4–11 months</option>
-            <option value="infant">0–3 months</option>
-          </select>
+          <select id="ageNow"><option value="18-25" selected>18–25</option>
+            <option value="26-35">26–35</option>
+            <option value="36-45">36–45</option>
+            <option value="46-55">46–55</option>
+            <option value="56-60">56–60</option>
+            <option value="61-64">61–64</option>
+            <option value="65+">65+</option>
+            <option value="13-17">13–17</option>
+            <option value="6-12">6–12</option>
+            <option value="3-5">3–5</option>
+            <option value="1-2">1–2</option>
+            <option value="4-12m">4–12 months</option>
+            <option value="0-3m">0–3 months</option></select>
+          <small class="help">Used for general sleep-duration context.</small>
         </div>
       </div>
 
       <div class="quick-latency" aria-label="Quick sleep latency">
   <span class="quick-label">Time to fall asleep:</span>
   <div class="latency-pills" role="group" aria-label="Quick sleep latency options">
-    <button type="button" class="latency-pill" data-latency="10">10 min</button>
-    <button type="button" class="latency-pill active" data-latency="15">15 min</button>
-    <button type="button" class="latency-pill" data-latency="20">20 min</button>
+    <button type="button" class="latency-pill" data-latency="10" aria-pressed="false">10 min</button>
+    <button type="button" class="latency-pill active" data-latency="15" aria-pressed="true">15 min</button>
+    <button type="button" class="latency-pill" data-latency="20" aria-pressed="false">20 min</button>
   </div>
 </div>
 
@@ -883,6 +968,7 @@ footer{
         <div class="result-main">
           <div class="result-lead" id="resultLead">Compare the planning options below.</div>
           <div class="cycle-options" id="options" aria-label="Sleep cycle planning options"></div>
+          <div class="range-note" id="rangeNote"></div>
 
           <div class="note" id="resultNote">
             Sleep cycles are estimates. Actual cycle timing varies from night to night, so use these times as planning guidance rather than an exact biological schedule.
@@ -939,7 +1025,7 @@ footer{
 
   <section class="section">
     <h2>What Is a Sleep Cycle Calculator?</h2>
-    <p>A sleep cycle calculator is a planning tool that estimates sleep and wake times from an assumed sleep-cycle length. ZammioHub lets you work backward from a wake-up time, forward from a bedtime, calculate a target duration, or calculate wake-up times from the current time.</p>
+    <p>A sleep cycle calculator is a planning tool that estimates sleep and wake times from an assumed sleep-cycle length. ZammioHub lets you work backward from a wake-up time, forward from a bedtime, plan a target duration, calculate elapsed sleep duration, or calculate wake-up times from the current time.</p>
     <p>The calculator also accounts for <strong>sleep latency</strong> — the approximate time you may need to fall asleep after getting into bed.</p>
   </section>
 
@@ -950,7 +1036,7 @@ footer{
       <li>Enter your time and, when useful, select an age group for general sleep-duration context.</li>
       <li>Open <strong>Advanced settings</strong> if you want to change the estimated cycle length or sleep latency.</li>
       <li>Choose 12-hour or 24-hour time display and select <strong>Calculate Sleep Times</strong>.</li>
-      <li>Compare the 4-, 5- and 6-cycle planning options instead of treating one time as an exact biological target.</li>
+      <li>Compare the 4-, 5- and 6-cycle planning options and check the age-based duration context instead of treating one time as an exact biological target.</li>
     </ol>
   </section>
 
@@ -971,17 +1057,51 @@ footer{
 
   <section class="section">
     <h2>How Many Hours of Sleep Do You Need?</h2>
-    <p>Sleep needs vary by age and individual circumstances. For many healthy adults, commonly cited guidance is around <strong>7–9 hours per night</strong>. The calculator therefore presents multiple cycle options rather than claiming that one cycle count is universally best.</p>
-    <div class="table-scroll" role="region" aria-label="Sleep cycle planning options" tabindex="0">
+    <p>Sleep needs change with age. The table below follows current CDC guidance and AASM consensus recommendations. For adults 18–60, the recommendation is <strong>7 or more hours</strong> per night; 61–64-year-olds are generally advised to get 7–9 hours, and adults 65+ 7–8 hours.</p>
+    <div class="table-scroll" role="region" aria-label="Recommended sleep duration by age" tabindex="0">
       <table class="info-table">
-        <thead><tr><th>Planning option</th><th>At a 90-minute cycle estimate</th><th>Example use</th></tr></thead>
+        <thead><tr><th>Age group</th><th>General sleep guidance</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>4 cycles</td><td>6 hours</td><td>Short planning option; not a general recommendation for regular adult sleep.</td></tr>
-          <tr><td>5 cycles</td><td>7 hours 30 minutes</td><td>Common cycle-based planning option.</td></tr>
-          <tr><td>6 cycles</td><td>9 hours</td><td>Longer planning option.</td></tr>
+          <tr><td>0–3 months</td><td>14–17 hours / 24h</td><td>Newborns; sleep is spread across the day and night.</td></tr>
+          <tr><td>4–12 months</td><td>12–16 hours / 24h</td><td>Includes naps.</td></tr>
+          <tr><td>1–2 years</td><td>11–14 hours / 24h</td><td>Includes naps.</td></tr>
+          <tr><td>3–5 years</td><td>10–13 hours / 24h</td><td>Includes naps.</td></tr>
+          <tr><td>6–12 years</td><td>9–12 hours</td><td>Regular nightly sleep.</td></tr>
+          <tr><td>13–17 years</td><td>8–10 hours</td><td>Teen sleep guidance.</td></tr>
+          <tr><td>18–60 years</td><td>7+ hours</td><td>Individual needs vary.</td></tr>
+          <tr><td>61–64 years</td><td>7–9 hours</td><td>General adult guidance.</td></tr>
+          <tr><td>65+ years</td><td>7–8 hours</td><td>General adult guidance.</td></tr>
         </tbody>
       </table>
     </div>
+    <p>For cycle planning, a 90-minute estimate gives 4 cycles = 6 hours, 5 cycles = 7 hours 30 minutes and 6 cycles = 9 hours. These are mathematical planning options, not medical recommendations or proof that waking at a particular cycle boundary will feel better. Sleep cycles vary across the night and between people.</p>
+  </section>
+
+  <section class="section">
+    <h2>Sleep Cycle Planning Options</h2>
+    <div class="table-scroll" role="region" aria-label="Sleep cycle planning options" tabindex="0">
+      <table class="info-table">
+        <thead><tr><th>Cycles</th><th>At 80 min</th><th>At 90 min</th><th>At 100 min</th></tr></thead>
+        <tbody>
+          <tr><td>4 cycles</td><td>5h 20m</td><td>6h</td><td>6h 40m</td></tr>
+          <tr><td>5 cycles</td><td>6h 40m</td><td>7h 30m</td><td>8h 20m</td></tr>
+          <tr><td>6 cycles</td><td>8h</td><td>9h</td><td>10h</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This is why the calculator lets you change the assumed cycle length instead of presenting 90 minutes as an exact biological constant.</p>
+  </section>
+
+  <section class="section">
+    <h2>Evidence and Sources</h2>
+    <p>ZammioHub uses recognized sleep-duration guidance for age context and treats sleep-cycle length as a user-adjustable planning assumption. The calculator does not measure sleep stages or diagnose sleep disorders.</p>
+    <ul class="source-list">
+      <li><a href="https://www.cdc.gov/sleep/about/" target="_blank" rel="noopener noreferrer">CDC: About Sleep</a> — age-specific sleep-duration guidance.</li>
+      <li><a href="https://aasm.org/advocacy/position-statements/adult-sleep-duration-health-advisory/" target="_blank" rel="noopener noreferrer">AASM: Adult Sleep Duration Health Advisory</a> — 7 or more hours for adults.</li>
+      <li><a href="https://aasm.org/advocacy/position-statements/child-sleep-duration-health-advisory/" target="_blank" rel="noopener noreferrer">AASM: Child Sleep Duration Health Advisory</a> — pediatric sleep-duration recommendations.</li>
+      <li><a href="https://www.sleepfoundation.org/sleep-calculator" target="_blank" rel="noopener noreferrer">Sleep Foundation Sleep Calculator</a> — competitor reference for age-based planning, bedtime/wake-time modes and sleep-cycle assumptions.</li>
+      <li><a href="https://www.calculator.net/sleep-calculator.html" target="_blank" rel="noopener noreferrer">Calculator.net Sleep Calculator</a> — competitor reference for sleep-cycle, sleep-length, latency and quick-time functionality.</li>
+    </ul>
   </section>
 
   <section class="section compact-details">
@@ -1029,6 +1149,10 @@ footer{
     <details><summary>Does the calculator include time to fall asleep?</summary><div class="answer">Yes. The default sleep-latency setting is 15 minutes, and you can choose another preset or enter a custom value.</div></details>
     <details><summary>Can I use a custom sleep-cycle length?</summary><div class="answer">Yes. Advanced settings allow a custom cycle length from 70 to 120 minutes.</div></details>
     <details><summary>Does Sleep Now use my location?</summary><div class="answer">No external location service is required. Sleep Now uses the local date and time available from your device's browser.</div></details>
+    <details><summary>Can I enter a custom sleep duration?</summary><div class="answer">Yes. Sleep Duration mode lets you enter any target from 1 minute to 24 hours using separate hours and minutes fields.</div></details>
+    <details><summary>Can I calculate how long I actually slept?</summary><div class="answer">Yes. Choose “Calculate actual sleep duration” in Sleep Duration mode, enter bedtime and wake-up time, and optionally subtract time to fall asleep.</div></details>
+    <details><summary>Does age change the sleep-cycle length?</summary><div class="answer">No. Age changes the general sleep-duration context, not the assumed cycle length. The cycle length remains a planning setting that you can adjust.</div></details>
+    <details><summary>Are 7–9 hours appropriate for every adult?</summary><div class="answer">No. Current guidance is age-specific. CDC guidance lists 7+ hours for adults 18–60, 7–9 hours for ages 61–64 and 7–8 hours for 65+. Individual sleep needs can vary.</div></details>
     <details><summary>Can this calculator tell me my exact sleep stages?</summary><div class="answer">No. A browser calculator cannot measure your actual REM, deep or light sleep stages. The results are estimates based on the assumptions you select.</div></details>
   </section>
 
@@ -1044,7 +1168,7 @@ footer{
     </div>
   </section>
 
-  <div class="disclaimer"><strong>Important:</strong> This calculator provides general sleep-planning estimates and is not medical advice. Sleep-cycle length varies between people and across nights. If you have persistent sleep difficulties, excessive daytime sleepiness, breathing problems during sleep, or another health concern, seek advice from a qualified healthcare professional.</div>
+  <div class="disclaimer"><strong>Important:</strong> There is no single formal “international standard” for a sleep-cycle calculator. ZammioHub uses recognized CDC/AASM sleep-duration guidance for age context and treats cycle length as a configurable planning estimate. This calculator provides general sleep-planning estimates and is not medical advice. Sleep-cycle length varies between people and across nights. If you have persistent sleep difficulties, excessive daytime sleepiness, breathing problems during sleep, or another health concern, seek advice from a qualified healthcare professional.</div>
 </main>
 
 <footer>
@@ -1059,6 +1183,8 @@ footer{
   let currentMode = "wake";
   let timeFormat = "12";
   let lastResult = null;
+  let durationType = "plan";
+  let nowOffset = 0;
 
   const modeButtons = document.querySelectorAll(".mode-btn");
   const modeSections = {
@@ -1070,25 +1196,57 @@ footer{
 
   function showMode(mode){
     currentMode = mode;
-    modeButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+    modeButtons.forEach(btn => {
+      const active = btn.dataset.mode === mode;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    });
     Object.entries(modeSections).forEach(([key,el]) => el.classList.toggle("hidden", key !== mode));
     $("result").style.display = "none";
+    $("rangeNote").textContent="";
     hideError();
     if(mode === "now") $("nowCycles").focus();
   }
 
   modeButtons.forEach(btn => btn.addEventListener("click", () => showMode(btn.dataset.mode)));
 
+  document.querySelectorAll(".duration-type").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      durationType=btn.dataset.durationType;
+      document.querySelectorAll(".duration-type").forEach(b=>{
+        const active=b.dataset.durationType===durationType;
+        b.classList.toggle("active",active);
+        b.setAttribute("aria-pressed",active?"true":"false");
+      });
+      $("planDurationFields").classList.toggle("hidden",durationType!=="plan");
+      $("elapsedDurationFields").classList.toggle("hidden",durationType!=="elapsed");
+      $("result").style.display="none";
+      hideError();
+    });
+  });
+
+  document.querySelectorAll(".now-preset").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      nowOffset=Number(btn.dataset.nowOffset)||0;
+      document.querySelectorAll(".now-preset").forEach(b=>b.classList.toggle("active",b===btn));
+      if($("result").style.display==="block") calculate();
+    });
+  });
+
   document.querySelectorAll(".format-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       timeFormat = btn.dataset.format;
-      document.querySelectorAll(".format-btn").forEach(b => b.classList.toggle("active", b.dataset.format === timeFormat));
+      document.querySelectorAll(".format-btn").forEach(b => {
+        const active = b.dataset.format === timeFormat;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-pressed", active ? "true" : "false");
+      });
       updateInputTimeContexts();
       if($("result").style.display === "block") calculate();
     });
   });
 
-  ["wakeTime","bedTime","durationTime"].forEach(id=>{
+  ["wakeTime","bedTime","durationTime","elapsedBedTime","elapsedWakeTime"].forEach(id=>{
     $(id).addEventListener("input",updateInputTimeContexts);
     $(id).addEventListener("change",updateInputTimeContexts);
   });
@@ -1098,6 +1256,9 @@ footer{
   });
   $("latency").addEventListener("change", () => {
     $("customLatencyWrap").classList.toggle("hidden", $("latency").value !== "custom");
+  });
+  $("targetDuration").addEventListener("change",()=>{
+    $("customDurationWrap").classList.toggle("hidden",$("targetDuration").value!=="custom");
   });
 
   function showError(msg){
@@ -1137,7 +1298,7 @@ footer{
   }
 
   function updateInputTimeContexts(){
-    ["wakeTime","bedTime","durationTime"].forEach(id=>{
+    ["wakeTime","bedTime","durationTime","elapsedBedTime","elapsedWakeTime"].forEach(id=>{
       const el=$(id), ctx=$(id+"Context");
       if(el && ctx) ctx.textContent=inputTimeLabel(el.value);
     });
@@ -1177,19 +1338,41 @@ footer{
     if(direction === "backward") return end > start ? "previous day" : "";
     return "";
   }
-  function ageText(selectId){
-    const el = $(selectId);
-    return el ? el.options[el.selectedIndex].text : "adult";
+  const AGE_GUIDANCE={
+    "0-3m":{label:"0–3 months",min:840,max:1020,text:"General guidance: 14–17 hours of sleep per 24 hours."},
+    "4-12m":{label:"4–12 months",min:720,max:960,text:"General guidance: 12–16 hours per 24 hours, including naps."},
+    "1-2":{label:"1–2 years",min:660,max:840,text:"General guidance: 11–14 hours per 24 hours, including naps."},
+    "3-5":{label:"3–5 years",min:600,max:780,text:"General guidance: 10–13 hours per 24 hours, including naps."},
+    "6-12":{label:"6–12 years",min:540,max:720,text:"General guidance: 9–12 hours per night."},
+    "13-17":{label:"13–17 years",min:480,max:600,text:"General guidance: 8–10 hours per night."},
+    "18-25":{label:"18–25 years",min:420,max:null,text:"General guidance: at least 7 hours per night for adults."},
+    "26-35":{label:"26–35 years",min:420,max:null,text:"General guidance: at least 7 hours per night for adults."},
+    "36-45":{label:"36–45 years",min:420,max:null,text:"General guidance: at least 7 hours per night for adults."},
+    "46-55":{label:"46–55 years",min:420,max:null,text:"General guidance: at least 7 hours per night for adults."},
+    "56-60":{label:"56–60 years",min:420,max:null,text:"General guidance: at least 7 hours per night for adults."},
+    "61-64":{label:"61–64 years",min:420,max:540,text:"General guidance: 7–9 hours per night."},
+    "65+":{label:"65+ years",min:420,max:480,text:"General guidance: 7–8 hours per night."}
+  };
+  function ageData(selectId){
+    const el=$(selectId);
+    return el ? (AGE_GUIDANCE[el.value] || AGE_GUIDANCE["18-25"]) : AGE_GUIDANCE["18-25"];
   }
-  function ageGuidance(selectId){
-    const label = ageText(selectId);
-    if(label === "0–3 months") return "Infants 0–3 months generally need substantially more total sleep than adults.";
-    if(label === "4–11 months") return "Infants 4–11 months generally need substantially more total sleep than adults.";
-    if(label === "1–2") return "Toddlers generally need more total sleep than adults.";
-    if(label === "3–5") return "Preschool-aged children generally need more total sleep than adults.";
-    if(label === "6–13") return "School-aged children generally need more total sleep than adults.";
-    if(label === "14–17") return "Teenagers generally need more total sleep than adults.";
-    return "For many healthy adults, commonly cited guidance is around 7–9 hours per night.";
+  function ageGuidance(selectId){ return ageData(selectId).text; }
+  function cycleRangeMeta(selectId,sleepMins){
+    const a=ageData(selectId);
+    if(a.max===null) return sleepMins>=a.min ? '<span class="range-badge range-in">Meets 7+ hour adult guidance</span>' : '<span class="range-badge range-out">Below 7-hour adult minimum</span>';
+    return sleepMins>=a.min && sleepMins<=a.max ? '<span class="range-badge range-in">Within general age range</span>' : '<span class="range-badge range-out">Outside general age range</span>';
+  }
+  function getTargetDuration(){
+    if($("targetDuration").value!=="custom") return Number($("targetDuration").value);
+    const h=Number($("customHours").value), m=Number($("customMinutes").value);
+    if(!Number.isInteger(h) || !Number.isInteger(m) || h<0 || h>24 || m<0 || m>59 || (h===0 && m===0) || h*60+m>1440) throw new Error("Custom sleep duration must be between 1 minute and 24 hours.");
+    return h*60+m;
+  }
+  function elapsedBetween(bed,wake){
+    let diff=wake-bed;
+    if(diff<=0) diff+=1440;
+    return diff;
   }
 
   function optionCard(cycles, sleepMins, primary, time, note){
@@ -1200,11 +1383,11 @@ footer{
       '</div>';
   }
 
-  function makeCycleCard(cycles,time,sleepMins,meta,selected=false){
+  function makeCycleCard(cycles,time,sleepMins,meta,selected=false,rangeHtml=""){
     return '<div class="cycle-option'+(selected?' selected':'')+'">'+
       '<div class="cycle-label">'+cycles+' cycles</div>'+
       '<div class="cycle-time">'+fmt(time)+'</div>'+
-      '<div class="cycle-meta">'+durationText(sleepMins)+' estimated sleep'+(meta?' · '+meta:'')+'</div>'+
+      '<div class="cycle-meta">'+durationText(sleepMins)+' estimated sleep'+(meta?' · '+meta:'')+'</div>'+rangeHtml+
       '</div>';
   }
 
@@ -1214,98 +1397,91 @@ footer{
       const cycle=getCycle();
       const latency=getLatency();
       let primaryTime=0, primaryLabel="", selectedCycles=5, cards="";
-      let selectedSleep=cycle*5, selectedBed=0, selectedAsleep=0;
+      let selectedSleep=cycle*5, selectedBed=0, selectedAsleep=0, rangeHtml="";
+      const cycleList=[5,4,6];
 
       if(currentMode==="wake"){
         const wake=parseTime($("wakeTime").value);
+        const ageId="ageWake";
         $("resultTitle").textContent="Estimated Bedtimes for "+fmt(wake);
-        [5,4,6].forEach(c=>{
-          const sm=c*cycle;
-          const asleepTime=addMinutes(wake,-sm);
-          const bedTime=addMinutes(asleepTime,-latency);
+        cycleList.forEach(c=>{
+          const sm=c*cycle, asleepTime=addMinutes(wake,-sm), bedTime=addMinutes(asleepTime,-latency);
           const day=nextDayLabel(wake,bedTime,"backward");
-          cards+=makeCycleCard(c,bedTime,sm,"get into bed · estimated asleep "+fmt(asleepTime)+(day?" · "+day:""),c===5);
+          cards+=makeCycleCard(c,bedTime,sm,"get into bed · estimated asleep "+fmt(asleepTime)+(day?" · "+day:""),c===5,cycleRangeMeta(ageId,sm));
           if(c===5){primaryTime=bedTime;selectedBed=bedTime;selectedAsleep=asleepTime;selectedSleep=sm;}
         });
         primaryLabel="Estimated get-into-bed time";
-        $("resultLead").textContent="5-cycle planning option is shown first; compare the other cycle options below.";
-        $("resultNote").textContent=ageGuidance("ageWake")+" Sleep-cycle timing is an estimate; actual cycles vary.";
+        rangeHtml=ageGuidance(ageId);
+        $("resultLead").textContent="5-cycle planning option is shown first. Compare the other options and the age-based duration context below.";
+        $("resultNote").textContent=rangeHtml+" Sleep-cycle timing is an estimate; actual cycles vary.";
+        $("rangeNote").textContent="Age context: "+ageData(ageId).label+" — "+ageGuidance(ageId);
       }
 
       if(currentMode==="bed"){
         const bedTime=parseTime($("bedTime").value);
-        const asleepTime=addMinutes(bedTime,latency);
+        const asleepTime=addMinutes(bedTime,latency), ageId="ageBed";
         $("resultTitle").textContent="Estimated Wake-Up Times from "+fmt(bedTime);
-        [5,4,6].forEach(c=>{
-          const sm=c*cycle;
-          const wake=addMinutes(asleepTime,sm);
-          const day=nextDayLabel(bedTime,wake,"forward");
-          cards+=makeCycleCard(c,wake,sm,"estimated wake-up"+(day?" · "+day:""),c===5);
+        cycleList.forEach(c=>{
+          const sm=c*cycle, wake=addMinutes(asleepTime,sm), day=nextDayLabel(bedTime,wake,"forward");
+          cards+=makeCycleCard(c,wake,sm,"estimated wake-up"+(day?" · "+day:""),c===5,cycleRangeMeta(ageId,sm));
           if(c===5){primaryTime=wake;selectedBed=bedTime;selectedAsleep=asleepTime;selectedSleep=sm;}
         });
         primaryLabel="Estimated wake-up time";
-        $("resultLead").textContent="5-cycle planning option is shown first; compare the other cycle options below.";
-        $("resultNote").textContent=ageGuidance("ageBed")+" The wake-up times are calculated from an estimated sleep start after your selected latency.";
+        $("resultLead").textContent="5-cycle planning option is shown first. Compare the other options and the age-based duration context below.";
+        $("resultNote").textContent=ageGuidance(ageId)+" The wake-up times are calculated from an estimated sleep start after your selected latency.";
+        $("rangeNote").textContent="Age context: "+ageData(ageId).label+" — "+ageGuidance(ageId);
       }
 
       if(currentMode==="duration"){
-        const base=parseTime($("durationTime").value);
-        const target=Number($("targetDuration").value);
-        const direction=$("durationDirection").value;
-        selectedSleep=target;
-        $("resultTitle").textContent="Sleep Duration Plan";
-        if(direction==="wake"){
-          selectedAsleep=addMinutes(base,-target);
-          selectedBed=addMinutes(selectedAsleep,-latency);
-          primaryTime=selectedBed;
-          primaryLabel="Estimated get-into-bed time";
-          cards='<div class="cycle-option selected"><div class="cycle-label">Target duration</div><div class="cycle-time">'+fmt(primaryTime)+'</div><div class="cycle-meta">'+durationText(target)+' estimated sleep · estimated asleep '+fmt(selectedAsleep)+'</div></div>';
+        if(durationType==="plan"){
+          const base=parseTime($("durationTime").value), target=getTargetDuration(), direction=$("durationDirection").value, ageId="ageDuration";
+          selectedSleep=target;
+          $("resultTitle").textContent="Sleep Duration Plan";
+          if(direction==="wake"){
+            selectedAsleep=addMinutes(base,-target); selectedBed=addMinutes(selectedAsleep,-latency); primaryTime=selectedBed; primaryLabel="Estimated get-into-bed time";
+            cards='<div class="cycle-option selected"><div class="cycle-label">Target duration</div><div class="cycle-time">'+fmt(primaryTime)+'</div><div class="cycle-meta">'+durationText(target)+' estimated sleep · estimated asleep '+fmt(selectedAsleep)+'</div>'+cycleRangeMeta(ageId,target)+'</div>';
+          }else{
+            selectedBed=base; selectedAsleep=addMinutes(selectedBed,latency); primaryTime=addMinutes(selectedAsleep,target); primaryLabel="Estimated wake-up time";
+            cards='<div class="cycle-option selected"><div class="cycle-label">Target duration</div><div class="cycle-time">'+fmt(primaryTime)+'</div><div class="cycle-meta">'+durationText(target)+' estimated sleep · bedtime '+fmt(selectedBed)+'</div>'+cycleRangeMeta(ageId,target)+'</div>';
+          }
+          selectedCycles=Math.max(1,Math.round(target/cycle));
+          $("resultLead").textContent="Your selected duration is shown first. The age badge is a general duration check, not a medical assessment.";
+          $("resultNote").textContent=ageGuidance(ageId)+" Duration mode uses your selected sleep duration directly rather than assuming a whole number of cycles.";
+          $("rangeNote").textContent="Age context: "+ageData(ageId).label+" — "+ageGuidance(ageId);
         }else{
-          selectedBed=base;
-          selectedAsleep=addMinutes(selectedBed,latency);
-          primaryTime=addMinutes(selectedAsleep,target);
-          primaryLabel="Estimated wake-up time";
-          cards='<div class="cycle-option selected"><div class="cycle-label">Target duration</div><div class="cycle-time">'+fmt(primaryTime)+'</div><div class="cycle-meta">'+durationText(target)+' estimated sleep · bedtime '+fmt(selectedBed)+'</div></div>';
+          const bed=parseTime($("elapsedBedTime").value), wake=parseTime($("elapsedWakeTime").value), elapsed=elapsedBetween(bed,wake), lat=Number($("elapsedLatency").value), estimated=Math.max(0,elapsed-lat), ageId="elapsedAge";
+          if(estimated<=0) throw new Error("The selected bedtime and wake-up time leave no estimated sleep after latency.");
+          const approxCycles=estimated/cycle;
+          selectedSleep=estimated; selectedBed=bed; selectedAsleep=addMinutes(bed,lat); primaryTime=wake; primaryLabel="Recorded wake-up time";
+          $("resultTitle").textContent="Actual Sleep Duration Estimate";
+          cards='<div class="cycle-option selected"><div class="cycle-label">Sleep duration</div><div class="cycle-time">'+durationText(estimated)+'</div><div class="cycle-meta">Time in bed: '+durationText(elapsed)+' · estimated sleep: '+durationText(estimated)+' · about '+approxCycles.toFixed(1)+' cycles at '+cycle+' min/cycle</div>'+cycleRangeMeta(ageId,estimated)+'</div>';
+          $("resultLead").textContent="This mode calculates elapsed time between bedtime and wake-up, then subtracts your selected sleep latency.";
+          $("resultNote").textContent=ageGuidance(ageId)+" This is an estimate of sleep duration, not a measurement of your actual sleep stages.";
+          $("rangeNote").textContent="Age context: "+ageData(ageId).label+" — "+ageGuidance(ageId);
         }
-        selectedCycles=Math.max(1,Math.round(target/cycle));
-        $("resultLead").textContent="Your selected duration is shown first below.";
-        $("resultNote").textContent=ageGuidance("ageDuration")+" Duration mode uses your selected sleep duration directly rather than assuming a whole number of cycles.";
       }
 
       if(currentMode==="now"){
         const now=new Date();
-        const current=now.getHours()*60+now.getMinutes();
-        selectedCycles=Number($("nowCycles").value);
-        selectedAsleep=current+latency;
-        selectedBed=current;
-        selectedSleep=selectedCycles*cycle;
-        primaryTime=addMinutes(selectedAsleep,selectedSleep);
-        primaryLabel="Estimated wake-up time";
+        const current=addMinutes(now.getHours()*60+now.getMinutes(),nowOffset);
+        const ageId="ageNow";
+        selectedCycles=Number($("nowCycles").value); selectedAsleep=current+latency; selectedBed=current; selectedSleep=selectedCycles*cycle; primaryTime=addMinutes(selectedAsleep,selectedSleep); primaryLabel="Estimated wake-up time";
         $("resultTitle").textContent="Sleep Now Plan";
-        [selectedCycles, ...[4,5,6].filter(c=>c!==selectedCycles)].forEach(c=>{
-          const sm=c*cycle;
-          const wake=addMinutes(selectedAsleep,sm);
-          cards+=makeCycleCard(c,wake,sm,"estimated wake-up",c===selectedCycles);
+        [selectedCycles,...[4,5,6].filter(c=>c!==selectedCycles)].forEach(c=>{
+          const sm=c*cycle, wake=addMinutes(selectedAsleep,sm);
+          cards+=makeCycleCard(c,wake,sm,"estimated wake-up",c===selectedCycles,cycleRangeMeta(ageId,sm));
         });
-        $("resultLead").textContent=selectedCycles+"-cycle planning option is shown first; compare the other cycle options below.";
-        $("resultNote").textContent=ageGuidance("ageNow")+" Sleep Now uses your device's current local time and does not access an external clock service.";
+        $("resultLead").textContent=selectedCycles+"-cycle planning option is shown first. You can also choose +30 minutes or +1 hour before calculating.";
+        $("resultNote").textContent=ageGuidance(ageId)+" Sleep Now uses your device's local time and does not access an external clock service.";
+        $("rangeNote").textContent="Start time used: "+fmt(current)+" · Age context: "+ageData(ageId).label+" — "+ageGuidance(ageId);
       }
 
-      lastResult = {
-        title: $("resultTitle").textContent,
-        label: primaryLabel,
-        time: fmt(primaryTime),
-        lead: $("resultLead").textContent,
-        note: $("resultNote").textContent
-      };
+      lastResult={title:$("resultTitle").textContent,label:primaryLabel,time:fmt(primaryTime),lead:$("resultLead").textContent,note:$("resultNote").textContent};
       $("options").innerHTML=cards;
       $("result").style.display="block";
       $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
-    }catch(err){
-      showError(err.message || "Please check your entries and try again.");
-    }
+    }catch(err){ showError(err.message || "Please check your entries and try again."); }
   }
-
   $("calculateBtn").addEventListener("click", calculate);
 
   $("clearBtn").addEventListener("click", () => {
@@ -1313,6 +1489,21 @@ footer{
     $("bedTime").value="22:30";
     $("durationTime").value="07:00";
     $("targetDuration").value="480";
+    $("customHours").value="8";
+    $("customMinutes").value="0";
+    $("customDurationWrap").classList.add("hidden");
+    $("elapsedBedTime").value="22:30";
+    $("elapsedWakeTime").value="07:00";
+    $("elapsedLatency").value="15";
+    durationType="plan";
+    document.querySelectorAll(".duration-type").forEach(b=>{
+      const active=b.dataset.durationType==="plan";
+      b.classList.toggle("active",active); b.setAttribute("aria-pressed",active?"true":"false");
+    });
+    $("planDurationFields").classList.remove("hidden");
+    $("elapsedDurationFields").classList.add("hidden");
+    nowOffset=0;
+    document.querySelectorAll(".now-preset").forEach(b=>b.classList.toggle("active",b.dataset.nowOffset==="0"));
     $("durationDirection").value="wake";
     $("nowCycles").value="5";
     $("cycleLength").value="90";
@@ -1321,9 +1512,25 @@ footer{
     $("customLatency").value="15";
     $("customCycleWrap").classList.add("hidden");
     $("customLatencyWrap").classList.add("hidden");
-    document.querySelectorAll(".latency-pill").forEach(b=>b.classList.toggle("active",b.dataset.latency==="15"));
+    document.querySelectorAll(".latency-pill").forEach(b=>{
+      const active=b.dataset.latency==="15";
+      b.classList.toggle("active",active);
+      b.setAttribute("aria-pressed",active ? "true" : "false");
+    });
     timeFormat="12";
-    document.querySelectorAll(".format-btn").forEach(b=>b.classList.toggle("active",b.dataset.format==="12"));
+    document.querySelectorAll(".format-btn").forEach(b=>{
+      const active=b.dataset.format==="12";
+      b.classList.toggle("active",active);
+      b.setAttribute("aria-pressed",active ? "true" : "false");
+    });
+    lastResult=null;
+    $("result").style.display="none";
+    $("napResult").style.display="none";
+    $("errorBox").style.display="none";
+    $("errorBox").textContent="";
+    $("rangeNote").textContent="";
+    $("napStart").value="";
+    $("napDuration").value="90";
     updateInputTimeContexts();
     showMode("wake");
   });
@@ -1401,14 +1608,19 @@ footer{
     btn.addEventListener("click",()=>{
       $("latency").value=btn.dataset.latency;
       $("customLatencyWrap").classList.add("hidden");
-      document.querySelectorAll(".latency-pill").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".latency-pill").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false");});
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed","true");
     });
   });
 
   $("latency").addEventListener("change",()=>{
     const value=$("latency").value;
-    document.querySelectorAll(".latency-pill").forEach(b=>b.classList.toggle("active",b.dataset.latency===value));
+    document.querySelectorAll(".latency-pill").forEach(b=>{
+      const active=b.dataset.latency===value;
+      b.classList.toggle("active",active);
+      b.setAttribute("aria-pressed",active ? "true" : "false");
+    });
   });
 
   $("whatsappBtn").addEventListener("click",()=>{
