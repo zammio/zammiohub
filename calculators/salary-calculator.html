@@ -243,6 +243,14 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 
 .quick-start-label{font-size:15px;font-weight:800;color:var(--primary2);margin:0 0 7px}.quick-start-label span{font-size:12px;font-weight:400;color:var(--muted);margin-left:5px}.tools-card{overflow:visible}.tools-card details{background:#fff}.tools-card .panel h2{margin-top:0}.tools-card .panel p{margin-top:8px}
 @media(max-width:480px){.quick-start-label span{display:block;margin:2px 0 0}.quick-start-label{margin-bottom:9px}}
+
+/* v2 flagship refinement */
+.salary-nav{display:flex;gap:8px;align-items:center;margin:12px 0 14px;padding:8px;border:1px solid var(--border);border-radius:12px;background:var(--soft);overflow-x:auto;scrollbar-width:none;position:sticky;top:8px;z-index:40}.salary-nav::-webkit-scrollbar{display:none}.salary-nav a{flex:0 0 auto;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:9px;padding:9px 13px;font-size:13px;font-weight:800;white-space:nowrap}.salary-nav a.active,.salary-nav a:hover{background:var(--primary);color:#fff;border-color:var(--primary)}body.dark .salary-nav{background:#141e24;border-color:#33444f}body.dark .salary-nav a{background:#202c34;color:#e7edf1;border-color:#3a4b56}body.dark .salary-nav a.active{background:var(--primary);color:#fff}
+.result-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}.result-highlight{border:1px solid var(--border);border-radius:12px;padding:15px;background:#fff;min-width:0}.result-highlight.primary-highlight{background:#edf7fb;border-color:#b7d1df}.result-highlight.net-highlight{background:#f2f9ee;border-color:#c9dfbc}.result-highlight .label{display:block;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.55px;margin-bottom:4px}.result-highlight .value{display:block;font-size:clamp(23px,4vw,34px);font-weight:900;color:var(--primary2);overflow-wrap:anywhere;line-height:1.15}.result-highlight.net-highlight .value{color:#3f7d25}.result-highlight .hint{display:block;margin-top:5px;font-size:12px;color:var(--muted);line-height:1.4}
+.fx-details{margin-top:18px;border:1px solid var(--border);border-radius:12px;overflow:hidden}.fx-details>summary{background:var(--soft);padding:14px 15px;font-weight:800;color:var(--primary2)}.fx-body{padding:15px}.fx-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.fx-result{margin-top:12px;padding:12px;border-radius:9px;background:#eef6fa;border:1px solid #cfe1ea;font-weight:700}.fx-note{font-size:12px;color:var(--muted);margin:8px 0 0}body.dark .result-highlight,body.dark .result-highlight.primary-highlight,body.dark .result-highlight.net-highlight{background:#182229;border-color:#33444f}body.dark .fx-result{background:#18303c;border-color:#315365;color:#d5e8f2}
+.detail-status.active{background:#eaf7e5;color:#3f7d25;border:1px solid #c6dfb9}body.dark .detail-status.active{background:#20351c;color:#a8d694;border-color:#45663b}.compare-insight{margin:15px 0;padding:14px 15px;border:1px solid #cfe1ea;border-radius:10px;background:#eef6fa;color:#24495d}.compare-insight strong{color:var(--primary2)}.sticky-summary{display:none}
+@media(max-width:760px){.salary-nav{top:4px;margin:8px -2px 12px;padding:6px}.salary-nav a{padding:8px 11px;font-size:12px}.result-highlights{grid-template-columns:1fr 1fr}.result-highlight:first-child{grid-column:1/-1}.result-highlight{padding:13px}.result-highlight .value{font-size:24px}.fx-grid{grid-template-columns:1fr 1fr}.fx-grid .fx-button{grid-column:1/-1}.sticky-summary{position:fixed;left:0;right:0;bottom:0;z-index:9990;display:none;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--border);box-shadow:0 -6px 25px rgba(0,0,0,.12);padding:8px 10px calc(8px + env(safe-area-inset-bottom));gap:7px;align-items:center}.sticky-summary.visible{display:grid;grid-template-columns:1.15fr 1fr 1fr auto}.sticky-summary .sticky-metric{min-width:0}.sticky-summary small{display:block;color:var(--muted);font-size:9px;font-weight:800;text-transform:uppercase;white-space:nowrap}.sticky-summary strong{display:block;font-size:13px;color:var(--primary2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sticky-summary .sticky-go{border:0;background:var(--primary);color:#fff;border-radius:8px;padding:9px 10px;font-size:12px;font-weight:800;white-space:nowrap}body.dark .sticky-summary{background:rgba(17,24,29,.97);border-color:#33444f}body.dark .sticky-summary strong{color:#d5e8f2}}
+@media(max-width:430px){.sticky-summary.visible{grid-template-columns:1.1fr 1fr 1fr}.sticky-summary .sticky-go{grid-column:1/-1;width:100%}.sticky-summary{gap:5px}.salary-nav a{padding:8px 10px}}
 </style>
 </head>
 
@@ -258,8 +266,14 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <div class="theme-row">
 <button class="theme-toggle" id="themeBtn" type="button" aria-pressed="false">🌙 Dark Mode</button>
 </div>
+<nav class="salary-nav" id="salaryNav" aria-label="Salary calculator sections">
+<a href="#salaryCalculator" class="active" data-nav="calculator">Calculator</a>
+<a href="#additionalTools" data-nav="compare">Compare Offers</a>
+<a href="#additionalTools" data-nav="raise">Raise & Growth</a>
+<a href="#additionalTools" data-nav="freelance">Freelance</a>
+</nav>
 
-<section class="card" aria-labelledby="calculator-title">
+<section class="card" id="salaryCalculator" aria-labelledby="calculator-title">
 <div class="card-head" id="calculator-title">Salary Calculator</div>
 
 <form id="salaryForm" class="form" novalidate>
@@ -312,7 +326,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <select id="currency" class="currency-native" aria-hidden="true" tabindex="-1">
 <option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — British Pound</option><option value="CAD">CAD — Canadian Dollar</option><option value="AUD">AUD — Australian Dollar</option><option value="NZD">NZD — New Zealand Dollar</option><option value="PKR">PKR — Pakistani Rupee</option><option value="INR">INR — Indian Rupee</option><option value="AED">AED — UAE Dirham</option><option value="SAR">SAR — Saudi Riyal</option><option value="QAR">QAR — Qatari Riyal</option><option value="KWD">KWD — Kuwaiti Dinar</option><option value="BHD">BHD — Bahraini Dinar</option><option value="OMR">OMR — Omani Rial</option><option value="JOD">JOD — Jordanian Dinar</option><option value="EGP">EGP — Egyptian Pound</option><option value="TRY">TRY — Turkish Lira</option><option value="JPY">JPY — Japanese Yen</option><option value="CNY">CNY — Chinese Yuan</option><option value="HKD">HKD — Hong Kong Dollar</option><option value="SGD">SGD — Singapore Dollar</option><option value="MYR">MYR — Malaysian Ringgit</option><option value="THB">THB — Thai Baht</option><option value="IDR">IDR — Indonesian Rupiah</option><option value="PHP">PHP — Philippine Peso</option><option value="KRW">KRW — South Korean Won</option><option value="VND">VND — Vietnamese Dong</option><option value="BDT">BDT — Bangladeshi Taka</option><option value="LKR">LKR — Sri Lankan Rupee</option><option value="NPR">NPR — Nepalese Rupee</option><option value="AFN">AFN — Afghan Afghani</option><option value="ZAR">ZAR — South African Rand</option><option value="NGN">NGN — Nigerian Naira</option><option value="KES">KES — Kenyan Shilling</option><option value="GHS">GHS — Ghanaian Cedi</option><option value="TZS">TZS — Tanzanian Shilling</option><option value="UGX">UGX — Ugandan Shilling</option><option value="BRL">BRL — Brazilian Real</option><option value="MXN">MXN — Mexican Peso</option><option value="ARS">ARS — Argentine Peso</option><option value="CLP">CLP — Chilean Peso</option><option value="COP">COP — Colombian Peso</option><option value="CHF">CHF — Swiss Franc</option><option value="SEK">SEK — Swedish Krona</option><option value="NOK">NOK — Norwegian Krone</option><option value="DKK">DKK — Danish Krone</option><option value="PLN">PLN — Polish Zloty</option><option value="CZK">CZK — Czech Koruna</option><option value="HUF">HUF — Hungarian Forint</option><option value="RON">RON — Romanian Leu</option><option value="ILS">ILS — Israeli New Shekel</option>
 </select>
-<small>Changing this selector changes the display currency only. It does not perform foreign-exchange conversion.</small>
+<small>For the core calculator, this changes the display currency only. It does not perform FX conversion. Use the optional Live FX Conversion tool below the results when you want a currency conversion.</small>
 </div>
 <div class="field">
 <label for="hours">Hours per Week</label>
@@ -334,11 +348,10 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <section id="result" class="card result" aria-live="polite" aria-labelledby="resultTitle">
 <div class="result-head"><span class="result-label" id="resultTitle">Your Salary Results</span><span class="live-badge">Updates automatically</span></div>
 <div class="result-body">
-<div class="hero-result">
-<span class="eyebrow">Estimated Annual Gross Cash</span>
-<span class="big" id="annualMain"></span>
-<span class="sub">Based on your current salary, pay frequency and schedule.</span>
-<div class="effective-highlight"><b>Effective Hourly Rate</b><strong id="effectiveOutHero"></strong><span class="note">Uses estimated hours actually worked after paid time off.</span></div>
+<div class="result-highlights">
+<div class="result-highlight primary-highlight"><span class="label">Annual Gross Cash</span><span class="value" id="annualMain"></span><span class="hint">Regular salary plus entered overtime and other cash earnings.</span></div>
+<div class="result-highlight net-highlight"><span class="label">Estimated Take-Home</span><span class="value" id="takeHomeHero"></span><span class="hint" id="takeHomeHeroHint">Based on the tax rate and employee deductions you enter.</span></div>
+<div class="result-highlight"><span class="label">Effective Hourly Rate</span><span class="value" id="effectiveOutHero"></span><span class="hint">Gross cash ÷ estimated hours actually worked.</span></div>
 </div>
 
 <div class="metrics">
@@ -379,9 +392,22 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </div>
 
 <div class="chart-grid">
-<div class="chart-card"><h3>Annual Compensation Breakdown</h3><canvas id="compChart" aria-label="Annual compensation breakdown chart"></canvas></div>
+<div class="chart-card"><h3>Take-Home & Compensation Breakdown</h3><canvas id="compChart" aria-label="Annual compensation breakdown chart"></canvas></div>
 <div class="chart-card"><h3>Pay Period Comparison</h3><div id="payBars" class="bar-list" aria-live="polite"></div></div>
 </div>
+<details class="fx-details" id="fxDetails">
+<summary>Live FX Conversion (Optional)</summary>
+<div class="fx-body">
+<p class="note">Convert your calculated annual and monthly salary from the selected calculator currency into another currency. This does not change your core salary calculation.</p>
+<div class="fx-grid">
+<div class="field"><label for="fxTarget">Convert To</label><select id="fxTarget"></select></div>
+<div class="field"><label for="fxAmountType">Amount</label><select id="fxAmountType"><option value="annual">Annual Gross Cash</option><option value="monthly">Monthly Gross Cash</option><option value="takehome">Estimated Take-Home</option></select></div>
+<button class="primary fx-button" type="button" id="fxBtn">Get Live Rate</button>
+</div>
+<div id="fxResult" class="fx-result" aria-live="polite">Choose a target currency and select Get Live Rate.</div>
+<p class="fx-note">Rates are indicative and may be delayed. Rates provided by <a href='https://www.exchangerate-api.com' target='_blank' rel='noopener noreferrer'>ExchangeRate-API</a>. Its open endpoint updates once per day, is rate-limited, and requires attribution.</p>
+</div>
+</details>
 </div>
 </section>
 
@@ -604,6 +630,14 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </section>
 
 <footer><strong>ZammioHub</strong><br>Clear, useful and mobile-friendly calculators for Finance, Health, Education, Math and Everyday calculations.</footer>
+<div class="sticky-summary" id="stickySummary" aria-label="Salary summary">
+<div class="sticky-metric"><small>Gross / Year</small><strong id="stickyGross">—</strong></div>
+<div class="sticky-metric"><small>Take-Home</small><strong id="stickyNet">—</strong></div>
+<div class="sticky-metric"><small>Effective / Hr</small><strong id="stickyEffective">—</strong></div>
+<button type="button" class="sticky-go" id="stickyGo">View Results</button>
+</div>
+
+</main>
 </main>
 
 <script>
@@ -645,7 +679,7 @@ function renderCurrencyList(filter=""){
 function updateCurrencyTrigger(){const code=$("currency").value||"USD";const meta=currencyMeta[code]||["💱",code];$("currencyFlag").textContent=meta[0];$("currencyCodeLabel").textContent=code;$("currencyNameLabel").textContent=meta[1];}
 function openCurrencyDialog(){const d=$("currencyDialog");if(!d)return;renderCurrencyList('');$("currencySearch").value='';d.classList.add('open');d.setAttribute('aria-hidden','false');$("currencyTrigger").setAttribute('aria-expanded','true');setTimeout(()=>$("currencySearch").focus(),40);}
 function closeCurrencyDialog(){const d=$("currencyDialog");if(!d)return;d.classList.remove('open');d.setAttribute('aria-hidden','true');$("currencyTrigger").setAttribute('aria-expanded','false');}
-function selectCurrency(code){if(!currencies[code])return;$("currency").value=code;updateCurrencyTrigger();closeCurrencyDialog();if(num('salary')>0)calculate(null,{silent:true});}
+function selectCurrency(code){if(!currencies[code])return;$("currency").value=code;updateCurrencyTrigger();populateFxTargets();closeCurrencyDialog();if(num('salary')>0)calculate(null,{silent:true});}
 
 
 function money(value){
@@ -686,15 +720,15 @@ async function copyText(text){
 }
 
 function updateAdvancedStatuses(){
-  const set=(id,text)=>{const el=$(id);if(el)el.textContent=text;};
+  const set=(id,text,active)=>{const el=$(id);if(!el)return;el.textContent=text;el.classList.toggle("active",!!active);};
   const timeCount=["unpaidWeeks","unpaidDays","vacation","holidays","sick"].filter(id=>num(id)>0).length;
   const otCount=["otHours","dtHours","bonus","commission","otherEarnings","signingBonus"].filter(id=>num(id)>0).length;
   const benefitCount=["retirement","health","equity","ptoValue","otherBenefits"].filter(id=>num(id)>0).length;
   const deductionCount=["taxRate","employeeRet","employeeInsurance","otherDeductions"].filter(id=>num(id)>0).length + ((($("taxCountry")||{}).value && $("taxCountry").value!=="generic")?1:0);
-  set("statusTime",timeCount?timeCount+" setting"+(timeCount===1?"":"s")+" applied":"Not customized");
-  set("statusOT",otCount?otCount+" item"+(otCount===1?"":"s")+" applied":"Not customized");
-  set("statusBenefits",benefitCount?benefitCount+" benefit"+(benefitCount===1?"":"s")+" included":"Not customized");
-  set("statusDeductions",deductionCount?deductionCount+" deduction"+(deductionCount===1?"":"s")+" applied":"Not customized");
+  set("statusTime",timeCount?"Customized ✓":"Not customized",timeCount>0);
+  set("statusOT",otCount?"Customized ✓":"Not customized",otCount>0);
+  set("statusBenefits",benefitCount?"Customized ✓":"Not customized",benefitCount>0);
+  set("statusDeductions",deductionCount?"Customized ✓":"Not customized",deductionCount>0);
 }
 
 function scheduleModel(){
@@ -779,8 +813,14 @@ function calculate(e,options={}){
   $("extraOut").textContent=money(bonus+commission+other+signing);
   $("totalCompOut").textContent=money(totalComp);
   $("netOut").textContent=money(takeHome);
+  if($("takeHomeHero")) $("takeHomeHero").textContent=money(takeHome);
+  if($("takeHomeHeroHint")) $("takeHomeHeroHint").textContent=(deductions>0?"After your entered tax rate and employee deductions.":"No tax or employee deductions entered; take-home equals gross cash.");
   $("effectiveOut").textContent=money(actualEffectiveHourly)+"/hr";
   if($("effectiveOutHero")) $("effectiveOutHero").textContent=money(actualEffectiveHourly)+" / hour";
+  if($("stickyGross")) $("stickyGross").textContent=money(cash);
+  if($("stickyNet")) $("stickyNet").textContent=money(takeHome);
+  if($("stickyEffective")) $("stickyEffective").textContent=money(actualEffectiveHourly)+"/hr";
+  if($("stickySummary")) $("stickySummary").classList.add("visible");
   $("workedHoursOut").textContent=m.workedHours.toLocaleString(undefined,{maximumFractionDigits:2});
   $("benefitsOut").textContent=money(employerBenefits);
 
@@ -889,7 +929,7 @@ function makePdfReport(){
   const win=window.open("","_blank");
   if(!win){alert("Please allow pop-ups to create the printable PDF report.");return;}
   const text=resultText().replace(/\n/g,"<br>");
-  const html="<!doctype html><html><head><title>ZammioHub Salary Report</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>body{font-family:Arial,sans-serif;color:#27313a;max-width:800px;margin:40px auto;padding:20px;line-height:1.6}h1{color:#124c70}pre{font-family:Arial,sans-serif;white-space:normal;font-size:16px}.note{color:#66727d;font-size:13px;border-top:1px solid #ddd;padding-top:15px;margin-top:25px}</style></head><body><h1>ZammioHub Salary Calculator Report</h1><p>"+text+"</p><p class='note'>This report contains estimates based on the inputs supplied. Currency selection is display-only and does not perform FX conversion. Taxes and deductions are generic estimates unless separately calculated by a jurisdiction-specific tool.</p><script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>";
+  const html="<!doctype html><html><head><title>ZammioHub Salary Report</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>body{font-family:Arial,sans-serif;color:#27313a;max-width:800px;margin:40px auto;padding:20px;line-height:1.6}h1{color:#124c70}pre{font-family:Arial,sans-serif;white-space:normal;font-size:16px}.note{color:#66727d;font-size:13px;border-top:1px solid #ddd;padding-top:15px;margin-top:25px}</style></head><body><h1>ZammioHub Salary & Compensation Report</h1><p>"+text+"</p><p class='note'>This report contains estimates based on the inputs supplied. Currency selection is display-only and does not perform FX conversion. Taxes and deductions are generic estimates unless separately calculated by a jurisdiction-specific tool.</p><script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>";
   win.document.open();win.document.write(html);win.document.close();
 }
 
@@ -907,11 +947,42 @@ function offerModel(prefix){
 }
 
 
+function populateFxTargets(){
+  const target=$("fxTarget"); if(!target)return;
+  const current=$("currency").value||"USD";
+  target.innerHTML=Object.keys(currencies).sort().map(code=>"<option value='"+code+"'>"+code+" — "+escapeHtml((currencyMeta[code]||["",code])[1])+"</option>").join("");
+  target.value=(current!=="USD"?"USD":"PKR");
+}
+async function runFxConversion(){
+  if(!window.__salaryData){$("fxResult").textContent="Calculate your salary first, then use Live FX Conversion.";return;}
+  const source=$("currency").value||"USD", target=$("fxTarget").value||"USD", type=$("fxAmountType").value||"annual";
+  const data=window.__salaryData;
+  const amount=type==="monthly"?data.cash/12:type==="takehome"?data.takeHome:data.cash;
+  if(source===target){$("fxResult").textContent="Source and target currencies are the same. No conversion is needed.";return;}
+  const btn=$("fxBtn"); btn.disabled=true; const old=btn.textContent; btn.textContent="Loading…";
+  $("fxResult").textContent="Fetching the latest available indicative rate…";
+  try{
+    const res=await fetch("https://open.er-api.com/v6/latest/"+encodeURIComponent(source),{cache:"no-store"});
+    if(!res.ok) throw new Error("Rate request failed");
+    const json=await res.json();
+    if(json.result!=="success" || !json.rates || !json.rates[target]) throw new Error("Rate unavailable");
+    const rate=Number(json.rates[target]);
+    const converted=amount*rate;
+    const targetMoney=(v)=>{const sym=(currencies[target]||[target+" ",target])[0]; const digits=["JPY","KRW","VND","IDR"].includes(target)?0:2; return sym+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:digits,maximumFractionDigits:digits});};
+    const update=json.time_last_update_utc?"Rate data updated: "+json.time_last_update_utc+".":"Rate update time unavailable.";
+    $("fxResult").innerHTML=escapeHtml(money(amount))+" <strong>× "+rate.toLocaleString(undefined,{maximumFractionDigits:8})+" = "+targetMoney(converted)+" "+escapeHtml(target)+"</strong><br><span class='note'>1 "+escapeHtml(source)+" = "+rate.toLocaleString(undefined,{maximumFractionDigits:8})+" "+escapeHtml(target)+". "+escapeHtml(update)+"</span>";
+  }catch(err){
+    $("fxResult").textContent="Live FX rate could not be loaded right now. Your salary calculation is unchanged. Please try again later.";
+  }finally{btn.disabled=false;btn.textContent=old;}
+}
+populateFxTargets();
 updateCurrencyTrigger();
 updateAdvancedStatuses();
 $("currencyTrigger").addEventListener("click",openCurrencyDialog);
 $("currencyClose").addEventListener("click",closeCurrencyDialog);
 $("currencySearch").addEventListener("input",e=>renderCurrencyList(e.target.value));
+$("fxBtn").addEventListener("click",runFxConversion);
+$("stickyGo").addEventListener("click",()=>$("result").scrollIntoView({behavior:"smooth",block:"start"}));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("currencyDialog").classList.contains("open"))closeCurrencyDialog();});
 $("taxCountry").addEventListener("change",()=>{
   const names={generic:"Generic estimate",US:"United States",UK:"United Kingdom",PK:"Pakistan",CA:"Canada",AU:"Australia",IN:"India",AE:"United Arab Emirates",NZ:"New Zealand",other:"Other country"};
@@ -971,16 +1042,16 @@ function drawCharts(data){
   canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,w,h);
 
+  /* Coherent donut: take-home + employee deductions + employer benefits = total compensation. */
   const items=[
-    ["Base",Math.max(0,data.base)],
-    ["OT",Math.max(0,data.otPay+data.dtPay)],
-    ["Bonus/Comm.",Math.max(0,data.bonus+data.commission+data.other+data.signing)],
-    ["Benefits",Math.max(0,data.employerBenefits)]
+    ["Take-home",Math.max(0,data.takeHome)],
+    ["Employee deductions",Math.max(0,data.deductions)],
+    ["Employer benefits",Math.max(0,data.employerBenefits)]
   ];
   const total=Math.max(0,items.reduce((s,x)=>s+x[1],0));
   const cx=w/2,cy=116,r=72,inner=43;
   let start=-Math.PI/2;
-  const shades=["#17608a","#4b8f2b","#8a6500","#7a4d9b"];
+  const shades=["#4b8f2b","#8a6500","#7a4d9b"];
   items.forEach((it,i)=>{
     const angle=total?it[1]/total*Math.PI*2:0;
     ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,start+angle);ctx.closePath();
@@ -1015,6 +1086,16 @@ window.addEventListener("resize",()=>{
 
 qsa(".preset").forEach(btn=>btn.addEventListener("click",()=>applyPreset(btn.dataset.preset)));
 
+qsa(".salary-nav a").forEach(link=>link.addEventListener("click",e=>{
+  const target=link.dataset.nav;
+  qsa(".salary-nav a").forEach(a=>a.classList.toggle("active",a===link));
+  if(target!=="calculator"){
+    if($("additionalTools")) $("additionalTools").open=true;
+    qsa(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===target));
+    qsa(".panel").forEach(p=>p.classList.toggle("active",p.id===target));
+  }
+}));
+
 /* Explicit Calculate action: prevent the browser's default form reload and calculate in-place. */
 $("salaryForm").addEventListener("submit",(e)=>{
   const data=calculate(e,{silent:false});
@@ -1033,7 +1114,7 @@ $("clearBtn").addEventListener("click",()=>{
   $("bonus").value=0;$("commission").value=0;$("otherEarnings").value=0;$("signingBonus").value=0;
   $("retirement").value=0;$("health").value=0;$("equity").value=0;$("ptoValue").value=0;$("otherBenefits").value=0;
   $("taxCountry").value="generic";$("taxRate").value=0;$("employeeRet").value=0;$("employeeInsurance").value=0;$("otherDeductions").value=0;
-  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;history.replaceState(null,"",location.pathname);setTheme(false);applyPreset("standard");
+  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;if($("stickySummary")) $("stickySummary").classList.remove("visible");history.replaceState(null,"",location.pathname);setTheme(false);applyPreset("standard");
   $("calcStatus").innerHTML="Enter the basic details above and calculate instantly. Advanced options are available below when you need them.";
   qsa("#salaryForm details").forEach(d=>d.open=false);
   if($("additionalTools")) $("additionalTools").open=false;
@@ -1094,9 +1175,17 @@ $("compareBtn").addEventListener("click",()=>{
     ["Estimated hours actually worked",a.workedHours.toFixed(1),b.workedHours.toFixed(1)],
     ["Effective hourly value",money(a.hourly)+"/hr",money(b.hourly)+"/hr"]
   ];
-  $("compareResult").innerHTML="<div class='compare-wrap'><table class='compare-table'><tr><th>Metric</th><th>"+escapeHtml(a.name)+"</th><th>"+escapeHtml(b.name)+"</th></tr>"+
+  const hourlyDiffPct=a.hourly>0?((b.hourly-a.hourly)/a.hourly*100):0;
+  const totalDiffPct=a.total>0?((b.total-a.total)/a.total*100):0;
+  const ptoDiff=b.pto-a.pto;
+  const insightParts=[];
+  if(Math.abs(hourlyDiffPct)>=0.05) insightParts.push("<strong>Effective hourly value:</strong> "+escapeHtml(b.name)+" is "+Math.abs(hourlyDiffPct).toFixed(1)+"% "+(hourlyDiffPct>=0?"higher":"lower")+" than "+escapeHtml(a.name)+".");
+  if(Math.abs(ptoDiff)>=1) insightParts.push("<strong>Paid time off:</strong> "+escapeHtml(ptoDiff>=0?b.name:a.name)+" has "+Math.abs(ptoDiff)+" more PTO day"+(Math.abs(ptoDiff)===1?"":"s")+".");
+  if(Math.abs(totalDiffPct)>=0.05) insightParts.push("<strong>Total compensation:</strong> "+escapeHtml(b.name)+" is "+Math.abs(totalDiffPct).toFixed(1)+"% "+(totalDiffPct>=0?"higher":"lower")+" than "+escapeHtml(a.name)+" under these assumptions.");
+  const insight=insightParts.length?"<div class='compare-insight'><strong>Comparison Insight</strong><div style='margin-top:5px'>"+insightParts.join(" ") +"</div></div>":"<div class='compare-insight'><strong>Comparison Insight</strong><div style='margin-top:5px'>The two offers are very close on the selected metrics. Review the detailed table and your own priorities.</div></div>";
+  $("compareResult").innerHTML=insight+"<div class='compare-wrap'><table class='compare-table'><tr><th>Metric</th><th>"+escapeHtml(a.name)+"</th><th>"+escapeHtml(b.name)+"</th></tr>"+
     rows.map(r=>"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td></tr>").join("")+
-    "</table></div><p class='note'>This table reports the numerical assumptions entered. It does not recommend one job over another.</p>";
+    "</table></div><p class='note'>This comparison summarizes the numerical assumptions you entered. It does not account for every job-quality factor.</p>";
 });
 
 $("raiseBtn").addEventListener("click",()=>{
