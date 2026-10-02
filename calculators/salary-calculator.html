@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salary Calculator 2026 | Hourly, Monthly, Annual & Total Compensation | ZammioHub</title>
-<meta name="description" content="Free advanced salary calculator for 2026. Convert hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual pay. Add overtime, PTO, bonuses, commission and benefits, compare job offers, calculate raises and freelance rates.">
+<meta name="description" content="Free advanced salary calculator for 2026. Convert hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual pay. Model overtime, PTO, unpaid leave, bonuses, commission, benefits, deductions, take-home estimates, job offers, raises and freelance rates.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://zammiohub.com/calculators/salary-calculator">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Salary Calculator 2026 | ZammioHub">
-<meta property="og:description" content="Calculate salary conversions, overtime, PTO, bonuses, benefits, total compensation, effective hourly rate and more.">
+<meta property="og:description" content="Advanced salary, overtime, total compensation, deductions, job offer comparison, raise and freelance rate calculator.">
 <meta property="og:url" content="https://zammiohub.com/calculators/salary-calculator">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Salary Calculator 2026 | ZammioHub">
@@ -21,7 +21,7 @@
   "@type":"WebPage",
   "name":"Salary Calculator 2026",
   "url":"https://zammiohub.com/calculators/salary-calculator",
-  "description":"Advanced salary and compensation calculator for converting pay and analyzing overtime, PTO, bonuses, benefits and total compensation.",
+  "description":"Advanced salary and compensation calculator for salary conversion, overtime, PTO, bonuses, benefits, deductions and total compensation.",
   "dateModified":"2026-10-02",
   "isPartOf":{"@type":"WebSite","name":"ZammioHub","url":"https://zammiohub.com/"}
 }
@@ -39,29 +39,40 @@
 </script>
 
 <style>
-:root{--primary:#17608a;--primary2:#124c70;--accent:#4b8f2b;--accent2:#3d7524;--text:#27313a;--muted:#66727d;--border:#d9e1e6;--soft:#f6f9fb;--danger:#a12626;--white:#fff}
+:root{
+  --primary:#17608a;--primary2:#124c70;--accent:#4b8f2b;--accent2:#3d7524;
+  --text:#27313a;--muted:#66727d;--border:#d9e1e6;--soft:#f6f9fb;
+  --danger:#a12626;--success:#2d6f32;--white:#fff;--gold:#8a6500
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#fff;color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-.container{width:100%;max-width:1050px;margin:auto;padding:24px 18px 70px}
-.breadcrumb{font-size:14px;color:var(--primary);margin-bottom:20px}
+.container{width:100%;max-width:1100px;margin:auto;padding:22px 18px 70px}
+.breadcrumb{font-size:14px;color:var(--primary);margin-bottom:18px}
 .breadcrumb a{color:var(--primary);text-decoration:none}
 h1{font-size:clamp(32px,5vw,48px);line-height:1.12;color:var(--primary2);margin:0 0 12px}
-.lead{font-size:18px;color:#3d4851;margin:0 0 22px}
+.lead{font-size:18px;color:#3d4851;margin:0 0 20px}
 .card{border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:0 5px 22px rgba(23,54,72,.08);overflow:hidden;margin:18px 0}
 .card-head{background:var(--primary);color:#fff;padding:16px 20px;font-size:20px;font-weight:700}
 .form{padding:22px;background:var(--soft)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.field{min-width:0}
 .field label{display:block;font-weight:700;margin:0 0 7px;font-size:15px}
 .field small{display:block;color:var(--muted);font-size:12px;margin-top:5px}
-input,select{width:100%;min-width:0;padding:13px 14px;border:1px solid #b9c5cc;border-radius:8px;background:#fff;color:var(--text);font-size:16px;min-height:46px}
+input,select{width:100%;min-width:0;padding:12px 13px;border:1px solid #b9c5cc;border-radius:8px;background:#fff;color:var(--text);font-size:16px;min-height:46px}
 input:focus,select:focus,button:focus-visible{outline:3px solid rgba(53,111,159,.22);outline-offset:2px;border-color:#356f9f}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-button{border:0;border-radius:8px;padding:12px 18px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+button{border:0;border-radius:8px;padding:11px 17px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px}
 .primary{background:var(--accent);color:#fff}.primary:hover{background:var(--accent2)}
 .secondary{background:#e5eaee;color:var(--text)}
 .outline{background:#fff;border:1px solid var(--border);color:var(--primary)}
+.danger-btn{background:#fff;border:1px solid #e1baba;color:var(--danger)}
 .error{color:var(--danger);font-weight:700;margin-top:12px}
+.success{color:var(--success);font-weight:700}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.preset{background:#fff;border:1px solid #d5dfe5;color:var(--text);font-weight:600}
+.preset.active{background:#eaf3f8;border-color:#8eb3c9;color:var(--primary2)}
 details{border-top:1px solid var(--border);background:#fff}
 details>summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:700;color:var(--primary2)}
 details>summary::-webkit-details-marker{display:none}
@@ -69,14 +80,17 @@ details>summary:after{content:"+";float:right;font-size:22px}
 details[open]>summary:after{content:"−"}
 .advanced-body{padding:0 20px 22px}
 .section-title{font-size:16px;font-weight:700;color:var(--primary2);margin:20px 0 10px}
+.section-help{font-size:13px;color:var(--muted);margin:-4px 0 12px}
+.info{background:#eef6fa;border:1px solid #cfe1ea;border-radius:9px;padding:11px 13px;color:#385566;font-size:13px;margin:12px 0}
+.warning{background:#fff8e6;border:1px solid #ead99d;border-radius:9px;padding:11px 13px;color:#6c5600;font-size:13px;margin:12px 0}
 .result{display:none}
 .result-head{background:var(--accent);color:#fff;padding:16px 20px;font-size:20px;font-weight:700}
 .result-body{padding:20px}
 .hero-result{text-align:center;border:1px solid var(--border);background:var(--soft);border-radius:12px;padding:18px;margin-bottom:18px}
-.hero-result .big{display:block;font-size:clamp(30px,6vw,42px);font-weight:800;color:var(--primary2)}
+.hero-result .big{display:block;font-size:clamp(30px,6vw,44px);font-weight:800;color:var(--primary2);overflow-wrap:anywhere}
 .hero-result .sub{color:var(--muted)}
 .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.metric{border:1px solid var(--border);background:#fff;border-radius:10px;padding:14px;min-width:0}
+.metric{border:1px solid var(--border);background:#fff;border-radius:10px;padding:13px;min-width:0}
 .metric b{display:block;color:var(--muted);font-size:13px;margin-bottom:3px}
 .metric span{font-size:18px;font-weight:800;overflow-wrap:anywhere}
 .result-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
@@ -90,8 +104,13 @@ details[open]>summary:after{content:"−"}
 .panel{display:none;padding:20px}.panel.active{display:block}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .compare-table{width:100%;border-collapse:collapse;margin-top:14px}
-.compare-table th,.compare-table td{border:1px solid var(--border);padding:10px;text-align:left}
+.compare-table th,.compare-table td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top}
 .compare-table th{background:var(--soft)}
+.compare-wrap{overflow-x:auto}
+.tool-result{margin-top:16px}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:#fff}
+.kpi b{display:block;color:var(--muted);font-size:13px}.kpi strong{font-size:20px;color:var(--primary2)}
 .content{margin-top:38px}
 .content h2{font-size:28px;line-height:1.25;color:var(--primary2);margin:34px 0 10px}
 .content h3{font-size:21px;color:#263b48;margin:24px 0 7px}
@@ -100,10 +119,64 @@ details[open]>summary:after{content:"−"}
 .faq{border:1px solid var(--border);border-radius:9px;margin:9px 0}
 .faq summary{padding:14px 16px;cursor:pointer;font-weight:700}
 .faq p{padding:0 16px 14px;margin:0}
+.share-box{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.share-box .share-note{font-size:12px;color:var(--muted);width:100%}
 footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color:var(--muted)}
-@media(max-width:760px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.two{grid-template-columns:1fr}}
-@media(max-width:480px){.container{padding:18px 14px 55px}.form,.result-body{padding:16px}.advanced-body{padding:0 16px 18px}.metrics{grid-template-columns:1fr}.actions button,.result-actions button{width:100%}.content p,.content li{font-size:16px}}
-@media print{.card-head,.actions,.result-actions,.tabs,.advanced-body,footer{display:none!important}.result{display:block!important;box-shadow:none}.container{max-width:none}}
+@media(max-width:850px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.grid,.two,.three{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){
+  .container{padding:18px 14px 55px}.form,.result-body{padding:16px}.advanced-body{padding:0 16px 18px}
+  .metrics,.kpi-grid{grid-template-columns:1fr}.actions button,.result-actions button{width:100%}
+  .content p,.content li{font-size:16px}.tabs{padding:12px 14px}.panel{padding:16px}
+}
+@media print{
+  body{background:#fff}.card{box-shadow:none}.card-head,.actions,.result-actions,.tabs,.advanced-body,.preset-row,footer,.tool-result{display:none!important}
+  .result{display:block!important;border:0}.container{max-width:none;padding:0}.content{display:none}
+}
+
+body.dark{background:#11181d;color:#e7edf1}
+body.dark .card,body.dark .metric,body.dark .kpi,body.dark .preset,
+body.dark .compare-table td,body.dark .faq,body.dark input,body.dark select,
+body.dark .hero-result{background:#182229;color:#e7edf1;border-color:#33444f}
+body.dark .form{background:#141e24}
+body.dark .content h2,body.dark .content h3,body.dark .section-title,
+body.dark .field label,body.dark .metric b,body.dark .breadcrumb,
+body.dark .lead,body.dark .note,body.dark .section-help{color:#dce7ed}
+body.dark .compare-table th,body.dark .formula{background:#202c34;color:#e7edf1}
+body.dark .info{background:#18303c;border-color:#315365;color:#d5e8f2}
+body.dark .warning{background:#332c16;border-color:#665b2c;color:#f2df9c}
+body.dark .tabs{border-color:#33444f}
+body.dark .tab{background:#202c34;color:#e7edf1;border-color:#3a4b56}
+body.dark input::placeholder{color:#91a0a9}
+body.dark .secondary{background:#29353d;color:#e7edf1}
+.theme-row{display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-bottom:10px}
+.theme-toggle{background:#eef3f6;border:1px solid #d5dfe5;color:#27313a}
+body.dark .theme-toggle{background:#26343d;color:#fff;border-color:#455864}
+.invalid{border-color:#c62828!important;background:#fff7f7!important}
+body.dark .invalid{background:#2a1b1b!important;border-color:#ef6c6c!important}
+.field-help{font-size:12px;color:var(--muted);margin-top:5px}
+.tip{display:inline-flex;width:19px;height:19px;align-items:center;justify-content:center;border-radius:50%;border:1px solid #9aaab4;font-size:12px;color:var(--primary);cursor:help;margin-left:4px;vertical-align:middle}
+.tooltip-wrap{position:relative;display:inline-block}
+.tooltip-wrap .tooltip{display:none;position:absolute;z-index:20;left:0;top:24px;width:240px;padding:9px 10px;background:#26343d;color:#fff;border-radius:7px;font-size:12px;line-height:1.45;box-shadow:0 5px 18px rgba(0,0,0,.2)}
+.tooltip-wrap:hover .tooltip,.tooltip-wrap:focus-within .tooltip{display:block}
+.dashboard{margin-top:18px}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.chart-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff}
+body.dark .chart-card{background:#182229;border-color:#33444f}
+.chart-card h3{margin:0 0 12px;color:var(--primary2)}
+.chart-card canvas{display:block;width:100%;max-width:520px;height:260px;margin:auto}
+.bar-list{display:grid;gap:9px}
+.bar-item{display:grid;grid-template-columns:100px 1fr 95px;gap:8px;align-items:center;font-size:13px}
+.bar-track{height:12px;background:#e7edf0;border-radius:99px;overflow:hidden}
+body.dark .bar-track{background:#2c3941}
+.bar-fill{height:100%;background:var(--primary);border-radius:99px;transition:width .25s ease}
+.internal-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.internal-link{display:block;border:1px solid var(--border);border-radius:10px;padding:13px;text-decoration:none;background:#fff;color:var(--primary2);font-weight:700}
+.internal-link span{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}
+body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
+.country-note{margin-top:10px}
+@media(max-width:760px){.chart-grid,.internal-links{grid-template-columns:1fr}}
+
 </style>
 </head>
 
@@ -114,12 +187,23 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 </nav>
 
 <h1>Salary Calculator 2026</h1>
-<p class="lead">Calculate hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual gross pay. Expand Advanced Options for overtime, PTO, bonuses, commission, benefits, total compensation and effective hourly rate.</p>
+<p class="lead">Convert salary between pay periods and model overtime, paid and unpaid time off, bonuses, commission, employer benefits, deductions, estimated take-home pay and effective hourly value.</p>
+
+<div class="theme-row">
+<button class="theme-toggle" id="themeBtn" type="button" aria-pressed="false">🌙 Dark Mode</button>
+</div>
 
 <section class="card" aria-labelledby="calculator-title">
-<div class="card-head" id="calculator-title">Salary & Compensation Calculator</div>
+<div class="card-head" id="calculator-title">Advanced Salary & Total Compensation Calculator</div>
 
 <form id="salaryForm" class="form" novalidate>
+<div class="preset-row" aria-label="Quick schedule presets">
+<button class="preset active" type="button" data-preset="standard">Standard Full-Time</button>
+<button class="preset" type="button" data-preset="part">Part-Time</button>
+<button class="preset" type="button" data-preset="fourday">4-Day Workweek</button>
+<button class="preset" type="button" data-preset="custom">Custom</button>
+</div>
+
 <div class="grid">
 <div class="field">
 <label for="salary">Salary Amount</label>
@@ -128,19 +212,72 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 <div class="field">
 <label for="frequency">Pay Frequency</label>
 <select id="frequency">
-<option value="hourly">Hourly</option><option value="daily">Daily</option><option value="weekly">Weekly</option>
-<option value="biweekly">Biweekly (Every 2 Weeks)</option><option value="semimonthly">Semimonthly (Twice a Month)</option>
-<option value="monthly" selected>Monthly</option><option value="quarterly">Quarterly</option><option value="annual">Annual</option>
+<option value="hourly">Hourly</option>
+<option value="daily">Daily</option>
+<option value="weekly">Weekly</option>
+<option value="biweekly">Biweekly (Every 2 Weeks)</option>
+<option value="semimonthly">Semimonthly (Twice a Month)</option>
+<option value="monthly" selected>Monthly</option>
+<option value="quarterly">Quarterly</option>
+<option value="annual">Annual</option>
 </select>
 </div>
 <div class="field">
-<label for="currency">Currency</label>
+<label for="currency">Currency / Display Currency</label>
 <select id="currency">
-<option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="CAD">C$ CAD</option>
-<option value="AUD">A$ AUD</option><option value="NZD">NZ$ NZD</option><option value="PKR">Rs PKR</option>
-<option value="INR">₹ INR</option><option value="AED">AED</option><option value="SAR">SAR</option>
-<option value="JPY">¥ JPY</option><option value="CHF">CHF</option>
+<option value="USD">$ USD — US Dollar</option>
+<option value="EUR">€ EUR — Euro</option>
+<option value="GBP">£ GBP — British Pound</option>
+<option value="CAD">C$ CAD — Canadian Dollar</option>
+<option value="AUD">A$ AUD — Australian Dollar</option>
+<option value="NZD">NZ$ NZD — New Zealand Dollar</option>
+<option value="PKR">Rs PKR — Pakistani Rupee</option>
+<option value="INR">₹ INR — Indian Rupee</option>
+<option value="AED">AED — UAE Dirham</option>
+<option value="SAR">SAR — Saudi Riyal</option>
+<option value="QAR">QAR — Qatari Riyal</option>
+<option value="KWD">KWD — Kuwaiti Dinar</option>
+<option value="BHD">BHD — Bahraini Dinar</option>
+<option value="OMR">OMR — Omani Rial</option>
+<option value="JOD">JOD — Jordanian Dinar</option>
+<option value="EGP">E£ EGP — Egyptian Pound</option>
+<option value="TRY">₺ TRY — Turkish Lira</option>
+<option value="JPY">¥ JPY — Japanese Yen</option>
+<option value="CNY">¥ CNY — Chinese Yuan</option>
+<option value="HKD">HK$ HKD — Hong Kong Dollar</option>
+<option value="SGD">S$ SGD — Singapore Dollar</option>
+<option value="MYR">RM MYR — Malaysian Ringgit</option>
+<option value="THB">฿ THB — Thai Baht</option>
+<option value="IDR">Rp IDR — Indonesian Rupiah</option>
+<option value="PHP">₱ PHP — Philippine Peso</option>
+<option value="KRW">₩ KRW — South Korean Won</option>
+<option value="VND">₫ VND — Vietnamese Dong</option>
+<option value="BDT">৳ BDT — Bangladeshi Taka</option>
+<option value="LKR">Rs LKR — Sri Lankan Rupee</option>
+<option value="NPR">Rs NPR — Nepalese Rupee</option>
+<option value="AFN">؋ AFN — Afghan Afghani</option>
+<option value="ZAR">R ZAR — South African Rand</option>
+<option value="NGN">₦ NGN — Nigerian Naira</option>
+<option value="KES">KSh KES — Kenyan Shilling</option>
+<option value="GHS">GH₵ GHS — Ghanaian Cedi</option>
+<option value="TZS">TSh TZS — Tanzanian Shilling</option>
+<option value="UGX">USh UGX — Ugandan Shilling</option>
+<option value="BRL">R$ BRL — Brazilian Real</option>
+<option value="MXN">Mex$ MXN — Mexican Peso</option>
+<option value="ARS">$ ARS — Argentine Peso</option>
+<option value="CLP">$ CLP — Chilean Peso</option>
+<option value="COP">$ COP — Colombian Peso</option>
+<option value="CHF">CHF — Swiss Franc</option>
+<option value="SEK">kr SEK — Swedish Krona</option>
+<option value="NOK">kr NOK — Norwegian Krone</option>
+<option value="DKK">kr DKK — Danish Krone</option>
+<option value="PLN">zł PLN — Polish Zloty</option>
+<option value="CZK">Kč CZK — Czech Koruna</option>
+<option value="HUF">Ft HUF — Hungarian Forint</option>
+<option value="RON">lei RON — Romanian Leu</option>
+<option value="ILS">₪ ILS — Israeli New Shekel</option>
 </select>
+<small>Changing this selector changes the display currency only. It does not perform foreign-exchange conversion.</small>
 </div>
 <div class="field">
 <label for="hours">Hours per Week</label>
@@ -151,47 +288,100 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 <input id="days" type="number" min="0.1" max="7" step="any" value="5" inputmode="decimal">
 </div>
 <div class="field">
-<label for="weeks">Paid Weeks per Year</label>
-<input id="weeks" type="number" min="1" max="52" step="any" value="52" inputmode="decimal">
-<small>52 is the common standard assumption.</small>
+<label for="unpaidWeeks">Unpaid Full Weeks / Year</label>
+<input id="unpaidWeeks" type="number" min="0" max="52" step="any" value="0">
+<small>Full unpaid weeks are deducted from the annual working schedule.</small>
+</div>
+<div class="field">
+<label for="unpaidDays">Additional Unpaid Days / Year</label>
+<input id="unpaidDays" type="number" min="0" max="366" step="any" value="0">
+<small>Use this for unpaid days that are not already included in unpaid full weeks.</small>
 </div>
 </div>
 
-<details>
-<summary>Advanced Options — PTO, Overtime, Bonus, Commission & Benefits</summary>
+<div class="info">The calculator keeps paid vacation, paid holidays and paid sick leave separate from unpaid time. Paid time off does not reduce gross salary; it can reduce the “hours actually worked” denominator used for effective hourly value.</div>
+
+<details open>
+<summary>Time Off & Work Schedule</summary>
 <div class="advanced-body">
-<div class="section-title">Time Off</div>
+<div class="section-title">Paid Time Off</div>
 <div class="grid">
 <div class="field"><label for="vacation">Paid Vacation Days / Year</label><input id="vacation" type="number" min="0" max="366" step="any" value="0"></div>
 <div class="field"><label for="holidays">Paid Holidays / Year</label><input id="holidays" type="number" min="0" max="366" step="any" value="0"></div>
 <div class="field"><label for="sick">Paid Sick Days / Year</label><input id="sick" type="number" min="0" max="366" step="any" value="0"></div>
-<div class="field"><label for="unpaidDays">Unpaid Days / Year</label><input id="unpaidDays" type="number" min="0" max="366" step="any" value="0"></div>
-<div class="field"><label for="unpaidWeeks">Unpaid Weeks / Year</label><input id="unpaidWeeks" type="number" min="0" max="52" step="any" value="0"></div>
 </div>
+<p class="section-help">Paid days are treated as paid time, not additional cash compensation.</p>
+</div>
+</details>
 
-<div class="section-title">Overtime & Extra Earnings</div>
+<details>
+<summary>Overtime & Extra Earnings</summary>
+<div class="advanced-body">
+<div class="section-title">Overtime</div>
 <div class="grid">
 <div class="field"><label for="otHours">Overtime Hours / Week</label><input id="otHours" type="number" min="0" max="168" step="any" value="0"></div>
 <div class="field"><label for="otMult">Overtime Multiplier</label><input id="otMult" type="number" min="0" max="10" step="any" value="1.5"></div>
 <div class="field"><label for="dtHours">Double-Time Hours / Week</label><input id="dtHours" type="number" min="0" max="168" step="any" value="0"></div>
 <div class="field"><label for="dtMult">Double-Time Multiplier</label><input id="dtMult" type="number" min="0" max="10" step="any" value="2"></div>
+</div>
+<p class="section-help">These are user-entered assumptions. Overtime rules vary by country, state/province, contract and employer.</p>
+
+<div class="section-title">Additional Cash Compensation</div>
+<div class="grid">
 <div class="field"><label for="bonus">Annual Bonus</label><input id="bonus" type="number" min="0" step="any" value="0"></div>
 <div class="field"><label for="commission">Annual Commission</label><input id="commission" type="number" min="0" step="any" value="0"></div>
 <div class="field"><label for="otherEarnings">Other Annual Earnings</label><input id="otherEarnings" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="signingBonus">One-Time Signing Bonus</label><input id="signingBonus" type="number" min="0" step="any" value="0"></div>
 </div>
+</div>
+</details>
 
-<div class="section-title">Employer Benefits</div>
+<details>
+<summary>Employer Benefits & Total Compensation</summary>
+<div class="advanced-body">
 <div class="grid">
 <div class="field"><label for="retirement">Employer Retirement Contribution / Year</label><input id="retirement" type="number" min="0" step="any" value="0"></div>
 <div class="field"><label for="health">Health / Insurance Value / Year</label><input id="health" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="benefits">Other Employer Benefits / Year</label><input id="benefits" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="equity">Equity / RSU Annual Value</label><input id="equity" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="ptoValue">Other Paid Leave / PTO Value</label><input id="ptoValue" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="otherBenefits">Other Employer Benefits / Year</label><input id="otherBenefits" type="number" min="0" step="any" value="0"></div>
+</div>
+<p class="section-help">Employer benefits are shown as compensation value but are not added to cash salary or take-home pay.</p>
+</div>
+</details>
+
+<details>
+<summary>Estimated Deductions & Take-Home Pay</summary>
+<div class="advanced-body">
+<div class="info">Use this section for a generic estimate only. It does not apply country-specific tax brackets, credits or payroll laws.</div>
+<div class="grid">
+<div class="field">
+<label for="taxCountry">Tax Estimation Region <span class="tooltip-wrap"><span class="tip" tabindex="0">?</span><span class="tooltip">Country selection is used to label the estimate. The generic rate you enter is still used; this page does not pretend to reproduce every country's current tax law.</span></span></label>
+<select id="taxCountry">
+<option value="generic">Generic / Enter My Own Rate</option>
+<option value="US">United States</option>
+<option value="UK">United Kingdom</option>
+<option value="PK">Pakistan</option>
+<option value="CA">Canada</option>
+<option value="AU">Australia</option>
+<option value="IN">India</option>
+<option value="AE">United Arab Emirates</option>
+<option value="NZ">New Zealand</option>
+<option value="other">Other Country</option>
+</select><div class="field-help country-note">Select a region for reference; the entered effective rate controls the estimate.</div>
+</div>
+<div class="field">
+<label for="taxRate">Estimated Effective Tax Rate (%) <span class="tooltip-wrap"><span class="tip" tabindex="0">?</span><span class="tooltip">Use an effective rate you know or want to model. This is not a legal tax calculation.</span></span></label><input id="taxRate" type="number" min="0" max="100" step="any" value="0"></div>
+<div class="field"><label for="employeeRet">Employee Retirement Deduction / Year</label><input id="employeeRet" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="employeeInsurance">Employee Insurance / Health Deduction / Year</label><input id="employeeInsurance" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="otherDeductions">Other Employee Deductions / Year</label><input id="otherDeductions" type="number" min="0" step="any" value="0"></div>
 </div>
 </div>
 </details>
 
 <div class="actions">
 <button class="primary" type="submit">Calculate Salary</button>
-<button class="secondary" type="button" id="clearBtn">Clear</button>
+<button class="secondary" type="button" id="clearBtn">Reset</button>
 </div>
 <div id="error" class="error" role="alert" aria-live="polite"></div>
 </form>
@@ -204,6 +394,7 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 <span class="big" id="annualMain"></span>
 <span class="sub">Estimated annual gross cash compensation</span>
 </div>
+
 <div class="metrics">
 <div class="metric"><b>Hourly</b><span id="hourlyOut"></span></div>
 <div class="metric"><b>Daily Workday</b><span id="dailyOut"></span></div>
@@ -213,10 +404,13 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 <div class="metric"><b>Monthly</b><span id="monthlyOut"></span></div>
 <div class="metric"><b>Quarterly</b><span id="quarterlyOut"></span></div>
 <div class="metric"><b>Annual</b><span id="annualOut"></span></div>
-<div class="metric"><b>Overtime Pay</b><span id="otOut"></span></div>
+<div class="metric"><b>Overtime + Double-Time</b><span id="otOut"></span></div>
 <div class="metric"><b>Bonus + Commission</b><span id="extraOut"></span></div>
 <div class="metric"><b>Total Compensation</b><span id="totalCompOut"></span></div>
+<div class="metric"><b>Estimated Take-Home</b><span id="netOut"></span></div>
 <div class="metric"><b>Effective Hourly Rate</b><span id="effectiveOut"></span></div>
+<div class="metric"><b>Hours Actually Worked</b><span id="workedHoursOut"></span></div>
+<div class="metric"><b>Employer Benefits Value</b><span id="benefitsOut"></span></div>
 </div>
 
 <div class="result-actions">
@@ -224,253 +418,651 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 <button class="outline" type="button" id="whatsappBtn">Share on WhatsApp</button>
 <button class="outline" type="button" id="shareBtn">Share</button>
 <button class="outline" type="button" id="printBtn">Print</button>
+<button class="outline" type="button" id="pdfBtn">Download PDF</button>
+<button class="outline" type="button" id="linkBtn">Copy Shareable Link</button>
 </div>
 
 <div class="breakdown">
 <h3>Calculation Breakdown</h3>
 <div id="breakdownText"></div>
-<p class="note">Gross results are estimates before taxes and employee deductions. Biweekly uses 26 pay periods and semimonthly uses 24 pay periods. Employer benefits are shown separately from cash salary.</p>
+<p class="note">Gross cash compensation excludes employer benefits. Estimated take-home uses only the generic deductions you entered. It is not a country-specific paycheck or tax calculation.</p>
 </div>
 </div>
 </section>
 
 <section class="card">
 <div class="tabs" role="tablist" aria-label="Advanced salary tools">
-<button class="tab active" data-tab="compare" type="button">Compare Jobs</button>
-<button class="tab" data-tab="raise" type="button">Raise & Growth</button>
-<button class="tab" data-tab="freelance" type="button">Freelance Rate</button>
+<button class="tab active" data-tab="compare" type="button">Job Offer Comparison</button>
+<button class="tab" data-tab="raise" type="button">Raise & Future Growth</button>
+<button class="tab" data-tab="freelance" type="button">Employee → Freelance</button>
 </div>
 
 <div class="panel active" id="compare">
 <h2 style="margin-top:0">Job Offer Comparison</h2>
-<p>Enter two offers to compare salary, hours, PTO and benefits using the same transparent assumptions.</p>
+<p>Compare two offers using cash compensation, benefits, PTO, work schedule, effective hourly value and estimated total compensation.</p>
 <div class="two">
 <div>
 <h3>Job A</h3>
-<div class="field"><label for="aSalary">Annual Salary</label><input id="aSalary" type="number" min="0" step="any" value="60000"></div>
-<div class="field"><label for="aHours">Hours / Week</label><input id="aHours" type="number" min=".01" step="any" value="40"></div>
-<div class="field"><label for="aDaysOff">Paid Time Off Days</label><input id="aDaysOff" type="number" min="0" step="any" value="20"></div>
+<div class="field"><label for="aName">Company / Offer Name</label><input id="aName" type="text" value="Job A"></div>
+<div class="field"><label for="aSalary">Annual Base Salary</label><input id="aSalary" type="number" min="0" step="any" value="60000"></div>
+<div class="field"><label for="aHours">Hours / Week</label><input id="aHours" type="number" min=".01" max="168" step="any" value="40"></div>
+<div class="field"><label for="aDays">Workdays / Week</label><input id="aDays" type="number" min=".1" max="7" step="any" value="5"></div>
+<div class="field"><label for="aPto">Paid Time Off Days</label><input id="aPto" type="number" min="0" max="366" step="any" value="20"></div>
 <div class="field"><label for="aBonus">Annual Bonus</label><input id="aBonus" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="aBenefits">Annual Benefits</label><input id="aBenefits" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="aCommission">Annual Commission</label><input id="aCommission" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="aBenefits">Annual Benefits Value</label><input id="aBenefits" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="aSigning">One-Time Signing Bonus</label><input id="aSigning" type="number" min="0" step="any" value="0"></div>
 </div>
 <div>
 <h3>Job B</h3>
-<div class="field"><label for="bSalary">Annual Salary</label><input id="bSalary" type="number" min="0" step="any" value="65000"></div>
-<div class="field"><label for="bHours">Hours / Week</label><input id="bHours" type="number" min=".01" step="any" value="45"></div>
-<div class="field"><label for="bDaysOff">Paid Time Off Days</label><input id="bDaysOff" type="number" min="0" step="any" value="10"></div>
+<div class="field"><label for="bName">Company / Offer Name</label><input id="bName" type="text" value="Job B"></div>
+<div class="field"><label for="bSalary">Annual Base Salary</label><input id="bSalary" type="number" min="0" step="any" value="65000"></div>
+<div class="field"><label for="bHours">Hours / Week</label><input id="bHours" type="number" min=".01" max="168" step="any" value="45"></div>
+<div class="field"><label for="bDays">Workdays / Week</label><input id="bDays" type="number" min=".1" max="7" step="any" value="5"></div>
+<div class="field"><label for="bPto">Paid Time Off Days</label><input id="bPto" type="number" min="0" max="366" step="any" value="10"></div>
 <div class="field"><label for="bBonus">Annual Bonus</label><input id="bBonus" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="bBenefits">Annual Benefits</label><input id="bBenefits" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="bCommission">Annual Commission</label><input id="bCommission" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="bBenefits">Annual Benefits Value</label><input id="bBenefits" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="bSigning">One-Time Signing Bonus</label><input id="bSigning" type="number" min="0" step="any" value="0"></div>
 </div>
 </div>
 <button class="primary" type="button" id="compareBtn">Compare Offers</button>
-<div id="compareResult"></div>
+<div id="compareResult" class="tool-result"></div>
 </div>
 
 <div class="panel" id="raise">
 <h2 style="margin-top:0">Salary Raise & Future Growth Calculator</h2>
+<p>Project annual salary growth and optionally account for inflation and a future promotion.</p>
 <div class="grid">
 <div class="field"><label for="currentSalary">Current Annual Salary</label><input id="currentSalary" type="number" min="0" step="any" value="60000"></div>
-<div class="field"><label for="raisePct">Annual Raise %</label><input id="raisePct" type="number" min="-100" step="any" value="5"></div>
+<div class="field"><label for="raisePct">Annual Raise (%)</label><input id="raisePct" type="number" min="-100" max="1000" step="any" value="5"></div>
 <div class="field"><label for="years">Years to Project</label><input id="years" type="number" min="1" max="50" step="1" value="5"></div>
+<div class="field"><label for="inflationPct">Annual Inflation (%)</label><input id="inflationPct" type="number" min="-50" max="100" step="any" value="0"></div>
+<div class="field"><label for="promotionYear">Promotion Year (0 = none)</label><input id="promotionYear" type="number" min="0" max="50" step="1" value="0"></div>
+<div class="field"><label for="promotionPct">Promotion Increase (%)</label><input id="promotionPct" type="number" min="-100" max="1000" step="any" value="0"></div>
 </div>
 <button class="primary" type="button" id="raiseBtn">Calculate Growth</button>
-<div id="raiseResult"></div>
+<div id="raiseResult" class="tool-result"></div>
 </div>
 
 <div class="panel" id="freelance">
 <h2 style="margin-top:0">Employee to Freelance Rate Calculator</h2>
-<p>Estimate a freelance hourly rate needed to replace a target employee salary after unpaid time and non-billable hours.</p>
+<p>Estimate the hourly freelance rate required to replace a target employee compensation after non-billable time and business costs.</p>
 <div class="grid">
-<div class="field"><label for="targetSalary">Target Annual Salary</label><input id="targetSalary" type="number" min="0" step="any" value="60000"></div>
-<div class="field"><label for="workHours">Work Hours / Week</label><input id="workHours" type="number" min=".01" max="168" step="any" value="40"></div>
-<div class="field"><label for="freelanceWeeks">Paid/Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" value="46"></div>
-<div class="field"><label for="nonbillable">Non-billable Hours %</label><input id="nonbillable" type="number" min="0" max="99.9" step="any" value="20"></div>
+<div class="field"><label for="targetSalary">Target Annual Employee Salary</label><input id="targetSalary" type="number" min="0" step="any" value="60000"></div>
+<div class="field"><label for="freelanceHours">Work Hours / Week</label><input id="freelanceHours" type="number" min=".01" max="168" step="any" value="40"></div>
+<div class="field"><label for="freelanceWeeks">Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" value="46"></div>
+<div class="field"><label for="nonbillable">Non-Billable Time (%)</label><input id="nonbillable" type="number" min="0" max="99.9" step="any" value="20"></div>
 <div class="field"><label for="businessCosts">Annual Business Costs</label><input id="businessCosts" type="number" min="0" step="any" value="5000"></div>
+<div class="field"><label for="platformFee">Platform / Payment Fee (%)</label><input id="platformFee" type="number" min="0" max="100" step="any" value="0"></div>
+<div class="field"><label for="taxReserve">Tax Reserve (%)</label><input id="taxReserve" type="number" min="0" max="99.9" step="any" value="0"></div>
+<div class="field"><label for="freelanceMargin">Target Profit / Safety Margin (%)</label><input id="freelanceMargin" type="number" min="0" max="99.9" step="any" value="0"></div>
 </div>
 <button class="primary" type="button" id="freelanceBtn">Calculate Freelance Rate</button>
-<div id="freelanceResult"></div>
+<div id="freelanceResult" class="tool-result"></div>
 </div>
 </section>
 
 <section class="content">
 <h2>How to Use This Salary Calculator</h2>
-<p>Enter your pay amount and pay frequency, then enter your typical work schedule. The calculator converts your income into equivalent hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual amounts. Open Advanced Options when you need overtime, paid time off, unpaid leave, bonuses, commission or employer benefits.</p>
+<p>Enter a salary amount, choose the pay frequency and select a display currency. Then enter your work schedule. Use the advanced sections when you need overtime, paid or unpaid time off, bonuses, commission, employer benefits or a generic take-home estimate.</p>
 
-<h2>What Does This Salary Calculator Calculate?</h2>
-<p>This tool is designed for gross salary conversion and compensation analysis. It can estimate regular pay, overtime earnings, additional cash compensation, employer benefits, total compensation and an effective hourly rate based on the assumptions you provide.</p>
+<h2>What This Advanced Salary Calculator Calculates</h2>
+<ul>
+<li>Hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual equivalents.</li>
+<li>Regular cash compensation plus overtime, double-time, bonuses, commission and other earnings.</li>
+<li>Employer retirement, insurance, equity/RSU and other benefit values for total compensation.</li>
+<li>Effective hourly value based on the actual working hours represented by your assumptions.</li>
+<li>Optional generic deductions and estimated take-home pay.</li>
+<li>Job-offer comparison, salary growth projection and employee-to-freelance rate planning.</li>
+</ul>
 
 <h3>Hourly to Annual Salary</h3>
-<p>For a standard hourly employee, annual salary is estimated as hourly pay × hours per week × paid weeks per year. For example, $25/hour × 40 hours × 52 weeks = $52,000 annual gross pay.</p>
+<p>For a standard hourly schedule, annual gross pay is estimated from hourly pay × hours per week × paid working weeks. Unpaid full weeks and additional unpaid days reduce the working schedule.</p>
 
 <h3>Annual to Hourly Salary</h3>
-<p>Annual salary is divided by annual working hours. Annual working hours are based on hours per week × paid weeks per year. This makes the result depend on your actual schedule rather than assuming every job has identical hours.</p>
+<p>The hourly equivalent is based on annual cash compensation divided by the estimated hours actually worked. Paid time off is treated as paid time rather than extra salary, so it can be excluded from the “hours actually worked” denominator.</p>
 
 <h3>Biweekly vs Semimonthly Pay</h3>
 <div class="formula">
-<strong>Biweekly:</strong> annual salary ÷ 26 pay periods<br>
-<strong>Semimonthly:</strong> annual salary ÷ 24 pay periods<br>
-<strong>Quarterly:</strong> annual salary ÷ 4
+<strong>Biweekly:</strong> annual amount ÷ 26 pay periods<br>
+<strong>Semimonthly:</strong> annual amount ÷ 24 pay periods<br>
+<strong>Quarterly:</strong> annual amount ÷ 4
 </div>
-<p>Biweekly pay occurs every two weeks, while semimonthly pay occurs twice per month. They therefore produce different paycheck amounts even when the annual salary is identical.</p>
+<p>Biweekly pay occurs every two weeks, while semimonthly pay occurs twice per month. They therefore produce different periodic amounts even when annual compensation is the same.</p>
 
-<h3>Gross Salary vs Net Salary</h3>
-<p>Gross salary is pay before employee taxes and deductions. Net or take-home pay is what remains after applicable deductions. This calculator does not assume a country-specific tax system, so it should not be treated as a tax or paycheck calculator.</p>
+<h3>Gross Salary vs Estimated Take-Home Pay</h3>
+<p>Gross salary is compensation before employee taxes and deductions. This calculator can show a generic estimated take-home amount when you enter your own tax rate and deductions. It does not apply country-specific tax brackets, credits, payroll rules or filing circumstances.</p>
 
 <h2>Overtime, PTO, Bonuses and Total Compensation</h2>
-<p>The advanced section lets you model additional compensation and time-off assumptions. Overtime is calculated from the regular hourly equivalent and the multiplier you enter. Bonuses and commissions are added to annual cash compensation. Employer retirement, health and other benefits are shown as part of total compensation but are not treated as cash salary.</p>
+<p>Overtime and double-time are calculated from the regular hourly equivalent and the multipliers you enter. Paid vacation, holidays and sick leave are paid time rather than extra salary. Bonuses, commissions and other cash earnings increase annual cash compensation. Employer benefits are shown separately and added to total compensation.</p>
+
+<h2>Share, Print and Save Your Calculation</h2>
+<p>After calculating, you can copy the result, share it through your device's share menu, send it to WhatsApp, print the report, download a PDF-style report, or copy a shareable calculation link containing the current inputs.</p>
+
+<h2>Related ZammioHub Calculators</h2>
+<p>Continue your salary and financial planning with these related tools:</p>
+<div class="internal-links">
+<a class="internal-link" href="/calculators/tax-calculator">Tax Calculator<span>Estimate tax and after-tax value.</span></a>
+<a class="internal-link" href="/calculators/retirement-calculator">Retirement Calculator<span>Project retirement savings and growth.</span></a>
+<a class="internal-link" href="/calculators/compound-interest-calculator">Compound Interest Calculator<span>Model savings and investment growth.</span></a>
+<a class="internal-link" href="/calculators/percentage-calculator">Percentage Calculator<span>Calculate percentage changes and values.</span></a>
+<a class="internal-link" href="/calculators/loan-payment-calculator">Loan Payment Calculator<span>Estimate loan payments and interest.</span></a>
+<a class="internal-link" href="/calculators/emi-calculator">EMI Calculator<span>Estimate monthly EMI and total repayment.</span></a>
+</div>
 
 <h2>Frequently Asked Questions</h2>
-<details class="faq"><summary>How do I calculate annual salary from hourly pay?</summary><p>Multiply hourly pay by hours worked per week and paid weeks per year. Example: $25 × 40 × 52 = $52,000.</p></details>
-<details class="faq"><summary>How do I convert monthly salary to annual salary?</summary><p>Multiply monthly gross salary by 12.</p></details>
-<details class="faq"><summary>How is biweekly salary different from semimonthly salary?</summary><p>Biweekly pay generally has 26 pay periods per year, while semimonthly pay has 24. They are not interchangeable.</p></details>
-<details class="faq"><summary>Does this calculator calculate taxes?</summary><p>No. It focuses on gross salary and compensation. Taxes and deductions vary by country, region and personal circumstances.</p></details>
-<details class="faq"><summary>What is an effective hourly rate?</summary><p>It is an hourly-equivalent measure based on the annual cash compensation and the working hours represented by your assumptions. It can help compare jobs with different schedules.</p></details>
-<details class="faq"><summary>Can I share my salary calculation?</summary><p>Yes. Use Copy Results, Share on WhatsApp, Share, or Print after calculating.</p></details>
+<details class="faq"><summary>Does changing the currency convert my salary?</summary><p>No. The currency selector changes the display symbol and currency code only. It does not perform foreign-exchange conversion. Enter the amount in the currency you selected.</p></details>
+<details class="faq"><summary>How do I calculate annual salary from hourly pay?</summary><p>Multiply hourly pay by hours per week and the paid working weeks represented by your schedule.</p></details>
+<details class="faq"><summary>How do I convert monthly salary to annual salary?</summary><p>Multiply monthly gross salary by 12 before any unpaid-leave adjustment that you choose to model.</p></details>
+<details class="faq"><summary>What is the difference between biweekly and semimonthly?</summary><p>Biweekly uses 26 pay periods per year, while semimonthly uses 24 pay periods.</p></details>
+<details class="faq"><summary>Does paid vacation reduce my salary?</summary><p>No. Paid vacation is already paid time. The calculator keeps it separate from salary and uses it only when estimating hours actually worked and effective hourly value.</p></details>
+<details class="faq"><summary>Does this calculate country-specific taxes?</summary><p>No. The optional deductions section is a generic estimate. Use a country-specific tax or paycheck calculator for jurisdiction-specific results.</p></details>
+<details class="faq"><summary>What is total compensation?</summary><p>Total compensation combines annual cash compensation with the employer benefit values you enter, such as retirement contributions, insurance, equity/RSUs and other benefits.</p></details>
+<details class="faq"><summary>Can I compare two job offers?</summary><p>Yes. The Job Offer Comparison tool compares base salary, bonuses, commission, benefits, PTO, working hours and effective hourly value using the assumptions you enter.</p></details>
 </section>
 
-<footer><strong>ZammioHub</strong><br>Clear, useful and mobile-friendly calculators for salary, finance, health, education, math and everyday calculations.</footer>
+<footer><strong>ZammioHub</strong><br>Clear, useful and mobile-friendly calculators for Finance, Health, Education, Math and Everyday calculations.</footer>
 </main>
 
 <script>
 (function(){
 "use strict";
-const $=id=>document.getElementById(id);
-const n=id=>{const v=parseFloat($(id).value);return Number.isFinite(v)?v:0};
-const symbols={USD:"$",GBP:"£",EUR:"€",CAD:"C$",AUD:"A$",NZD:"NZ$",PKR:"Rs ",INR:"₹",AED:"AED ",SAR:"SAR ",JPY:"¥",CHF:"CHF "};
-function money(v){const cur=$("currency").value;return symbols[cur]+Number(v||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}
-function val(x,min,max){return Number.isFinite(x)&&x>=min&&x<=max}
-function calculate(e){
- if(e)e.preventDefault();
- const salary=n("salary"),freq=$("frequency").value,hours=n("hours"),days=n("days"),weeks=n("weeks");
- const error=$("error"); error.textContent="";
- if(!(salary>0)||!val(hours,.01,168)||!val(days,.1,7)||!val(weeks,1,52)){error.textContent="Please enter a valid salary, hours, workdays and paid weeks.";return}
- const paidDays=n("vacation")+n("holidays")+n("sick");
- const unpaidDays=n("unpaidDays"),unpaidWeeks=n("unpaidWeeks");
- const effectiveWeeks=Math.max(0,weeks-unpaidWeeks);
- let annualBase;
- if(freq==="hourly") annualBase=salary*hours*effectiveWeeks;
- else if(freq==="daily") annualBase=salary*days*effectiveWeeks;
- else if(freq==="weekly") annualBase=salary*effectiveWeeks;
- else if(freq==="biweekly") annualBase=salary*26;
- else if(freq==="semimonthly") annualBase=salary*24;
- else if(freq==="monthly") annualBase=salary*12;
- else if(freq==="quarterly") annualBase=salary*4;
- else annualBase=salary;
- const annualHours=hours*effectiveWeeks;
- const annualWorkDays=days*effectiveWeeks;
- const hourlyBase=annualHours>0?annualBase/annualHours:0;
- const ot=n("otHours")*Math.min(52,effectiveWeeks)*hourlyBase*n("otMult");
- const dt=n("dtHours")*Math.min(52,effectiveWeeks)*hourlyBase*n("dtMult");
- const bonus=n("bonus"),commission=n("commission"),other=n("otherEarnings");
- const cash=annualBase+ot+dt+bonus+commission+other;
- const employerBenefits=n("retirement")+n("health")+n("benefits");
- const total=cash+employerBenefits;
- const totalHours=annualHours;
- const effective=totalHours>0?cash/totalHours:0;
- $("annualMain").textContent=money(cash);
- $("hourlyOut").textContent=money(cash/Math.max(1,totalHours));
- $("dailyOut").textContent=money(cash/Math.max(1,annualWorkDays));
- $("weeklyOut").textContent=money(cash/52);
- $("biweeklyOut").textContent=money(cash/26);
- $("semiOut").textContent=money(cash/24);
- $("monthlyOut").textContent=money(cash/12);
- $("quarterlyOut").textContent=money(cash/4);
- $("annualOut").textContent=money(cash);
- $("otOut").textContent=money(ot+dt);
- $("extraOut").textContent=money(bonus+commission+other);
- $("totalCompOut").textContent=money(total);
- $("effectiveOut").textContent=money(effective)+"/hr";
- $("breakdownText").innerHTML=
-   "<p><strong>Base annualized pay:</strong> "+money(annualBase)+"</p>"+
-   "<p><strong>Overtime + double-time:</strong> "+money(ot+dt)+"</p>"+
-   "<p><strong>Bonus + commission + other:</strong> "+money(bonus+commission+other)+"</p>"+
-   "<p><strong>Cash compensation:</strong> "+money(cash)+"</p>"+
-   "<p><strong>Employer benefits:</strong> "+money(employerBenefits)+"</p>"+
-   "<p><strong>Total compensation:</strong> "+money(total)+"</p>"+
-   "<p><strong>Schedule:</strong> "+hours+" hours/week, "+days+" workdays/week, "+effectiveWeeks+" paid weeks/year.</p>";
- $("result").style.display="block";
- $("result").scrollIntoView({behavior:"smooth",block:"start"});
+
+const $ = id => document.getElementById(id);
+const qs = (sel, root=document) => root.querySelector(sel);
+const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+const num = id => {
+  const el = $(id);
+  const v = el ? parseFloat(el.value) : 0;
+  return Number.isFinite(v) ? v : 0;
+};
+const clamp = (v,min,max) => Math.min(max,Math.max(min,v));
+const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[ch]));
+
+const currencies = {
+  USD:["$","USD"], EUR:["€","EUR"], GBP:["£","GBP"], CAD:["C$","CAD"], AUD:["A$","AUD"],
+  NZD:["NZ$","NZD"], PKR:["Rs ","PKR"], INR:["₹","INR"], AED:["AED ","AED"], SAR:["SAR ","SAR"],
+  QAR:["QAR ","QAR"], KWD:["KWD ","KWD"], BHD:["BHD ","BHD"], OMR:["OMR ","OMR"], JOD:["JOD ","JOD"],
+  EGP:["E£ ","EGP"], TRY:["₺","TRY"], JPY:["¥","JPY"], CNY:["¥","CNY"], HKD:["HK$ ","HKD"],
+  SGD:["S$ ","SGD"], MYR:["RM ","MYR"], THB:["฿","THB"], IDR:["Rp ","IDR"], PHP:["₱","PHP"],
+  KRW:["₩","KRW"], VND:["₫","VND"], BDT:["৳ ","BDT"], LKR:["Rs ","LKR"], NPR:["Rs ","NPR"],
+  AFN:["؋ ","AFN"], ZAR:["R ","ZAR"], NGN:["₦","NGN"], KES:["KSh ","KES"], GHS:["GH₵ ","GHS"],
+  TZS:["TSh ","TZS"], UGX:["USh ","UGX"], BRL:["R$ ","BRL"], MXN:["Mex$ ","MXN"], ARS:["$ ","ARS"],
+  CLP:["$ ","CLP"], COP:["$ ","COP"], CHF:["CHF ","CHF"], SEK:["kr ","SEK"], NOK:["kr ","NOK"],
+  DKK:["kr ","DKK"], PLN:["zł ","PLN"], CZK:["Kč ","CZK"], HUF:["Ft ","HUF"], RON:["lei ","RON"],
+  ILS:["₪","ILS"]
+};
+
+function money(value){
+  const v = Number.isFinite(Number(value)) ? Number(value) : 0;
+  const [symbol, code] = currencies[$("currency").value] || ["",""];
+  let digits = 2;
+  if(["JPY","KRW","VND","IDR"].includes(code)) digits = 0;
+  return symbol + Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:digits,maximumFractionDigits:digits}) + (v < 0 ? "−" : "");
 }
-function resultText(){
- return "ZammioHub Salary Calculator Result\n"+
- "Annual gross cash compensation: "+$("annualMain").textContent+"\n"+
- "Hourly: "+$("hourlyOut").textContent+"\nDaily workday: "+$("dailyOut").textContent+
- "\nWeekly: "+$("weeklyOut").textContent+"\nBiweekly: "+$("biweeklyOut").textContent+
- "\nSemimonthly: "+$("semiOut").textContent+"\nMonthly: "+$("monthlyOut").textContent+
- "\nQuarterly: "+$("quarterlyOut").textContent+"\nAnnual: "+$("annualOut").textContent+
- "\nOvertime: "+$("otOut").textContent+"\nBonus + commission: "+$("extraOut").textContent+
- "\nTotal compensation: "+$("totalCompOut").textContent+
- "\nEffective hourly rate: "+$("effectiveOut").textContent+
- "\n\nCalculated with ZammioHub: https://zammiohub.com/calculators/salary-calculator";
+function plainMoney(value){
+  const v = Number.isFinite(Number(value)) ? Number(value) : 0;
+  return money(v);
+}
+function validRange(id,min,max){
+  const v=num(id);
+  return Number.isFinite(v) && v>=min && v<=max;
+}
+function flash(btn,msg){
+  const old=btn.textContent;
+  btn.textContent=msg;
+  setTimeout(()=>btn.textContent=old,1700);
 }
 async function copyText(text){
- try{await navigator.clipboard.writeText(text);return true}catch(_){
-  const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();
-  let ok=false;try{ok=document.execCommand("copy")}catch(e){}ta.remove();return ok;
- }
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  }catch(_){}
+  const ta=document.createElement("textarea");
+  ta.value=text; ta.setAttribute("readonly","");
+  ta.style.position="fixed";ta.style.opacity="0";ta.style.left="-9999px";
+  document.body.appendChild(ta);ta.focus();ta.select();
+  let ok=false;
+  try{ok=document.execCommand("copy")}catch(_){}
+  ta.remove();
+  return ok;
 }
-function flash(btn,msg){const old=btn.textContent;btn.textContent=msg;setTimeout(()=>btn.textContent=old,1600)}
-$("salaryForm").addEventListener("submit",calculate);
-$("clearBtn").addEventListener("click",()=>{
- $("salaryForm").reset();$("frequency").value="monthly";$("hours").value=40;$("days").value=5;$("weeks").value=52;
- document.querySelectorAll("#salaryForm input").forEach((el)=>{if(["vacation","holidays","sick","unpaidDays","unpaidWeeks","otHours","dtHours","bonus","commission","otherEarnings","retirement","health","benefits"].includes(el.id))el.value=0});
- $("otMult").value=1.5;$("dtMult").value=2;$("error").textContent="";$("result").style.display="none";
+
+function scheduleModel(){
+  const hours=num("hours"), days=num("days");
+  const unpaidWeeks=clamp(num("unpaidWeeks"),0,52);
+  const unpaidDays=clamp(num("unpaidDays"),0,366);
+  const scheduledDays=52*days;
+  const maxAdditionalUnpaidDays=Math.max(0,scheduledDays-(unpaidWeeks*days));
+  const extraUnpaidDays=Math.min(unpaidDays,maxAdditionalUnpaidDays);
+  const paidWorkDays=Math.max(0,scheduledDays-(unpaidWeeks*days)-extraUnpaidDays);
+  const paidWeeks=days>0?paidWorkDays/days:0;
+  const paidPto=num("vacation")+num("holidays")+num("sick");
+  const paidLeaveDays=Math.min(paidPto,paidWorkDays);
+  const hoursPerDay=days>0?hours/days:0;
+  const workedHours=Math.max(0,(paidWorkDays-paidLeaveDays)*hoursPerDay);
+  return {hours,days,unpaidWeeks,unpaidDays:extraUnpaidDays,scheduledDays,paidWorkDays,paidWeeks,paidLeaveDays,hoursPerDay,workedHours};
+}
+
+function annualBaseFromInput(salary,freq,m){
+  if(freq==="hourly") return salary*m.hours*m.paidWeeks;
+  if(freq==="daily") return salary*m.paidWorkDays;
+  if(freq==="weekly") return salary*m.paidWeeks;
+  const annualized = {
+    biweekly: salary*26,
+    semimonthly: salary*24,
+    monthly: salary*12,
+    quarterly: salary*4,
+    annual: salary
+  }[freq] || 0;
+  const scheduleFactor = 52>0 ? m.paidWeeks/52 : 0;
+  return annualized*scheduleFactor;
+}
+
+function calculate(e,options={}){
+  if(e)e.preventDefault();
+  const error=$("error");
+  error.textContent="";
+  const salary=num("salary");
+  if(!(salary>0) || !validRange("hours",0.01,168) || !validRange("days",0.1,7) || !validRange("unpaidWeeks",0,52) || !validRange("unpaidDays",0,366)){
+    error.textContent="Please enter a valid salary, work schedule and unpaid-time values.";
+    return null;
+  }
+  const m=scheduleModel();
+  if(m.paidWorkDays<=0 || m.workedHours<=0){
+    error.textContent="Your time-off settings leave no working time. Reduce unpaid or paid leave values.";
+    return null;
+  }
+
+  const freq=$("frequency").value;
+  const base=annualBaseFromInput(salary,freq,m);
+  const scheduledHours=m.hours*m.paidWeeks;
+  const regularHourly=scheduledHours>0?base/scheduledHours:0;
+  const otHours=num("otHours"), dtHours=num("dtHours");
+  const otMultiplier=clamp(num("otMult"),0,10), dtMultiplier=clamp(num("dtMult"),0,10);
+  const otPay=otHours*m.paidWeeks*regularHourly*otMultiplier;
+  const dtPay=dtHours*m.paidWeeks*regularHourly*dtMultiplier;
+  const bonus=num("bonus"), commission=num("commission"), other=num("otherEarnings"), signing=num("signingBonus");
+  const cash=base+otPay+dtPay+bonus+commission+other+signing;
+
+  const employerBenefits=num("retirement")+num("health")+num("equity")+num("ptoValue")+num("otherBenefits");
+  const totalComp=cash+employerBenefits;
+
+  const taxRate=clamp(num("taxRate"),0,100)/100;
+  const employeeRet=num("employeeRet"), employeeInsurance=num("employeeInsurance"), otherDeductions=num("otherDeductions");
+  const tax=cash*taxRate;
+  const deductions=tax+employeeRet+employeeInsurance+otherDeductions;
+  const takeHome=Math.max(0,cash-deductions);
+
+  const actualEffectiveHourly=m.workedHours>0?cash/m.workedHours:0;
+  const annualRegularHourly=regularHourly;
+
+  $("annualMain").textContent=money(cash);
+  $("hourlyOut").textContent=money(cash/(m.hours*m.paidWeeks || 1));
+  $("dailyOut").textContent=money(cash/(m.paidWorkDays || 1));
+  $("weeklyOut").textContent=money(cash/52);
+  $("biweeklyOut").textContent=money(cash/26);
+  $("semiOut").textContent=money(cash/24);
+  $("monthlyOut").textContent=money(cash/12);
+  $("quarterlyOut").textContent=money(cash/4);
+  $("annualOut").textContent=money(cash);
+  $("otOut").textContent=money(otPay+dtPay);
+  $("extraOut").textContent=money(bonus+commission+other+signing);
+  $("totalCompOut").textContent=money(totalComp);
+  $("netOut").textContent=money(takeHome);
+  $("effectiveOut").textContent=money(actualEffectiveHourly)+"/hr";
+  $("workedHoursOut").textContent=m.workedHours.toLocaleString(undefined,{maximumFractionDigits:2});
+  $("benefitsOut").textContent=money(employerBenefits);
+
+  $("breakdownText").innerHTML =
+    "<p><strong>Base annualized cash:</strong> "+money(base)+"</p>"+
+    "<p><strong>Overtime + double-time:</strong> "+money(otPay+dtPay)+"</p>"+
+    "<p><strong>Bonus + commission + other cash:</strong> "+money(bonus+commission+other+signing)+"</p>"+
+    "<p><strong>Gross cash compensation:</strong> "+money(cash)+"</p>"+
+    "<p><strong>Employer benefits:</strong> "+money(employerBenefits)+"</p>"+
+    "<p><strong>Total compensation:</strong> "+money(totalComp)+"</p>"+
+    "<p><strong>Estimated employee deductions:</strong> "+money(deductions)+" (tax estimate "+money(tax)+")</p>"+
+    "<p><strong>Estimated take-home:</strong> "+money(takeHome)+"</p>"+
+    "<p><strong>Schedule:</strong> "+m.hours+" hours/week, "+m.days+" workdays/week, "+m.paidWeeks.toFixed(2)+" paid-work-week equivalent.</p>"+
+    "<p><strong>Time actually worked:</strong> "+m.workedHours.toFixed(2)+" hours/year after paid time off.</p>";
+
+  $("result").style.display="block";
+  const data={salary,freq,currency:$("currency").value,model:m,base,regularHourly,annualRegularHourly,otPay,dtPay,bonus,commission,other,signing,cash,employerBenefits,totalComp,tax,deductions,takeHome,actualEffectiveHourly};
+  window.__salaryData=data;
+  drawCharts(data);
+  if(!options.silent) $("result").scrollIntoView({behavior:"smooth",block:"start"});
+
+  return data;
+}
+
+function resultText(){
+  return [
+    "ZammioHub Salary Calculator Result",
+    "Currency: "+$("currency").value,
+    "Annual gross cash compensation: "+$("annualMain").textContent,
+    "Hourly: "+$("hourlyOut").textContent,
+    "Daily workday: "+$("dailyOut").textContent,
+    "Weekly: "+$("weeklyOut").textContent,
+    "Biweekly: "+$("biweeklyOut").textContent,
+    "Semimonthly: "+$("semiOut").textContent,
+    "Monthly: "+$("monthlyOut").textContent,
+    "Quarterly: "+$("quarterlyOut").textContent,
+    "Annual: "+$("annualOut").textContent,
+    "Overtime + double-time: "+$("otOut").textContent,
+    "Bonus + commission: "+$("extraOut").textContent,
+    "Total compensation: "+$("totalCompOut").textContent,
+    "Estimated take-home: "+$("netOut").textContent,
+    "Effective hourly rate: "+$("effectiveOut").textContent,
+    "Hours actually worked: "+$("workedHoursOut").textContent,
+    "Employer benefits value: "+$("benefitsOut").textContent,
+    "",
+    "Calculated with ZammioHub: https://zammiohub.com/calculators/salary-calculator"
+  ].join("\n");
+}
+
+function currentState(){
+  const ids=[
+    "salary","frequency","currency","hours","days","unpaidWeeks","unpaidDays","vacation","holidays","sick",
+    "otHours","otMult","dtHours","dtMult","bonus","commission","otherEarnings","signingBonus","retirement",
+    "health","equity","ptoValue","otherBenefits","taxCountry","taxRate","employeeRet","employeeInsurance","otherDeductions"
+  ];
+  const state={};
+  ids.forEach(id=>state[id]=$(id).value);
+  return state;
+}
+function encodeState(){
+  try{return btoa(unescape(encodeURIComponent(JSON.stringify(currentState()))));}catch(_){return "";}
+}
+function buildShareUrl(){
+  const encoded=encodeState();
+  return encoded ? location.origin+location.pathname+"?calc="+encodeURIComponent(encoded) : location.href;
+}
+function loadShareState(){
+  const raw=new URLSearchParams(location.search).get("calc");
+  if(!raw)return false;
+  try{
+    const state=JSON.parse(decodeURIComponent(escape(atob(raw))));
+    Object.keys(state).forEach(id=>{if($(id))$(id).value=state[id]});
+    return true;
+  }catch(_){return false;}
+}
+
+function applyPreset(type){
+  const presets={
+    standard:{hours:40,days:5,unpaidWeeks:0},
+    part:{hours:20,days:5,unpaidWeeks:0},
+    fourday:{hours:32,days:4,unpaidWeeks:0}
+  };
+  if(presets[type]){
+    $("hours").value=presets[type].hours;
+    $("days").value=presets[type].days;
+    $("unpaidWeeks").value=presets[type].unpaidWeeks;
+    $("unpaidDays").value=0;
+  }
+  qsa(".preset").forEach(b=>b.classList.toggle("active",b.dataset.preset===type));
+}
+
+function makePdfReport(){
+  const win=window.open("","_blank");
+  if(!win){alert("Please allow pop-ups to create the printable PDF report.");return;}
+  const text=resultText().replace(/\n/g,"<br>");
+  const html="<!doctype html><html><head><title>ZammioHub Salary Report</title><meta name='viewport' content='width=device-width,initial-scale=1'><style>body{font-family:Arial,sans-serif;color:#27313a;max-width:800px;margin:40px auto;padding:20px;line-height:1.6}h1{color:#124c70}pre{font-family:Arial,sans-serif;white-space:normal;font-size:16px}.note{color:#66727d;font-size:13px;border-top:1px solid #ddd;padding-top:15px;margin-top:25px}</style></head><body><h1>ZammioHub Salary Calculator Report</h1><p>"+text+"</p><p class='note'>This report contains estimates based on the inputs supplied. Currency selection is display-only and does not perform FX conversion. Taxes and deductions are generic estimates unless separately calculated by a jurisdiction-specific tool.</p><script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>";
+  win.document.open();win.document.write(html);win.document.close();
+}
+
+function offerModel(prefix){
+  const salary=num(prefix+"Salary"),hours=num(prefix+"Hours"),days=num(prefix+"Days"),pto=clamp(num(prefix+"Pto"),0,366);
+  const bonus=num(prefix+"Bonus"),commission=num(prefix+"Commission"),benefits=num(prefix+"Benefits"),signing=num(prefix+"Signing");
+  if(!(salary>0)&&!(hours>0))return null;
+  const scheduledDays=52*days;
+  const workedDays=Math.max(1,scheduledDays-pto);
+  const workedHours=workedDays*(hours/Math.max(days,0.1));
+  const cash=salary+bonus+commission+signing;
+  const total=cash+benefits;
+  const hourly=cash/workedHours;
+  return {name:$(prefix+"Name").value.trim()||prefix.toUpperCase(),salary,hours,days,pto,bonus,commission,benefits,signing,workedDays,workedHours,cash,total,hourly};
+}
+
+
+$("taxCountry").addEventListener("change",()=>{
+  const names={generic:"Generic estimate",US:"United States",UK:"United Kingdom",PK:"Pakistan",CA:"Canada",AU:"Australia",IN:"India",AE:"United Arab Emirates",NZ:"New Zealand",other:"Other country"};
+  const old=$("taxCountry").parentElement.querySelector(".country-note");
+  if(old) old.remove();
+  const note=document.createElement("div");
+  note.className="field-help country-note";
+  note.textContent="Selected: "+(names[$("taxCountry").value]||"Other country")+" — enter the effective tax rate you want to model.";
+  $("taxCountry").parentElement.appendChild(note);
+  if(num("salary")>0) calculate(null,{silent:true});
 });
-$("copyBtn").addEventListener("click",async()=>{const ok=await copyText(resultText());flash($("copyBtn"),ok?"Copied!":"Copy failed")});
-$("whatsappBtn").addEventListener("click",()=>{const text=encodeURIComponent(resultText());window.open("https://wa.me/?text="+text,"_blank","noopener,noreferrer")});
+
+/* Real-time calculation: once the user has entered a valid salary, results update as inputs change. */
+let liveTimer=null;
+qsa("#salaryForm input,#salaryForm select").forEach(el=>{
+  el.addEventListener("input",()=>{
+    if(el.id==="salary" && !(num("salary")>0)) return;
+    clearTimeout(liveTimer);
+    liveTimer=setTimeout(()=>{ if(num("salary")>0) calculate(null,{silent:true}); },120);
+  });
+  el.addEventListener("change",()=>{
+    if(num("salary")>0) calculate(null,{silent:true});
+  });
+});
+
+/* Inline validation with helpful messages. */
+function validateField(el){
+  if(!el || el.type==="text" || el.tagName==="SELECT") return;
+  const min=el.min===""?null:parseFloat(el.min);
+  const max=el.max===""?null:parseFloat(el.max);
+  const value=el.value===""?NaN:parseFloat(el.value);
+  let bad=!Number.isFinite(value);
+  if(el.id==="salary" && el.value==="") bad=false;
+  if(min!==null && Number.isFinite(value) && value<min) bad=true;
+  if(max!==null && Number.isFinite(value) && value>max) bad=true;
+  el.classList.toggle("invalid",bad);
+}
+qsa("#salaryForm input").forEach(el=>el.addEventListener("blur",()=>validateField(el)));
+
+/* Theme toggle. Preference is intentionally stored only in the URL-free page state. */
+function setTheme(dark){
+  document.body.classList.toggle("dark",dark);
+  $("themeBtn").textContent=dark?"☀️ Light Mode":"🌙 Dark Mode";
+  $("themeBtn").setAttribute("aria-pressed",dark?"true":"false");
+}
+$("themeBtn").addEventListener("click",()=>setTheme(!document.body.classList.contains("dark")));
+
+/* Canvas charts: no external library required. */
+function drawCharts(data){
+  const canvas=$("compChart");
+  if(!canvas) return;
+  const ctx=canvas.getContext("2d");
+  const rect=canvas.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
+  const w=Math.max(280,Math.round(rect.width||520));
+  const h=260;
+  canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+
+  const items=[
+    ["Base",Math.max(0,data.base)],
+    ["OT",Math.max(0,data.otPay+data.dtPay)],
+    ["Bonus/Comm.",Math.max(0,data.bonus+data.commission+data.other+data.signing)],
+    ["Benefits",Math.max(0,data.employerBenefits)]
+  ];
+  const total=Math.max(0,items.reduce((s,x)=>s+x[1],0));
+  const cx=w/2,cy=116,r=72,inner=43;
+  let start=-Math.PI/2;
+  const shades=["#17608a","#4b8f2b","#8a6500","#7a4d9b"];
+  items.forEach((it,i)=>{
+    const angle=total?it[1]/total*Math.PI*2:0;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,start+angle);ctx.closePath();
+    ctx.fillStyle=shades[i];ctx.fill();start+=angle;
+  });
+  ctx.beginPath();ctx.fillStyle=getComputedStyle(document.body).backgroundColor||"#fff";ctx.arc(cx,cy,inner,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=document.body.classList.contains("dark")?"#e7edf1":"#27313a";
+  ctx.textAlign="center";ctx.font="700 15px Arial";ctx.fillText("Total",cx,cy-3);
+  ctx.font="700 12px Arial";ctx.fillText(money(total),cx,cy+16);
+  ctx.textAlign="left";ctx.font="12px Arial";
+  items.forEach((it,i)=>{
+    const y=205+i*14;
+    ctx.fillStyle=shades[i];ctx.fillRect(12,y-9,9,9);
+    ctx.fillStyle=document.body.classList.contains("dark")?"#dce7ed":"#27313a";
+    const pct=total?((it[1]/total)*100).toFixed(1):"0.0";
+    ctx.fillText(it[0]+"  "+pct+"%",28,y);
+  });
+
+  const periods=[
+    ["Hourly",data.cash/(data.model.hours*data.model.paidWeeks||1)],
+    ["Weekly",data.cash/52],["Biweekly",data.cash/26],["Monthly",data.cash/12],["Annual",data.cash]
+  ];
+  const max=Math.max(...periods.map(x=>x[1]),1);
+  $("payBars").innerHTML=periods.map(p=>{
+    const width=Math.max(2,(p[1]/max)*100);
+    return "<div class='bar-item'><span>"+p[0]+"</span><div class='bar-track'><div class='bar-fill' style='width:"+width+"%'></div></div><strong>"+money(p[1])+"</strong></div>";
+  }).join("");
+}
+window.addEventListener("resize",()=>{
+  if(window.__salaryData) drawCharts(window.__salaryData);
+});
+
+qsa(".preset").forEach(btn=>btn.addEventListener("click",()=>applyPreset(btn.dataset.preset)));
+
+$("clearBtn").addEventListener("click",()=>{
+  $("salaryForm").reset();
+  $("salary").value="";
+  $("frequency").value="monthly";
+  $("currency").value="USD";
+  $("hours").value=40;$("days").value=5;$("unpaidWeeks").value=0;$("unpaidDays").value=0;
+  $("vacation").value=0;$("holidays").value=0;$("sick").value=0;
+  $("otHours").value=0;$("otMult").value=1.5;$("dtHours").value=0;$("dtMult").value=2;
+  $("bonus").value=0;$("commission").value=0;$("otherEarnings").value=0;$("signingBonus").value=0;
+  $("retirement").value=0;$("health").value=0;$("equity").value=0;$("ptoValue").value=0;$("otherBenefits").value=0;
+  $("taxCountry").value="generic";$("taxRate").value=0;$("employeeRet").value=0;$("employeeInsurance").value=0;$("otherDeductions").value=0;
+  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;history.replaceState(null,"",location.pathname);setTheme(false);applyPreset("standard");
+  history.replaceState(null,"",location.pathname);
+});
+
+$("copyBtn").addEventListener("click",async()=>{
+  const ok=await copyText(resultText());
+  flash($("copyBtn"),ok?"Copied!":"Copy failed");
+});
+$("whatsappBtn").addEventListener("click",()=>{
+  const url="https://wa.me/?text="+encodeURIComponent(resultText());
+  window.open(url,"_blank","noopener,noreferrer");
+});
 $("shareBtn").addEventListener("click",async()=>{
- const text=resultText();
- if(navigator.share){try{await navigator.share({title:"ZammioHub Salary Calculation",text})}catch(e){}}
- else{const ok=await copyText(text);flash($("shareBtn"),ok?"Copied!":"Share unavailable")}
+  const text=resultText();
+  if(navigator.share){
+    try{await navigator.share({title:"ZammioHub Salary Calculation",text,url:location.href})}catch(_){}
+  }else{
+    const ok=await copyText(text);flash($("shareBtn"),ok?"Copied!":"Share unavailable");
+  }
 });
 $("printBtn").addEventListener("click",()=>window.print());
+$("pdfBtn").addEventListener("click",makePdfReport);
+$("linkBtn").addEventListener("click",async()=>{
+  const url=buildShareUrl();
+  const ok=await copyText(url);
+  if(ok){
+    history.replaceState(null,"",url);
+    flash($("linkBtn"),"Link Copied!");
+  }else{
+    prompt("Copy this shareable calculation link:",url);
+  }
+});
 
-document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{
- document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
- document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
- btn.classList.add("active");$(btn.dataset.tab).classList.add("active");
+qsa(".tab").forEach(btn=>btn.addEventListener("click",()=>{
+  qsa(".tab").forEach(b=>b.classList.remove("active"));
+  qsa(".panel").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");
+  $(btn.dataset.tab).classList.add("active");
 }));
 
-function annualOffer(s,h,off,bonus,benefits){
- const workDays=Math.max(1,260-off); const hours=Math.max(1,s/(h*52));
- const cash=s+bonus; return {cash,total:cash+benefits,effective:cash/(h*52),workDays};
-}
 $("compareBtn").addEventListener("click",()=>{
- const a=annualOffer(n("aSalary"),n("aHours"),n("aDaysOff"),n("aBonus"),n("aBenefits"));
- const b=annualOffer(n("bSalary"),n("bHours"),n("bDaysOff"),n("bBonus"),n("bBenefits"));
- $("compareResult").innerHTML="<table class='compare-table'><tr><th>Metric</th><th>Job A</th><th>Job B</th></tr>"+
- "<tr><td>Cash compensation</td><td>"+money(a.cash)+"</td><td>"+money(b.cash)+"</td></tr>"+
- "<tr><td>Total compensation</td><td>"+money(a.total)+"</td><td>"+money(b.total)+"</td></tr>"+
- "<tr><td>Effective hourly rate</td><td>"+money(a.effective)+"</td><td>"+money(b.effective)+"</td></tr>"+
- "<tr><td>Paid workdays assumption</td><td>"+a.workDays+"</td><td>"+b.workDays+"</td></tr></table>"+
- "<p class='note'>This is a numerical comparison of the assumptions entered; it does not make a recommendation about which job to choose.</p>";
-});
-$("raiseBtn").addEventListener("click",()=>{
- let salary=n("currentSalary"),pct=n("raisePct"),years=Math.min(50,Math.max(1,Math.round(n("years")))),rows="";
- for(let y=1;y<=years;y++){salary*=1+pct/100;rows+="<tr><td>"+y+"</td><td>"+salary.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+"</td></tr>"}
- $("raiseResult").innerHTML="<table class='compare-table'><tr><th>Year</th><th>Projected annual salary</th></tr>"+rows+"</table>";
-});
-$("freelanceBtn").addEventListener("click",()=>{
- const target=n("targetSalary"),hours=n("workHours"),weeks=n("freelanceWeeks"),nb=n("nonbillable")/100,cost=n("businessCosts");
- const billable=Math.max(1,hours*weeks*(1-nb)); const required=(target+cost)/billable;
- $("freelanceResult").innerHTML="<div class='hero-result' style='margin-top:16px'><span class='big'>"+money(required)+"/hr</span><span class='sub'>Estimated minimum freelance rate before personal taxes</span></div><p class='note'>Based on "+hours+" hours/week, "+weeks+" billable weeks/year, "+(nb*100).toFixed(1)+"% non-billable time and "+money(cost)+" annual business costs.</p>";
+  const a=offerModel("a"),b=offerModel("b");
+  if(!a||!b){$("compareResult").innerHTML="<p class='error'>Enter valid salary and work-schedule values for both offers.</p>";return;}
+  const rows=[
+    ["Base salary",money(a.salary),money(b.salary)],
+    ["Bonus + commission",money(a.bonus+a.commission),money(b.bonus+b.commission)],
+    ["One-time signing bonus",money(a.signing),money(b.signing)],
+    ["Cash compensation",money(a.cash),money(b.cash)],
+    ["Employer benefits",money(a.benefits),money(b.benefits)],
+    ["Total compensation",money(a.total),money(b.total)],
+    ["Paid time off days",a.pto,b.pto],
+    ["Hours / week",a.hours,b.hours],
+    ["Estimated hours actually worked",a.workedHours.toFixed(1),b.workedHours.toFixed(1)],
+    ["Effective hourly value",money(a.hourly)+"/hr",money(b.hourly)+"/hr"]
+  ];
+  $("compareResult").innerHTML="<div class='compare-wrap'><table class='compare-table'><tr><th>Metric</th><th>"+escapeHtml(a.name)+"</th><th>"+escapeHtml(b.name)+"</th></tr>"+
+    rows.map(r=>"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td></tr>").join("")+
+    "</table></div><p class='note'>This table reports the numerical assumptions entered. It does not recommend one job over another.</p>";
 });
 
-/* Built-in regression tests for core formulas. */
+$("raiseBtn").addEventListener("click",()=>{
+  let salary=num("currentSalary");
+  const pct=num("raisePct")/100;
+  const inflation=num("inflationPct")/100;
+  const years=clamp(Math.round(num("years")),1,50);
+  const promotionYear=clamp(Math.round(num("promotionYear")),0,years);
+  const promotionPct=num("promotionPct")/100;
+  if(!(salary>0)){ $("raiseResult").innerHTML="<p class='error'>Enter a valid current annual salary.</p>";return; }
+  let cumulative=0,rows="";
+  for(let y=1;y<=years;y++){
+    salary*=1+pct;
+    if(promotionYear===y)salary*=1+promotionPct;
+    cumulative+=salary;
+    const real=inflation>-1?salary/Math.pow(1+inflation,y):salary;
+    rows+="<tr><td>"+y+"</td><td>"+money(salary)+"</td><td>"+money(real)+"</td></tr>";
+  }
+  $("raiseResult").innerHTML="<div class='compare-wrap'><table class='compare-table'><tr><th>Year</th><th>Projected salary</th><th>Inflation-adjusted value</th></tr>"+rows+
+    "</table></div><div class='kpi-grid'><div class='kpi'><b>Cumulative projected salary</b><strong>"+money(cumulative)+"</strong></div><div class='kpi'><b>Annual raise</b><strong>"+(pct*100).toFixed(2)+"%</strong></div><div class='kpi'><b>Promotion increase</b><strong>"+(promotionYear?promotionPct*100:0).toFixed(2)+"%</strong></div></div>";
+});
+
+$("freelanceBtn").addEventListener("click",()=>{
+  const target=num("targetSalary"),hours=num("freelanceHours"),weeks=clamp(num("freelanceWeeks"),1,52);
+  const nb=clamp(num("nonbillable"),0,99.9)/100,cost=num("businessCosts");
+  const fee=clamp(num("platformFee"),0,100)/100,tax=clamp(num("taxReserve"),0,99.9)/100,margin=clamp(num("freelanceMargin"),0,99.9)/100;
+  if(!(target>=0)||!(hours>0)){ $("freelanceResult").innerHTML="<p class='error'>Enter a valid target salary and work-hours value.</p>";return; }
+  const grossWorkHours=hours*weeks;
+  const billableHours=Math.max(0.01,grossWorkHours*(1-nb));
+  const breakEven=(target+cost)/billableHours;
+  const feeAdjusted=breakEven/Math.max(0.01,1-fee);
+  const taxAdjusted=feeAdjusted/Math.max(0.01,1-tax);
+  const targetRate=taxAdjusted/Math.max(0.01,1-margin);
+  $("freelanceResult").innerHTML="<div class='kpi-grid'>"+
+    "<div class='kpi'><b>Break-even rate</b><strong>"+money(breakEven)+"/hr</strong></div>"+
+    "<div class='kpi'><b>After platform fee</b><strong>"+money(feeAdjusted)+"/hr</strong></div>"+
+    "<div class='kpi'><b>Target rate</b><strong>"+money(targetRate)+"/hr</strong></div></div>"+
+    "<p class='note'>Based on "+hours+" hours/week, "+weeks+" billable weeks/year, "+(nb*100).toFixed(1)+"% non-billable time and "+money(cost)+" annual business costs. Tax reserve and margin are planning assumptions.</p>";
+});
+
+/* Restore a shareable calculation if present. */
+const restored=loadShareState();
+setTheme(false);
+if(restored){
+  setTimeout(()=>{
+    const ok=calculate(null,{silent:true});
+    if(ok) $("result").style.display="block";
+  },0);
+}
+
+/* Core formula regression checks. */
 (function selfTest(){
- const tests=[
-  ["monthly",5000,60000],["annual",60000,60000],["quarterly",15000,60000],
-  ["biweekly",2307.6923076923,60000],["semimonthly",2500,60000]
- ];
- tests.forEach(t=>{
-  let x=t[1],expected=t[2],annual;
-  if(t[0]==="monthly")annual=x*12;
-  else if(t[0]==="annual")annual=x;
-  else if(t[0]==="quarterly")annual=x*4;
-  else if(t[0]==="biweekly")annual=x*26;
-  else annual=x*24;
-  if(Math.abs(annual-expected)>0.01)console.error("Salary calculator self-test failed",t);
- });
+  const close=(a,b)=>Math.abs(a-b)<0.01;
+  const m={hours:40,days:5,unpaidWeeks:0,unpaidDays:0,scheduledDays:260,paidWorkDays:260,paidWeeks:52,paidLeaveDays:0,hoursPerDay:8,workedHours:2080};
+  const tests=[
+    close(annualBaseFromInput(25,"hourly",m),52000),
+    close(annualBaseFromInput(5000,"monthly",m),60000),
+    close(annualBaseFromInput(60000,"annual",m),60000),
+    close(annualBaseFromInput(15000,"quarterly",m),60000),
+    close(annualBaseFromInput(2307.6923076923,"biweekly",m),60000),
+    close(annualBaseFromInput(2500,"semimonthly",m),60000)
+  ];
+  if(tests.some(v=>!v)) console.error("ZammioHub salary calculator formula self-test failed.");
 })();
 })();
 </script>
