@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salary Calculator | Hourly, Daily, Weekly, Monthly, Annual & Total Compensation | ZammioHub</title>
-<meta name="description" content="Free advanced salary calculator for hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual pay. Model overtime, PTO, unpaid leave, bonuses, commission, benefits, deductions, take-home estimates, job offers, raises and freelance rates.">
+<title>Salary Calculator 2026 | Hourly, Monthly, Annual & Total Compensation | ZammioHub</title>
+<meta name="description" content="Free salary calculator for hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual pay. Optionally model overtime, PTO, unpaid leave, bonuses, commission, benefits, deductions, take-home estimates, job offers, raises and freelance rates.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://zammiohub.com/calculators/salary-calculator">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Salary Calculator | Hourly, Daily, Weekly, Monthly, Annual & Total Compensation | ZammioHub">
-<meta property="og:description" content="Advanced salary, overtime, total compensation, deductions, job offer comparison, raise and freelance rate calculator.">
+<meta property="og:description" content="Salary, overtime, total compensation, deductions, job offer comparison, raise and freelance rate calculator.">
 <meta property="og:url" content="https://zammiohub.com/calculators/salary-calculator">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Salary Calculator | Hourly, Daily, Weekly, Monthly, Annual & Total Compensation | ZammioHub">
@@ -21,7 +21,7 @@
   "@type":"WebPage",
   "name":"Salary Calculator",
   "url":"https://zammiohub.com/calculators/salary-calculator",
-  "description":"Advanced salary and compensation calculator for salary conversion, overtime, PTO, bonuses, benefits, deductions and total compensation.",
+  "description":"Salary and compensation calculator for salary conversion, overtime, PTO, bonuses, benefits, deductions and total compensation.",
   "dateModified":"2026-10-02",
   "isPartOf":{"@type":"WebSite","name":"ZammioHub","url":"https://zammiohub.com/"}
 }
@@ -132,7 +132,7 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
   .content p,.content li{font-size:16px}.tabs{padding:12px 14px}.panel{padding:16px}
 }
 @media print{
-  body{background:#fff}.card{box-shadow:none}.card-head,.actions,.result-actions,.tabs,.advanced-body,.preset-row,footer,.tool-result{display:none!important}
+  body{background:#fff}.card{box-shadow:none}.card-head,.actions,.result-actions,.tabs,.advanced-body,.preset-row,footer,.tool-result,.tools-details>summary,.tools-details .tool-intro{display:none!important}
   .result{display:block!important;border:0}.container{max-width:none;padding:0}.content{display:none}
 }
 
@@ -162,6 +162,60 @@ body.dark .invalid{background:#2a1b1b!important;border-color:#ef6c6c!important}
 .tooltip-wrap .tooltip{display:none;position:absolute;z-index:20;left:0;top:24px;width:240px;padding:9px 10px;background:#26343d;color:#fff;border-radius:7px;font-size:12px;line-height:1.45;box-shadow:0 5px 18px rgba(0,0,0,.2)}
 .tooltip-wrap:hover .tooltip,.tooltip-wrap:focus-within .tooltip{display:block}
 .dashboard{margin-top:18px}
+/* Flagship UX: results-first hierarchy and compact mobile presentation */
+.result{scroll-margin-top:18px}
+.result-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.result-head .result-label{font-size:20px}
+.result-head .live-badge{font-size:12px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 9px;white-space:nowrap}
+.hero-result .eyebrow{display:block;text-transform:uppercase;letter-spacing:.7px;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:4px}
+.hero-result .big{letter-spacing:-.5px}
+.hero-result .sub{display:block;margin-top:3px}
+.effective-highlight{margin-top:12px;border:1px solid #b7d1df;background:#edf7fb;border-radius:10px;padding:11px 13px;text-align:center}
+.effective-highlight b{display:block;color:var(--primary2);font-size:13px}.effective-highlight strong{display:block;font-size:22px;color:var(--primary2);margin-top:2px}
+.method-details{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.method-details>summary{padding:13px 15px;background:var(--soft);font-size:15px}
+.method-body{padding:14px 15px;background:#fff}
+.method-body p{margin:7px 0;font-size:14px}.method-body .formula-line{font-family:Arial,Helvetica,sans-serif;background:var(--soft);border-radius:7px;padding:8px 10px;margin:7px 0}
+.detail-status{float:right;margin-right:28px;font-size:11px;font-weight:600;color:var(--muted);background:var(--soft);border-radius:999px;padding:3px 7px}
+.advanced-section-heading{margin-top:22px}
+.tools-details{overflow:hidden}
+.tools-details>summary{padding:17px 20px;font-size:19px;background:var(--soft)}
+.tools-details>summary .summary-help{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px;padding-right:28px}
+.tools-inner{padding-bottom:6px}
+.tools-inner .tabs{padding:14px 20px}
+.tools-inner .panel{padding:20px}
+.tools-details .tool-intro{margin:0;padding:15px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted);background:#fff}
+.section-collapse{border:1px solid var(--border);border-radius:10px;margin-top:12px;overflow:hidden}
+.section-collapse>summary{padding:13px 15px;font-size:16px;background:var(--soft)}
+.section-collapse .compact-body{padding:13px 15px}
+.section-collapse .compact-body p{margin:5px 0;font-size:14px}
+.result-breakdown-title{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.chart-grid{margin-top:18px}
+.chart-card h3{font-size:17px}
+.comp-breakdown-note{margin-top:8px}
+.internal-link{min-height:82px}
+.faq summary{font-size:15px;line-height:1.35;padding:13px 15px}.faq p{font-size:14px!important;line-height:1.55;padding:0 15px 13px}
+@media(max-width:760px){
+  .result-head{padding:14px 16px}.result-head .result-label{font-size:18px}.result-head .live-badge{font-size:11px}
+  .hero-result{padding:16px 12px}.hero-result .big{font-size:clamp(30px,9vw,40px)}
+  .metrics{gap:9px}.metric{padding:11px}.metric span{font-size:16px}
+  .result-actions{display:grid;grid-template-columns:1fr 1fr}.result-actions button{width:100%;min-height:42px;padding:10px 8px;font-size:13px}
+  .tools-details>summary{padding:15px 16px;font-size:17px}.tools-details .tool-intro{padding:13px 16px}
+  .tools-inner .tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:7px;padding:11px 12px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .tools-inner .tab{flex:0 0 auto;width:auto;min-width:max-content;white-space:nowrap;padding:10px 12px;font-size:13px}
+  .tools-inner .panel{padding:15px}
+  .internal-links{gap:8px}.internal-link{min-height:68px;padding:11px}
+  .content h2{font-size:24px;margin-top:27px}.content h3{font-size:18px}
+  .faq{margin:7px 0}.faq summary{font-size:16px;min-height:54px;display:flex;align-items:center;padding:12px 13px}
+  .detail-status{margin-right:26px;font-size:10px}
+}
+@media(max-width:480px){
+  .result-actions{grid-template-columns:1fr 1fr}.effective-highlight strong{font-size:20px}
+  .chart-card{padding:12px}.chart-card canvas{height:235px}
+  .bar-item{grid-template-columns:74px 1fr 82px;font-size:12px}.bar-track{height:10px}
+  .method-details>summary{padding:12px 13px;font-size:14px}.method-body{padding:12px 13px}.method-body p{font-size:13px}
+}
+
 .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
 .chart-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff}
 body.dark .chart-card{background:#182229;border-color:#33444f}
@@ -186,6 +240,9 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 .currency-dialog{display:none;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 28px));max-height:min(720px,calc(100vh - 34px));background:#fff;border:1px solid #d5dfe5;border-radius:18px;box-shadow:0 22px 70px rgba(0,0,0,.28);overflow:hidden}.currency-dialog.open{display:flex;flex-direction:column}.currency-dialog:before{content:"";position:fixed;z-index:-1;inset:-100vh -100vw;background:rgba(10,20,28,.42)}.currency-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px 20px 13px;border-bottom:1px solid var(--border)}.currency-dialog-head strong{display:block;font-size:19px;color:var(--primary2)}.currency-dialog-head span{display:block;margin-top:3px;color:var(--muted);font-size:12px}.currency-close{width:38px;min-width:38px;height:38px;padding:0;border-radius:50%;background:#eef3f6;color:#34444e;font-size:25px;line-height:1}.currency-search-wrap{position:relative;padding:14px 18px 8px;background:#fff}.currency-search-wrap input{padding-left:40px!important;border-radius:10px;min-height:48px;font-size:16px}.currency-search-icon{position:absolute;left:30px;top:25px;font-size:24px;line-height:1;color:#5d6c75;z-index:2}.currency-list-title{padding:7px 20px 9px;font-size:12px;font-weight:800;color:#8a969d;letter-spacing:.4px;text-transform:uppercase;background:#fff}.currency-list{overflow:auto;padding:0 8px 10px;-webkit-overflow-scrolling:touch}.currency-item{width:100%;display:flex;align-items:center;gap:12px;padding:11px 12px;border:0;border-bottom:1px solid #edf0f2;background:#fff;color:var(--text);text-align:left;border-radius:9px;min-height:58px}.currency-item:hover{background:#f4f8fa}.currency-item.selected{background:#eaf2ff;box-shadow:inset 3px 0 0 #17608a}.currency-item .flag{width:36px;flex:0 0 36px;text-align:center;font-size:26px;line-height:1}.currency-item .meta{display:flex;align-items:baseline;gap:9px;min-width:0;flex:1}.currency-item .code{font-weight:800;font-size:15px;letter-spacing:.35px;flex:0 0 auto}.currency-item .name{font-size:15px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-item .check{width:24px;flex:0 0 24px;text-align:center;font-size:22px;color:#1764c0;visibility:hidden}.currency-item.selected .check{visibility:visible}.currency-empty{padding:25px 15px;text-align:center;color:var(--muted);font-size:14px}
 body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-search-wrap,body.dark .currency-list-title,body.dark .currency-item{background:#182229;color:#e7edf1;border-color:#33444f}body.dark .currency-trigger-text span,body.dark .currency-dialog-head span,body.dark .currency-item .name{color:#b9c8d0}body.dark .currency-item{border-bottom-color:#2b3941}body.dark .currency-item:hover{background:#202c34}body.dark .currency-item.selected{background:#203a4a}body.dark .currency-close{background:#26343d;color:#fff}body.dark .currency-search-wrap input{background:#141e24;color:#e7edf1}
 @media(max-width:520px){.theme-row{margin:0 0 6px}.theme-toggle{padding:7px 10px;min-height:36px;font-size:12px}.currency-dialog{width:calc(100vw - 18px);max-height:calc(100vh - 20px);border-radius:15px}.currency-dialog-head{padding:15px 15px 11px}.currency-search-wrap{padding:12px 14px 7px}.currency-list-title{padding:7px 15px 8px}.currency-item{padding:10px 9px;min-height:56px}.currency-item .meta{gap:7px}.currency-item .name{font-size:14px}.currency-trigger-text span{font-size:14px}}
+
+.quick-start-label{font-size:15px;font-weight:800;color:var(--primary2);margin:0 0 7px}.quick-start-label span{font-size:12px;font-weight:400;color:var(--muted);margin-left:5px}.tools-card{overflow:visible}.tools-card details{background:#fff}.tools-card .panel h2{margin-top:0}.tools-card .panel p{margin-top:8px}
+@media(max-width:480px){.quick-start-label span{display:block;margin:2px 0 0}.quick-start-label{margin-bottom:9px}}
 </style>
 </head>
 
@@ -206,6 +263,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <div class="card-head" id="calculator-title">Salary Calculator</div>
 
 <form id="salaryForm" class="form" novalidate>
+<div class="quick-start-label">Quick Start <span>Choose a common schedule or customize your own.</span></div>
 <div class="preset-row" aria-label="Quick schedule presets">
 <button class="preset active" type="button" data-preset="standard">Standard Full-Time</button>
 <button class="preset" type="button" data-preset="part">Part-Time</button>
@@ -273,11 +331,65 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <p class="calc-status" id="calcStatus" aria-live="polite">Enter the basic details above and calculate instantly. Advanced options are available below when you need them.</p>
 <div id="error" class="error" role="alert" aria-live="polite"></div>
 
-<div class="advanced-label">Advanced Options</div>
+<section id="result" class="card result" aria-live="polite" aria-labelledby="resultTitle">
+<div class="result-head"><span class="result-label" id="resultTitle">Your Salary Results</span><span class="live-badge">Updates automatically</span></div>
+<div class="result-body">
+<div class="hero-result">
+<span class="eyebrow">Estimated Annual Gross Cash</span>
+<span class="big" id="annualMain"></span>
+<span class="sub">Based on your current salary, pay frequency and schedule.</span>
+<div class="effective-highlight"><b>Effective Hourly Rate</b><strong id="effectiveOutHero"></strong><span class="note">Uses estimated hours actually worked after paid time off.</span></div>
+</div>
+
+<div class="metrics">
+<div class="metric"><b>Hourly Equivalent</b><span id="hourlyOut"></span></div>
+<div class="metric"><b>Daily Equivalent</b><span id="dailyOut"></span></div>
+<div class="metric"><b>Weekly</b><span id="weeklyOut"></span></div>
+<div class="metric"><b>Biweekly</b><span id="biweeklyOut"></span></div>
+<div class="metric"><b>Semimonthly</b><span id="semiOut"></span></div>
+<div class="metric"><b>Monthly</b><span id="monthlyOut"></span></div>
+<div class="metric"><b>Quarterly</b><span id="quarterlyOut"></span></div>
+<div class="metric"><b>Annual</b><span id="annualOut"></span></div>
+<div class="metric"><b>Overtime + Double-Time</b><span id="otOut"></span></div>
+<div class="metric"><b>Bonus + Commission</b><span id="extraOut"></span></div>
+<div class="metric"><b>Total Compensation</b><span id="totalCompOut"></span></div>
+<div class="metric"><b>Estimated Take-Home</b><span id="netOut"></span></div>
+<div class="metric"><b>Hours Actually Worked</b><span id="workedHoursOut"></span></div>
+<div class="metric"><b>Employer Benefits Value</b><span id="benefitsOut"></span></div>
+</div>
+
+<div class="result-actions">
+<button class="outline" type="button" id="copyBtn" aria-label="Copy salary calculation results">Copy Results</button>
+<button class="outline" type="button" id="shareBtn" aria-label="Share salary calculation">Share</button>
+<button class="outline" type="button" id="whatsappBtn" aria-label="Share salary calculation on WhatsApp">WhatsApp</button>
+<button class="outline" type="button" id="printBtn" aria-label="Print salary calculation">Print</button>
+<button class="outline" type="button" id="pdfBtn" aria-label="Download salary calculation as PDF">Download PDF</button>
+<button class="outline" type="button" id="linkBtn" aria-label="Copy shareable salary calculation link">Save / Share Link</button>
+</div>
+
+<details class="method-details">
+<summary>How This Salary Was Calculated</summary>
+<div class="method-body" id="methodText"></div>
+</details>
+
+<div class="breakdown">
+<div class="result-breakdown-title"><h3>Compensation Breakdown</h3><span class="note">Cash and benefits are shown separately.</span></div>
+<div id="breakdownText"></div>
+<p class="note comp-breakdown-note">Gross cash compensation excludes employer benefits. Estimated take-home uses only the generic deductions you entered. It is not a country-specific paycheck or tax calculation.</p>
+</div>
+
+<div class="chart-grid">
+<div class="chart-card"><h3>Annual Compensation Breakdown</h3><canvas id="compChart" aria-label="Annual compensation breakdown chart"></canvas></div>
+<div class="chart-card"><h3>Pay Period Comparison</h3><div id="payBars" class="bar-list" aria-live="polite"></div></div>
+</div>
+</div>
+</section>
+
+<div class="advanced-label advanced-section-heading">Advanced Options</div>
 <div class="info">Optional: customize unpaid time, paid time off, overtime, bonuses, employer benefits and estimated deductions. Beginners can use the basic calculator above without opening these sections.</div>
 
 <details>
-<summary>Time Off & Work Schedule</summary>
+<summary>Time Off & Work Schedule<span class="detail-status" id="statusTime">Not customized</span></summary>
 <div class="advanced-body">
 <div class="section-title">Unpaid Time</div>
 <div class="grid">
@@ -296,7 +408,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </details>
 
 <details>
-<summary>Overtime & Extra Earnings</summary>
+<summary>Overtime & Extra Earnings<span class="detail-status" id="statusOT">Not customized</span></summary>
 <div class="advanced-body">
 <div class="section-title">Overtime</div>
 <div class="grid">
@@ -318,7 +430,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </details>
 
 <details>
-<summary>Employer Benefits & Total Compensation</summary>
+<summary>Employer Benefits & Total Compensation<span class="detail-status" id="statusBenefits">Not customized</span></summary>
 <div class="advanced-body">
 <div class="grid">
 <div class="field"><label for="retirement">Employer Retirement Contribution / Year</label><input id="retirement" type="number" min="0" step="any" value="0"></div>
@@ -332,7 +444,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </details>
 
 <details>
-<summary>Estimated Deductions & Take-Home Pay</summary>
+<summary>Estimated Deductions & Take-Home Pay<span class="detail-status" id="statusDeductions">Not customized</span></summary>
 <div class="advanced-body">
 <div class="info">Use this section for a generic estimate only. It does not apply country-specific tax brackets, credits or payroll laws.</div>
 <div class="grid">
@@ -363,53 +475,16 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </form>
 </section>
 
-<section id="result" class="card result" aria-live="polite">
-<div class="result-head">Your Salary & Compensation Result</div>
-<div class="result-body">
-<div class="hero-result">
-<span class="big" id="annualMain"></span>
-<span class="sub">Estimated annual gross cash compensation</span>
-</div>
 
-<div class="metrics">
-<div class="metric"><b>Hourly</b><span id="hourlyOut"></span></div>
-<div class="metric"><b>Daily Workday</b><span id="dailyOut"></span></div>
-<div class="metric"><b>Weekly</b><span id="weeklyOut"></span></div>
-<div class="metric"><b>Biweekly</b><span id="biweeklyOut"></span></div>
-<div class="metric"><b>Semimonthly</b><span id="semiOut"></span></div>
-<div class="metric"><b>Monthly</b><span id="monthlyOut"></span></div>
-<div class="metric"><b>Quarterly</b><span id="quarterlyOut"></span></div>
-<div class="metric"><b>Annual</b><span id="annualOut"></span></div>
-<div class="metric"><b>Overtime + Double-Time</b><span id="otOut"></span></div>
-<div class="metric"><b>Bonus + Commission</b><span id="extraOut"></span></div>
-<div class="metric"><b>Total Compensation</b><span id="totalCompOut"></span></div>
-<div class="metric"><b>Estimated Take-Home</b><span id="netOut"></span></div>
-<div class="metric"><b>Effective Hourly Rate</b><span id="effectiveOut"></span></div>
-<div class="metric"><b>Hours Actually Worked</b><span id="workedHoursOut"></span></div>
-<div class="metric"><b>Employer Benefits Value</b><span id="benefitsOut"></span></div>
-</div>
 
-<div class="result-actions">
-<button class="outline" type="button" id="copyBtn" aria-label="Copy salary calculation results">Copy Results</button>
-<button class="outline" type="button" id="whatsappBtn" aria-label="Share salary calculation on WhatsApp">Share on WhatsApp</button>
-<button class="outline" type="button" id="shareBtn" aria-label="Share salary calculation">Share</button>
-<button class="outline" type="button" id="printBtn" aria-label="Print salary calculation">Print</button>
-<button class="outline" type="button" id="pdfBtn" aria-label="Download salary calculation as PDF">Download PDF</button>
-<button class="outline" type="button" id="linkBtn" aria-label="Copy shareable salary calculation link">Copy Shareable Link</button>
-</div>
-
-<div class="breakdown">
-<h3>Calculation Breakdown</h3>
-<div id="breakdownText"></div>
-<p class="note">Gross cash compensation excludes employer benefits. Estimated take-home uses only the generic deductions you entered. It is not a country-specific paycheck or tax calculation.</p>
-</div>
-</div>
-</section>
-
-<section class="card">
-<div class="tabs" role="tablist" aria-label="Advanced salary tools">
-<button class="tab active" data-tab="compare" type="button">Job Offer Comparison</button>
-<button class="tab" data-tab="raise" type="button">Raise & Future Growth</button>
+<section class="card tools-card">
+<details class="tools-details" id="additionalTools">
+<summary>Additional Salary Tools<span class="summary-help">Job offers, raise projections and employee-to-freelance planning are optional.</span></summary>
+<div class="tools-inner">
+<p class="tool-intro">Optional tools for users who want to compare offers, model future raises or estimate an employee-to-freelance rate. The basic salary calculator above works independently.</p>
+<div class="tabs" role="tablist" aria-label="Additional salary tools">
+<button class="tab active" data-tab="compare" type="button">Job Offers</button>
+<button class="tab" data-tab="raise" type="button">Raise & Growth</button>
 <button class="tab" data-tab="freelance" type="button">Employee → Freelance</button>
 </div>
 
@@ -477,44 +552,33 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <button class="primary" type="button" id="freelanceBtn">Calculate Freelance Rate</button>
 <div id="freelanceResult" class="tool-result"></div>
 </div>
+
+</div>
+</details>
 </section>
 
 <section class="content">
 <h2>How to Use This Salary Calculator</h2>
-<p>Enter a salary amount, choose the pay frequency and select a display currency. Then enter your work schedule. Use the advanced sections when you need overtime, paid or unpaid time off, bonuses, commission, employer benefits or a generic take-home estimate.</p>
+<p>Enter your salary, choose the pay frequency and select a display currency. Enter your hours and workdays, then click <strong>Calculate Salary</strong>. Results update automatically as you change valid inputs. Open Advanced Options only when you need overtime, time off, bonuses, benefits or deductions.</p>
 
-<h2>What This Advanced Salary Calculator Calculates</h2>
+<h2>What This Salary Calculator Calculates</h2>
 <ul>
 <li>Hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual equivalents.</li>
 <li>Regular cash compensation plus overtime, double-time, bonuses, commission and other earnings.</li>
 <li>Employer retirement, insurance, equity/RSU and other benefit values for total compensation.</li>
 <li>Effective hourly value based on the actual working hours represented by your assumptions.</li>
 <li>Optional generic deductions and estimated take-home pay.</li>
-<li>Job-offer comparison, salary growth projection and employee-to-freelance rate planning.</li>
 </ul>
 
-<h3>Hourly to Annual Salary</h3>
-<p>For a standard hourly schedule, annual gross pay is estimated from hourly pay × hours per week × paid working weeks. Unpaid full weeks and additional unpaid days reduce the working schedule.</p>
-
-<h3>Annual to Hourly Salary</h3>
-<p>The hourly equivalent is based on annual cash compensation divided by the estimated hours actually worked. Paid time off is treated as paid time rather than extra salary, so it can be excluded from the “hours actually worked” denominator.</p>
-
-<h3>Biweekly vs Semimonthly Pay</h3>
-<div class="formula">
-<strong>Biweekly:</strong> annual amount ÷ 26 pay periods<br>
-<strong>Semimonthly:</strong> annual amount ÷ 24 pay periods<br>
-<strong>Quarterly:</strong> annual amount ÷ 4
-</div>
-<p>Biweekly pay occurs every two weeks, while semimonthly pay occurs twice per month. They therefore produce different periodic amounts even when annual compensation is the same.</p>
-
-<h3>Gross Salary vs Estimated Take-Home Pay</h3>
-<p>Gross salary is compensation before employee taxes and deductions. This calculator can show a generic estimated take-home amount when you enter your own tax rate and deductions. It does not apply country-specific tax brackets, credits, payroll rules or filing circumstances.</p>
-
-<h2>Overtime, PTO, Bonuses and Total Compensation</h2>
-<p>Overtime and double-time are calculated from the regular hourly equivalent and the multipliers you enter. Paid vacation, holidays and sick leave are paid time rather than extra salary. Bonuses, commissions and other cash earnings increase annual cash compensation. Employer benefits are shown separately and added to total compensation.</p>
+<h2>Salary Calculation Guide</h2>
+<details class="section-collapse"><summary>Hourly to Annual Salary</summary><div class="compact-body"><p>For a standard hourly schedule, annual gross pay is estimated from hourly pay × hours per week × paid working weeks. Unpaid full weeks and additional unpaid days reduce the working schedule.</p></div></details>
+<details class="section-collapse"><summary>Annual to Hourly Salary</summary><div class="compact-body"><p>The hourly equivalent is based on annual cash compensation divided by scheduled paid working hours. The effective hourly rate uses estimated hours actually worked after paid time off.</p></div></details>
+<details class="section-collapse"><summary>Biweekly vs Semimonthly Pay</summary><div class="compact-body"><div class="formula"><strong>Biweekly:</strong> annual amount ÷ 26 pay periods<br><strong>Semimonthly:</strong> annual amount ÷ 24 pay periods<br><strong>Quarterly:</strong> annual amount ÷ 4</div><p>Biweekly pay occurs every two weeks, while semimonthly pay occurs twice per month, so the periodic amounts differ even when annual compensation is the same.</p></div></details>
+<details class="section-collapse"><summary>Gross Salary vs Estimated Take-Home Pay</summary><div class="compact-body"><p>Gross salary is compensation before employee taxes and deductions. The optional take-home estimate uses the effective tax rate and deductions you enter; it does not apply country-specific tax brackets, credits, payroll rules or filing circumstances.</p></div></details>
+<details class="section-collapse"><summary>Overtime, PTO, Bonuses & Total Compensation</summary><div class="compact-body"><p>Overtime and double-time use the regular hourly equivalent and the multipliers you enter. Paid vacation, holidays and sick leave are paid time rather than extra salary. Bonuses, commissions and other cash earnings increase annual cash compensation. Employer benefits are shown separately and added to total compensation.</p></div></details>
 
 <h2>Share, Print and Save Your Calculation</h2>
-<p>After calculating, you can copy the result, share it through your device's share menu, send it to WhatsApp, print the report, download a PDF-style report, or copy a shareable calculation link containing the current inputs.</p>
+<p>After calculating, you can copy the result, share it through your device's share menu, send it to WhatsApp, print the report, download a PDF-style report, or save a shareable calculation link containing the current inputs.</p>
 
 <h2>Related ZammioHub Calculators</h2>
 <p>Continue your salary and financial planning with these related tools:</p>
@@ -532,10 +596,11 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <details class="faq"><summary>How do I calculate annual salary from hourly pay?</summary><p>Multiply hourly pay by hours per week and the paid working weeks represented by your schedule.</p></details>
 <details class="faq"><summary>How do I convert monthly salary to annual salary?</summary><p>Multiply monthly gross salary by 12 before any unpaid-leave adjustment that you choose to model.</p></details>
 <details class="faq"><summary>What is the difference between biweekly and semimonthly?</summary><p>Biweekly uses 26 pay periods per year, while semimonthly uses 24 pay periods.</p></details>
-<details class="faq"><summary>Does paid vacation reduce my salary?</summary><p>No. Paid vacation is already paid time. The calculator keeps it separate from salary and uses it only when estimating hours actually worked and effective hourly value.</p></details>
+<details class="faq"><summary>Does paid vacation reduce my salary?</summary><p>No. Paid vacation is already paid time. The calculator keeps it separate from salary and uses it when estimating hours actually worked and effective hourly value.</p></details>
+<details class="faq"><summary>Does unpaid time change my salary result?</summary><p>Yes, when you enter unpaid weeks or additional unpaid days, the calculator reduces the paid working schedule represented by the calculation. Avoid entering the same unpaid time twice.</p></details>
 <details class="faq"><summary>Does this calculate country-specific taxes?</summary><p>No. The optional deductions section is a generic estimate. Use a country-specific tax or paycheck calculator for jurisdiction-specific results.</p></details>
 <details class="faq"><summary>What is total compensation?</summary><p>Total compensation combines annual cash compensation with the employer benefit values you enter, such as retirement contributions, insurance, equity/RSUs and other benefits.</p></details>
-<details class="faq"><summary>Can I compare two job offers?</summary><p>Yes. The Job Offer Comparison tool compares base salary, bonuses, commission, benefits, PTO, working hours and effective hourly value using the assumptions you enter.</p></details>
+<details class="faq"><summary>Can I compare two job offers?</summary><p>Yes. Open Additional Salary Tools and use Job Offers to compare base salary, bonuses, commission, benefits, PTO, working hours and effective hourly value using the assumptions you enter.</p></details>
 </section>
 
 <footer><strong>ZammioHub</strong><br>Clear, useful and mobile-friendly calculators for Finance, Health, Education, Math and Everyday calculations.</footer>
@@ -618,6 +683,18 @@ async function copyText(text){
   try{ok=document.execCommand("copy")}catch(_){}
   ta.remove();
   return ok;
+}
+
+function updateAdvancedStatuses(){
+  const set=(id,text)=>{const el=$(id);if(el)el.textContent=text;};
+  const timeCount=["unpaidWeeks","unpaidDays","vacation","holidays","sick"].filter(id=>num(id)>0).length;
+  const otCount=["otHours","dtHours","bonus","commission","otherEarnings","signingBonus"].filter(id=>num(id)>0).length;
+  const benefitCount=["retirement","health","equity","ptoValue","otherBenefits"].filter(id=>num(id)>0).length;
+  const deductionCount=["taxRate","employeeRet","employeeInsurance","otherDeductions"].filter(id=>num(id)>0).length + ((($("taxCountry")||{}).value && $("taxCountry").value!=="generic")?1:0);
+  set("statusTime",timeCount?timeCount+" setting"+(timeCount===1?"":"s")+" applied":"Not customized");
+  set("statusOT",otCount?otCount+" item"+(otCount===1?"":"s")+" applied":"Not customized");
+  set("statusBenefits",benefitCount?benefitCount+" benefit"+(benefitCount===1?"":"s")+" included":"Not customized");
+  set("statusDeductions",deductionCount?deductionCount+" deduction"+(deductionCount===1?"":"s")+" applied":"Not customized");
 }
 
 function scheduleModel(){
@@ -703,8 +780,22 @@ function calculate(e,options={}){
   $("totalCompOut").textContent=money(totalComp);
   $("netOut").textContent=money(takeHome);
   $("effectiveOut").textContent=money(actualEffectiveHourly)+"/hr";
+  if($("effectiveOutHero")) $("effectiveOutHero").textContent=money(actualEffectiveHourly)+" / hour";
   $("workedHoursOut").textContent=m.workedHours.toLocaleString(undefined,{maximumFractionDigits:2});
   $("benefitsOut").textContent=money(employerBenefits);
+
+  const freqNames={hourly:"hourly",daily:"daily",weekly:"weekly",biweekly:"biweekly",semimonthly:"semimonthly",monthly:"monthly",quarterly:"quarterly",annual:"annual"};
+  const freqLabel=freqNames[freq]||freq;
+  $("methodText").innerHTML =
+    "<p><strong>1. Input salary:</strong> "+money(salary)+" per "+freqLabel+".</p>"+
+    "<p><strong>2. Annualized base cash:</strong> "+money(base)+" using "+m.paidWeeks.toFixed(2)+" paid-work-week equivalent(s).</p>"+
+    "<p><strong>3. Pay-period equivalents:</strong> annual cash is divided by 52 weeks, 26 biweekly periods, 24 semimonthly periods, 12 months and 4 quarters.</p>"+
+    "<p><strong>4. Hourly equivalent:</strong> annual cash ÷ scheduled paid working hours.</p>"+
+    "<p><strong>5. Effective hourly rate:</strong> gross cash compensation ÷ estimated hours actually worked after paid time off.</p>"+
+    "<p><strong>6. Advanced adjustments:</strong> overtime, bonuses, commissions, other cash earnings, employer benefits and generic employee deductions are included only when entered.</p>"+
+    "<div class='formula-line'><strong>Current gross cash:</strong> "+money(cash)+" &nbsp;•&nbsp; <strong>Total compensation:</strong> "+money(totalComp)+" &nbsp;•&nbsp; <strong>Estimated take-home:</strong> "+money(takeHome)+"</div>";
+
+  updateAdvancedStatuses();
 
   $("breakdownText").innerHTML =
     "<p><strong>Base annualized cash:</strong> "+money(base)+"</p>"+
@@ -817,6 +908,7 @@ function offerModel(prefix){
 
 
 updateCurrencyTrigger();
+updateAdvancedStatuses();
 $("currencyTrigger").addEventListener("click",openCurrencyDialog);
 $("currencyClose").addEventListener("click",closeCurrencyDialog);
 $("currencySearch").addEventListener("input",e=>renderCurrencyList(e.target.value));
@@ -943,6 +1035,10 @@ $("clearBtn").addEventListener("click",()=>{
   $("taxCountry").value="generic";$("taxRate").value=0;$("employeeRet").value=0;$("employeeInsurance").value=0;$("otherDeductions").value=0;
   $("error").textContent="";$("result").style.display="none";window.__salaryData=null;history.replaceState(null,"",location.pathname);setTheme(false);applyPreset("standard");
   $("calcStatus").innerHTML="Enter the basic details above and calculate instantly. Advanced options are available below when you need them.";
+  qsa("#salaryForm details").forEach(d=>d.open=false);
+  if($("additionalTools")) $("additionalTools").open=false;
+  if($("methodText")) $("methodText").innerHTML="";
+  updateAdvancedStatuses();
   history.replaceState(null,"",location.pathname);
 });
 
@@ -976,6 +1072,7 @@ $("linkBtn").addEventListener("click",async()=>{
 });
 
 qsa(".tab").forEach(btn=>btn.addEventListener("click",()=>{
+  if($("additionalTools")) $("additionalTools").open=true;
   qsa(".tab").forEach(b=>b.classList.remove("active"));
   qsa(".panel").forEach(p=>p.classList.remove("active"));
   btn.classList.add("active");
