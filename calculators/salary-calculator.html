@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salary Calculator 2026 | Hourly, Monthly, Annual & Total Compensation | ZammioHub</title>
-<meta name="description" content="Free advanced salary calculator for 2026. Convert hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual pay. Model overtime, PTO, unpaid leave, bonuses, commission, benefits, deductions, take-home estimates, job offers, raises and freelance rates.">
+<title>Salary Calculator | Hourly, Daily, Weekly, Monthly, Annual & Total Compensation | ZammioHub</title>
+<meta name="description" content="Free advanced salary calculator for hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual pay. Model overtime, PTO, unpaid leave, bonuses, commission, benefits, deductions, take-home estimates, job offers, raises and freelance rates.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://zammiohub.com/calculators/salary-calculator">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Salary Calculator 2026 | ZammioHub">
+<meta property="og:title" content="Salary Calculator | Hourly, Daily, Weekly, Monthly, Annual & Total Compensation | ZammioHub">
 <meta property="og:description" content="Advanced salary, overtime, total compensation, deductions, job offer comparison, raise and freelance rate calculator.">
 <meta property="og:url" content="https://zammiohub.com/calculators/salary-calculator">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Salary Calculator 2026 | ZammioHub">
+<meta name="twitter:title" content="Salary Calculator | Hourly, Daily, Weekly, Monthly, Annual & Total Compensation | ZammioHub">
 <meta name="twitter:description" content="Advanced salary and compensation calculator from ZammioHub.">
 
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"WebPage",
-  "name":"Salary Calculator 2026",
+  "name":"Salary Calculator",
   "url":"https://zammiohub.com/calculators/salary-calculator",
   "description":"Advanced salary and compensation calculator for salary conversion, overtime, PTO, bonuses, benefits, deductions and total compensation.",
   "dateModified":"2026-10-02",
@@ -63,6 +63,8 @@ h1{font-size:clamp(32px,5vw,48px);line-height:1.12;color:var(--primary2);margin:
 input,select{width:100%;min-width:0;padding:12px 13px;border:1px solid #b9c5cc;border-radius:8px;background:#fff;color:var(--text);font-size:16px;min-height:46px}
 input:focus,select:focus,button:focus-visible{outline:3px solid rgba(53,111,159,.22);outline-offset:2px;border-color:#356f9f}
 .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.calc-status{font-size:12px;color:var(--muted);margin:8px 0 0}
+.calc-status strong{color:var(--primary2)}
 button{border:0;border-radius:8px;padding:11px 17px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px}
 .primary{background:var(--accent);color:#fff}.primary:hover{background:var(--accent2)}
 .secondary{background:#e5eaee;color:var(--text)}
@@ -177,6 +179,13 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 .country-note{margin-top:10px}
 @media(max-width:760px){.chart-grid,.internal-links{grid-template-columns:1fr}}
 
+
+/* Currency picker: flag + code + name, consistent and searchable */
+.currency-native{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}
+.currency-picker{position:relative;width:100%}.currency-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid #b9c5cc;color:var(--text);padding:9px 12px;min-height:52px;text-align:left;border-radius:8px}.currency-trigger:hover{border-color:#8da6b5}.currency-trigger-main{display:flex;align-items:center;gap:11px;min-width:0}.currency-flag{width:34px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:25px;line-height:1;flex:0 0 34px}.currency-trigger-text{display:flex;align-items:baseline;gap:8px;min-width:0;overflow:hidden}.currency-trigger-text strong{font-size:15px;letter-spacing:.3px;flex:0 0 auto}.currency-trigger-text span{font-size:15px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-chevron{font-size:23px;line-height:1;color:#64737c;flex:0 0 auto;margin-top:-5px}
+.currency-dialog{display:none;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 28px));max-height:min(720px,calc(100vh - 34px));background:#fff;border:1px solid #d5dfe5;border-radius:18px;box-shadow:0 22px 70px rgba(0,0,0,.28);overflow:hidden}.currency-dialog.open{display:flex;flex-direction:column}.currency-dialog:before{content:"";position:fixed;z-index:-1;inset:-100vh -100vw;background:rgba(10,20,28,.42)}.currency-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px 20px 13px;border-bottom:1px solid var(--border)}.currency-dialog-head strong{display:block;font-size:19px;color:var(--primary2)}.currency-dialog-head span{display:block;margin-top:3px;color:var(--muted);font-size:12px}.currency-close{width:38px;min-width:38px;height:38px;padding:0;border-radius:50%;background:#eef3f6;color:#34444e;font-size:25px;line-height:1}.currency-search-wrap{position:relative;padding:14px 18px 8px;background:#fff}.currency-search-wrap input{padding-left:40px!important;border-radius:10px;min-height:48px;font-size:16px}.currency-search-icon{position:absolute;left:30px;top:25px;font-size:24px;line-height:1;color:#5d6c75;z-index:2}.currency-list-title{padding:7px 20px 9px;font-size:12px;font-weight:800;color:#8a969d;letter-spacing:.4px;text-transform:uppercase;background:#fff}.currency-list{overflow:auto;padding:0 8px 10px;-webkit-overflow-scrolling:touch}.currency-item{width:100%;display:flex;align-items:center;gap:12px;padding:11px 12px;border:0;border-bottom:1px solid #edf0f2;background:#fff;color:var(--text);text-align:left;border-radius:9px;min-height:58px}.currency-item:hover{background:#f4f8fa}.currency-item.selected{background:#eaf2ff;box-shadow:inset 3px 0 0 #17608a}.currency-item .flag{width:36px;flex:0 0 36px;text-align:center;font-size:26px;line-height:1}.currency-item .meta{display:flex;align-items:baseline;gap:9px;min-width:0;flex:1}.currency-item .code{font-weight:800;font-size:15px;letter-spacing:.35px;flex:0 0 auto}.currency-item .name{font-size:15px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-item .check{width:24px;flex:0 0 24px;text-align:center;font-size:22px;color:#1764c0;visibility:hidden}.currency-item.selected .check{visibility:visible}.currency-empty{padding:25px 15px;text-align:center;color:var(--muted);font-size:14px}
+body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-search-wrap,body.dark .currency-list-title,body.dark .currency-item{background:#182229;color:#e7edf1;border-color:#33444f}body.dark .currency-trigger-text span,body.dark .currency-dialog-head span,body.dark .currency-item .name{color:#b9c8d0}body.dark .currency-item{border-bottom-color:#2b3941}body.dark .currency-item:hover{background:#202c34}body.dark .currency-item.selected{background:#203a4a}body.dark .currency-close{background:#26343d;color:#fff}body.dark .currency-search-wrap input{background:#141e24;color:#e7edf1}
+@media(max-width:520px){.currency-dialog{width:calc(100vw - 18px);max-height:calc(100vh - 20px);border-radius:15px}.currency-dialog-head{padding:15px 15px 11px}.currency-search-wrap{padding:12px 14px 7px}.currency-list-title{padding:7px 15px 8px}.currency-item{padding:10px 9px;min-height:56px}.currency-item .meta{gap:7px}.currency-item .name{font-size:14px}.currency-trigger-text span{font-size:14px}}
 </style>
 </head>
 
@@ -186,7 +195,7 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 <a href="/">Home</a> › <a href="/calculators/">All Calculators</a> › Salary Calculator
 </nav>
 
-<h1>Salary Calculator 2026</h1>
+<h1>Salary Calculator</h1>
 <p class="lead">Convert salary between pay periods and model overtime, paid and unpaid time off, bonuses, commission, employer benefits, deductions, estimated take-home pay and effective hourly value.</p>
 
 <div class="theme-row">
@@ -223,59 +232,27 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 </select>
 </div>
 <div class="field">
-<label for="currency">Currency / Display Currency</label>
-<select id="currency">
-<option value="USD">$ USD — US Dollar</option>
-<option value="EUR">€ EUR — Euro</option>
-<option value="GBP">£ GBP — British Pound</option>
-<option value="CAD">C$ CAD — Canadian Dollar</option>
-<option value="AUD">A$ AUD — Australian Dollar</option>
-<option value="NZD">NZ$ NZD — New Zealand Dollar</option>
-<option value="PKR">Rs PKR — Pakistani Rupee</option>
-<option value="INR">₹ INR — Indian Rupee</option>
-<option value="AED">AED — UAE Dirham</option>
-<option value="SAR">SAR — Saudi Riyal</option>
-<option value="QAR">QAR — Qatari Riyal</option>
-<option value="KWD">KWD — Kuwaiti Dinar</option>
-<option value="BHD">BHD — Bahraini Dinar</option>
-<option value="OMR">OMR — Omani Rial</option>
-<option value="JOD">JOD — Jordanian Dinar</option>
-<option value="EGP">E£ EGP — Egyptian Pound</option>
-<option value="TRY">₺ TRY — Turkish Lira</option>
-<option value="JPY">¥ JPY — Japanese Yen</option>
-<option value="CNY">¥ CNY — Chinese Yuan</option>
-<option value="HKD">HK$ HKD — Hong Kong Dollar</option>
-<option value="SGD">S$ SGD — Singapore Dollar</option>
-<option value="MYR">RM MYR — Malaysian Ringgit</option>
-<option value="THB">฿ THB — Thai Baht</option>
-<option value="IDR">Rp IDR — Indonesian Rupiah</option>
-<option value="PHP">₱ PHP — Philippine Peso</option>
-<option value="KRW">₩ KRW — South Korean Won</option>
-<option value="VND">₫ VND — Vietnamese Dong</option>
-<option value="BDT">৳ BDT — Bangladeshi Taka</option>
-<option value="LKR">Rs LKR — Sri Lankan Rupee</option>
-<option value="NPR">Rs NPR — Nepalese Rupee</option>
-<option value="AFN">؋ AFN — Afghan Afghani</option>
-<option value="ZAR">R ZAR — South African Rand</option>
-<option value="NGN">₦ NGN — Nigerian Naira</option>
-<option value="KES">KSh KES — Kenyan Shilling</option>
-<option value="GHS">GH₵ GHS — Ghanaian Cedi</option>
-<option value="TZS">TSh TZS — Tanzanian Shilling</option>
-<option value="UGX">USh UGX — Ugandan Shilling</option>
-<option value="BRL">R$ BRL — Brazilian Real</option>
-<option value="MXN">Mex$ MXN — Mexican Peso</option>
-<option value="ARS">$ ARS — Argentine Peso</option>
-<option value="CLP">$ CLP — Chilean Peso</option>
-<option value="COP">$ COP — Colombian Peso</option>
-<option value="CHF">CHF — Swiss Franc</option>
-<option value="SEK">kr SEK — Swedish Krona</option>
-<option value="NOK">kr NOK — Norwegian Krone</option>
-<option value="DKK">kr DKK — Danish Krone</option>
-<option value="PLN">zł PLN — Polish Zloty</option>
-<option value="CZK">Kč CZK — Czech Koruna</option>
-<option value="HUF">Ft HUF — Hungarian Forint</option>
-<option value="RON">lei RON — Romanian Leu</option>
-<option value="ILS">₪ ILS — Israeli New Shekel</option>
+<label for="currencyTrigger">Currency</label>
+<div class="currency-picker" id="currencyPicker">
+  <button type="button" class="currency-trigger" id="currencyTrigger" aria-haspopup="dialog" aria-expanded="false">
+    <span class="currency-trigger-main">
+      <span class="currency-flag" id="currencyFlag" aria-hidden="true">🇺🇸</span>
+      <span class="currency-trigger-text"><strong id="currencyCodeLabel">USD</strong><span id="currencyNameLabel">US Dollar</span></span>
+    </span>
+    <span class="currency-chevron" aria-hidden="true">⌄</span>
+  </button>
+  <div class="currency-dialog" id="currencyDialog" role="dialog" aria-modal="true" aria-labelledby="currencyDialogTitle" aria-hidden="true">
+    <div class="currency-dialog-head">
+      <div><strong id="currencyDialogTitle">Select Currency</strong><span>Choose a currency for displaying your salary.</span></div>
+      <button type="button" class="currency-close" id="currencyClose" aria-label="Close currency list">×</button>
+    </div>
+    <div class="currency-search-wrap"><span class="currency-search-icon" aria-hidden="true">⌕</span><input id="currencySearch" type="search" placeholder="Search currencies..." autocomplete="off" aria-label="Search currencies"></div>
+    <div class="currency-list-title">All Currencies — A–Z</div>
+    <div class="currency-list" id="currencyList" role="listbox" aria-label="Currencies"></div>
+  </div>
+</div>
+<select id="currency" class="currency-native" aria-hidden="true" tabindex="-1">
+<option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — British Pound</option><option value="CAD">CAD — Canadian Dollar</option><option value="AUD">AUD — Australian Dollar</option><option value="NZD">NZD — New Zealand Dollar</option><option value="PKR">PKR — Pakistani Rupee</option><option value="INR">INR — Indian Rupee</option><option value="AED">AED — UAE Dirham</option><option value="SAR">SAR — Saudi Riyal</option><option value="QAR">QAR — Qatari Riyal</option><option value="KWD">KWD — Kuwaiti Dinar</option><option value="BHD">BHD — Bahraini Dinar</option><option value="OMR">OMR — Omani Rial</option><option value="JOD">JOD — Jordanian Dinar</option><option value="EGP">EGP — Egyptian Pound</option><option value="TRY">TRY — Turkish Lira</option><option value="JPY">JPY — Japanese Yen</option><option value="CNY">CNY — Chinese Yuan</option><option value="HKD">HKD — Hong Kong Dollar</option><option value="SGD">SGD — Singapore Dollar</option><option value="MYR">MYR — Malaysian Ringgit</option><option value="THB">THB — Thai Baht</option><option value="IDR">IDR — Indonesian Rupiah</option><option value="PHP">PHP — Philippine Peso</option><option value="KRW">KRW — South Korean Won</option><option value="VND">VND — Vietnamese Dong</option><option value="BDT">BDT — Bangladeshi Taka</option><option value="LKR">LKR — Sri Lankan Rupee</option><option value="NPR">NPR — Nepalese Rupee</option><option value="AFN">AFN — Afghan Afghani</option><option value="ZAR">ZAR — South African Rand</option><option value="NGN">NGN — Nigerian Naira</option><option value="KES">KES — Kenyan Shilling</option><option value="GHS">GHS — Ghanaian Cedi</option><option value="TZS">TZS — Tanzanian Shilling</option><option value="UGX">UGX — Ugandan Shilling</option><option value="BRL">BRL — Brazilian Real</option><option value="MXN">MXN — Mexican Peso</option><option value="ARS">ARS — Argentine Peso</option><option value="CLP">CLP — Chilean Peso</option><option value="COP">COP — Colombian Peso</option><option value="CHF">CHF — Swiss Franc</option><option value="SEK">SEK — Swedish Krona</option><option value="NOK">NOK — Norwegian Krone</option><option value="DKK">DKK — Danish Krone</option><option value="PLN">PLN — Polish Zloty</option><option value="CZK">CZK — Czech Koruna</option><option value="HUF">HUF — Hungarian Forint</option><option value="RON">RON — Romanian Leu</option><option value="ILS">ILS — Israeli New Shekel</option>
 </select>
 <small>Changing this selector changes the display currency only. It does not perform foreign-exchange conversion.</small>
 </div>
@@ -380,9 +357,10 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 </details>
 
 <div class="actions">
-<button class="primary" type="submit">Calculate Salary</button>
+<button class="primary" type="submit" id="calculateBtn" aria-label="Calculate salary and update results">Calculate Salary</button>
 <button class="secondary" type="button" id="clearBtn">Reset</button>
 </div>
+<p class="calc-status" id="calcStatus" aria-live="polite">Results update automatically as you change your inputs. Use <strong>Calculate Salary</strong> when you want to explicitly recalculate and finalize the current inputs.</p>
 <div id="error" class="error" role="alert" aria-live="polite"></div>
 </form>
 </section>
@@ -414,12 +392,12 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 </div>
 
 <div class="result-actions">
-<button class="outline" type="button" id="copyBtn">Copy Results</button>
-<button class="outline" type="button" id="whatsappBtn">Share on WhatsApp</button>
-<button class="outline" type="button" id="shareBtn">Share</button>
-<button class="outline" type="button" id="printBtn">Print</button>
-<button class="outline" type="button" id="pdfBtn">Download PDF</button>
-<button class="outline" type="button" id="linkBtn">Copy Shareable Link</button>
+<button class="outline" type="button" id="copyBtn" aria-label="Copy salary calculation results">Copy Results</button>
+<button class="outline" type="button" id="whatsappBtn" aria-label="Share salary calculation on WhatsApp">Share on WhatsApp</button>
+<button class="outline" type="button" id="shareBtn" aria-label="Share salary calculation">Share</button>
+<button class="outline" type="button" id="printBtn" aria-label="Print salary calculation">Print</button>
+<button class="outline" type="button" id="pdfBtn" aria-label="Download salary calculation as PDF">Download PDF</button>
+<button class="outline" type="button" id="linkBtn" aria-label="Copy shareable salary calculation link">Copy Shareable Link</button>
 </div>
 
 <div class="breakdown">
@@ -583,18 +561,29 @@ const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
 }[ch]));
 
 const currencies = {
-  USD:["$","USD"], EUR:["€","EUR"], GBP:["£","GBP"], CAD:["C$","CAD"], AUD:["A$","AUD"],
-  NZD:["NZ$","NZD"], PKR:["Rs ","PKR"], INR:["₹","INR"], AED:["AED ","AED"], SAR:["SAR ","SAR"],
-  QAR:["QAR ","QAR"], KWD:["KWD ","KWD"], BHD:["BHD ","BHD"], OMR:["OMR ","OMR"], JOD:["JOD ","JOD"],
-  EGP:["E£ ","EGP"], TRY:["₺","TRY"], JPY:["¥","JPY"], CNY:["¥","CNY"], HKD:["HK$ ","HKD"],
-  SGD:["S$ ","SGD"], MYR:["RM ","MYR"], THB:["฿","THB"], IDR:["Rp ","IDR"], PHP:["₱","PHP"],
-  KRW:["₩","KRW"], VND:["₫","VND"], BDT:["৳ ","BDT"], LKR:["Rs ","LKR"], NPR:["Rs ","NPR"],
-  AFN:["؋ ","AFN"], ZAR:["R ","ZAR"], NGN:["₦","NGN"], KES:["KSh ","KES"], GHS:["GH₵ ","GHS"],
-  TZS:["TSh ","TZS"], UGX:["USh ","UGX"], BRL:["R$ ","BRL"], MXN:["Mex$ ","MXN"], ARS:["$ ","ARS"],
-  CLP:["$ ","CLP"], COP:["$ ","COP"], CHF:["CHF ","CHF"], SEK:["kr ","SEK"], NOK:["kr ","NOK"],
-  DKK:["kr ","DKK"], PLN:["zł ","PLN"], CZK:["Kč ","CZK"], HUF:["Ft ","HUF"], RON:["lei ","RON"],
-  ILS:["₪","ILS"]
+  USD:["$","USD"], EUR:["€","EUR"], GBP:["£","GBP"], CAD:["C$","CAD"], AUD:["A$","AUD"], NZD:["NZ$","NZD"], PKR:["Rs ","PKR"], INR:["₹","INR"], AED:["AED ","AED"], SAR:["SAR ","SAR"], QAR:["QAR ","QAR"], KWD:["KWD ","KWD"], BHD:["BHD ","BHD"], OMR:["OMR ","OMR"], JOD:["JOD ","JOD"], EGP:["E£ ","EGP"], TRY:["₺","TRY"], JPY:["¥","JPY"], CNY:["¥","CNY"], HKD:["HK$ ","HKD"], SGD:["S$ ","SGD"], MYR:["RM ","MYR"], THB:["฿","THB"], IDR:["Rp ","IDR"], PHP:["₱","PHP"], KRW:["₩","KRW"], VND:["₫","VND"], BDT:["৳ ","BDT"], LKR:["Rs ","LKR"], NPR:["Rs ","NPR"], AFN:["؋ ","AFN"], ZAR:["R ","ZAR"], NGN:["₦","NGN"], KES:["KSh ","KES"], GHS:["GH₵ ","GHS"], TZS:["TSh ","TZS"], UGX:["USh ","UGX"], BRL:["R$ ","BRL"], MXN:["Mex$ ","MXN"], ARS:["$ ","ARS"], CLP:["$ ","CLP"], COP:["$ ","COP"], CHF:["CHF ","CHF"], SEK:["kr ","SEK"], NOK:["kr ","NOK"], DKK:["kr ","DKK"], PLN:["zł ","PLN"], CZK:["Kč ","CZK"], HUF:["Ft ","HUF"], RON:["lei ","RON"], ILS:["₪","ILS"]
 };
+
+const currencyMeta = {
+  AFN:["🇦🇫","Afghan Afghani"], AED:["🇦🇪","UAE Dirham"], ARS:["🇦🇷","Argentine Peso"], AUD:["🇦🇺","Australian Dollar"], BDT:["🇧🇩","Bangladeshi Taka"], BHD:["🇧🇭","Bahraini Dinar"], BRL:["🇧🇷","Brazilian Real"], CAD:["🇨🇦","Canadian Dollar"], CHF:["🇨🇭","Swiss Franc"], CLP:["🇨🇱","Chilean Peso"], CNY:["🇨🇳","Chinese Yuan"], COP:["🇨🇴","Colombian Peso"], CZK:["🇨🇿","Czech Koruna"], DKK:["🇩🇰","Danish Krone"], EGP:["🇪🇬","Egyptian Pound"], EUR:["🇪🇺","Euro"], GBP:["🇬🇧","British Pound"], GHS:["🇬🇭","Ghanaian Cedi"], HKD:["🇭🇰","Hong Kong Dollar"], HUF:["🇭🇺","Hungarian Forint"], IDR:["🇮🇩","Indonesian Rupiah"], ILS:["🇮🇱","Israeli New Shekel"], INR:["🇮🇳","Indian Rupee"], JOD:["🇯🇴","Jordanian Dinar"], JPY:["🇯🇵","Japanese Yen"], KES:["🇰🇪","Kenyan Shilling"], KRW:["🇰🇷","South Korean Won"], KWD:["🇰🇼","Kuwaiti Dinar"], LKR:["🇱🇰","Sri Lankan Rupee"], MXN:["🇲🇽","Mexican Peso"], MYR:["🇲🇾","Malaysian Ringgit"], NGN:["🇳🇬","Nigerian Naira"], NOK:["🇳🇴","Norwegian Krone"], NPR:["🇳🇵","Nepalese Rupee"], NZD:["🇳🇿","New Zealand Dollar"], OMR:["🇴🇲","Omani Rial"], PKR:["🇵🇰","Pakistani Rupee"], PHP:["🇵🇭","Philippine Peso"], PLN:["🇵🇱","Polish Zloty"], QAR:["🇶🇦","Qatari Riyal"], RON:["🇷🇴","Romanian Leu"], SAR:["🇸🇦","Saudi Riyal"], SEK:["🇸🇪","Swedish Krona"], SGD:["🇸🇬","Singapore Dollar"], THB:["🇹🇭","Thai Baht"], TRY:["🇹🇷","Turkish Lira"], TZS:["🇹🇿","Tanzanian Shilling"], UGX:["🇺🇬","Ugandan Shilling"], USD:["🇺🇸","US Dollar"], VND:["🇻🇳","Vietnamese Dong"], ZAR:["🇿🇦","South African Rand"]
+};
+const currencyItems = Object.keys(currencies).sort().map(code=>({code,flag:(currencyMeta[code]||["💱",code])[0],name:(currencyMeta[code]||["",code])[1]}));
+function renderCurrencyList(filter=""){
+  const list=$("currencyList"); if(!list)return; const q=String(filter).trim().toLowerCase();
+  const items=currencyItems.filter(x=>!q||x.code.toLowerCase().includes(q)||x.name.toLowerCase().includes(q));
+  if(!items.length){list.innerHTML='<div class="currency-empty">No currency found. Try a code or currency name.</div>';return;}
+  const selected=$("currency").value;
+  list.innerHTML=items.map(item=>{
+    const sel=item.code===selected;
+    return '<button type="button" class="currency-item'+(sel?' selected':'')+'" data-currency="'+item.code+'" role="option" aria-selected="'+(sel?'true':'false')+'"><span class="flag" aria-hidden="true">'+item.flag+'</span><span class="meta"><span class="code">'+item.code+'</span><span class="name">'+item.name+'</span></span><span class="check" aria-hidden="true">✓</span></button>';
+  }).join('');
+  qsa('.currency-item',list).forEach(btn=>btn.addEventListener('click',()=>selectCurrency(btn.dataset.currency)));
+}
+function updateCurrencyTrigger(){const code=$("currency").value||"USD";const meta=currencyMeta[code]||["💱",code];$("currencyFlag").textContent=meta[0];$("currencyCodeLabel").textContent=code;$("currencyNameLabel").textContent=meta[1];}
+function openCurrencyDialog(){const d=$("currencyDialog");if(!d)return;renderCurrencyList('');$("currencySearch").value='';d.classList.add('open');d.setAttribute('aria-hidden','false');$("currencyTrigger").setAttribute('aria-expanded','true');setTimeout(()=>$("currencySearch").focus(),40);}
+function closeCurrencyDialog(){const d=$("currencyDialog");if(!d)return;d.classList.remove('open');d.setAttribute('aria-hidden','true');$("currencyTrigger").setAttribute('aria-expanded','false');}
+function selectCurrency(code){if(!currencies[code])return;$("currency").value=code;updateCurrencyTrigger();closeCurrencyDialog();if(num('salary')>0)calculate(null,{silent:true});}
+
 
 function money(value){
   const v = Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -829,6 +818,11 @@ function offerModel(prefix){
 }
 
 
+updateCurrencyTrigger();
+$("currencyTrigger").addEventListener("click",openCurrencyDialog);
+$("currencyClose").addEventListener("click",closeCurrencyDialog);
+$("currencySearch").addEventListener("input",e=>renderCurrencyList(e.target.value));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("currencyDialog").classList.contains("open"))closeCurrencyDialog();});
 $("taxCountry").addEventListener("change",()=>{
   const names={generic:"Generic estimate",US:"United States",UK:"United Kingdom",PK:"Pakistan",CA:"Canada",AU:"Australia",IN:"India",AE:"United Arab Emirates",NZ:"New Zealand",other:"Other country"};
   const old=$("taxCountry").parentElement.querySelector(".country-note");
@@ -936,6 +930,7 @@ $("clearBtn").addEventListener("click",()=>{
   $("salary").value="";
   $("frequency").value="monthly";
   $("currency").value="USD";
+  updateCurrencyTrigger();
   $("hours").value=40;$("days").value=5;$("unpaidWeeks").value=0;$("unpaidDays").value=0;
   $("vacation").value=0;$("holidays").value=0;$("sick").value=0;
   $("otHours").value=0;$("otMult").value=1.5;$("dtHours").value=0;$("dtMult").value=2;
