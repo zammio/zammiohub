@@ -82,7 +82,7 @@ details>summary:after{content:"+";float:right;font-size:22px}
 details[open]>summary:after{content:"−"}
 .advanced-body{padding:0 20px 22px}
 .section-title{font-size:16px;font-weight:700;color:var(--primary2);margin:20px 0 10px}
-.section-help{font-size:13px;color:var(--muted);margin:-4px 0 12px}
+.section-help{font-size:13px;color:var(--muted);margin:-4px 0 12px}.advanced-label{font-size:19px;font-weight:800;color:var(--primary2);margin:22px 0 8px}.quick-actions{margin-top:18px}
 .info{background:#eef6fa;border:1px solid #cfe1ea;border-radius:9px;padding:11px 13px;color:#385566;font-size:13px;margin:12px 0}
 .warning{background:#fff8e6;border:1px solid #ead99d;border-radius:9px;padding:11px 13px;color:#6c5600;font-size:13px;margin:12px 0}
 .result{display:none}
@@ -125,7 +125,7 @@ details[open]>summary:after{content:"−"}
 .share-box .share-note{font-size:12px;color:var(--muted);width:100%}
 footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color:var(--muted)}
 @media(max-width:850px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.grid,.two,.three{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.grid,.two,.three{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tabs .tab{width:100%;min-width:0}.tabs .tab:nth-child(3){grid-column:1 / -1;max-width:280px;justify-self:center;width:100%}}
 @media(max-width:480px){
   .container{padding:18px 14px 55px}.form,.result-body{padding:16px}.advanced-body{padding:0 16px 18px}
   .metrics,.kpi-grid{grid-template-columns:1fr}.actions button,.result-actions button{width:100%}
@@ -151,8 +151,8 @@ body.dark .tabs{border-color:#33444f}
 body.dark .tab{background:#202c34;color:#e7edf1;border-color:#3a4b56}
 body.dark input::placeholder{color:#91a0a9}
 body.dark .secondary{background:#29353d;color:#e7edf1}
-.theme-row{display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-bottom:10px}
-.theme-toggle{background:#eef3f6;border:1px solid #d5dfe5;color:#27313a}
+.theme-row{display:flex;justify-content:flex-end;gap:8px;align-items:center;margin:2px 0 8px}
+.theme-toggle{background:#eef3f6;border:1px solid #d5dfe5;color:#27313a;padding:8px 12px;min-height:38px;font-size:13px;border-radius:8px}
 body.dark .theme-toggle{background:#26343d;color:#fff;border-color:#455864}
 .invalid{border-color:#c62828!important;background:#fff7f7!important}
 body.dark .invalid{background:#2a1b1b!important;border-color:#ef6c6c!important}
@@ -185,7 +185,7 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 .currency-picker{position:relative;width:100%}.currency-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid #b9c5cc;color:var(--text);padding:9px 12px;min-height:52px;text-align:left;border-radius:8px}.currency-trigger:hover{border-color:#8da6b5}.currency-trigger-main{display:flex;align-items:center;gap:11px;min-width:0}.currency-flag{width:34px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:25px;line-height:1;flex:0 0 34px}.currency-trigger-text{display:flex;align-items:baseline;gap:8px;min-width:0;overflow:hidden}.currency-trigger-text strong{font-size:15px;letter-spacing:.3px;flex:0 0 auto}.currency-trigger-text span{font-size:15px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-chevron{font-size:23px;line-height:1;color:#64737c;flex:0 0 auto;margin-top:-5px}
 .currency-dialog{display:none;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 28px));max-height:min(720px,calc(100vh - 34px));background:#fff;border:1px solid #d5dfe5;border-radius:18px;box-shadow:0 22px 70px rgba(0,0,0,.28);overflow:hidden}.currency-dialog.open{display:flex;flex-direction:column}.currency-dialog:before{content:"";position:fixed;z-index:-1;inset:-100vh -100vw;background:rgba(10,20,28,.42)}.currency-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px 20px 13px;border-bottom:1px solid var(--border)}.currency-dialog-head strong{display:block;font-size:19px;color:var(--primary2)}.currency-dialog-head span{display:block;margin-top:3px;color:var(--muted);font-size:12px}.currency-close{width:38px;min-width:38px;height:38px;padding:0;border-radius:50%;background:#eef3f6;color:#34444e;font-size:25px;line-height:1}.currency-search-wrap{position:relative;padding:14px 18px 8px;background:#fff}.currency-search-wrap input{padding-left:40px!important;border-radius:10px;min-height:48px;font-size:16px}.currency-search-icon{position:absolute;left:30px;top:25px;font-size:24px;line-height:1;color:#5d6c75;z-index:2}.currency-list-title{padding:7px 20px 9px;font-size:12px;font-weight:800;color:#8a969d;letter-spacing:.4px;text-transform:uppercase;background:#fff}.currency-list{overflow:auto;padding:0 8px 10px;-webkit-overflow-scrolling:touch}.currency-item{width:100%;display:flex;align-items:center;gap:12px;padding:11px 12px;border:0;border-bottom:1px solid #edf0f2;background:#fff;color:var(--text);text-align:left;border-radius:9px;min-height:58px}.currency-item:hover{background:#f4f8fa}.currency-item.selected{background:#eaf2ff;box-shadow:inset 3px 0 0 #17608a}.currency-item .flag{width:36px;flex:0 0 36px;text-align:center;font-size:26px;line-height:1}.currency-item .meta{display:flex;align-items:baseline;gap:9px;min-width:0;flex:1}.currency-item .code{font-weight:800;font-size:15px;letter-spacing:.35px;flex:0 0 auto}.currency-item .name{font-size:15px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-item .check{width:24px;flex:0 0 24px;text-align:center;font-size:22px;color:#1764c0;visibility:hidden}.currency-item.selected .check{visibility:visible}.currency-empty{padding:25px 15px;text-align:center;color:var(--muted);font-size:14px}
 body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-search-wrap,body.dark .currency-list-title,body.dark .currency-item{background:#182229;color:#e7edf1;border-color:#33444f}body.dark .currency-trigger-text span,body.dark .currency-dialog-head span,body.dark .currency-item .name{color:#b9c8d0}body.dark .currency-item{border-bottom-color:#2b3941}body.dark .currency-item:hover{background:#202c34}body.dark .currency-item.selected{background:#203a4a}body.dark .currency-close{background:#26343d;color:#fff}body.dark .currency-search-wrap input{background:#141e24;color:#e7edf1}
-@media(max-width:520px){.currency-dialog{width:calc(100vw - 18px);max-height:calc(100vh - 20px);border-radius:15px}.currency-dialog-head{padding:15px 15px 11px}.currency-search-wrap{padding:12px 14px 7px}.currency-list-title{padding:7px 15px 8px}.currency-item{padding:10px 9px;min-height:56px}.currency-item .meta{gap:7px}.currency-item .name{font-size:14px}.currency-trigger-text span{font-size:14px}}
+@media(max-width:520px){.theme-row{margin:0 0 6px}.theme-toggle{padding:7px 10px;min-height:36px;font-size:12px}.currency-dialog{width:calc(100vw - 18px);max-height:calc(100vh - 20px);border-radius:15px}.currency-dialog-head{padding:15px 15px 11px}.currency-search-wrap{padding:12px 14px 7px}.currency-list-title{padding:7px 15px 8px}.currency-item{padding:10px 9px;min-height:56px}.currency-item .meta{gap:7px}.currency-item .name{font-size:14px}.currency-trigger-text span{font-size:14px}}
 </style>
 </head>
 
@@ -203,7 +203,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </div>
 
 <section class="card" aria-labelledby="calculator-title">
-<div class="card-head" id="calculator-title">Advanced Salary & Total Compensation Calculator</div>
+<div class="card-head" id="calculator-title">Salary Calculator</div>
 
 <form id="salaryForm" class="form" novalidate>
 <div class="preset-row" aria-label="Quick schedule presets">
@@ -264,23 +264,27 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <label for="days">Workdays per Week</label>
 <input id="days" type="number" min="0.1" max="7" step="any" value="5" inputmode="decimal">
 </div>
-<div class="field">
-<label for="unpaidWeeks">Unpaid Full Weeks / Year</label>
-<input id="unpaidWeeks" type="number" min="0" max="52" step="any" value="0">
-<small>Full unpaid weeks are deducted from the annual working schedule.</small>
-</div>
-<div class="field">
-<label for="unpaidDays">Additional Unpaid Days / Year</label>
-<input id="unpaidDays" type="number" min="0" max="366" step="any" value="0">
-<small>Use this for unpaid days that are not already included in unpaid full weeks.</small>
-</div>
 </div>
 
-<div class="info">The calculator keeps paid vacation, paid holidays and paid sick leave separate from unpaid time. Paid time off does not reduce gross salary; it can reduce the “hours actually worked” denominator used for effective hourly value.</div>
+<div class="actions quick-actions">
+<button class="primary" type="submit" id="calculateBtn" aria-label="Calculate salary and update results">Calculate Salary</button>
+<button class="secondary" type="button" id="clearBtn">Reset</button>
+</div>
+<p class="calc-status" id="calcStatus" aria-live="polite">Enter the basic details above and calculate instantly. Advanced options are available below when you need them.</p>
+<div id="error" class="error" role="alert" aria-live="polite"></div>
 
-<details open>
+<div class="advanced-label">Advanced Options</div>
+<div class="info">Optional: customize unpaid time, paid time off, overtime, bonuses, employer benefits and estimated deductions. Beginners can use the basic calculator above without opening these sections.</div>
+
+<details>
 <summary>Time Off & Work Schedule</summary>
 <div class="advanced-body">
+<div class="section-title">Unpaid Time</div>
+<div class="grid">
+<div class="field"><label for="unpaidWeeks">Unpaid Full Weeks / Year</label><input id="unpaidWeeks" type="number" min="0" max="52" step="any" value="0"><small>Full unpaid weeks are deducted from the annual working schedule.</small></div>
+<div class="field"><label for="unpaidDays">Additional Unpaid Days / Year</label><input id="unpaidDays" type="number" min="0" max="366" step="any" value="0"><small>Use this for unpaid days that are not already included in unpaid full weeks.</small></div>
+</div>
+
 <div class="section-title">Paid Time Off</div>
 <div class="grid">
 <div class="field"><label for="vacation">Paid Vacation Days / Year</label><input id="vacation" type="number" min="0" max="366" step="any" value="0"></div>
@@ -356,12 +360,6 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </div>
 </details>
 
-<div class="actions">
-<button class="primary" type="submit" id="calculateBtn" aria-label="Calculate salary and update results">Calculate Salary</button>
-<button class="secondary" type="button" id="clearBtn">Reset</button>
-</div>
-<p class="calc-status" id="calcStatus" aria-live="polite">Results update automatically as you change your inputs. Use <strong>Calculate Salary</strong> when you want to explicitly recalculate and finalize the current inputs.</p>
-<div id="error" class="error" role="alert" aria-live="polite"></div>
 </form>
 </section>
 
@@ -925,6 +923,12 @@ window.addEventListener("resize",()=>{
 
 qsa(".preset").forEach(btn=>btn.addEventListener("click",()=>applyPreset(btn.dataset.preset)));
 
+/* Explicit Calculate action: prevent the browser's default form reload and calculate in-place. */
+$("salaryForm").addEventListener("submit",(e)=>{
+  const data=calculate(e,{silent:false});
+  if(data){$("calcStatus").innerHTML="Calculation updated. Results are based on your current inputs.";}
+});
+
 $("clearBtn").addEventListener("click",()=>{
   $("salaryForm").reset();
   $("salary").value="";
@@ -938,6 +942,7 @@ $("clearBtn").addEventListener("click",()=>{
   $("retirement").value=0;$("health").value=0;$("equity").value=0;$("ptoValue").value=0;$("otherBenefits").value=0;
   $("taxCountry").value="generic";$("taxRate").value=0;$("employeeRet").value=0;$("employeeInsurance").value=0;$("otherDeductions").value=0;
   $("error").textContent="";$("result").style.display="none";window.__salaryData=null;history.replaceState(null,"",location.pathname);setTheme(false);applyPreset("standard");
+  $("calcStatus").innerHTML="Enter the basic details above and calculate instantly. Advanced options are available below when you need them.";
   history.replaceState(null,"",location.pathname);
 });
 
