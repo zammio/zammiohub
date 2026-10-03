@@ -688,7 +688,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="grid">
 <div class="field"><label for="targetSalary">Target Annual Employee Salary</label><input id="targetSalary" type="number" min="0" step="any" placeholder="e.g. 60000" placeholder="e.g. 60000"></div>
 <div class="field"><label for="freelanceHours">Work Hours / Week</label><input id="freelanceHours" type="number" min=".01" max="168" step="any" placeholder="e.g. 40"></div>
-<div class="field"><label for="freelanceWeeks">Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" placeholder="e.g. 46" list="weeksOptions"></div>
+<div class="field"><label for="freelanceWeeks">Working Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" placeholder="e.g. 46" list="weeksOptions"></div>
 <div class="field"><label for="nonbillable">Non-Billable Time (%)</label><input id="nonbillable" type="number" min="0" max="99.9" step="any" placeholder="e.g. 20" placeholder="e.g. 20"></div>
 <div class="field"><label for="businessCosts">Annual Business Costs</label><input id="businessCosts" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
 <div class="field"><label for="platformFee">Platform / Payment Fee (%)</label><input id="platformFee" type="number" min="0" max="100" step="any" placeholder="e.g. 3" placeholder="e.g. 3"></div>
@@ -884,8 +884,8 @@ function renderSalaryTransparency({salary,freq,m,standardBase,adjustedBase,unpai
   const body=$("adjustedTableBody"), note=$("adjustedTableNote"), grid=$("assumptionsGrid");
   if(!body || !grid)return;
   const periodMap=[
-    ["Hourly",1/((freq==="hourly")?1:1),standardBase/(52*m.hours||1),adjustedBase/(52*m.hours||1)],
-    ["Daily",1,standardBase/(52*m.days||1),adjustedBase/(52*m.days||1)],
+    ["Hourly",1/((freq==="hourly")?1:1),standardBase/(52*m.hours||1),adjustedBase/((m.hours*m.paidWeeks)||1)],
+    ["Daily",1,standardBase/(52*m.days||1),adjustedBase/(m.paidWorkDays||1)],
     ["Weekly",1,standardBase/52,adjustedBase/52],
     ["Biweekly",1,standardBase/26,adjustedBase/26],
     ["Semimonthly",1,standardBase/24,adjustedBase/24],
@@ -1396,7 +1396,7 @@ $("freelanceBtn").addEventListener("click",()=>{
   const target=num("targetSalary"),hours=num("freelanceHours"),weeks=clamp(num("freelanceWeeks"),1,52);
   const nb=clamp(num("nonbillable"),0,99.9)/100,cost=num("businessCosts");
   const fee=clamp(num("platformFee"),0,100)/100,tax=clamp(num("taxReserve"),0,99.9)/100,margin=clamp(num("freelanceMargin"),0,99.9)/100;
-  if(!(target>0)||!(hours>0)||!(num("freelanceWeeks")>0)){ $("freelanceResult").innerHTML="<p class='error'>Enter a valid target salary, work-hours value and billable weeks.</p>";return; }
+  if(!(target>0)||!(hours>0)||!(num("freelanceWeeks")>0)){ $("freelanceResult").innerHTML="<p class='error'>Enter a valid target salary, work-hours value and working weeks.</p>";return; }
   const grossWorkHours=hours*weeks;
   const billableHours=Math.max(0.01,grossWorkHours*(1-nb));
   const breakEven=(target+cost)/billableHours;
@@ -1407,7 +1407,7 @@ $("freelanceBtn").addEventListener("click",()=>{
     "<div class='kpi'><b>Break-even rate</b><strong>"+money(breakEven)+"/hr</strong></div>"+
     "<div class='kpi'><b>After platform fee</b><strong>"+money(feeAdjusted)+"/hr</strong></div>"+
     "<div class='kpi'><b>Target rate</b><strong>"+money(targetRate)+"/hr</strong></div></div>"+
-    "<p class='note'>Based on "+hours+" hours/week, "+weeks+" billable weeks/year, "+(nb*100).toFixed(1)+"% non-billable time and "+money(cost)+" annual business costs. Tax reserve and margin are planning assumptions.</p>";
+    "<p class='note'>Based on "+hours+" hours/week, "+weeks+" working weeks/year, "+(nb*100).toFixed(1)+"% non-billable time and "+money(cost)+" annual business costs. Tax reserve and margin are planning assumptions.</p>";
 });
 
 $("freelanceResetBtn").addEventListener("click",()=>{
