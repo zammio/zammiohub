@@ -111,6 +111,7 @@ details[open]>summary:after{content:"−"}
 .compare-wrap{overflow-x:auto}
 .tool-result{margin-top:16px}
 .kpi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.tool-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.tool-actions button{min-width:150px}.tool-reset{background:#e5eaee;color:var(--text)}.tool-reset:hover{background:#d9e0e5}
 .kpi{border:1px solid var(--border);border-radius:10px;padding:14px;background:#fff}
 .kpi b{display:block;color:var(--muted);font-size:13px}.kpi strong{font-size:20px;color:var(--primary2)}
 .content{margin-top:38px}
@@ -128,7 +129,7 @@ footer{border-top:1px solid var(--border);margin-top:45px;padding-top:22px;color
 @media(max-width:760px){.grid,.two,.three{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tabs .tab{width:100%;min-width:0}.tabs .tab:nth-child(3){grid-column:1 / -1;max-width:280px;justify-self:center;width:100%}}
 @media(max-width:480px){
   .container{padding:18px 14px 55px}.form,.result-body{padding:16px}.advanced-body{padding:0 16px 18px}
-  .metrics,.kpi-grid{grid-template-columns:1fr}.actions button,.result-actions button{width:100%}
+  .metrics,.kpi-grid{grid-template-columns:1fr}.actions button,.result-actions button,.tool-actions button{width:100%;min-width:0}
   .content p,.content li{font-size:16px}.tabs{padding:12px 14px}.panel{padding:16px}
 }
 @media print{
@@ -659,7 +660,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="field"><label for="bSigning">One-Time Signing Bonus</label><input id="bSigning" type="number" min="0" step="any" placeholder="e.g. 0"></div>
 </div>
 </div>
-<button class="primary" type="button" id="compareBtn">Compare Offers</button>
+<div class="tool-actions"><button class="primary" type="button" id="compareBtn">Compare Offers</button><button class="tool-reset" type="button" id="compareResetBtn">Reset</button></div>
 <div id="compareResult" class="tool-result"></div>
 </div>
 
@@ -677,7 +678,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="field"><label for="promotionYear">Promotion Year (0 = none)</label><input id="promotionYear" type="number" min="0" max="50" step="1" placeholder="e.g. 3" list="yearsOptions"></div>
 <div class="field"><label for="promotionPct">Promotion Increase (%)</label><input id="promotionPct" type="number" min="-100" max="1000" step="any" placeholder="e.g. 10" placeholder="e.g. 10"></div>
 </div>
-<button class="primary" type="button" id="raiseBtn">Calculate Growth</button>
+<div class="tool-actions"><button class="primary" type="button" id="raiseBtn">Calculate Growth</button><button class="tool-reset" type="button" id="raiseResetBtn">Reset</button></div>
 <div id="raiseResult" class="tool-result"></div>
 </div>
 
@@ -694,7 +695,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="field"><label for="taxReserve">Tax Reserve (%)</label><input id="taxReserve" type="number" min="0" max="99.9" step="any" placeholder="e.g. 20" placeholder="e.g. 20"></div>
 <div class="field"><label for="freelanceMargin">Target Profit / Safety Margin (%)</label><input id="freelanceMargin" type="number" min="0" max="99.9" step="any" placeholder="e.g. 15" placeholder="e.g. 15"></div>
 </div>
-<button class="primary" type="button" id="freelanceBtn">Calculate Freelance Rate</button>
+<div class="tool-actions"><button class="primary" type="button" id="freelanceBtn">Calculate Freelance Rate</button><button class="tool-reset" type="button" id="freelanceResetBtn">Reset</button></div>
 <div id="freelanceResult" class="tool-result"></div>
 </div>
 
@@ -1361,6 +1362,11 @@ $("compareBtn").addEventListener("click",()=>{
     "</table></div><p class='note'>This comparison summarizes the numerical assumptions you entered. It does not account for every job-quality factor.</p>";
 });
 
+$("compareResetBtn").addEventListener("click",()=>{
+  ["aSalary","aHours","aDays","aPto","aBonus","aCommission","aBenefits","aSigning","bSalary","bHours","bDays","bPto","bBonus","bCommission","bBenefits","bSigning"].forEach(id=>$(id).value="");
+  $("aName").value="Job A"; $("bName").value="Job B"; $("compareResult").innerHTML="";
+});
+
 $("raiseBtn").addEventListener("click",()=>{
   let salary=num("currentSalary");
   const pct=num("raisePct")/100;
@@ -1381,6 +1387,11 @@ $("raiseBtn").addEventListener("click",()=>{
     "</table></div><div class='kpi-grid'><div class='kpi'><b>Cumulative projected salary</b><strong>"+money(cumulative)+"</strong></div><div class='kpi'><b>Annual raise</b><strong>"+(pct*100).toFixed(2)+"%</strong></div><div class='kpi'><b>Promotion increase</b><strong>"+(promotionYear?promotionPct*100:0).toFixed(2)+"%</strong></div></div>";
 });
 
+$("raiseResetBtn").addEventListener("click",()=>{
+  ["currentSalary","raisePct","years","inflationPct","promotionYear","promotionPct"].forEach(id=>$(id).value="");
+  $("raiseResult").innerHTML="";
+});
+
 $("freelanceBtn").addEventListener("click",()=>{
   const target=num("targetSalary"),hours=num("freelanceHours"),weeks=clamp(num("freelanceWeeks"),1,52);
   const nb=clamp(num("nonbillable"),0,99.9)/100,cost=num("businessCosts");
@@ -1397,6 +1408,11 @@ $("freelanceBtn").addEventListener("click",()=>{
     "<div class='kpi'><b>After platform fee</b><strong>"+money(feeAdjusted)+"/hr</strong></div>"+
     "<div class='kpi'><b>Target rate</b><strong>"+money(targetRate)+"/hr</strong></div></div>"+
     "<p class='note'>Based on "+hours+" hours/week, "+weeks+" billable weeks/year, "+(nb*100).toFixed(1)+"% non-billable time and "+money(cost)+" annual business costs. Tax reserve and margin are planning assumptions.</p>";
+});
+
+$("freelanceResetBtn").addEventListener("click",()=>{
+  ["targetSalary","freelanceHours","freelanceWeeks","nonbillable","businessCosts","platformFee","taxReserve","freelanceMargin"].forEach(id=>$(id).value="");
+  $("freelanceResult").innerHTML="";
 });
 
 /* Restore a shareable calculation if present. */
