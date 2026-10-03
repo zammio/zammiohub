@@ -298,6 +298,40 @@ details>summary:after{float:none;margin-left:auto;flex:0 0 auto}
 .guide-details{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:10px 0;}
 .guide-details>summary{background:var(--soft);padding:14px 16px;}
 .guide-details .compact-body{padding:0 16px 14px;}
+
+/* International transparency upgrade: unadjusted vs adjusted salary and calculation assumptions. */
+.comparison-card,.assumptions-card{margin-top:18px;border:1px solid var(--border);border-radius:14px;background:var(--white);overflow:hidden;}
+.comparison-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:16px 18px;border-bottom:1px solid var(--border);background:var(--soft);}
+.comparison-head h3{margin:0 0 4px;font-size:18px;}
+.comparison-head p{margin:0;color:var(--muted);font-size:13px;max-width:760px;}
+.comparison-badge{flex:0 0 auto;border:1px solid var(--border);border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;color:var(--primary);background:var(--white);white-space:nowrap;}
+.comparison-table-wrap{overflow-x:auto;}
+.comparison-table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px;}
+.comparison-table th,.comparison-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:right;vertical-align:middle;}
+.comparison-table th:first-child,.comparison-table td:first-child{text-align:left;}
+.comparison-table th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);background:#fbfcfd;}
+.comparison-table tbody tr:last-child td{border-bottom:0;}
+.comparison-table tbody tr:nth-child(even){background:rgba(246,249,251,.55);}
+.comparison-table .difference{font-weight:800;}
+.comparison-note{margin:0;padding:11px 18px 15px;color:var(--muted);font-size:12px;}
+.assumptions-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:16px 18px;}
+.assumption-item{border:1px solid var(--border);border-radius:10px;padding:11px 12px;background:var(--white);}
+.assumption-item span{display:block;color:var(--muted);font-size:11px;margin-bottom:3px;}
+.assumption-item strong{display:block;font-size:14px;}
+body.dark .comparison-card,body.dark .assumptions-card{background:#11181d;border-color:#33444f;}
+body.dark .comparison-head{background:#182127;border-color:#33444f;}
+body.dark .comparison-table th{background:#151d22;}
+body.dark .comparison-table tbody tr:nth-child(even){background:rgba(255,255,255,.025);}
+body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
+@media(max-width:760px){
+  .comparison-head{padding:14px;gap:8px;}
+  .comparison-head h3{font-size:16px;}
+  .comparison-badge{font-size:10px;padding:4px 7px;}
+  .comparison-table{font-size:12px;}
+  .comparison-table th,.comparison-table td{padding:10px 11px;}
+  .assumptions-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px;gap:8px;}
+}
+@media(max-width:390px){.comparison-badge{display:none}.assumptions-grid{grid-template-columns:1fr 1fr}.assumption-item{padding:9px 10px}.assumption-item strong{font-size:13px}.comparison-note{padding-left:14px;padding-right:14px;}}
 </style>
 </head>
 
@@ -418,6 +452,27 @@ details>summary:after{float:none;margin-left:auto;flex:0 0 auto}
 <div class="metric"><b>Hours Actually Worked</b><span id="workedHoursOut"></span></div>
 <div class="metric"><b>Employer Benefits Value</b><span id="benefitsOut"></span></div>
 </div>
+
+<section class="comparison-card" id="salaryComparison" aria-labelledby="salaryComparisonTitle">
+  <div class="comparison-head">
+    <div><h3 id="salaryComparisonTitle">Unadjusted vs Adjusted Salary</h3><p>Transparent base-salary conversion. Adjusted figures reflect only unpaid weeks/days you entered; paid vacation, holidays and sick leave do not reduce gross salary.</p></div>
+    <span class="comparison-badge">Calculation detail</span>
+  </div>
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead><tr><th scope="col">Pay Period</th><th scope="col">Standard / Unadjusted</th><th scope="col">Adjusted for Unpaid Time</th><th scope="col">Difference</th></tr></thead>
+      <tbody id="adjustedTableBody"></tbody>
+    </table>
+  </div>
+  <p class="comparison-note" id="adjustedTableNote"></p>
+</section>
+
+<section class="assumptions-card" id="calculationAssumptions" aria-labelledby="assumptionsTitle">
+  <div class="comparison-head">
+    <div><h3 id="assumptionsTitle">Calculation Assumptions</h3><p>A compact audit trail showing exactly which schedule values drive the result.</p></div>
+  </div>
+  <div class="assumptions-grid" id="assumptionsGrid"></div>
+</section>
 
 <div class="result-actions">
 <button class="outline" type="button" id="copyBtn" aria-label="Copy salary calculation results">Copy Results</button>
@@ -802,6 +857,43 @@ function annualBaseFromInput(salary,freq,m){
   return annualized*scheduleFactor;
 }
 
+function renderSalaryTransparency({salary,freq,m,standardBase,adjustedBase,unpaidImpact,base,cash}){
+  const body=$("adjustedTableBody"), note=$("adjustedTableNote"), grid=$("assumptionsGrid");
+  if(!body || !grid)return;
+  const periodMap=[
+    ["Hourly",1/((freq==="hourly")?1:1),standardBase/(52*m.hours||1),adjustedBase/(52*m.hours||1)],
+    ["Daily",1,standardBase/(52*m.days||1),adjustedBase/(52*m.days||1)],
+    ["Weekly",1,standardBase/52,adjustedBase/52],
+    ["Biweekly",1,standardBase/26,adjustedBase/26],
+    ["Semimonthly",1,standardBase/24,adjustedBase/24],
+    ["Monthly",1,standardBase/12,adjustedBase/12],
+    ["Quarterly",1,standardBase/4,adjustedBase/4],
+    ["Annual",1,standardBase,adjustedBase]
+  ];
+  body.innerHTML=periodMap.map(([label,_u,std,adj])=>{
+    const diff=Math.max(0,std-adj);
+    return `<tr><th scope="row">${label}</th><td>${money(std)}</td><td>${money(adj)}</td><td class="difference">${diff>0?"− "+money(diff):"—"}</td></tr>`;
+  }).join("");
+  const unpaidDays=m.unpaidWeeks*m.days+m.unpaidDays;
+  note.textContent=unpaidDays>0
+    ? `Adjusted base salary is ${money(adjustedBase)}, ${money(unpaidImpact)} below the ${money(standardBase)} unadjusted annualized base because ${unpaidDays.toFixed(2)} unpaid workday-equivalent day(s) were entered. Paid vacation, holidays and sick leave remain paid time and do not reduce gross base salary.`
+    : `No unpaid time is entered, so standard and adjusted base salary are identical at ${money(standardBase)}. Paid vacation, holidays and sick leave affect effective hours worked, not gross base salary.`;
+  const actualWorkDays=Math.max(0,m.paidWorkDays-m.paidLeaveDays);
+  const items=[
+    ["Pay frequency",{hourly:"Hourly",daily:"Daily",weekly:"Weekly",biweekly:"Biweekly",semimonthly:"Semimonthly",monthly:"Monthly",quarterly:"Quarterly",annual:"Annual"}[freq]||freq],
+    ["Hours per week",m.hours.toLocaleString(undefined,{maximumFractionDigits:2})],
+    ["Workdays per week",m.days.toLocaleString(undefined,{maximumFractionDigits:2})],
+    ["Scheduled workdays / year",m.scheduledDays.toLocaleString(undefined,{maximumFractionDigits:2})],
+    ["Unpaid time",unpaidDays.toLocaleString(undefined,{maximumFractionDigits:2})+" day(s)"],
+    ["Paid-work-week equivalent",m.paidWeeks.toLocaleString(undefined,{maximumFractionDigits:2})+" week(s)"],
+    ["Paid PTO / holidays / sick",m.paidLeaveDays.toLocaleString(undefined,{maximumFractionDigits:2})+" day(s)"],
+    ["Actual workdays / year",actualWorkDays.toLocaleString(undefined,{maximumFractionDigits:2})],
+    ["Actual hours worked / year",m.workedHours.toLocaleString(undefined,{maximumFractionDigits:2})+" hours"],
+    ["Unpaid-time salary impact",money(unpaidImpact)]
+  ];
+  grid.innerHTML=items.map(([label,value])=>`<div class="assumption-item"><span>${label}</span><strong>${value}</strong></div>`).join("");
+}
+
 function calculate(e,options={}){
   if(e)e.preventDefault();
   const error=$("error");
@@ -819,6 +911,10 @@ function calculate(e,options={}){
 
   const freq=$("frequency").value;
   const base=annualBaseFromInput(salary,freq,m);
+  // Standard/unadjusted annualization ignores unpaid time; adjusted uses the entered unpaid schedule.
+  const standardBase = annualBaseFromInput(salary,freq,{...m,paidWeeks:52,paidWorkDays:52*m.days});
+  const adjustedBase = base;
+  const unpaidImpact = Math.max(0,standardBase-adjustedBase);
   const scheduledHours=m.hours*m.paidWeeks;
   const regularHourly=scheduledHours>0?base/scheduledHours:0;
   const otHours=num("otHours"), dtHours=num("dtHours");
@@ -875,6 +971,7 @@ function calculate(e,options={}){
     "<p><strong>6. Advanced adjustments:</strong> overtime, bonuses, commissions, other cash earnings, employer benefits and generic employee deductions are included only when entered.</p>"+
     "<div class='formula-line'><strong>Current gross cash:</strong> "+money(cash)+" &nbsp;•&nbsp; <strong>Total compensation:</strong> "+money(totalComp)+" &nbsp;•&nbsp; <strong>Estimated take-home:</strong> "+money(takeHome)+"</div>";
 
+  renderSalaryTransparency({salary,freq,m,standardBase,adjustedBase,unpaidImpact,base,cash});
   updateAdvancedStatuses();
 
   $("breakdownText").innerHTML =
@@ -890,7 +987,7 @@ function calculate(e,options={}){
     "<p><strong>Time actually worked:</strong> "+m.workedHours.toFixed(2)+" hours/year after paid time off.</p>";
 
   $("result").style.display="block";
-  const data={salary,freq,currency:$("currency").value,model:m,base,regularHourly,annualRegularHourly,otPay,dtPay,bonus,commission,other,signing,cash,employerBenefits,totalComp,tax,deductions,takeHome,actualEffectiveHourly};
+  const data={salary,freq,currency:$("currency").value,model:m,base,regularHourly,annualRegularHourly,otPay,dtPay,bonus,commission,other,signing,cash,employerBenefits,totalComp,tax,deductions,takeHome,actualEffectiveHourly,standardBase,adjustedBase,unpaidImpact,assumptions:m};
   window.__salaryData=data;
   drawCharts(data);
   if(!options.silent) $("result").scrollIntoView({behavior:"smooth",block:"start"});
@@ -918,6 +1015,9 @@ function resultText(){
     "Effective hourly rate: "+$("effectiveOut").textContent,
     "Hours actually worked: "+$("workedHoursOut").textContent,
     "Employer benefits value: "+$("benefitsOut").textContent,
+    "Standard / unadjusted annualized base: "+(window.__salaryData?money(window.__salaryData.standardBase):""),
+    "Adjusted annualized base: "+(window.__salaryData?money(window.__salaryData.adjustedBase):""),
+    "Unpaid-time salary impact: "+(window.__salaryData?money(window.__salaryData.unpaidImpact):""),
     "",
     "Calculated with ZammioHub: https://zammiohub.com/calculators/salary-calculator"
   ].join("\n");
