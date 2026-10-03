@@ -333,6 +333,14 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 }
 @media(max-width:390px){.comparison-badge{display:none}.assumptions-grid{grid-template-columns:1fr 1fr}.assumption-item{padding:9px 10px}.assumption-item strong{font-size:13px}.comparison-note{padding-left:14px;padding-right:14px;}}
 </style>
+
+<style id="desktop-tab-and-defaults-fixes">
+@media (min-width:761px){
+  #salaryNav.salary-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;overflow:hidden;white-space:normal;align-items:stretch;}
+  #salaryNav.salary-nav button{width:100%;min-width:0;min-height:46px;padding:11px 10px;font-size:14px;line-height:1.25;}
+  #salaryNav.salary-nav button.active{padding-bottom:8px;}
+}
+</style>
 </head>
 
 <body>
@@ -345,7 +353,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <p class="lead">Convert salary between pay periods and model overtime, paid and unpaid time off, bonuses, commission, employer benefits, deductions, estimated take-home pay and effective hourly value.</p>
 
 <div class="theme-row">
-<button class="theme-toggle" id="themeBtn" type="button" aria-pressed="false">🌙 Dark Mode</button>
+<button class="theme-toggle" id="themeBtn" type="button" aria-pressed="false">Dark Mode</button>
 </div>
 <nav class="salary-nav" id="salaryNav" aria-label="Salary calculator sections" role="tablist">
 <button type="button" class="active" data-nav="calculator" role="tab" aria-selected="true" aria-controls="salaryCalculator">Calculator</button>
@@ -610,7 +618,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <details class="tools-details" id="additionalTools" open>
 <summary>Additional Salary Tools<span class="summary-help">Job offers, raise projections and employee-to-freelance planning are optional.</span></summary>
 <div class="tools-inner">
-<p class="tool-intro">Optional tools for users who want to compare offers, model future raises or estimate an employee-to-freelance rate. The basic salary calculator above works independently.</p>
+<p class="tool-intro">Enter your own figures in these optional tools. Fields are intentionally blank so sample numbers are not mistaken for your data. The basic salary calculator above works independently.</p>
 <div class="panel active" id="compare">
 <h2 style="margin-top:0">Job Offer Comparison</h2>
 <p>Compare two offers using cash compensation, benefits, PTO, work schedule, effective hourly value and estimated total compensation.</p>
@@ -618,26 +626,26 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div>
 <h3>Job A</h3>
 <div class="field"><label for="aName">Company / Offer Name</label><input id="aName" type="text" value="Job A"></div>
-<div class="field"><label for="aSalary">Annual Base Salary</label><input id="aSalary" type="number" min="0" step="any" value="60000"></div>
-<div class="field"><label for="aHours">Hours / Week</label><input id="aHours" type="number" min=".01" max="168" step="any" value="40"></div>
-<div class="field"><label for="aDays">Workdays / Week</label><input id="aDays" type="number" min=".1" max="7" step="any" value="5"></div>
-<div class="field"><label for="aPto">Paid Time Off Days</label><input id="aPto" type="number" min="0" max="366" step="any" value="20"></div>
-<div class="field"><label for="aBonus">Annual Bonus</label><input id="aBonus" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="aCommission">Annual Commission</label><input id="aCommission" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="aBenefits">Annual Benefits Value</label><input id="aBenefits" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="aSigning">One-Time Signing Bonus</label><input id="aSigning" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="aSalary">Annual Base Salary</label><input id="aSalary" type="number" min="0" step="any" placeholder="e.g. 60000"></div>
+<div class="field"><label for="aHours">Hours / Week <span class="field-help">Standard assumption: 40</span></label><input id="aHours" type="number" min=".01" max="168" step="any" placeholder="e.g. 40"></div>
+<div class="field"><label for="aDays">Workdays / Week</label><input id="aDays" type="number" min=".1" max="7" step="any" placeholder="e.g. 5"></div>
+<div class="field"><label for="aPto">Paid Time Off Days</label><input id="aPto" type="number" min="0" max="366" step="any" placeholder="e.g. 20"></div>
+<div class="field"><label for="aBonus">Annual Bonus</label><input id="aBonus" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
+<div class="field"><label for="aCommission">Annual Commission</label><input id="aCommission" type="number" min="0" step="any" placeholder="e.g. 0"></div>
+<div class="field"><label for="aBenefits">Annual Benefits Value</label><input id="aBenefits" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
+<div class="field"><label for="aSigning">One-Time Signing Bonus</label><input id="aSigning" type="number" min="0" step="any" placeholder="e.g. 0"></div>
 </div>
 <div>
 <h3>Job B</h3>
 <div class="field"><label for="bName">Company / Offer Name</label><input id="bName" type="text" value="Job B"></div>
-<div class="field"><label for="bSalary">Annual Base Salary</label><input id="bSalary" type="number" min="0" step="any" value="65000"></div>
-<div class="field"><label for="bHours">Hours / Week</label><input id="bHours" type="number" min=".01" max="168" step="any" value="45"></div>
-<div class="field"><label for="bDays">Workdays / Week</label><input id="bDays" type="number" min=".1" max="7" step="any" value="5"></div>
-<div class="field"><label for="bPto">Paid Time Off Days</label><input id="bPto" type="number" min="0" max="366" step="any" value="10"></div>
-<div class="field"><label for="bBonus">Annual Bonus</label><input id="bBonus" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="bCommission">Annual Commission</label><input id="bCommission" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="bBenefits">Annual Benefits Value</label><input id="bBenefits" type="number" min="0" step="any" value="0"></div>
-<div class="field"><label for="bSigning">One-Time Signing Bonus</label><input id="bSigning" type="number" min="0" step="any" value="0"></div>
+<div class="field"><label for="bSalary">Annual Base Salary</label><input id="bSalary" type="number" min="0" step="any" placeholder="e.g. 65000"></div>
+<div class="field"><label for="bHours">Hours / Week <span class="field-help">Standard assumption: 40</span></label><input id="bHours" type="number" min=".01" max="168" step="any" placeholder="e.g. 40"></div>
+<div class="field"><label for="bDays">Workdays / Week</label><input id="bDays" type="number" min=".1" max="7" step="any" placeholder="e.g. 5"></div>
+<div class="field"><label for="bPto">Paid Time Off Days</label><input id="bPto" type="number" min="0" max="366" step="any" placeholder="e.g. 20"></div>
+<div class="field"><label for="bBonus">Annual Bonus</label><input id="bBonus" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
+<div class="field"><label for="bCommission">Annual Commission</label><input id="bCommission" type="number" min="0" step="any" placeholder="e.g. 0"></div>
+<div class="field"><label for="bBenefits">Annual Benefits Value</label><input id="bBenefits" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
+<div class="field"><label for="bSigning">One-Time Signing Bonus</label><input id="bSigning" type="number" min="0" step="any" placeholder="e.g. 0"></div>
 </div>
 </div>
 <button class="primary" type="button" id="compareBtn">Compare Offers</button>
@@ -648,12 +656,12 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <h2 style="margin-top:0">Salary Raise & Future Growth Calculator</h2>
 <p>Project annual salary growth and optionally account for inflation and a future promotion.</p>
 <div class="grid">
-<div class="field"><label for="currentSalary">Current Annual Salary</label><input id="currentSalary" type="number" min="0" step="any" value="60000"></div>
-<div class="field"><label for="raisePct">Annual Raise (%)</label><input id="raisePct" type="number" min="-100" max="1000" step="any" value="5"></div>
-<div class="field"><label for="years">Years to Project</label><input id="years" type="number" min="1" max="50" step="1" value="5"></div>
-<div class="field"><label for="inflationPct">Annual Inflation (%)</label><input id="inflationPct" type="number" min="-50" max="100" step="any" value="0"></div>
-<div class="field"><label for="promotionYear">Promotion Year (0 = none)</label><input id="promotionYear" type="number" min="0" max="50" step="1" value="0"></div>
-<div class="field"><label for="promotionPct">Promotion Increase (%)</label><input id="promotionPct" type="number" min="-100" max="1000" step="any" value="0"></div>
+<div class="field"><label for="currentSalary">Current Annual Salary</label><input id="currentSalary" type="number" min="0" step="any" placeholder="e.g. 60000" placeholder="e.g. 60000"></div>
+<div class="field"><label for="raisePct">Annual Raise (%)</label><input id="raisePct" type="number" min="-100" max="1000" step="any" placeholder="e.g. 5"></div>
+<div class="field"><label for="years">Years to Project</label><input id="years" type="number" min="1" max="50" step="1" placeholder="e.g. 5"></div>
+<div class="field"><label for="inflationPct">Annual Inflation (%)</label><input id="inflationPct" type="number" min="-50" max="100" step="any" placeholder="e.g. 2" placeholder="e.g. 2"></div>
+<div class="field"><label for="promotionYear">Promotion Year (0 = none)</label><input id="promotionYear" type="number" min="0" max="50" step="1" placeholder="e.g. 3" placeholder="e.g. 3"></div>
+<div class="field"><label for="promotionPct">Promotion Increase (%)</label><input id="promotionPct" type="number" min="-100" max="1000" step="any" placeholder="e.g. 10" placeholder="e.g. 10"></div>
 </div>
 <button class="primary" type="button" id="raiseBtn">Calculate Growth</button>
 <div id="raiseResult" class="tool-result"></div>
@@ -663,14 +671,14 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <h2 style="margin-top:0">Employee to Freelance Rate Calculator</h2>
 <p>Estimate the hourly freelance rate required to replace a target employee compensation after non-billable time and business costs.</p>
 <div class="grid">
-<div class="field"><label for="targetSalary">Target Annual Employee Salary</label><input id="targetSalary" type="number" min="0" step="any" value="60000"></div>
-<div class="field"><label for="freelanceHours">Work Hours / Week</label><input id="freelanceHours" type="number" min=".01" max="168" step="any" value="40"></div>
-<div class="field"><label for="freelanceWeeks">Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" value="46"></div>
-<div class="field"><label for="nonbillable">Non-Billable Time (%)</label><input id="nonbillable" type="number" min="0" max="99.9" step="any" value="20"></div>
-<div class="field"><label for="businessCosts">Annual Business Costs</label><input id="businessCosts" type="number" min="0" step="any" value="5000"></div>
-<div class="field"><label for="platformFee">Platform / Payment Fee (%)</label><input id="platformFee" type="number" min="0" max="100" step="any" value="0"></div>
-<div class="field"><label for="taxReserve">Tax Reserve (%)</label><input id="taxReserve" type="number" min="0" max="99.9" step="any" value="0"></div>
-<div class="field"><label for="freelanceMargin">Target Profit / Safety Margin (%)</label><input id="freelanceMargin" type="number" min="0" max="99.9" step="any" value="0"></div>
+<div class="field"><label for="targetSalary">Target Annual Employee Salary</label><input id="targetSalary" type="number" min="0" step="any" placeholder="e.g. 60000" placeholder="e.g. 60000"></div>
+<div class="field"><label for="freelanceHours">Work Hours / Week</label><input id="freelanceHours" type="number" min=".01" max="168" step="any" placeholder="e.g. 40"></div>
+<div class="field"><label for="freelanceWeeks">Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" placeholder="e.g. 46" placeholder="e.g. 46"></div>
+<div class="field"><label for="nonbillable">Non-Billable Time (%)</label><input id="nonbillable" type="number" min="0" max="99.9" step="any" placeholder="e.g. 20" placeholder="e.g. 20"></div>
+<div class="field"><label for="businessCosts">Annual Business Costs</label><input id="businessCosts" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
+<div class="field"><label for="platformFee">Platform / Payment Fee (%)</label><input id="platformFee" type="number" min="0" max="100" step="any" placeholder="e.g. 3" placeholder="e.g. 3"></div>
+<div class="field"><label for="taxReserve">Tax Reserve (%)</label><input id="taxReserve" type="number" min="0" max="99.9" step="any" placeholder="e.g. 20" placeholder="e.g. 20"></div>
+<div class="field"><label for="freelanceMargin">Target Profit / Safety Margin (%)</label><input id="freelanceMargin" type="number" min="0" max="99.9" step="any" placeholder="e.g. 15" placeholder="e.g. 15"></div>
 </div>
 <button class="primary" type="button" id="freelanceBtn">Calculate Freelance Rate</button>
 <div id="freelanceResult" class="tool-result"></div>
@@ -1076,7 +1084,7 @@ function makePdfReport(){
 function offerModel(prefix){
   const salary=num(prefix+"Salary"),hours=num(prefix+"Hours"),days=num(prefix+"Days"),pto=clamp(num(prefix+"Pto"),0,366);
   const bonus=num(prefix+"Bonus"),commission=num(prefix+"Commission"),benefits=num(prefix+"Benefits"),signing=num(prefix+"Signing");
-  if(!(salary>0)&&!(hours>0))return null;
+  if(!(salary>0)||!(hours>0)||!(days>0))return null;
   const scheduledDays=52*days;
   const workedDays=Math.max(1,scheduledDays-pto);
   const workedHours=workedDays*(hours/Math.max(days,0.1));
@@ -1354,7 +1362,7 @@ $("raiseBtn").addEventListener("click",()=>{
   const years=clamp(Math.round(num("years")),1,50);
   const promotionYear=clamp(Math.round(num("promotionYear")),0,years);
   const promotionPct=num("promotionPct")/100;
-  if(!(salary>0)){ $("raiseResult").innerHTML="<p class='error'>Enter a valid current annual salary.</p>";return; }
+  if(!(salary>0)||!(num("years")>0)){ $("raiseResult").innerHTML="<p class='error'>Enter a valid current annual salary and number of years to project.</p>";return; }
   let cumulative=0,rows="";
   for(let y=1;y<=years;y++){
     salary*=1+pct;
@@ -1371,7 +1379,7 @@ $("freelanceBtn").addEventListener("click",()=>{
   const target=num("targetSalary"),hours=num("freelanceHours"),weeks=clamp(num("freelanceWeeks"),1,52);
   const nb=clamp(num("nonbillable"),0,99.9)/100,cost=num("businessCosts");
   const fee=clamp(num("platformFee"),0,100)/100,tax=clamp(num("taxReserve"),0,99.9)/100,margin=clamp(num("freelanceMargin"),0,99.9)/100;
-  if(!(target>=0)||!(hours>0)){ $("freelanceResult").innerHTML="<p class='error'>Enter a valid target salary and work-hours value.</p>";return; }
+  if(!(target>0)||!(hours>0)||!(num("freelanceWeeks")>0)){ $("freelanceResult").innerHTML="<p class='error'>Enter a valid target salary, work-hours value and billable weeks.</p>";return; }
   const grossWorkHours=hours*weeks;
   const billableHours=Math.max(0.01,grossWorkHours*(1-nb));
   const breakEven=(target+cost)/billableHours;
