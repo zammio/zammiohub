@@ -151,9 +151,12 @@ body.dark .tabs{border-color:#33444f}
 body.dark .tab{background:#202c34;color:#e7edf1;border-color:#3a4b56}
 body.dark input::placeholder{color:#91a0a9}
 body.dark .secondary{background:#29353d;color:#e7edf1}
-.theme-row{display:flex;justify-content:flex-end;gap:8px;align-items:center;margin:2px 0 8px}
-.theme-toggle{background:#eef3f6;border:1px solid #d5dfe5;color:#27313a;padding:8px 12px;min-height:38px;font-size:13px;border-radius:8px}
+.title-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 12px}
+.title-row h1{margin:0;min-width:0}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:0 0 auto;background:#eef3f6;border:1px solid #d5dfe5;color:#27313a;padding:8px 12px;min-height:38px;font-size:13px;font-weight:700;border-radius:999px;cursor:pointer;white-space:nowrap}
 body.dark .theme-toggle{background:#26343d;color:#fff;border-color:#455864}
+@media(max-width:520px){.title-row{align-items:flex-end;gap:10px;margin-bottom:8px}.title-row h1{font-size:clamp(30px,9vw,38px)}.theme-toggle{padding:7px 10px;min-height:36px;font-size:12px}}
+@media(max-width:360px){.title-row{display:grid;grid-template-columns:minmax(0,1fr);gap:7px}.theme-toggle{justify-self:end}}
 .invalid{border-color:#c62828!important;background:#fff7f7!important}
 body.dark .invalid{background:#2a1b1b!important;border-color:#ef6c6c!important}
 .field-help{font-size:12px;color:var(--muted);margin-top:5px}
@@ -239,7 +242,7 @@ body.dark .internal-link{background:#182229;border-color:#33444f;color:#bfe2f4}
 .currency-picker{position:relative;width:100%}.currency-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid #b9c5cc;color:var(--text);padding:9px 12px;min-height:52px;text-align:left;border-radius:8px}.currency-trigger:hover{border-color:#8da6b5}.currency-trigger-main{display:flex;align-items:center;gap:11px;min-width:0}.currency-flag{width:34px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:25px;line-height:1;flex:0 0 34px}.currency-trigger-text{display:flex;align-items:baseline;gap:8px;min-width:0;overflow:hidden}.currency-trigger-text strong{font-size:15px;letter-spacing:.3px;flex:0 0 auto}.currency-trigger-text span{font-size:15px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-chevron{font-size:23px;line-height:1;color:#64737c;flex:0 0 auto;margin-top:-5px}
 .currency-dialog{display:none;position:fixed;z-index:9999;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 28px));max-height:min(720px,calc(100vh - 34px));background:#fff;border:1px solid #d5dfe5;border-radius:18px;box-shadow:0 22px 70px rgba(0,0,0,.28);overflow:hidden}.currency-dialog.open{display:flex;flex-direction:column}.currency-dialog:before{content:"";position:fixed;z-index:-1;inset:-100vh -100vw;background:rgba(10,20,28,.42)}.currency-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:18px 20px 13px;border-bottom:1px solid var(--border)}.currency-dialog-head strong{display:block;font-size:19px;color:var(--primary2)}.currency-dialog-head span{display:block;margin-top:3px;color:var(--muted);font-size:12px}.currency-close{width:38px;min-width:38px;height:38px;padding:0;border-radius:50%;background:#eef3f6;color:#34444e;font-size:25px;line-height:1}.currency-search-wrap{position:relative;padding:14px 18px 8px;background:#fff}.currency-search-wrap input{padding-left:40px!important;border-radius:10px;min-height:48px;font-size:16px}.currency-search-icon{position:absolute;left:30px;top:25px;font-size:24px;line-height:1;color:#5d6c75;z-index:2}.currency-list-title{padding:7px 20px 9px;font-size:12px;font-weight:800;color:#8a969d;letter-spacing:.4px;text-transform:uppercase;background:#fff}.currency-list{overflow:auto;padding:0 8px 10px;-webkit-overflow-scrolling:touch}.currency-item{width:100%;display:flex;align-items:center;gap:12px;padding:11px 12px;border:0;border-bottom:1px solid #edf0f2;background:#fff;color:var(--text);text-align:left;border-radius:9px;min-height:58px}.currency-item:hover{background:#f4f8fa}.currency-item.selected{background:#eaf2ff;box-shadow:inset 3px 0 0 #17608a}.currency-item .flag{width:36px;flex:0 0 36px;text-align:center;font-size:26px;line-height:1}.currency-item .meta{display:flex;align-items:baseline;gap:9px;min-width:0;flex:1}.currency-item .code{font-weight:800;font-size:15px;letter-spacing:.35px;flex:0 0 auto}.currency-item .name{font-size:15px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-item .check{width:24px;flex:0 0 24px;text-align:center;font-size:22px;color:#1764c0;visibility:hidden}.currency-item.selected .check{visibility:visible}.currency-empty{padding:25px 15px;text-align:center;color:var(--muted);font-size:14px}
 body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-search-wrap,body.dark .currency-list-title,body.dark .currency-item{background:#182229;color:#e7edf1;border-color:#33444f}body.dark .currency-trigger-text span,body.dark .currency-dialog-head span,body.dark .currency-item .name{color:#b9c8d0}body.dark .currency-item{border-bottom-color:#2b3941}body.dark .currency-item:hover{background:#202c34}body.dark .currency-item.selected{background:#203a4a}body.dark .currency-close{background:#26343d;color:#fff}body.dark .currency-search-wrap input{background:#141e24;color:#e7edf1}
-@media(max-width:520px){.theme-row{margin:0 0 6px}.theme-toggle{padding:7px 10px;min-height:36px;font-size:12px}.currency-dialog{width:calc(100vw - 18px);max-height:calc(100vh - 20px);border-radius:15px}.currency-dialog-head{padding:15px 15px 11px}.currency-search-wrap{padding:12px 14px 7px}.currency-list-title{padding:7px 15px 8px}.currency-item{padding:10px 9px;min-height:56px}.currency-item .meta{gap:7px}.currency-item .name{font-size:14px}.currency-trigger-text span{font-size:14px}}
+@media(max-width:520px){.theme-toggle{padding:7px 10px;min-height:36px;font-size:12px}.currency-dialog{width:calc(100vw - 18px);max-height:calc(100vh - 20px);border-radius:15px}.currency-dialog-head{padding:15px 15px 11px}.currency-search-wrap{padding:12px 14px 7px}.currency-list-title{padding:7px 15px 8px}.currency-item{padding:10px 9px;min-height:56px}.currency-item .meta{gap:7px}.currency-item .name{font-size:14px}.currency-trigger-text span{font-size:14px}}
 
 .quick-start-label{font-size:15px;font-weight:800;color:var(--primary2);margin:0 0 7px}.quick-start-label span{font-size:12px;font-weight:400;color:var(--muted);margin-left:5px}.tools-card{overflow:visible}.tools-card details{background:#fff}.tools-card .panel h2{margin-top:0}.tools-card .panel p{margin-top:8px}
 @media(max-width:480px){.quick-start-label span{display:block;margin:2px 0 0}.quick-start-label{margin-bottom:9px}}
@@ -357,12 +360,10 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <a href="/">Home</a> › <a href="/calculators/">All Calculators</a> › Salary Calculator
 </nav>
 
+<div class="title-row">
 <h1>Salary Calculator</h1>
-<p class="lead">Convert salary between pay periods and model overtime, paid and unpaid time off, bonuses, commission, employer benefits, deductions, estimated take-home pay and effective hourly value.</p>
-
-<div class="theme-row">
-<button class="theme-toggle" id="themeBtn" type="button" aria-pressed="false">Dark Mode</button>
 </div>
+<p class="lead">Convert salary between pay periods and model overtime, paid and unpaid time off, bonuses, commission, employer benefits, deductions, estimated take-home pay and effective hourly value.</p>
 <nav class="salary-nav" id="salaryNav" aria-label="Salary calculator sections" role="tablist">
 <button type="button" class="active" data-nav="calculator" role="tab" aria-selected="true" aria-controls="salaryCalculator">Calculator</button>
 <button type="button" data-nav="compare" role="tab" aria-selected="false" aria-controls="compare">Compare Offers</button>
@@ -1183,14 +1184,6 @@ function validateField(el){
 }
 qsa("#salaryForm input").forEach(el=>el.addEventListener("blur",()=>validateField(el)));
 
-/* Theme toggle. Preference is intentionally stored only in the URL-free page state. */
-function setTheme(dark){
-  document.body.classList.toggle("dark",dark);
-  $("themeBtn").textContent=dark?"☀️ Light Mode":"🌙 Dark Mode";
-  $("themeBtn").setAttribute("aria-pressed",dark?"true":"false");
-}
-$("themeBtn").addEventListener("click",()=>setTheme(!document.body.classList.contains("dark")));
-
 /* Canvas charts: no external library required. */
 function drawCharts(data){
   const canvas=$("compChart");
@@ -1293,7 +1286,7 @@ $("clearBtn").addEventListener("click",()=>{
   $("bonus").value=0;$("commission").value=0;$("otherEarnings").value=0;$("signingBonus").value=0;
   $("retirement").value=0;$("health").value=0;$("equity").value=0;$("ptoValue").value=0;$("otherBenefits").value=0;
   $("taxCountry").value="generic";$("taxRate").value=0;$("employeeRet").value=0;$("employeeInsurance").value=0;$("otherDeductions").value=0;
-  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;if($("stickySummary")) $("stickySummary").classList.remove("visible");history.replaceState(null,"",location.pathname);setTheme(false);qsa(".preset").forEach(b=>b.classList.toggle("active",b.dataset.preset==="custom"));
+  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;if($("stickySummary")) $("stickySummary").classList.remove("visible");history.replaceState(null,"",location.pathname);qsa(".preset").forEach(b=>b.classList.toggle("active",b.dataset.preset==="custom"));
   $("calcStatus").innerHTML="Enter the basic details above and calculate instantly. Advanced options are available below when you need them.";
   qsa("#salaryForm details").forEach(d=>d.open=false);
   if($("additionalTools")) $("additionalTools").open=false;
@@ -1408,7 +1401,6 @@ $("freelanceBtn").addEventListener("click",()=>{
 
 /* Restore a shareable calculation if present. */
 const restored=loadShareState();
-setTheme(false);
 if(restored){
   setTimeout(()=>{
     const ok=calculate(null,{silent:true});
