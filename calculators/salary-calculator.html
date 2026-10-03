@@ -337,8 +337,16 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <style id="desktop-tab-and-defaults-fixes">
 @media (min-width:761px){
   #salaryNav.salary-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;overflow:hidden;white-space:normal;align-items:stretch;}
-  #salaryNav.salary-nav button{width:100%;min-width:0;min-height:46px;padding:11px 10px;font-size:14px;line-height:1.25;}
-  #salaryNav.salary-nav button.active{padding-bottom:8px;}
+  #salaryNav.salary-nav button{width:100%;min-width:0;min-height:50px;padding:12px 12px;font-size:15.5px;line-height:1.25;}
+  #salaryNav.salary-nav button.active{padding-bottom:9px;}
+}
+/* Desktop: keep the status badge beside the plus, not floating in the middle. */
+#salaryCalculator details>summary{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:12px;}
+#salaryCalculator details>summary .detail-status{margin:0;justify-self:end;}
+#salaryCalculator details>summary::after{margin:0;float:none;}
+@media (max-width:760px){
+  #salaryCalculator details>summary{grid-template-columns:minmax(0,1fr) auto auto;gap:8px;}
+  #salaryCalculator details>summary .detail-status{font-size:10px;padding:3px 6px;}
 }
 </style>
 </head>
@@ -366,12 +374,12 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="card-head" id="calculator-title">Salary Calculator</div>
 
 <form id="salaryForm" class="form" novalidate>
-<div class="quick-start-label">Quick Start <span>Choose a common schedule or customize your own.</span></div>
+<div class="quick-start-label">Quick Start <span>Choose a preset if it fits your schedule, or enter your own hours and workdays below. Common full-time schedules often fall around 35–40 hours across 5 or 6 days.</span></div>
 <div class="preset-row" aria-label="Quick schedule presets">
-<button class="preset active" type="button" data-preset="standard">Standard Full-Time</button>
+<button class="preset" type="button" data-preset="standard">Standard Full-Time</button>
 <button class="preset" type="button" data-preset="part">Part-Time</button>
 <button class="preset" type="button" data-preset="fourday">4-Day Workweek</button>
-<button class="preset" type="button" data-preset="custom">Custom</button>
+<button class="preset active" type="button" data-preset="custom">Custom</button>
 </div>
 
 <div class="grid">
@@ -419,11 +427,13 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 </div>
 <div class="field">
 <label for="hours">Hours per Week</label>
-<input id="hours" type="number" min="0.01" max="168" step="any" value="40" inputmode="decimal">
+<input id="hours" type="number" min="0.01" max="168" step="any" placeholder="e.g. 40" inputmode="decimal" aria-describedby="hoursHelp">
+<small id="hoursHelp">Enter your normal weekly working hours. Common full-time benchmarks include about 35, 37.5, 38 or 40 hours/week.</small>
 </div>
 <div class="field">
 <label for="days">Workdays per Week</label>
-<input id="days" type="number" min="0.1" max="7" step="any" value="5" inputmode="decimal">
+<input id="days" type="number" min="0.1" max="7" step="any" placeholder="e.g. 5" inputmode="decimal" aria-describedby="daysHelp">
+<small id="daysHelp">Enter your normal working days per week. 5 or 6 days are common schedules.</small>
 </div>
 </div>
 
@@ -658,9 +668,12 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="grid">
 <div class="field"><label for="currentSalary">Current Annual Salary</label><input id="currentSalary" type="number" min="0" step="any" placeholder="e.g. 60000" placeholder="e.g. 60000"></div>
 <div class="field"><label for="raisePct">Annual Raise (%)</label><input id="raisePct" type="number" min="-100" max="1000" step="any" placeholder="e.g. 5"></div>
-<div class="field"><label for="years">Years to Project</label><input id="years" type="number" min="1" max="50" step="1" placeholder="e.g. 5"></div>
+<div class="field"><label for="years">Years to Project</label><input id="years" type="number" min="1" max="50" step="1" placeholder="e.g. 5" list="yearsOptions" aria-describedby="yearsHelp">
+<small id="yearsHelp">Choose a common duration from the suggestions or enter any whole number from 1–50.</small>
+<datalist id="yearsOptions"><option value="1"><option value="2"><option value="3"><option value="5"><option value="10"><option value="15"><option value="20"><option value="25"><option value="30"><option value="40"><option value="50"></datalist>
+<datalist id="weeksOptions"><option value="40"><option value="44"><option value="46"><option value="48"><option value="50"><option value="52"></datalist></div>
 <div class="field"><label for="inflationPct">Annual Inflation (%)</label><input id="inflationPct" type="number" min="-50" max="100" step="any" placeholder="e.g. 2" placeholder="e.g. 2"></div>
-<div class="field"><label for="promotionYear">Promotion Year (0 = none)</label><input id="promotionYear" type="number" min="0" max="50" step="1" placeholder="e.g. 3" placeholder="e.g. 3"></div>
+<div class="field"><label for="promotionYear">Promotion Year (0 = none)</label><input id="promotionYear" type="number" min="0" max="50" step="1" placeholder="e.g. 3" list="yearsOptions"></div>
 <div class="field"><label for="promotionPct">Promotion Increase (%)</label><input id="promotionPct" type="number" min="-100" max="1000" step="any" placeholder="e.g. 10" placeholder="e.g. 10"></div>
 </div>
 <button class="primary" type="button" id="raiseBtn">Calculate Growth</button>
@@ -673,7 +686,7 @@ body.dark .comparison-badge,.body.dark .assumption-item{background:#11181d;}
 <div class="grid">
 <div class="field"><label for="targetSalary">Target Annual Employee Salary</label><input id="targetSalary" type="number" min="0" step="any" placeholder="e.g. 60000" placeholder="e.g. 60000"></div>
 <div class="field"><label for="freelanceHours">Work Hours / Week</label><input id="freelanceHours" type="number" min=".01" max="168" step="any" placeholder="e.g. 40"></div>
-<div class="field"><label for="freelanceWeeks">Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" placeholder="e.g. 46" placeholder="e.g. 46"></div>
+<div class="field"><label for="freelanceWeeks">Billable Weeks / Year</label><input id="freelanceWeeks" type="number" min="1" max="52" step="any" placeholder="e.g. 46" list="weeksOptions"></div>
 <div class="field"><label for="nonbillable">Non-Billable Time (%)</label><input id="nonbillable" type="number" min="0" max="99.9" step="any" placeholder="e.g. 20" placeholder="e.g. 20"></div>
 <div class="field"><label for="businessCosts">Annual Business Costs</label><input id="businessCosts" type="number" min="0" step="any" placeholder="e.g. 5000"></div>
 <div class="field"><label for="platformFee">Platform / Payment Fee (%)</label><input id="platformFee" type="number" min="0" max="100" step="any" placeholder="e.g. 3" placeholder="e.g. 3"></div>
@@ -1274,13 +1287,13 @@ $("clearBtn").addEventListener("click",()=>{
   $("frequency").value="monthly";
   $("currency").value="USD";
   updateCurrencyTrigger();
-  $("hours").value=40;$("days").value=5;$("unpaidWeeks").value=0;$("unpaidDays").value=0;
+  $("hours").value="";$("days").value="";$("unpaidWeeks").value=0;$("unpaidDays").value=0;
   $("vacation").value=0;$("holidays").value=0;$("sick").value=0;
   $("otHours").value=0;$("otMult").value=1.5;$("dtHours").value=0;$("dtMult").value=2;
   $("bonus").value=0;$("commission").value=0;$("otherEarnings").value=0;$("signingBonus").value=0;
   $("retirement").value=0;$("health").value=0;$("equity").value=0;$("ptoValue").value=0;$("otherBenefits").value=0;
   $("taxCountry").value="generic";$("taxRate").value=0;$("employeeRet").value=0;$("employeeInsurance").value=0;$("otherDeductions").value=0;
-  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;if($("stickySummary")) $("stickySummary").classList.remove("visible");history.replaceState(null,"",location.pathname);setTheme(false);applyPreset("standard");
+  $("error").textContent="";$("result").style.display="none";window.__salaryData=null;if($("stickySummary")) $("stickySummary").classList.remove("visible");history.replaceState(null,"",location.pathname);setTheme(false);qsa(".preset").forEach(b=>b.classList.toggle("active",b.dataset.preset==="custom"));
   $("calcStatus").innerHTML="Enter the basic details above and calculate instantly. Advanced options are available below when you need them.";
   qsa("#salaryForm details").forEach(d=>d.open=false);
   if($("additionalTools")) $("additionalTools").open=false;
