@@ -244,6 +244,30 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 .quick-start-label{font-size:15px;font-weight:800;color:var(--primary2);margin:0 0 7px}.quick-start-label span{font-size:12px;font-weight:400;color:var(--muted);margin-left:5px}.tools-card{overflow:visible}.tools-card details{background:#fff}.tools-card .panel h2{margin-top:0}.tools-card .panel p{margin-top:8px}
 @media(max-width:480px){.quick-start-label span{display:block;margin:2px 0 0}.quick-start-label{margin-bottom:9px}}
 
+/* Final mobile UX refinement: keep all four primary tabs visible without clipping. */
+.salary-nav button{min-width:0}
+.detail-status{float:none;margin:0 0 0 auto;flex:0 0 auto;white-space:nowrap}
+.salary-nav button:focus-visible, details>summary:focus-visible{outline:3px solid rgba(75,143,43,.35);outline-offset:2px}
+details>summary{display:flex;align-items:center;gap:10px;box-shadow:none;transition:box-shadow .18s ease,background .18s ease}
+details>summary:hover{box-shadow:0 2px 4px rgba(0,0,0,.05);background:rgba(75,143,43,.025)}
+details>summary:after{float:none;margin-left:auto;flex:0 0 auto}
+.guide-details{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:10px 0}
+.guide-details>summary{background:var(--soft);padding:14px 16px}
+.guide-details .compact-body{padding:0 16px 14px}
+.guide-details .compact-body p,.guide-details .compact-body li{font-size:15px}
+@media(max-width:760px){
+  .salary-nav{overflow:hidden;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:5px}
+  .salary-nav button{width:100%;padding:9px 4px;font-size:10.5px;line-height:1.15;min-width:0}
+  .salary-nav button.active{padding-bottom:7px}
+  details>summary{padding:15px 16px}
+  .detail-status{font-size:10px;padding:3px 6px}
+}
+@media(max-width:360px){
+  .salary-nav{gap:2px;padding:4px}
+  .salary-nav button{font-size:9.5px;padding:8px 2px}
+  .salary-nav button.active{padding-bottom:6px}
+}
+
 /* v2 flagship refinement */
 .salary-nav{display:flex;align-items:center;gap:6px;margin:12px 0 16px;padding:6px;border:1px solid var(--border);border-radius:12px;background:var(--soft);position:sticky;top:8px;z-index:40;box-shadow:0 4px 16px rgba(20,45,60,.06);overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:thin;-webkit-overflow-scrolling:touch}.salary-nav::-webkit-scrollbar{height:5px}.salary-nav button{appearance:none;border:1px solid transparent;cursor:pointer;flex:0 0 auto;min-width:max-content;width:auto;text-align:center;color:#1E293B;background:transparent;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:800;white-space:nowrap;line-height:1.35;transition:.18s ease}.salary-nav button.active{background:#fff;color:var(--primary);border-color:var(--border);box-shadow:0 2px 8px rgba(20,45,60,.08);border-bottom:3px solid var(--accent);padding-bottom:6px}.salary-nav button:hover{color:var(--primary);background:rgba(75,143,43,.07)}body.dark .salary-nav{background:#141e24;border-color:#33444f}.salary-nav button{color:#1E293B}body.dark .salary-nav button{color:#d5e8f2}.salary-nav button.active{color:var(--primary)}body.dark .salary-nav button.active{background:#202c34;color:#fff;border-color:#3a4b56;border-bottom-color:#78b84a}.salary-view-hidden{display:none!important}.salary-tools-active .tools-card{display:block}.salary-tools-active .tools-details{border-top:0}.salary-tools-active .tools-details>summary{display:none}.salary-tools-active .tools-inner{padding-top:0}.salary-tools-active .tools-inner .tool-intro{display:none}.salary-tools-active .tools-inner .tabs{display:none}.faq summary{display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:none;transition:box-shadow .18s ease,background .18s ease}.faq summary:hover{box-shadow:0 2px 4px rgba(0,0,0,.05);background:rgba(75,143,43,.035)}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:'+';flex:0 0 auto;font-size:22px;line-height:1;font-weight:800;color:var(--primary)}.faq[open] summary::after{content:'−'}
 .result-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}.result-highlight{border:1px solid var(--border);border-radius:12px;padding:15px;background:#fff;min-width:0}.result-highlight.primary-highlight{background:#edf7fb;border-color:#b7d1df}.result-highlight.net-highlight{background:#f2f9ee;border-color:#c9dfbc}.result-highlight .label{display:block;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.55px;margin-bottom:4px}.result-highlight .value{display:block;font-size:clamp(23px,4vw,34px);font-weight:900;color:var(--primary2);overflow-wrap:anywhere;line-height:1.15}.result-highlight.net-highlight .value{color:#3f7d25}.result-highlight .hint{display:block;margin-top:5px;font-size:12px;color:var(--muted);line-height:1.4}
@@ -251,6 +275,29 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 .detail-status.active{background:#eaf7e5;color:#3f7d25;border:1px solid #c6dfb9}body.dark .detail-status.active{background:#20351c;color:#a8d694;border-color:#45663b}.compare-insight{margin:15px 0;padding:14px 15px;border:1px solid #cfe1ea;border-radius:10px;background:#eef6fa;color:#24495d}.compare-insight strong{color:var(--primary2)}.sticky-summary{display:none}
 @media(max-width:760px){.salary-nav{top:4px;margin:8px -2px 12px;padding:5px;gap:4px}.salary-nav button{padding:8px 16px;font-size:12px}.result-highlights{grid-template-columns:1fr 1fr}.result-highlight:first-child{grid-column:1/-1}.result-highlight{padding:13px}.result-highlight .value{font-size:24px}.fx-grid{grid-template-columns:1fr 1fr}.fx-grid .fx-button{grid-column:1/-1}.sticky-summary{position:fixed;left:0;right:0;bottom:0;z-index:9990;display:none;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--border);box-shadow:0 -6px 25px rgba(0,0,0,.12);padding:8px 10px calc(8px + env(safe-area-inset-bottom));gap:7px;align-items:center}.sticky-summary.visible{display:grid;grid-template-columns:1.15fr 1fr 1fr auto}.sticky-summary .sticky-metric{min-width:0}.sticky-summary small{display:block;color:var(--muted);font-size:9px;font-weight:800;text-transform:uppercase;white-space:nowrap}.sticky-summary strong{display:block;font-size:13px;color:var(--primary2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sticky-summary .sticky-go{border:0;background:var(--primary);color:#fff;border-radius:8px;padding:9px 10px;font-size:12px;font-weight:800;white-space:nowrap}body.dark .sticky-summary{background:rgba(17,24,29,.97);border-color:#33444f}body.dark .sticky-summary strong{color:#d5e8f2}}
 @media(max-width:430px){.salary-nav button{font-size:11px;padding:8px 16px}.sticky-summary.visible{grid-template-columns:1.1fr 1fr 1fr}.sticky-summary .sticky-go{grid-column:1/-1;width:100%}.sticky-summary{gap:5px}}
+</style>
+
+<style id="final-mobile-ux-fixes">
+/* Final UX pass: all primary tabs visible on mobile, with no clipped Freelance tab. */
+@media (max-width:760px){
+  #salaryNav.salary-nav{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:5px;overflow:hidden;white-space:normal;}
+  #salaryNav.salary-nav button{display:block;min-width:0!important;width:100%;flex:1 1 25%;padding:9px 4px!important;font-size:10.5px!important;line-height:1.15;white-space:nowrap;overflow:visible;text-overflow:clip;}
+  #salaryNav.salary-nav button.active{padding-bottom:7px!important;}
+}
+@media (max-width:360px){
+  #salaryNav.salary-nav{gap:2px;padding:4px;}
+  #salaryNav.salary-nav button{font-size:9.5px!important;padding:8px 2px!important;}
+  #salaryNav.salary-nav button.active{padding-bottom:6px!important;}
+}
+/* Advanced accordion rows: title, status and plus stay aligned. */
+.salaryCalculator details>summary, #salaryCalculator details>summary{display:flex;align-items:center;gap:10px;}
+#salaryCalculator details>summary:after{float:none;margin-left:auto;flex:0 0 auto;}
+#salaryCalculator .detail-status{float:none;margin:0 0 0 auto;flex:0 0 auto;white-space:nowrap;}
+#salaryCalculator details>summary:hover{box-shadow:0 2px 4px rgba(0,0,0,.05);background:rgba(75,143,43,.025);}
+/* Guide accordions keep SEO content available without forcing a long first view. */
+.guide-details{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:10px 0;}
+.guide-details>summary{background:var(--soft);padding:14px 16px;}
+.guide-details .compact-body{padding:0 16px 14px;}
 </style>
 </head>
 
@@ -363,6 +410,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <div class="metric"><b>Monthly</b><span id="monthlyOut"></span></div>
 <div class="metric"><b>Quarterly</b><span id="quarterlyOut"></span></div>
 <div class="metric"><b>Annual</b><span id="annualOut"></span></div>
+<div class="metric"><b>Effective Hourly Rate</b><span id="effectiveOut"></span></div>
 <div class="metric"><b>Overtime + Double-Time</b><span id="otOut"></span></div>
 <div class="metric"><b>Bonus + Commission</b><span id="extraOut"></span></div>
 <div class="metric"><b>Total Compensation</b><span id="totalCompOut"></span></div>
@@ -578,17 +626,15 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 </section>
 
 <section class="content">
-<h2>How to Use This Salary Calculator</h2>
-<p>Enter your salary, choose the pay frequency and select a display currency. Enter your hours and workdays, then click <strong>Calculate Salary</strong>. Results update automatically as you change valid inputs. Open Advanced Options only when you need overtime, time off, bonuses, benefits or deductions.</p>
-
-<h2>What This Salary Calculator Calculates</h2>
-<ul>
+<h2>Salary Calculator Guide</h2>
+<details class="guide-details"><summary>How to Use This Salary Calculator</summary><div class="compact-body"><p>Enter your salary, choose the pay frequency and select a display currency. Enter your hours and workdays, then click <strong>Calculate Salary</strong>. Results update automatically as you change valid inputs. Open Advanced Options only when you need overtime, time off, bonuses, benefits or deductions.</p></div></details>
+<details class="guide-details"><summary>What This Salary Calculator Calculates</summary><div class="compact-body"><ul>
 <li>Hourly, daily, weekly, biweekly, semimonthly, monthly, quarterly and annual equivalents.</li>
 <li>Regular cash compensation plus overtime, double-time, bonuses, commission and other earnings.</li>
 <li>Employer retirement, insurance, equity/RSU and other benefit values for total compensation.</li>
 <li>Effective hourly value based on the actual working hours represented by your assumptions.</li>
 <li>Optional generic deductions and estimated take-home pay.</li>
-</ul>
+</ul></div></details>
 
 <h2>Salary Calculation Guide</h2>
 <details class="section-collapse"><summary>Hourly to Annual Salary</summary><div class="compact-body"><p>For a standard hourly schedule, annual gross pay is estimated from hourly pay × hours per week × paid working weeks. Unpaid full weeks and additional unpaid days reduce the working schedule.</p></div></details>
@@ -620,7 +666,7 @@ body.dark .currency-trigger,body.dark .currency-dialog,body.dark .currency-searc
 <details class="faq"><summary>Does unpaid time change my salary result?</summary><p>Yes, when you enter unpaid weeks or additional unpaid days, the calculator reduces the paid working schedule represented by the calculation. Avoid entering the same unpaid time twice.</p></details>
 <details class="faq"><summary>Does this calculate country-specific taxes?</summary><p>No. The optional deductions section is a generic estimate. Use a country-specific tax or paycheck calculator for jurisdiction-specific results.</p></details>
 <details class="faq"><summary>What is total compensation?</summary><p>Total compensation combines annual cash compensation with the employer benefit values you enter, such as retirement contributions, insurance, equity/RSUs and other benefits.</p></details>
-<details class="faq"><summary>Can I compare two job offers?</summary><p>Yes. Open Additional Salary Tools and use Job Offers to compare base salary, bonuses, commission, benefits, PTO, working hours and effective hourly value using the assumptions you enter.</p></details>
+<details class="faq"><summary>Can I compare two job offers?</summary><p>Yes. Open the <strong>Compare Offers</strong> tab to compare base salary, bonuses, commission, benefits, PTO, working hours and effective hourly value using the assumptions you enter.</p></details>
 </section>
 
 <footer><strong>ZammioHub</strong><br>Clear, useful and mobile-friendly calculators for Finance, Health, Education, Math and Everyday calculations.</footer>
