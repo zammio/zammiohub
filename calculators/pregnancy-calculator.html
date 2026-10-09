@@ -287,7 +287,7 @@ details{border-top:1px solid var(--border);padding:13px 0}details:first-child{bo
       <button type="button" class="primary-btn" id="calculateBtn">Calculate Pregnancy</button>
       <button type="button" class="secondary-btn" id="clearBtn">Clear</button>
     </div>
-    <div class="error" id="errorMessage" role="alert"></div>
+    <div class="error" id="errorMessage" role="alert" tabindex="-1"></div>
   </div>
 </section>
 
@@ -408,7 +408,7 @@ details{border-top:1px solid var(--border);padding:13px 0}details:first-child{bo
 
     <details>
       <summary>How many weeks pregnant am I?</summary>
-      <p>Gestational age is normally expressed as completed weeks plus days. For example, 8 weeks and 3 days is written as <strong>8 weeks 3 days</strong>. This calculator uses the dating anchor selected above and calculates the elapsed gestational days to today.</p>
+      <p>Gestational age is normally expressed as completed weeks plus days. For example, 8 weeks and 3 days is written as <strong>8 weeks 3 days</strong>. This calculator uses the selected dating anchor to estimate elapsed gestational days. If the entered dates place the estimated start in the future, check the inputs and confirm dating with your healthcare professional.</p>
     </details>
 
     <details>
@@ -561,6 +561,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .forEach(id => $(id).classList.add('hidden'));
     $(method + 'Panel').classList.remove('hidden');
     $('methodDesc').textContent = methodDescs[method];
+    // Do not leave a result from a previous method visible while the user edits inputs.
+    $('result').style.display = 'none';
+    $('timelineSection').classList.add('hidden');
+    $('compareBox').style.display = 'none';
     hideError();
   }
 
@@ -747,6 +751,8 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     $('result').style.display = 'none';
     $('timelineSection').classList.add('hidden');
     $('compareBox').style.display = 'none';
+    $('timelineRows').replaceChildren();
+    setMethod('lmp');
     hideError();
     $('lmp').focus();
   }
