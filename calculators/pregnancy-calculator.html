@@ -184,8 +184,8 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
 <main class="container">
 
 <nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="/">Home</a><span class="sep">â€º</span>
-  <a href="/calculators/">All Calculators</a><span class="sep">â€º</span>
+  <a href="/">Home</a><span class="sep">›</span>
+  <a href="/calculators/">All Calculators</a><span class="sep">›</span>
   <span aria-current="page">Pregnancy Calculator</span>
 </nav>
 
@@ -193,12 +193,12 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
 <p class="intro">Calculate your estimated due date, find out <strong>how many weeks pregnant you are</strong>, see your trimester and pregnancy progress, and build a personalized pregnancy timeline.</p>
 
 <div class="trust-strip" aria-label="Calculator features">
-  <span class="trust-pill">âœ“ LMP &amp; cycle length</span>
-  <span class="trust-pill">âœ“ Conception dating</span>
-  <span class="trust-pill">âœ“ Ultrasound dating</span>
-  <span class="trust-pill">âœ“ IVF / ART dating</span>
-  <span class="trust-pill">âœ“ Due-date reverse mode</span>
-  <span class="trust-pill">âœ“ Personalized timeline</span>
+  <span class="trust-pill">✓ LMP &amp; cycle length</span>
+  <span class="trust-pill">✓ Conception dating</span>
+  <span class="trust-pill">✓ Ultrasound dating</span>
+  <span class="trust-pill">✓ IVF / ART dating</span>
+  <span class="trust-pill">✓ Due-date reverse mode</span>
+  <span class="trust-pill">✓ Personalized timeline</span>
 </div>
 
 <div class="privacy-badge" role="note" aria-label="Privacy information">
@@ -252,7 +252,7 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
           <div class="help">Use your device's calendar; date formatting varies by browser and region.</div>
         </div>
         <div class="field">
-          <label for="scanWeeks">Gestational age at ultrasound â€” weeks</label>
+          <label for="scanWeeks">Gestational age at ultrasound — weeks</label>
           <input type="number" id="scanWeeks" min="0" max="42" step="1" inputmode="numeric" placeholder="e.g. 8">
         </div>
       </div>
@@ -312,18 +312,18 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
   <div class="result-body">
     <div class="main-result">
       <span class="eyebrow" id="mainEyebrow">Estimated Due Date</span>
-      <strong id="dueDateOutput">â€”</strong>
-      <span class="subline" id="mainSubline">â€”</span>
+      <strong id="dueDateOutput">—</strong>
+      <span class="subline" id="mainSubline">—</span>
     </div>
 
     <div class="result-grid">
-      <div class="result-card highlight-card"><span>How Far Along Are You?</span><strong id="pregnancyAgeOutput">â€”</strong></div>
-      <div class="result-card"><span>Trimester</span><strong id="trimesterOutput">â€”</strong></div>
-      <div class="result-card"><span>Estimated Conception</span><strong id="conceptionOutput">â€”</strong></div>
-      <div class="result-card"><span>Gestational Age in Days</span><strong id="daysPregnantOutput">â€”</strong></div>
-      <div class="result-card"><span>Time to Due Date</span><strong id="daysRemainingOutput">â€”</strong></div>
-      <div class="result-card"><span>Pregnancy Day</span><strong id="pregnancyDayOutput">â€”</strong></div>
-      <div class="result-card"><span>Calculated On</span><strong id="calculatedOnOutput">â€”</strong></div>
+      <div class="result-card highlight-card"><span>How Far Along Are You?</span><strong id="pregnancyAgeOutput">—</strong></div>
+      <div class="result-card"><span>Trimester</span><strong id="trimesterOutput">—</strong></div>
+      <div class="result-card"><span>Estimated Conception</span><strong id="conceptionOutput">—</strong></div>
+      <div class="result-card"><span>Gestational Age in Days</span><strong id="daysPregnantOutput">—</strong></div>
+      <div class="result-card"><span>Time to Due Date</span><strong id="daysRemainingOutput">—</strong></div>
+      <div class="result-card"><span>Pregnancy Day</span><strong id="pregnancyDayOutput">—</strong></div>
+      <div class="result-card"><span>Calculated On</span><strong id="calculatedOnOutput">—</strong></div>
     </div>
 
     <div class="progress-wrap">
@@ -332,24 +332,24 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
     </div>
 
     <div class="key-date-grid" aria-label="Pregnancy timing reference">
-      <div class="key-date"><strong id="date37">â€”</strong><span>37 weeks</span></div>
-      <div class="key-date"><strong id="date39">â€”</strong><span>39 weeks</span></div>
-      <div class="key-date"><strong id="date40">â€”</strong><span>40 weeks / EDD</span></div>
-      <div class="key-date"><strong id="date41">â€”</strong><span>41 weeks</span></div>
-      <div class="key-date"><strong id="date42">â€”</strong><span>42 weeks</span></div>
+      <div class="key-date"><strong id="date37">—</strong><span>37 weeks</span></div>
+      <div class="key-date"><strong id="date39">—</strong><span>39 weeks</span></div>
+      <div class="key-date"><strong id="date40">—</strong><span>40 weeks / EDD</span></div>
+      <div class="key-date"><strong id="date41">—</strong><span>41 weeks</span></div>
+      <div class="key-date"><strong id="date42">—</strong><span>42 weeks</span></div>
     </div>
 
-    <div class="status-note" id="termStatus" role="status" aria-live="polite">â€”</div>
+    <div class="status-note" id="termStatus" role="status" aria-live="polite">—</div>
 
     <div class="week-insight" id="weekInsight" aria-label="Current pregnancy week insight">
       <div class="insight-card primary">
         <span class="insight-label">This week</span>
-        <strong id="weekInsightTitle">â€”</strong>
-        <p id="weekInsightText">â€”</p>
+        <strong id="weekInsightTitle">—</strong>
+        <p id="weekInsightText">—</p>
       </div>
       <div class="insight-card">
         <span class="insight-label">Growth reference</span>
-        <strong id="sizeReference">â€”</strong>
+        <strong id="sizeReference">—</strong>
         <p id="sizeReferenceText">Approximate educational reference only; individual growth varies.</p>
       </div>
     </div>
@@ -358,9 +358,9 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
       <strong>Dating Method Comparison</strong>
       <p style="margin:5px 0 12px;font-size:14px">This is a mathematical comparison, not a recommendation to change your clinical due date.</p>
       <div class="compare-grid">
-        <div class="compare-card"><span>LMP-based EDD</span><strong id="compareLmp">â€”</strong></div>
-        <div class="compare-card"><span>Ultrasound-based EDD</span><strong id="compareScan">â€”</strong></div>
-        <div class="compare-card"><span>Difference</span><strong id="compareDiff">â€”</strong></div>
+        <div class="compare-card"><span>LMP-based EDD</span><strong id="compareLmp">—</strong></div>
+        <div class="compare-card"><span>Ultrasound-based EDD</span><strong id="compareScan">—</strong></div>
+        <div class="compare-card"><span>Difference</span><strong id="compareDiff">—</strong></div>
       </div>
     </div>
 
@@ -381,9 +381,9 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
       <div class="section-card" style="margin:10px 0 13px">
         <p style="font-size:14px;margin-bottom:9px">These are general reference windows, not personalised medical instructions. Timing and screening options vary by country and individual pregnancy.</p>
         <ul class="source-list" style="font-size:14px;margin-bottom:0">
-          <li><strong>Dating ultrasound:</strong> commonly around 10â€“14 weeks in NHS guidance.</li>
-          <li><strong>Mid-pregnancy scan:</strong> commonly around 18â€“21 weeks in NHS guidance.</li>
-          <li><strong>Term classification:</strong> early term 37+0â€“38+6, full term 39+0â€“40+6, late term 41+0â€“41+6, postterm 42+0 or later.</li>
+          <li><strong>Dating ultrasound:</strong> commonly around 10–14 weeks in NHS guidance.</li>
+          <li><strong>Mid-pregnancy scan:</strong> commonly around 18–21 weeks in NHS guidance.</li>
+          <li><strong>Term classification:</strong> early term 37+0–38+6, full term 39+0–40+6, late term 41+0–41+6, postterm 42+0 or later.</li>
         </ul>
       </div>
     </details>
@@ -412,10 +412,10 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
       <div class="formula-box">
         <div class="formula-title">Core dating formulas</div>
         <div class="formula">
-          LMP: EDD = LMP + 280 days + (average cycle length âˆ’ 28 days)<br>
+          LMP: EDD = LMP + 280 days + (average cycle length − 28 days)<br>
           Conception: EDD = conception date + 266 days<br>
-          IVF/ART: EDD = transfer date + (266 âˆ’ embryo age in days)<br>
-          Ultrasound dating: EDD = scan date + (280 âˆ’ gestational age at scan)
+          IVF/ART: EDD = transfer date + (266 − embryo age in days)<br>
+          Ultrasound dating: EDD = scan date + (280 − gestational age at scan)
         </div>
       </div>
       <p>The conventional pregnancy dating framework counts 280 days, or 40 weeks, from the first day of the last menstrual period. Conception-based dating uses approximately 266 days from conception.</p>
@@ -430,7 +430,7 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
 
     <details>
       <summary>Pregnancy trimesters and term categories</summary>
-      <p>First trimester: through 13 weeks 6 days. Second trimester: 14 weeks 0 days through 27 weeks 6 days. Third trimester: from 28 weeks 0 days onward. Separately, ACOG classifies 37+0â€“38+6 as early term, 39+0â€“40+6 as full term, 41+0â€“41+6 as late term, and 42+0 or later as postterm.</p>
+      <p>First trimester: through 13 weeks 6 days. Second trimester: 14 weeks 0 days through 27 weeks 6 days. Third trimester: from 28 weeks 0 days onward. Separately, ACOG classifies 37+0–38+6 as early term, 39+0–40+6 as full term, 41+0–41+6 as late term, and 42+0 or later as postterm.</p>
     </details>
 
     <details>
@@ -450,11 +450,11 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
   <p>Explore these related tools for general health and nutrition estimates. They are educational tools and do not replace personalized medical advice.</p>
   <div class="related-tools">
     <a class="tool-link" href="/calculators/bmi-calculator">
-      <strong><span aria-hidden="true">â–¦ </span>BMI Calculator</strong>
+      <strong><span aria-hidden="true">▦ </span>BMI Calculator</strong>
       <span>Estimate body mass index using your height and weight.</span>
     </a>
     <a class="tool-link" href="/calculators/calorie-calculator">
-      <strong><span aria-hidden="true">â—‰ </span>Calorie Calculator</strong>
+      <strong><span aria-hidden="true">◉ </span>Calorie Calculator</strong>
       <span>Explore an estimated daily calorie range based on your details and activity level.</span>
     </a>
   </div>
@@ -547,10 +547,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function visibleText(value) {
     // Defensively decode common HTML entities if any are accidentally passed as literal text.
     return String(value)
-      .replace(/&amp;#8212;|&#8212;|&amp;mdash;|&mdash;/gi, 'â€”')
-      .replace(/&amp;#8211;|&#8211;|&amp;ndash;|&ndash;/gi, 'â€“')
-      .replace(/&amp;#8217;|&#8217;|&amp;rsquo;|&rsquo;/gi, 'â€™')
-      .replace(/&amp;#8216;|&#8216;|&amp;lsquo;|&lsquo;/gi, 'â€˜')
+      .replace(/&amp;#8212;|&#8212;|&amp;mdash;|&mdash;/gi, '—')
+      .replace(/&amp;#8211;|&#8211;|&amp;ndash;|&ndash;/gi, '–')
+      .replace(/&amp;#8217;|&#8217;|&amp;rsquo;|&rsquo;/gi, '’')
+      .replace(/&amp;#8216;|&#8216;|&amp;lsquo;|&lsquo;/gi, '‘')
       .replace(/&amp;#38;|&#38;|&amp;/gi, '&');
   }
 
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function trimesterLabel(days) {
     if (days < 0) return 'Not yet started';
-    if (days >= 294) return 'Beyond 42 weeks â€” clinical status unknown';
+    if (days >= 294) return 'Beyond 42 weeks — clinical status unknown';
     if (days <= 97) return 'First Trimester';
     if (days <= 195) return 'Second Trimester';
     return 'Third Trimester';
@@ -679,7 +679,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
         showError('Enter additional gestational days from 0 to 6.'); return;
       }
       const scanAgeDays = weeks * 7 + days;
-      if (scanAgeDays > 294) { showError('The entered ultrasound gestational age is outside this calculatorâ€™s supported range. Please check the report.'); return; }
+      if (scanAgeDays > 294) { showError('The entered ultrasound gestational age is outside this calculator’s supported range. Please check the report.'); return; }
       edd = addDays(scanDate, 280 - scanAgeDays);
       conceptionDate = addDays(edd, -266);
       if ($('comparisonLmp').value) {
@@ -717,7 +717,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     $('pregnancyAgeOutput').textContent = visibleText(gestationalDays < 0
       ? `Estimated start is ${Math.abs(gestationalDays)} ${Math.abs(gestationalDays) === 1 ? 'day' : 'days'} in the future`
       : remaining < 0
-        ? `EDD passed â€” date-based estimate: ${dateBasedAge}`
+        ? `EDD passed — date-based estimate: ${dateBasedAge}`
         : dateBasedAge);
     $('daysPregnantOutput').textContent = gestationalDays < 0 ? 'Not started' : `${gestationalDays} days`;
     $('conceptionOutput').textContent = formatDate(conceptionDate);
@@ -758,7 +758,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
         : `This is a calendar-based estimate for week ${currentWeek}. Development varies, and this tool cannot assess an individual pregnancy.`;
     $('sizeReference').textContent = sizeReferences[currentWeek] || 'No size comparison provided';
     $('sizeReferenceText').textContent = sizeReferences[currentWeek]
-      ? 'Approximate NHS educational comparison onlyâ€”not a measurement of your baby.'
+      ? 'Approximate NHS educational comparison only—not a measurement of your baby.'
       : 'A source-verified size comparison is not shown for this week.';
 
     if (lmpForComparison && ultrasoundEdd) {
@@ -784,7 +784,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
       const status = remaining < 0 && gestationalDays >= 294 && w === 42
         ? '42-week reference'
         : gestationalDays < 0 ? 'Upcoming' : w < currentWeek ? 'Completed' : isCurrent ? 'Current Week' : 'Upcoming';
-      [ `Week ${w}`, `${formatDate(start)} â€“ ${formatDate(end)}`, `${trim} Trimester`, status ].forEach((value, i) => {
+      [ `Week ${w}`, `${formatDate(start)} – ${formatDate(end)}`, `${trim} Trimester`, status ].forEach((value, i) => {
         const span = document.createElement('span');
         span.dataset.label = ['Week', 'Date range', 'Trimester', 'Status'][i];
         span.textContent = visibleText(value);
