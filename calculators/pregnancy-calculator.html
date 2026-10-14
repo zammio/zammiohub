@@ -259,7 +259,7 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
       <div class="field">
         <label for="scanDays">Additional days</label>
         <input type="number" id="scanDays" min="0" max="6" step="1" value="0" inputmode="numeric">
-        <div class="help">Example: 8 weeks 3 days means weeks = 8 and additional days = 3. Supported range: 0+0 through 42+0 weeks.</div>
+        <div class="help">Example: 8 weeks 3 days means weeks = 8 and additional days = 3.</div>
       </div>
       <div class="field-grid">
         <div class="field">
@@ -390,7 +390,7 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
     <details>
       <summary>View the full 42-week timeline</summary>
       <div class="timeline-wrap">
-        <div class="timeline-head"><span>Gestational age</span><span>Date range</span><span>Trimester</span><span>Status</span></div>
+        <div class="timeline-head"><span>Week</span><span>Date range</span><span>Trimester</span><span>Status</span></div>
         <div id="timelineRows"></div>
       </div>
     </details>
@@ -651,7 +651,8 @@ Estimate only; follow your healthcare professional's clinical dating.`;
 
   function calculatePregnancy() {
     hideError();
-    // Never leave an old result visible if the new input fails validation.
+    // Hide previous results before validating new inputs, so invalid entries
+    // cannot leave an outdated result visible.
     $('result').style.display = 'none';
     $('timelineSection').classList.add('hidden');
     $('compareBox').style.display = 'none';
@@ -728,7 +729,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     $('daysRemainingOutput').textContent = remaining > 0 ? `${remaining} days remaining` : remaining === 0 ? 'Estimated due date is today' : `${Math.abs(remaining)} days past due date`;
     $('pregnancyDayOutput').textContent = gestationalDays < 0 ? 'Not started' : gestationalDays < 280 ? `Day ${gestationalDays + 1} of 280` : '280-day framework complete';
     $('calculatedOnOutput').textContent = formatDate(today);
-    $('trimesterOutput').textContent = trimesterLabel(gestationalDays);
+    $('trimesterOutput').textContent = remaining < 0 ? 'Past Estimated Due Date' : trimesterLabel(gestationalDays);
     $('progressFill').style.width = progress + '%';
     $('progressLabel').textContent = progress + '%';
     const termStatus = $('termStatus');
@@ -736,10 +737,9 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     if (remaining < 0) {
       termStatus.classList.add('warning');
       const overdueDays = Math.abs(remaining);
-      const category = termLabel(gestationalDays);
       termStatus.textContent = overdueDays > 14
-        ? `${category} Estimated due date passed ${overdueDays} days ago. This date-based calculator cannot confirm whether a pregnancy is ongoing or assess your health. If you are currently pregnant, contact your maternity team or healthcare professional promptly for individual advice.`
-        : `${category} Estimated due date has passed by ${overdueDays} ${overdueDays === 1 ? 'day' : 'days'}. Due dates are estimates; if you are currently pregnant, contact your maternity team or healthcare professional for advice.`;
+        ? `Estimated due date passed ${overdueDays} days ago. This date-based calculator cannot confirm whether a pregnancy is ongoing or assess your health. If you are currently pregnant, contact your maternity team or healthcare professional promptly for individual advice.`
+        : `Estimated due date has passed by ${overdueDays} ${overdueDays === 1 ? 'day' : 'days'}. Due dates are estimates; if you are currently pregnant, contact your maternity team or healthcare professional for advice.`;
     } else {
       termStatus.textContent = termLabel(gestationalDays);
     }
@@ -750,17 +750,17 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     $('date41').textContent = formatDate(addDays(lmpAnchor, 287));
     $('date42').textContent = formatDate(addDays(lmpAnchor, 294));
 
-    const currentWeek = Math.max(0, Math.min(42, weeksPregnant));
+    const currentWeek = Math.max(1, Math.min(42, weeksPregnant + 1));
     $('weekInsightTitle').textContent = gestationalDays < 0
       ? 'Before estimated start'
       : remaining < 0
         ? 'Estimated due date passed'
-        : `Week ${currentWeek} (${currentWeek}+0)`;
+        : `Week ${currentWeek}`;
     $('weekInsightText').textContent = gestationalDays < 0
       ? 'The entered dates place the estimated gestational start in the future. Please verify the information.'
       : remaining < 0
         ? 'The entered dates imply a gestational age beyond the estimated due date. This is not confirmation of an ongoing pregnancy; please seek individual clinical advice if currently pregnant.'
-        : `This is a calendar-based estimate at ${currentWeek}+${daysPregnant} gestational weeks. Development varies, and this tool cannot assess an individual pregnancy.`;
+        : `This is a calendar-based estimate for week ${currentWeek}. Development varies, and this tool cannot assess an individual pregnancy.`;
     $('sizeReference').textContent = sizeReferences[currentWeek] || 'No size comparison provided';
     $('sizeReferenceText').textContent = sizeReferences[currentWeek]
       ? 'Approximate NHS educational comparison only—not a measurement of your baby.'
@@ -779,17 +779,19 @@ Estimate only; follow your healthcare professional's clinical dating.`;
 
     const rows = $('timelineRows');
     rows.replaceChildren();
-    for (let w = 0; w < 42; w++) {
-      const start = addDays(lmpAnchor, w * 7);
-      const end = addDays(lmpAnchor, w * 7 + 6);
-      const isCurrent = gestationalDays >= 0 && gestationalDays < 294 && currentWeek === w;
+    for (let w = 1; w <= 42; w++) {
+      const start = addDays(lmpAnchor, (w - 1) * 7);
+      const end = addDays(lmpAnchor, w * 7 - 1);
+      const isCurrent = gestationalDays >= 0 && currentWeek === w;
       const row = document.createElement('div');
       row.className = `timeline-row${isCurrent ? ' current' : ''}`;
-      const trim = w <= 13 ? '1st' : w <= 27 ? '2nd' : '3rd';
-      const status = gestationalDays < 0 ? 'Upcoming' : gestationalDays >= 294 ? 'Past' : w < currentWeek ? 'Completed' : isCurrent ? 'Current Week' : 'Upcoming';
-      [ `${w}+0–${w}+6`, `${formatDate(start)} – ${formatDate(end)}`, `${trim} Trimester`, status ].forEach((value, i) => {
+      const trim = w <= 14 ? '1st' : w <= 28 ? '2nd' : '3rd';
+      const status = remaining < 0 && gestationalDays >= 294 && w === 42
+        ? '42-week reference'
+        : gestationalDays < 0 ? 'Upcoming' : w < currentWeek ? 'Completed' : isCurrent ? 'Current Week' : 'Upcoming';
+      [ `Week ${w}`, `${formatDate(start)} – ${formatDate(end)}`, `${trim} Trimester`, status ].forEach((value, i) => {
         const span = document.createElement('span');
-        span.dataset.label = ['Gestational age', 'Date range', 'Trimester', 'Status'][i];
+        span.dataset.label = ['Week', 'Date range', 'Trimester', 'Status'][i];
         span.textContent = visibleText(value);
         if (i === 0) span.className = 'week';
         if (i === 1) span.className = 'date';
