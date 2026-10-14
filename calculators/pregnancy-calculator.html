@@ -149,7 +149,7 @@ p{font-size:17px;margin:0 0 17px}
 .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .compare-card{background:#fff;border:1px solid #d7e3e8;border-radius:8px;padding:12px}
 .compare-card span{display:block;font-size:12px;color:var(--muted);font-weight:700}.compare-card strong{font-size:17px}
-.timeline-toggle{margin-top:18px;border:1px solid var(--border);border-radius:10px;background:#fff;padding:0 14px}.timeline-toggle summary{padding:13px 0;color:var(--primary)}.timeline-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:12px 0 2px}.related-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0 6px}.tool-link{display:block;border:1px solid var(--border);border-radius:10px;padding:14px 15px;background:var(--soft);text-decoration:none;color:var(--text);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}.tool-link:hover,.tool-link:focus{border-color:var(--primary);box-shadow:0 5px 16px rgba(30,55,70,.06);transform:translateY(-1px)}.tool-link strong{display:block;color:var(--primary);font-size:16px;margin-bottom:3px}.tool-link strong span{display:inline}.tool-link span{display:block;color:var(--muted);font-size:13px;line-height:1.45}
+.timeline-toggle{margin-top:18px;border:1px solid var(--border);border-radius:10px;background:#fff;padding:0 14px}.timeline-toggle summary{padding:13px 0;color:var(--primary)}.timeline-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:12px 0 2px}.related-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0 6px}.tool-link{display:block;border:1px solid var(--border);border-radius:10px;padding:14px 15px;background:var(--soft);text-decoration:none;color:var(--text);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}.tool-link:hover,.tool-link:focus{border-color:var(--primary);box-shadow:0 5px 16px rgba(30,55,70,.06);transform:translateY(-1px)}.tool-link strong{display:block;color:var(--primary);font-size:16px;margin-bottom:3px}.tool-link span{display:block;color:var(--muted);font-size:13px;line-height:1.45}
 .timeline-head,.timeline-row{display:grid;grid-template-columns:92px 1fr 130px 100px;gap:10px;align-items:center}
 .timeline-head{background:var(--soft);padding:11px 13px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 .timeline-row{padding:11px 13px;border-top:1px solid var(--border);font-size:14px}
@@ -259,7 +259,7 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
       <div class="field">
         <label for="scanDays">Additional days</label>
         <input type="number" id="scanDays" min="0" max="6" step="1" value="0" inputmode="numeric">
-        <div class="help">Example: 8 weeks 3 days means weeks = 8 and additional days = 3.</div>
+        <div class="help">Example: 8 weeks 3 days means weeks = 8 and additional days = 3. Supported range: 0+0 through 42+0 weeks.</div>
       </div>
       <div class="field-grid">
         <div class="field">
@@ -390,7 +390,7 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
     <details>
       <summary>View the full 42-week timeline</summary>
       <div class="timeline-wrap">
-        <div class="timeline-head"><span>Week</span><span>Date range</span><span>Trimester</span><span>Status</span></div>
+        <div class="timeline-head"><span>Gestational age</span><span>Date range</span><span>Trimester</span><span>Status</span></div>
         <div id="timelineRows"></div>
       </div>
     </details>
@@ -450,12 +450,12 @@ h2{font-size:23px}h3{font-size:18px}p{font-size:16px}.buttons button{flex:0 1 au
   <p>Explore these related tools for general health and nutrition estimates. They are educational tools and do not replace personalized medical advice.</p>
   <div class="related-tools">
     <a class="tool-link" href="/calculators/bmi-calculator">
-      <strong><span aria-hidden="true">▦ </span>BMI Calculator</strong>
+      <strong>BMI Calculator</strong>
       <span>Estimate body mass index using your height and weight.</span>
     </a>
     <a class="tool-link" href="/calculators/calorie-calculator">
-      <strong><span aria-hidden="true">◉ </span>Calorie Calculator</strong>
-      <span>Explore an estimated daily calorie range based on your details and activity level.</span>
+      <strong>Calorie Calculator</strong>
+      <span>Estimate general daily calorie needs based on your details and activity level.</span>
     </a>
   </div>
 </section>
@@ -651,8 +651,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
 
   function calculatePregnancy() {
     hideError();
-    // Hide previous results before validating new inputs, so invalid entries
-    // cannot leave an outdated result visible.
+    // Never leave an old result visible if the new input fails validation.
     $('result').style.display = 'none';
     $('timelineSection').classList.add('hidden');
     $('compareBox').style.display = 'none';
@@ -729,7 +728,7 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     $('daysRemainingOutput').textContent = remaining > 0 ? `${remaining} days remaining` : remaining === 0 ? 'Estimated due date is today' : `${Math.abs(remaining)} days past due date`;
     $('pregnancyDayOutput').textContent = gestationalDays < 0 ? 'Not started' : gestationalDays < 280 ? `Day ${gestationalDays + 1} of 280` : '280-day framework complete';
     $('calculatedOnOutput').textContent = formatDate(today);
-    $('trimesterOutput').textContent = remaining < 0 ? 'Past Estimated Due Date' : trimesterLabel(gestationalDays);
+    $('trimesterOutput').textContent = trimesterLabel(gestationalDays);
     $('progressFill').style.width = progress + '%';
     $('progressLabel').textContent = progress + '%';
     const termStatus = $('termStatus');
@@ -737,9 +736,10 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     if (remaining < 0) {
       termStatus.classList.add('warning');
       const overdueDays = Math.abs(remaining);
+      const category = termLabel(gestationalDays);
       termStatus.textContent = overdueDays > 14
-        ? `Estimated due date passed ${overdueDays} days ago. This date-based calculator cannot confirm whether a pregnancy is ongoing or assess your health. If you are currently pregnant, contact your maternity team or healthcare professional promptly for individual advice.`
-        : `Estimated due date has passed by ${overdueDays} ${overdueDays === 1 ? 'day' : 'days'}. Due dates are estimates; if you are currently pregnant, contact your maternity team or healthcare professional for advice.`;
+        ? `${category} Estimated due date passed ${overdueDays} days ago. This date-based calculator cannot confirm whether a pregnancy is ongoing or assess your health. If you are currently pregnant, contact your maternity team or healthcare professional promptly for individual advice.`
+        : `${category} Estimated due date has passed by ${overdueDays} ${overdueDays === 1 ? 'day' : 'days'}. Due dates are estimates; if you are currently pregnant, contact your maternity team or healthcare professional for advice.`;
     } else {
       termStatus.textContent = termLabel(gestationalDays);
     }
@@ -750,17 +750,17 @@ Estimate only; follow your healthcare professional's clinical dating.`;
     $('date41').textContent = formatDate(addDays(lmpAnchor, 287));
     $('date42').textContent = formatDate(addDays(lmpAnchor, 294));
 
-    const currentWeek = Math.max(1, Math.min(42, weeksPregnant + 1));
+    const currentWeek = Math.max(0, Math.min(42, weeksPregnant));
     $('weekInsightTitle').textContent = gestationalDays < 0
       ? 'Before estimated start'
       : remaining < 0
         ? 'Estimated due date passed'
-        : `Week ${currentWeek}`;
+        : `Week ${currentWeek} (${currentWeek}+0)`;
     $('weekInsightText').textContent = gestationalDays < 0
       ? 'The entered dates place the estimated gestational start in the future. Please verify the information.'
       : remaining < 0
         ? 'The entered dates imply a gestational age beyond the estimated due date. This is not confirmation of an ongoing pregnancy; please seek individual clinical advice if currently pregnant.'
-        : `This is a calendar-based estimate for week ${currentWeek}. Development varies, and this tool cannot assess an individual pregnancy.`;
+        : `This is a calendar-based estimate at ${currentWeek}+${daysPregnant} gestational weeks. Development varies, and this tool cannot assess an individual pregnancy.`;
     $('sizeReference').textContent = sizeReferences[currentWeek] || 'No size comparison provided';
     $('sizeReferenceText').textContent = sizeReferences[currentWeek]
       ? 'Approximate NHS educational comparison only—not a measurement of your baby.'
@@ -779,19 +779,17 @@ Estimate only; follow your healthcare professional's clinical dating.`;
 
     const rows = $('timelineRows');
     rows.replaceChildren();
-    for (let w = 1; w <= 42; w++) {
-      const start = addDays(lmpAnchor, (w - 1) * 7);
-      const end = addDays(lmpAnchor, w * 7 - 1);
-      const isCurrent = gestationalDays >= 0 && currentWeek === w;
+    for (let w = 0; w < 42; w++) {
+      const start = addDays(lmpAnchor, w * 7);
+      const end = addDays(lmpAnchor, w * 7 + 6);
+      const isCurrent = gestationalDays >= 0 && gestationalDays < 294 && currentWeek === w;
       const row = document.createElement('div');
       row.className = `timeline-row${isCurrent ? ' current' : ''}`;
-      const trim = w <= 14 ? '1st' : w <= 28 ? '2nd' : '3rd';
-      const status = remaining < 0 && gestationalDays >= 294 && w === 42
-        ? '42-week reference'
-        : gestationalDays < 0 ? 'Upcoming' : w < currentWeek ? 'Completed' : isCurrent ? 'Current Week' : 'Upcoming';
-      [ `Week ${w}`, `${formatDate(start)} – ${formatDate(end)}`, `${trim} Trimester`, status ].forEach((value, i) => {
+      const trim = w <= 13 ? '1st' : w <= 27 ? '2nd' : '3rd';
+      const status = gestationalDays < 0 ? 'Upcoming' : gestationalDays >= 294 ? 'Past' : w < currentWeek ? 'Completed' : isCurrent ? 'Current Week' : 'Upcoming';
+      [ `${w}+0–${w}+6`, `${formatDate(start)} – ${formatDate(end)}`, `${trim} Trimester`, status ].forEach((value, i) => {
         const span = document.createElement('span');
-        span.dataset.label = ['Week', 'Date range', 'Trimester', 'Status'][i];
+        span.dataset.label = ['Gestational age', 'Date range', 'Trimester', 'Status'][i];
         span.textContent = visibleText(value);
         if (i === 0) span.className = 'week';
         if (i === 1) span.className = 'date';
