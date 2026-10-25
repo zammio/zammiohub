@@ -2537,6 +2537,7 @@ const desktopCalculatorsButton =
           class="filter-button${category === "All" ? " active" : ""}"
           data-category="${escapeHTML(category)}"
           type="button"
+          aria-pressed="${category === "All" ? "true" : "false"}"
         >
           ${escapeHTML(category)}
         </button>
@@ -2775,13 +2776,11 @@ const desktopCalculatorsButton =
 
     expanded = false;
 
-    filterButtons.forEach(function (button) {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.category === category
-      );
-
+    // Query the live buttons each time because they are created dynamically.
+    categoryFilters.querySelectorAll(".filter-button").forEach(function (button) {
+      const isActive = button.dataset.category === category;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
     });
 
     renderTools();
@@ -2833,19 +2832,12 @@ const desktopCalculatorsButton =
      FILTER BUTTONS
   ===================================================== */
 
-  filterButtons.forEach(function (button) {
-
-    button.addEventListener(
-      "click",
-      function () {
-
-        setCategory(
-          button.dataset.category
-        );
-
-      }
-    );
-
+  // Event delegation: this works even though the category buttons are
+  // rendered dynamically later in the INITIAL RENDER section.
+  categoryFilters.addEventListener("click", function (event) {
+    const button = event.target.closest(".filter-button");
+    if (!button || !categoryFilters.contains(button)) return;
+    setCategory(button.dataset.category);
   });
 
 
